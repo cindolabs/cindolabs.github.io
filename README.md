@@ -166,6 +166,60 @@ gantt
     0    : milestone, item0,  1918, 1s
     9    : vert,              1906, 1s   %% not yet official
     64   : workaround,        1923, 1s   %% custom CSS object https://github.com/mermaid-js/mermaid/issues/3250
+```
+
+
+```mermaid
+---
+config:
+  logLevel: 'debug'
+  theme: 'base'
+  gitGraph:
+    showBranches: false
+---
+      gitGraph
+        commit
+        branch hotfix
+        checkout hotfix
+        commit
+        branch develop
+        checkout develop
+        commit id:"ash" tag:"abc"
+        branch featureB
+        checkout featureB
+        commit type:HIGHLIGHT
+        checkout main
+        checkout hotfix
+        commit type:NORMAL
+        checkout develop
+        commit type:REVERSE
+        checkout featureB
+        commit
+        checkout main
+        merge hotfix
+        checkout featureB
+        commit
+        checkout develop
+        branch featureA
+        commit
+        checkout develop
+        merge hotfix
+        checkout featureA
+        commit
+        checkout featureB
+        commit
+        checkout develop
+        merge featureA
+        branch release
+        checkout release
+        commit
+        checkout main
+        commit
+        checkout release
+        merge main
+        checkout develop
+        merge release
+
 
 
 
