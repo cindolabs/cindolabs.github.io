@@ -20,3 +20,9 @@ Ketik `print("Hello, World!")` untuk mencetak teks.
 - [x] Belajar Markdown
 - [ ] Membuat dokumentasi
 - [ ] Publikasi ke GitHub
+
+> Ini adalah kutipan utama.
+> **Teks tambahan** yang dijelaskan lebih lanjut.
+
+<font color="red">This text is red!</font>
+
