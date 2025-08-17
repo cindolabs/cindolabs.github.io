@@ -1,12 +1,16 @@
-title: Blog Trading
-description: Berbagi pengetahuan tentang trading
+# _config.yml
+title: Membaca Grafik Pasar Uang
+description: Panduan praktis untuk memahami grafik di pasar keuangan
 url: "https://uqaleo.github.io"
 baseurl: ""
+markdown: kramdown
+kramdown:
+  input: GFM  # Mengaktifkan GitHub Flavored Markdown
 theme: minima
 plugins:
   - jekyll-feed
   - jekyll-seo-tag
-permalink: /blog/:title/
+permalink: /:title/
 exclude:
-  - README.md
   - Gemfile
+  - Gemfile.lock
