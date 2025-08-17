@@ -109,7 +109,7 @@ C --> D
 
    Bon appetit!
 
-
+```mermaid
 gantt
     title Git Issues - days since last update
     dateFormat X
