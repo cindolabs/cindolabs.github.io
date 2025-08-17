@@ -3,10 +3,9 @@ title: Selamat Datang
 layout: default
 ---
 
-Situs IniSitus ini dibuat oleh @uqaleo
- untuk berbagi pengetahuan tentang membaca grafik di pasar keuangan.
+Situs ini dibuat oleh @uqaleo untuk berbagi pengetahuan tentang membaca grafik di pasar keuangan.
  
- Misi: Membantu trader pemula memahami pola dan indikator teknikal.
+Misi: Membantu trader pemula memahami pola dan indikator teknikal.
 
 <details>
   <summary> Mengapa Saya Membuat Situs Ini?</summary>
