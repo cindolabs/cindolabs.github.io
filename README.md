@@ -55,5 +55,7 @@ And here's another paragraph that's visible.
 > [!CAUTION]
 > Advises about risks or negative outcomes of certain actions.
 
+The background color is `#ffffff` for light mode and `#000000` for dark mode.
+
 
 
