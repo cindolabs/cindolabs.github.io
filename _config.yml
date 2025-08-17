@@ -7,10 +7,3 @@ markdown: kramdown
 kramdown:
   input: GFM  # Mengaktifkan GitHub Flavored Markdown
 theme: minima
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-permalink: /:title/
-exclude:
-  - Gemfile
-  - Gemfile.lock
