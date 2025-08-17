@@ -9,3 +9,9 @@
   </p>
 	<p> "La paciencia es amarga, pero su fruto es dulce". – Aristóteles
 </p>
+
+<details>
+  <summary>Klik untuk melihat detail</summary>
+  <p>Ini adalah teks yang tersembunyi hingga diklik.</p>
+  <p>"Kesabaran adalah kunci." – Anonim</p>
+</details>
