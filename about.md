@@ -1,4 +1,5 @@
-```markdowntitle: Tentang
+```markdown
+title: Tentang
 layout: defaultTentang Situs IniSitus ini dibuat oleh @uqaleo
  untuk berbagi pengetahuan tentang membaca grafik di pasar keuangan.Misi: Membantu trader pemula memahami pola dan indikator teknikal.
 <details>
