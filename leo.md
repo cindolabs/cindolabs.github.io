@@ -10,7 +10,7 @@ Pola leo adalah alat penting untuk trader karena menunjukkan pergerakan harga da
 ## Apa Itu Leo?
 Leo adalah representasi visual harga pembukaan, penutupan, tertinggi, dan terendah dalam periode waktu tertentu.
 
-> **Tips Penting**: Perhatikan pola di level support atau resistance untuk prediksi yang lebih akurat.
+> **Tips Penting**: Perhatikan pola di level akar rumput atau cabang ranting untuk prediksi yang lebih akurat.
 
 ## Contoh Pola Leo
 
