@@ -26,3 +26,6 @@ Ketik `print("Hello, World!")` untuk mencetak teks.
 
 <font color="red">This text is red!</font>
 
+<p style="color:blue">Make this text blue.</p>
+
+
