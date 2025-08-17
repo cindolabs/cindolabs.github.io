@@ -83,5 +83,13 @@ B --> D{Rhombus}
 C --> D
 ```
 
+* Fruit
+  * Apple
+  * Orange
+  * Banana
+* Dairy
+  * Milk
+  * Cheese
+
 
 
