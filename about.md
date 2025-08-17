@@ -1,3 +1,8 @@
+---
+title: Selamat Datang
+layout: default
+---
+
 Situs IniSitus ini dibuat oleh @uqaleo
  untuk berbagi pengetahuan tentang membaca grafik di pasar keuangan.
  
