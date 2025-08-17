@@ -1,2 +1,26 @@
-baseURL: "https://uqaleogithub.io"
-title: ⛩️ UQALeo
+title: ⛩️ UQALEO
+description: Panduan praktis untuk memahami grafik di pasar keuangan
+url: "https://uqaleo.github.io"
+baseurl: ""
+markdown: kramdown
+kramdown:
+  input: GFM
+theme: minima
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+permalink: /:title/
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+exclude:
+  - Gemfile
+  - Gemfile.lock
