@@ -1,9 +1,2 @@
-# _config.yml
-title: Membaca Grafik Pasar Uang
-description: Panduan praktis untuk memahami grafik di pasar keuangan
-url: "https://uqaleo.github.io"
-baseurl: ""
-markdown: kramdown
-kramdown:
-  input: GFM  # Mengaktifkan GitHub Flavored Markdown
-theme: minima
+baseURL: "https://uqaleogithub.io"
+title: ⛩️ UQALeo
