@@ -5,10 +5,10 @@ layout: default
 
 # Membaca Grafik di Pasar Uang 📈
 
-Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar keuangan menggunakan pendekatan sederhana.
+Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar uang menggunakan pendekatan sederhana.
 
 > **Mengapa Grafik Penting?**
-> Grafik adalah cerminan pergerakan harga. Dengan memahami pola dan karakter, Anda bisa membuat keputusan trading yang lebih baik.
+> Grafik adalah cerminan pergerakan harga. Dengan memahami pola dan karakter, Anda bisa membuat keputusan trading/berburu yang lebih baik.
 
 ## Mulai Dari Mana?
 - [x] Pelajari pola dan karakter para hewan.
