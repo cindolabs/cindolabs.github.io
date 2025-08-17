@@ -13,10 +13,12 @@ Candlestick adalah representasi visual harga pembukaan, penutupan, tertinggi, da
 > **Tips Penting**: Perhatikan pola di level support atau resistance untuk prediksi yang lebih akurat.
 
 ## Contoh Pola Candlestick
+
 | Pola          | Arti                     | Contoh Visual |
 |---------------|--------------------------|---------------|
 | Doji          | Ketidakpastian pasar     | 🟥⬜         |
 | Hammer        | Potensi pembalikan naik  | 🟩⬇️         |
+
 
 <details>
   <summary>🔍 Apa Itu Pola Doji?</summary>
