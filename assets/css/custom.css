@@ -2,8 +2,8 @@ body {
   margin-left: 10%; /* Tetap geser ke kanan */
   margin-right: 10%; /* Dan kiri */
   padding: 20px; /* Jaga padding */
-  font-family: inherit; /* Gunakan font bawaan tema */
-  font-size: inherit; /* Gunakan ukuran teks bawaan */
+  font-family: poppins; /* Gunakan font bawaan tema */
+  font-size: poppins; /* Gunakan ukuran teks bawaan */
 }
 
 main {
