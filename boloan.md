@@ -12,11 +12,6 @@ Membangun sesuatu yang besar? Anda butuh pemain-pemain <span style="color:blue">
 
 Ide terbaik pun akan <span style="color:red">gagal</span> tanpa kerja kelompok yang tepat.
 
-![Red Text](https://img.shields.io/badge/Teks-Merah-red)  
-
-![Blue Text](https://img.shields.io/badge/Teks-Biru-blue)
-
-```diff
-- Teks ini akan berwarna merah (untuk diff -)
-+ Teks ini akan berwarna hijau (untuk diff +)
-
+<span style="color:red; font-weight:bold">Teks merah tebal</span>  
+<span style="color:blue; font-style:italic">Teks biru miring</span>  
+<span style="color:red; background-color:yellow">Teks merah dengan latar kuning</span>
