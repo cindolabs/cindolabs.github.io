@@ -1,17 +1,3 @@
-/* Mengatur judul (h1) */
-h1 {
-  margin-left: 20%; /* Geser ke kanan 20% dari kiri */
-  text-align: right; /* Rata kanan */
-}
-
-/* Mengatur konten utama */
-main {
-  margin-left: 15%; /* Geser konten ke kanan */
-  padding: 10px; /* Jarak dalam */
-}
-
-/* Mengatur footer */
-footer {
-  text-align: center; /* Rata tengah */
-  margin-top: 20px; /* Jarak dari atas */
+body {
+  margin-left: 20%; /* Geser seluruh konten ke kanan 20% */
 }
