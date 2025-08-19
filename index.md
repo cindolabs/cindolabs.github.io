@@ -6,7 +6,7 @@ custom_css: /assets/css/custom.css
 
 # Membaca Grafik di Pasar Uang 📈
 
-Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar uang menggunakan pendekatan sederhana.
+Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar uang menggunakan pendekatan sederhana. Pengujian layout
 
 > **Mengapa Grafik Penting?**
 > Grafik adalah cerminan pergerakan harga. Dengan memahami pola dan karakter, Anda bisa membuat keputusan trading/berburu yang lebih baik.
