@@ -24,6 +24,6 @@ Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar uang
 
 ## Donasi
 Jika Anda merasa konten ini bermanfaat, silakan dukung dengan donasi ke alamat berikut:  
-[**1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK**](https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK)
+[**1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK**](https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK) atau [**UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW**](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW)
 
 Lihat artikel di bawah untuk memulai!
