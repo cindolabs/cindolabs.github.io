@@ -8,13 +8,9 @@ Sejak kecil, saya sudah akrab dengan kerja kelompok. Saat SD, saya gemar _boloan
 
 Pengalaman ini membentuk pemahaman saya tentang pentingnya kolaborasi. Maka tak heran, hingga kini saya selalu bersemangat mengajak dan menginspirasi orang lain untuk bekerja sama, terutama di dunia trading. Saya percaya, untuk meraih kesuksesan besar, kita membutuhkan tim yang solid dan kompeten.
 
-Membangun sesuatu yang besar? Anda butuh pemain-pemain hebat.
+Membangun sesuatu yang besar? Anda butuh pemain-pemain <span style="color:blue">hebat</span>.
 
-Ide terbaik pun akan gagal tanpa kerja kelompok yang tepat.
-
-<span style="color:red">Teks berwarna merah</span>  
-
-<span style="color:blue">Teks berwarna biru</span>
+Ide terbaik pun akan <span style="color:red">gagal</span> tanpa kerja kelompok yang tepat.
 
 ![Red Text](https://img.shields.io/badge/Teks-Merah-red)  
 
