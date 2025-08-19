@@ -22,4 +22,8 @@ Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar uang
   <p>"Kesabaran adalah kunci untuk memahami pasar." – Trader Bijak</p>
 </details>
 
+## Donasi
+Jika Anda merasa konten ini bermanfaat, silakan dukung dengan donasi ke alamat berikut:  
+[**1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK**](https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK)
+
 Lihat artikel di bawah untuk memulai!
