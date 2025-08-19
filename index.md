@@ -1,7 +1,6 @@
 ---
 title: Selamat Datang
 layout: default
-custom_css: /assets/css/custom.css
 ---
 
 # Membaca Grafik di Pasar Uang 📈
