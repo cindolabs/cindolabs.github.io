@@ -1,3 +1,8 @@
+---
+title: Wall Street
+layout: default
+---
+
 # Wall Street memiliki 2 set aturan:
 
 Satu untuk kaum elite yang punya rahasia.
