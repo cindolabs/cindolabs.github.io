@@ -2,7 +2,9 @@
 <html>
 <head>
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="/assets/css/custom.css">
+  {% if page.custom_css %}
+    <link rel="stylesheet" href="{{ page.custom_css | relative_url }}">
+  {% endif %}
 </head>
 <body>
   <header>
