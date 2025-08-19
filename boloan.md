@@ -1,6 +1,7 @@
 ---
 title: Boloan
 layout: default
+custom_css: /assets/css/custom.css
 ---
 
 # Kerja Kelompok : Membuat Kekuatan Bersama untuk Sukses
