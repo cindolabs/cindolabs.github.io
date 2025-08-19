@@ -3,11 +3,12 @@ title: Boloan
 layout: default
 ---
 
-# Kerja Kelompok
-Sejak saya masih SD, saya sudah suka _boloan_, entah itu dalam permainan mengumpulkan mainan atau dalam olahraga, mulai dari boloan main umbulan sampai mainan kelereng dan sepak bola. Pencapaian saya ketika boloan, umbul saya bisa terkumpul sampai 10 meter lebih, kelereng saya bisa sampai 1000 butir lebih dan saya juara futsall dewasa ketika saat menjadi ketua panitia lomba catur agustusan.
+# Kerja Kelompok : Membuat Kekuatan Bersama untuk Sukses
+Sejak kecil, saya sudah akrab dengan kerja kelompok. Saat SD, saya gemar _boloan_ dalam berbagai aktivitas, baik itu mengumpulkan mainan seperti _umbulan_ hingga mencapai ketebalan sepanjang lebih dari 10 meter, mengoleksi kelereng sampai lebih dari 1.000 butir, _tazos_ sampai 100 biji lebih, maupun bermain sepak bola dan futsal. Salah satu momen membanggakan adalah saat saya menjadi juara futsal dewasa sekaligus bertindak sebagai ketua panitia lomba catur dalam perayaan Agustusan.
 
-Maka dari itu saya tidak heran dan tidak bosan jika selalu berkeinginan untuk mengajak atau merekut orang agar bisa bekerja kelompok di dunia _trading_.
+Pengalaman ini membentuk pemahaman saya tentang pentingnya kolaborasi. Maka tak heran, hingga kini saya selalu bersemangat mengajak dan menginspirasi orang lain untuk bekerja sama, terutama di dunia trading. Saya percaya, untuk meraih kesuksesan besar, kita membutuhkan tim yang solid dan kompeten.
 
 Membangun sesuatu yang besar? Anda butuh pemain-pemain hebat.
 
-Ide terbaik akan gagal tanpa kelompok kerja yang tepat.
+Ide terbaik pun akan gagal tanpa kerja kelompok yang tepat.
+
