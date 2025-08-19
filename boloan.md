@@ -16,3 +16,7 @@ Ide terbaik pun akan <span style="color:red">gagal</span> tanpa kerja kelompok y
 
 ![Blue Text](https://img.shields.io/badge/Teks-Biru-blue)
 
+```diff
+- Teks ini akan berwarna merah (untuk diff -)
++ Teks ini akan berwarna hijau (untuk diff +)
+
