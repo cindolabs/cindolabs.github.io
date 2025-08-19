@@ -12,3 +12,11 @@ Membangun sesuatu yang besar? Anda butuh pemain-pemain hebat.
 
 Ide terbaik pun akan gagal tanpa kerja kelompok yang tepat.
 
+<span style="color:red">Teks berwarna merah</span>  
+
+<span style="color:blue">Teks berwarna biru</span>
+
+![Red Text](https://img.shields.io/badge/Teks-Merah-red)  
+
+![Blue Text](https://img.shields.io/badge/Teks-Biru-blue)
+
