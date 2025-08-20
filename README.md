@@ -16,3 +16,5 @@
   <p>"Kesabaran adalah kunci." – Anonim</p>
   <p>"Kesabaran itu pahit, tapi buahnya manis." – Aristóteles</p>
 </details>
+
+## Tombol add file malam ini tidak berfungsi
