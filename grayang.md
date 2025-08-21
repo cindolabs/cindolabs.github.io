@@ -22,6 +22,8 @@ Tolong di catat sbg amal baik saya
 
 Gawe Ribet Ancene Yang namanyA trabraNi coG
 
+ada BRA dalam Tabrani, klo bra nya di lepas dia jadi TANI, klo dia mau bertani saya yakin akan dapat modal dari ayah biologis nya
+
 
 
 
