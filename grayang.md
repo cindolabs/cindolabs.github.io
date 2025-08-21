@@ -24,7 +24,7 @@ Gawe Ribet Ancene Yang namanyA trabraNi coG
 
 ada BRA dalam Tabrani, klo bra nya di lepas dia jadi TANI, klo dia mau bertani saya yakin akan dapat modal dari ayah biologis nya
 
-## 
+## Analogi Para Trader
 
 Grafik wayang ? Dalange adalah market maker, kita wayang yang di ombang ambing market
 > Di uncalno nang puncak.
