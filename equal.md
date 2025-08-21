@@ -3,9 +3,10 @@ title: Equal
 layout: default
 ---
 
-# Setara
+# Berusaha Setara
 
-## Kebenaran Mentah tentang Kehidupan Sebagai Seorang Pria (Wawasan yang Layak Anda Ketahui)
+## Kebenaran Mentah tentang Kehidupan Sebagai Seorang Pria
+## (Wawasan yang Layak Anda Ketahui)
 
 Pikiran yang mencari rumus tidak akan pernah menemukan kebenaran.
 
