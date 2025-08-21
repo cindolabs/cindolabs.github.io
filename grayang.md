@@ -5,7 +5,7 @@ layout: default
 
 # Grayang (Teori Grafik Wayang)
 
-Saya sudah berselancar kemana-mana dan menyusun teori macam-macam, mulai dari abrattav, metabrani sampai kuda jaran, tapi kali ini di uqaleo saya menggunakan Grayang. Pinisepuh apa ada yang tahu terusannya 😅 tebakan yang cocok 0.1 TON (The Open Network) dari address UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW
+Saya sudah berselancar kemana-mana dan menyusun teori macam-macam, mulai dari abrattav, metabrani sampai kuda jaran, tapi kali ini di uqaleo saya menggunakan Grayang. Pinisepuh apa ada yang tahu terusannya 😅 tebakan yang cocok 0.1 TON (The Open Network) dari address [UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW#source)
 
 Grayang. Bermakna meraba  merasakan  dan menikmati
 
@@ -24,8 +24,14 @@ Gawe Ribet Ancene Yang namanyA trabraNi coG
 
 ada BRA dalam Tabrani, klo bra nya di lepas dia jadi TANI, klo dia mau bertani saya yakin akan dapat modal dari ayah biologis nya
 
+## 
 
-
+Grafik wayang ? Dalange adalah market maker, kita wayang yang di ombang ambing market
+> Di uncalno nang puncak.
+> 
+> Di keplekno nang lembah.
+> 
+> Di pindah2 timframe.
 
 
 
