@@ -1,5 +1,5 @@
 ---
-title: Equal
+title: Bangkit
 layout: default
 ---
 
