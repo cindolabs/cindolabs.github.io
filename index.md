@@ -46,4 +46,4 @@ Jelajahi artikel dan panduan di bawah ini untuk memulai petualangan Anda di rimb
 
 ---
 
-**[Lihat Artikel Pertama](#)** | **[Hubungi Kami](#)** | **[Ikuti Update](#)**
+**[Lihat Artikel Pertama](#)** | **[Hubungi Kami](#)** | **[Ikuti Update](https://uqaleo.github.io/uqaleo)**
