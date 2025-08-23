@@ -1,6 +1,6 @@
 ---
 title: Laboratorium Keuangan
-layout: Standar
+layout: default
 ---
 
 # Selamat Datang di Laboratorium Keuangan UQALEO
