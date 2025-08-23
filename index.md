@@ -37,9 +37,8 @@ Berikut langkah-langkah awal untuk memahami pasar keuangan melalui pendekatan ka
 
 ## Dukung Kami dengan Donasi 🙌
 Jika Anda merasa konten ini bermanfaat, dukung pengembangan situs ini dengan donasi ke alamat berikut:  
-- **Bitcoin**: [`1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK`](https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK)  
-- **TON**: [`UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW`](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW)  
-
+- **Bitcoin**: <a href="https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK" target="_blank">Kirim Donasi BTC</a>  
+- **TON**: <a href="https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW" target="_blank">Kirim Donasi TON</a>  
 Donasi Anda membantu kami terus menyediakan konten edukasi berkualitas!
 
 ## Mulai Perjalanan Anda! 🌟
