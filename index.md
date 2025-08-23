@@ -1,29 +1,50 @@
 ---
-title: Selamat Datang
+title: Selamat Datang di Dunia Analisis Grafik Pasar Uang
 layout: default
 ---
 
-# Membaca Grafik di Pasar Uang 📈
+# Selamat Datang di Dunia Analisis Grafik Pasar Uang 📈
 
-Selamat datang di situs saya, tempat belajar metode membaca grafik di pasar uang menggunakan pendekatan sederhana. Pengujian layout
+Selamat datang di situs ini, tempat Anda belajar cara membaca grafik harga di pasar keuangan dengan pendekatan sederhana dan praktis. Kami menggunakan analogi "rimba belantara" untuk memahami dinamika pasar, membantu Anda menjadi trader atau investor yang lebih cerdas.
 
-> **Mengapa Grafik Penting?**
-> Grafik adalah cerminan pergerakan harga. Dengan memahami pola dan karakter, Anda bisa membuat keputusan trading/berburu yang lebih baik.
+> **Mengapa Grafik Penting?**  
+> Grafik adalah cerminan pergerakan harga di pasar. Dengan memahami pola, tren, dan karakteristiknya, Anda dapat membuat keputusan trading yang lebih tepat dan strategis.
 
-## Mulai Dari Mana?
-- [x] Pelajari pola dan karakter para hewan.
-- [ ] Pasar keuangan bagaikan rimba belantara.
-- [ ] Amati jenis-jenis hewan dan luas rimbanya.
-- [ ] Hati-hati dalam berburu, agar tidak diburu balik.
+## Dari Mana Memulai? 🚀
+Berikut langkah-langkah awal untuk memahami pasar keuangan melalui pendekatan kami:
+1. **Pelajari Pola dan Karakter "Hewan" Pasar**  
+   Kenali pola harga seperti Anda mengenal perilaku hewan di rimba. Setiap pola memiliki cerita uniknya! ✅  
+2. **Pahami Rimba Belantara Pasar**  
+   Pasar keuangan penuh dengan peluang dan risiko, seperti hutan liar yang luas. Pelajari dinamikanya. ⏳  
+3. **Amati Jenis "Hewan" dan Ekosistemnya**  
+   Identifikasi instrumen keuangan (saham, forex, kripto) dan lingkungan pasarnya. ⏳  
+4. **Berburu dengan Hati-Hati**  
+   Strategi yang tepat mencegah Anda menjadi "mangsa" pasar. Tetap waspada! ⏳  
 
+> *"Pasar adalah hutan. Kesabaran dan pengamatan adalah senjata terbaik Anda."* – Trader Bijak
+
+## Apa yang Akan Anda Pelajari? 🔍
 <details>
-  <summary>🔍 Apa yang Akan Anda Pelajari?</summary>
-  <p>Di situs ini, Anda akan mempelajari cara membaca pola dan karakter hewan digital, alat untuk berburu, dan strategi berburu.</p>
-  <p>"Kesabaran adalah kunci untuk memahami pasar." – Trader Bijak</p>
+  <summary><strong>Klik untuk Melihat Detail</strong></summary>
+  <p>Di situs ini, Anda akan mempelajari:</p>
+  <ul>
+    <li><strong>Pola Harga</strong>: Cara mengenali pola grafik seperti "hewan digital" di pasar.</li>
+    <li><strong>Alat Analisis</strong>: Teknik dan indikator untuk membantu "berburu" peluang.</li>
+    <li><strong>Strategi Trading</strong>: Pendekatan praktis untuk membuat keputusan cerdas.</li>
+  </ul>
+  <p><em>"Kesabaran adalah kunci. Pasar akan menguji Anda, tapi pengamatan akan menyelamatkan Anda."</em></p>
 </details>
 
-## Donasi
-Jika Anda merasa konten ini bermanfaat, silakan dukung dengan donasi ke alamat berikut:  
-[**1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK**](https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK) atau [**UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW**](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW)
+## Dukung Kami dengan Donasi 🙌
+Jika Anda merasa konten ini bermanfaat, dukung pengembangan situs ini dengan donasi ke alamat berikut:  
+- **Bitcoin**: [`1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK`](https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK)  
+- **TON**: [`UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW`](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW)  
 
-Lihat artikel di bawah untuk memulai!
+Donasi Anda membantu kami terus menyediakan konten edukasi berkualitas!
+
+## Mulai Perjalanan Anda! 🌟
+Jelajahi artikel dan panduan di bawah ini untuk memulai petualangan Anda di rimba pasar keuangan. Selamat belajar dan berburu peluang!
+
+---
+
+**[Lihat Artikel Pertama](#)** | **[Hubungi Kami](#)** | **[Ikuti Update](#)**
