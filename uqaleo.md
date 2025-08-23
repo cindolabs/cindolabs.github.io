@@ -1,5 +1,5 @@
 ---
-title: Laboratorium Keuangan
+title: Kelas Keuangan
 layout: default
 ---
 
