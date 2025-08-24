@@ -1,6 +1,6 @@
 ---
 title: Fokus
-layout: Grattius
+layout: default
 ---
 
 # Pengujian
