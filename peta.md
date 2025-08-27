@@ -93,6 +93,4 @@ gantt
 - **Kustomisasi Durasi**: Sesuaikan durasi (misalnya, `2m` untuk 2 bulan, `30d` untuk 30 hari) sesuai kebutuhan.
 - **Detail Tugas**: Tambahkan deskripsi singkat atau milestone dengan sintaks seperti `Milestone Nama :milestone, tanggal`.
 - **Contoh Milestone**:
-  ```mermaid
-  Peluncuran Resmi  :milestone, a5, 2026-01, 0d
 
