@@ -170,7 +170,7 @@ gantt
 Jika platform kamu tidak mendukung Mermaid atau error berlanjut, kamu bisa membuat peta jalan trading harian menggunakan format Markdown lain, seperti tabel atau daftar.
 
 **Contoh Alternatif dengan Tabel**:
-```markdown
+
 # Peta Jalan Trading Harian: Berburu Pip (24 Jam)
 
 | Waktu (WIB) | Tahap                  | Deskripsi                              | Durasi  |
@@ -185,5 +185,4 @@ Jika platform kamu tidak mendukung Mermaid atau error berlanjut, kamu bisa membu
 | 22:00-22:30 | Jurnal Trading         | Catat trade dan emosi                  | 30 menit |
 | 22:30-23:00 | Persiapan Hari Berikut | Cek kalender ekonomi                   | 30 menit |
 | 23:00       | Target Pip Harian      | Capai 50-100 pip (scalping/day trading)| -       |
-```
 
