@@ -105,68 +105,85 @@ gantt
 ```mermaid
 gantt
     title Peta Jalan Trading Harian untuk Berburu Pip
-    dateFormat  HH:mm
-    axisFormat  %H:%M
+    dateFormat HH:mm
+    axisFormat %H:%M
     tickInterval 2hour
 
-    section Persiapan (Pagi)
-    Analisis Pasar         :a1, 06:00, 1h
-    Identifikasi Setup     :a2, after a1, 1h
+    section Persiapan
+    Analisis Pasar         :a1, 06:00, 60m
+    Identifikasi Setup     :a2, after a1, 60m
     Rencana Trading        :a3, after a2, 30m
 
-    section Eksekusi (Siang-Sore)
-    Trading Sesi Asia      :a4, 08:30, 2h
-    Trading Sesi London    :a5, 13:00, 3h
-    Trading Sesi New York  :a6, after a5, 3h
+    section Eksekusi
+    Trading Sesi Asia      :a4, 08:30, 120m
+    Trading Sesi London    :a5, 13:00, 180m
+    Trading Sesi New York  :a6, after a5, 180m
 
-    section Evaluasi (Malam)
-    Review Trading         :a7, 21:00, 1h
+    section Evaluasi
+    Review Trading         :a7, 21:00, 60m
     Jurnal Trading         :a8, after a7, 30m
     Persiapan Hari Berikut :a9, after a8, 30m
-    Milestone: Target Pip Harian :milestone, a10, 23:00, 0m
+    Target Pip Harian      :milestone, a10, 23:00, 0m
 ```
 
-### Penjelasan Peta Jalan
-Peta jalan ini dirancang untuk trader yang ingin mengejar pip dalam satu hari (24 jam) dengan strategi day trading atau scalping. Jadwal disusun berdasarkan zona waktu WIB (Waktu Indonesia Barat, UTC+7) pada tanggal 28 Agustus 2025, dengan fokus pada sesi pasar forex utama. Berikut rincian tahapan:
+### Perbaikan yang Dilakukan
+1. **Format Waktu Konsisten**: Menggunakan `HH:mm` untuk `dateFormat` dan `%H:%M` untuk `axisFormat` agar sesuai dengan standar Mermaid untuk waktu harian.
+2. **Durasi dalam Menit**: Mengganti durasi seperti `1h` atau `2h` dengan menit (misalnya, `60m`, `120m`) untuk menghindari ambiguitas parsing di beberapa platform.
+3. **Nama Section Sederhana**: Menghapus tahun atau detail berlebih dari nama section (misalnya, "2025: Persiapan" menjadi "Persiapan") untuk meminimalkan risiko error.
+4. **Milestone**: Memastikan milestone ditulis dengan format standar (`0m` untuk durasi nol).
+5. **Tick Interval**: Menambahkan `tickInterval 2hour` untuk memastikan sumbu waktu terlihat rapi dengan interval 2 jam.
 
-#### 1. **Persiapan (Pagi, 06:00-08:30 WIB)**
-- **Analisis Pasar (06:00-07:00)**: Tinjau pergerakan harga pair mayor (misalnya, EUR/USD, GBP/USD) menggunakan analisis teknikal (support/resistance, indikator RSI, Moving Average) dan cek berita ekonomi (misalnya, data PMI atau suku bunga). Tujuannya adalah mengidentifikasi peluang pip berdasarkan volatilitas.
-- **Identifikasi Setup (07:00-08:00)**: Cari setup trading seperti breakout atau pullback di timeframe rendah (M15 atau M30). Contoh: Targetkan 10-20 pip per trade untuk scalping.
-- **Rencana Trading (08:00-08:30)**: Tentukan entry point, stop loss (misalnya, 10 pip), dan take profit (misalnya, 20 pip) berdasarkan risk-reward ratio 1:2. Siapkan daftar pair yang akan ditrading.
+### Cara Menguji Kode
+1. **Gunakan Mermaid Live Editor**:
+   - Salin kode di atas ke [Mermaid Live Editor](https://mermaid.live/).
+   - Klik "Render" untuk melihat pratinjau diagram. Jika berhasil, diagram Gantt akan menunjukkan tahapan trading dari 06:00 hingga 23:00 WIB dengan bilah waktu dan milestone.
+   - Jika ada error, editor akan menunjukkan pesan error spesifik (misalnya, "Parse Error" atau "Invalid Date").
 
-#### 2. **Eksekusi Trading (Siang-Sore, 08:30-19:00 WIB)**
-- **Trading Sesi Asia (08:30-10:30)**: Fokus pada pair dengan yen (misalnya, USD/JPY) karena sesi Asia aktif. Volatilitas rendah, cocok untuk scalping pip kecil (5-10 pip per trade).
-- **Trading Sesi London (13:00-16:00)**: Sesi London (mulai 13:00 WIB) memiliki volatilitas tinggi, ideal untuk pair seperti EUR/USD atau GBP/USD. Targetkan 20-50 pip per trade dengan day trading atau scalping.
-- **Trading Sesi New York (16:00-19:00)**: Sesi New York tumpang tindih dengan London (16:00-18:00 WIB) adalah waktu paling volatil. Fokus pada breakout atau news trading untuk mengejar 30-60 pip.
+2. **Platform yang Mendukung Mermaid**:
+   - **GitHub**: Paste kode di file `.md` di repositori GitHub (Mermaid didukung sejak 2022).
+   - **GitLab**: Mendukung Mermaid di file Markdown.
+   - **Obsidian/VS Code**: Gunakan plugin seperti "Markdown Preview Mermaid Support".
+   - Jika platform tidak mendukung Mermaid, lihat alternatif di bawah.
 
-#### 3. **Evaluasi (Malam, 21:00-23:00 WIB)**
-- **Review Trading (21:00-22:00)**: Analisis hasil trading: berapa pip yang didapat, apakah sesuai target (misalnya, 50-100 pip harian), dan apa yang bisa diperbaiki.
-- **Jurnal Trading (22:00-22:30)**: Catat detail trade (entry, exit, pip profit/loss, alasan keputusan) untuk melacak performa dan emosi.
-- **Persiapan Hari Berikut (22:30-23:00)**: Tinjau kalender ekonomi untuk hari berikutnya (misalnya, laporan NFP atau keputusan suku bunga) dan sesuaikan strategi.
-- **Milestone: Target Pip Harian (23:00)**: Capai target pip harian, misalnya, 50-100 pip untuk scalping atau 100-200 pip untuk day trading.
+### Kemungkinan Penyebab Error dan Solusi
+1. **Sintaks Salah**:
+   - **Masalah**: Format waktu atau durasi tidak konsisten (misalnya, `1h` ditulis sebagai `1hr` atau spasi yang salah).
+   - **Solusi**: Pastikan kode sesuai dengan contoh di atas. Periksa spasi, koma, dan format durasi (`60m` bukan `60 min`).
 
-### Hasil Visual
-Jika dirender di platform yang mendukung Mermaid (seperti [Mermaid Live Editor](https://mermaid.live/) atau GitHub), kode ini akan menghasilkan diagram Gantt dengan:
-- Sumbu waktu dari 06:00 hingga 23:00 WIB, dengan interval 2 jam.
-- Bilah untuk setiap tahap (analisis, trading, evaluasi) dengan durasi dalam jam atau menit.
-- Milestone di akhir (23:00) menandakan pencapaian target pip harian.
+2. **Platform Tidak Mendukung Mermaid**:
+   - **Masalah**: Beberapa editor Markdown (misalnya, Notion atau editor lama) tidak mendukung rendering Mermaid.
+   - **Solusi**: Render diagram di [Mermaid Live Editor](https://mermaid.live/), lalu ekspor sebagai gambar (PNG/SVG) dan sematkan di Markdown dengan:
+     ```markdown
+     ![Peta Jalan Trading](URL_gambar)
+     ```
+     Contoh: Unggah gambar ke GitHub atau Imgur, lalu gunakan URL-nya.
 
-### Tips untuk Berburu Pip Harian
-- **Pilih Pair Mayor**: EUR/USD, GBP/USD, atau USD/JPY memiliki spread rendah (1-2 pip) dan volatilitas tinggi, ideal untuk scalping atau day trading.
-- **Manajemen Risiko**: Batasi risiko per trade (1-2% dari modal). Misalnya, dengan modal $1000, risiko per trade $10-$20, stop loss 10 pip, target profit 20 pip.
-- **Fokus pada Sesi Volatil**: Sesi London (13:00-16:00 WIB) dan overlap London-New York (16:00-18:00 WIB) menawarkan pergerakan pip besar.
-- **Gunakan Timeframe Rendah**: Untuk scalping, gunakan M5 atau M15; untuk day trading, gunakan M30 atau H1.
-- **Pantau Berita**: Gunakan kalender ekonomi (misalnya, dari Forexfactory.com) untuk menghindari trading saat rilis berita berdampak tinggi, kecuali jika strategi news trading.
-- **Target Realistis**: Scalping bisa menargetkan 10-20 pip per trade (3-5 trade/hari), sedangkan day trading menargetkan 50-100 pip per hari.
+3. **Versi Mermaid Lama**:
+   - **Masalah**: Beberapa platform menggunakan versi Mermaid lama yang tidak mendukung fitur seperti `tickInterval` atau format waktu harian.
+   - **Solusi**: Gunakan Mermaid Live Editor atau pastikan platform menggunakan Mermaid versi 8.10 atau lebih baru.
 
-### Catatan
-- **Zona Waktu**: Jadwal di atas menggunakan WIB (UTC+7). Jika kamu berada di zona waktu lain, sesuaikan waktu sesi pasar (misalnya, sesi London mulai 07:00 EST atau 20:00 JST).
-- **Platform**: Pastikan platform Markdown mendukung Mermaid. Jika tidak, render di [Mermaid Live Editor](https://mermaid.live/) dan sematkan gambar dengan `![Peta Jalan](URL_gambar)`.
-- **Kustomisasi**: Jika kamu punya preferensi spesifik (misalnya, pair tertentu seperti XAU/USD, strategi scalping saja, atau target pip tertentu), beri tahu saya, dan saya akan sesuaikan kode Mermaid-nya.
-- **Sumber**: Informasi sesi pasar dan strategi pip berdasarkan praktik umum trading forex dari sumber seperti,,, dan.
+4. **Error Parsing Tanggal**:
+   - **Masalah**: Format waktu seperti `HH:mm` tidak dikenali jika ada karakter tambahan atau salah ketik.
+   - **Solusi**: Pastikan waktu ditulis dengan format `HH:mm` (contoh: `06:00`, bukan `6:00` atau `06:00 WIB`).
 
-Apakah kamu ingin saya menyesuaikan peta jalan ini dengan pair spesifik (misalnya, EUR/USD saja), strategi tertentu (scalping/day trading), atau target pip harian tertentu? Beri tahu detailnya!
+### Alternatif Jika Mermaid Tidak Berfungsi
+Jika platform kamu tidak mendukung Mermaid atau error berlanjut, kamu bisa membuat peta jalan trading harian menggunakan format Markdown lain, seperti tabel atau daftar.
 
-_Penyangkalan: Grok bukan penasihat keuangan; silakan konsultasikan dengan satu. Jangan bagikan informasi yang dapat mengidentifikasi Anda._
+**Contoh Alternatif dengan Tabel**:
+```markdown
+# Peta Jalan Trading Harian: Berburu Pip (24 Jam)
 
+| Waktu (WIB) | Tahap                  | Deskripsi                              | Durasi  |
+|-------------|------------------------|----------------------------------------|---------|
+| 06:00-07:00 | Analisis Pasar         | Tinjau grafik dan berita ekonomi       | 60 menit |
+| 07:00-08:00 | Identifikasi Setup     | Cari peluang entry (breakout/pullback) | 60 menit |
+| 08:00-08:30 | Rencana Trading        | Tetapkan entry, stop loss, take profit | 30 menit |
+| 08:30-10:30 | Trading Sesi Asia      | Scalping pada pair seperti USD/JPY     | 2 jam   |
+| 13:00-16:00 | Trading Sesi London    | Day trading pada EUR/USD, GBP/USD      | 3 jam   |
+| 16:00-19:00 | Trading Sesi New York  | Kejar pip di overlap London-NY         | 3 jam   |
+| 21:00-22:00 | Review Trading         | Analisis profit/loss pip               | 60 menit |
+| 22:00-22:30 | Jurnal Trading         | Catat trade dan emosi                  | 30 menit |
+| 22:30-23:00 | Persiapan Hari Berikut | Cek kalender ekonomi                   | 30 menit |
+| 23:00       | Target Pip Harian      | Capai 50-100 pip (scalping/day trading)| -       |
+```
 
