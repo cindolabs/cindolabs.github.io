@@ -60,7 +60,8 @@ Jika platform mendukung Mermaid (seperti GitHub, GitLab, atau editor Markdown te
 Kamu bisa menambahkan detail seperti status tugas atau ketergantungan antar tugas.
 
 **Contoh dengan Status dan Ketergantungan:**
-```markdown
+
+markdown
 # Peta Jalan Proyek dengan Status
 
 ```mermaid
