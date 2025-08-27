@@ -94,3 +94,7 @@ gantt
 - **Detail Tugas**: Tambahkan deskripsi singkat atau milestone dengan sintaks seperti `Milestone Nama :milestone, tanggal`.
 - **Contoh Milestone**:
 
+## Peta Jalan Pikiran Berburu Pip
+- Berpikir berkeinginan untuk mendapatkan uang di kegiatan trading/berburu pip
+- Momentum yang mendukung atau kurang mendukung untuk melaksanakan kegiatan trading/berburu pip
+
