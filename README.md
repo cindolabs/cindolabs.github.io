@@ -15,7 +15,7 @@ layout: default
 
 <details>
   <summary>Klik untuk melihat detail</summary>
-  <p>Ini adalah teks yang tersembunyi hingga diklik.</p>
+  <p>"Jika ada Tuhan, dari mana semua kejahatan ini berasal? Jika tidak ada Tuhan, dari mana kebaikan berasal?" – Anicius Manlius Severinus Boethius</p>
   <p>"Kesabaran adalah kunci." – Anonim</p>
   <p>"Kesabaran itu pahit, tapi buahnya manis." – Aristóteles</p>
 </details>
