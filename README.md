@@ -6,14 +6,12 @@ layout: default
 # UQALEO
 
 <details>
-  <summary>
-    <i>Kode Harta Karun</i>
-  </summary>
+  <summary><i>Kode Harta Karun</i></summary>
   <p>
     Setiap bulan ada momentum bagus, dimana ada salah satu hari, grafiknya membentuk pola yang mudah dibaca dan diikuti, itu adalah kesempatan untuk meraih profit yang optimal.
   </p>
-	<p> "La paciencia es amarga, pero su fruto es dulce". – Aristóteles
-</p>
+  <p>"La paciencia es amarga, pero su fruto es dulce". – Aristóteles</p>
+</details>
 
 <details>
   <summary>Klik untuk melihat detail</summary>
@@ -30,5 +28,3 @@ layout: default
 | 2     | 1 - 3     | 0.01 - 0.02 | 5000        | 1.00       | 1.00       | 2.00        | 0.44   | ETHUSD |
 | 3     | 1 - 4     | 0.01 - 0.04 | 5000        | 2.00       | 2.00       | 4.00        | 0.88   | ETHUSD |
 | 4     | 1 - 8     | 0.01 - 0.08 | 5000        | 4.00       | 4.00       | 8.00        | 1.76   | ETHUSD |
-
-
