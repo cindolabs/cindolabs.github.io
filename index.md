@@ -49,4 +49,4 @@ Jelajahi artikel dan panduan di bawah ini untuk memulai petualangan Anda di rimb
 
 ---
 
-**[Lihat Artikel Pertama](#)** | **[README](https://uqaleo.github.io/README)** | **[Ikuti Update](https://uqaleo.github.io/uqaleo)**
+**[Lihat Artikel Pertama](#)** | **[README](https://kopigud.github.io/README)** | **[Ikuti Update](https://kopigud.github.io/uqaleo)**
