@@ -49,4 +49,4 @@ Jelajahi artikel dan panduan di bawah ini untuk memulai petualangan Anda di rimb
 
 ---
 
-**[Lihat Artikel Pertama](#)** | **[README](https://ngopis.github.io/README)** | **[Ikuti Update](https://ngopis.github.io/uqaleo)**
+**[Lihat Artikel Pertama](#)** | **[README](https://hotelcinta.github.io/README)** | **[Ikuti Update](https://hotelcinta.github.io/uqaleo)**
