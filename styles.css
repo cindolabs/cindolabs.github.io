@@ -514,3 +514,11 @@ footer {
         right: 5%;
     }
 }
+
+.chatbot-messages a {
+    color: #25D366;
+    text-decoration: underline;
+}
+.chatbot-messages a:hover {
+    color: #1ebe57;
+}
