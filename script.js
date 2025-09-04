@@ -118,12 +118,15 @@ document.addEventListener('DOMContentLoaded', function () {
         chatbot.style.display = 'none';
     });
 
+    const whatsappNumber = '08999587888';
+    const whatsappMessage = `Untuk informasi lebih lanjut, hubungi kami di WhatsApp: <a href="https://wa.me/${whatsappNumber}" target="_blank">${whatsappNumber}</a>`;
+
     const responses = {
-        'halo': 'Halo! Selamat datang di Hotel Cinta. Bagaimana saya bisa membantu Anda? 💖',
-        'kamar': 'Kami memiliki Deluxe Room, Honeymoon Suite, dan Premium Suite. Mau info lebih lanjut?',
-        'harga': 'Harga mulai dari Rp1.000.000/malam untuk Deluxe Room. Silakan cek bagian reservasi!',
-        'reservasi': 'Silakan isi formulir di bagian reservasi atau tanyakan detail di sini!',
-        'promo': 'Kami sedang menawarkan diskon 20% untuk Honeymoon Suite! Cek bagian promo untuk detail.'
+        'halo': `Halo! Selamat datang di Hotel Cinta. Bagaimana saya bisa membantu Anda? 💖 ${whatsappMessage}`,
+        'kamar': `Kami memiliki Deluxe Room, Honeymoon Suite, dan Premium Suite. Mau info lebih lanjut? ${whatsappMessage}`,
+        'harga': `Harga mulai dari Rp1.000.000/malam untuk Deluxe Room. Silakan cek bagian reservasi! ${whatsappMessage}`,
+        'reservasi': `Silakan isi formulir di bagian reservasi atau tanyakan detail di sini! ${whatsappMessage}`,
+        'promo': `Kami sedang menawarkan diskon 20% untuk Honeymoon Suite! Cek bagian promo untuk detail. ${whatsappMessage}`
     };
 
     chatbotInput.addEventListener('keypress', function (e) {
@@ -133,7 +136,7 @@ document.addEventListener('DOMContentLoaded', function () {
             userMessageElement.innerHTML = `<b>Anda:</b> ${userMessage}`;
             chatbotMessages.appendChild(userMessageElement);
 
-            const botResponse = responses[userMessage] || 'Maaf, saya tidak mengerti. Coba tanya tentang kamar, harga, reservasi, atau promo!';
+            const botResponse = responses[userMessage] || `Maaf, saya tidak mengerti. Coba tanya tentang kamar, harga, reservasi, atau promo! ${whatsappMessage}`;
             const botMessageElement = document.createElement('p');
             botMessageElement.innerHTML = `<b>CintaBot:</b> ${botResponse}`;
             chatbotMessages.appendChild(botMessageElement);
