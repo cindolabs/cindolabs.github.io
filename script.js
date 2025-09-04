@@ -1,3 +1,24 @@
+// Hamburger Menu
+document.addEventListener('DOMContentLoaded', function () {
+    const hamburger = document.querySelector('.hamburger');
+    const navMenu = document.querySelector('.nav-menu');
+
+    hamburger.addEventListener('click', function () {
+        hamburger.classList.toggle('active');
+        navMenu.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', hamburger.classList.contains('active'));
+    });
+
+    // Tutup menu saat link diklik
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.addEventListener('click', () => {
+            hamburger.classList.remove('active');
+            navMenu.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
+    });
+});
+
 // Tangani pengiriman formulir reservasi
 document.getElementById('reservation-form').addEventListener('submit', function (e) {
     e.preventDefault();
@@ -6,13 +27,12 @@ document.getElementById('reservation-form').addEventListener('submit', function 
     const checkout = document.getElementById('checkout').value;
     const room = document.getElementById('room').value;
 
-    // Validasi sederhana
+    // Validasi formulir
     if (!name || !checkin || !checkout) {
         alert('Harap isi semua kolom yang diperlukan.');
         return;
     }
 
-    // Validasi tanggal
     const today = new Date().toISOString().split('T')[0];
     if (checkin < today) {
         alert('Tanggal check-in tidak boleh sebelum hari ini.');
@@ -29,7 +49,7 @@ document.getElementById('reservation-form').addEventListener('submit', function 
 
 // Inisialisasi peta
 document.addEventListener('DOMContentLoaded', function () {
-    const map = L.map('map-container').setView([-6.200000, 106.816666], 15); // Koordinat Jakarta
+    const map = L.map('map-container').setView([-6.200000, 106.816666], 15);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
         maxZoom: 18
@@ -66,7 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
     const popup = document.getElementById('promo-popup');
     const closePopup = document.getElementById('close-popup');
 
-    // Tampilkan pop-up setelah 2 detik
     setTimeout(() => {
         popup.style.display = 'flex';
     }, 2000);
@@ -82,20 +101,29 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 });
 
-// Chatbot Sederhana
+// Chatbot
 document.addEventListener('DOMContentLoaded', function () {
     const chatbot = document.getElementById('chatbot');
+    const chatbotToggle = document.getElementById('chatbot-toggle');
     const chatbotMessages = document.getElementById('chatbot-messages');
     const chatbotInput = document.getElementById('chatbot-input');
     const closeChatbot = document.getElementById('close-chatbot');
 
-    chatbot.style.display = 'flex';
+    // Toggle chatbot
+    chatbotToggle.addEventListener('click', function () {
+        chatbot.style.display = chatbot.style.display === 'flex' ? 'none' : 'flex';
+    });
+
+    closeChatbot.addEventListener('click', function () {
+        chatbot.style.display = 'none';
+    });
 
     const responses = {
         'halo': 'Halo! Selamat datang di Hotel Cinta. Bagaimana saya bisa membantu Anda? 💖',
         'kamar': 'Kami memiliki Deluxe Room, Honeymoon Suite, dan Premium Suite. Mau info lebih lanjut?',
         'harga': 'Harga mulai dari Rp1.000.000/malam untuk Deluxe Room. Silakan cek bagian reservasi!',
-        'reservasi': 'Silakan isi formulir di bagian reservasi atau tanyakan detail di sini!'
+        'reservasi': 'Silakan isi formulir di bagian reservasi atau tanyakan detail di sini!',
+        'promo': 'Kami sedang menawarkan diskon 20% untuk Honeymoon Suite! Cek bagian promo untuk detail.'
     };
 
     chatbotInput.addEventListener('keypress', function (e) {
@@ -105,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
             userMessageElement.innerHTML = `<b>Anda:</b> ${userMessage}`;
             chatbotMessages.appendChild(userMessageElement);
 
-            const botResponse = responses[userMessage] || 'Maaf, saya tidak mengerti. Coba tanya tentang kamar, harga, atau reservasi!';
+            const botResponse = responses[userMessage] || 'Maaf, saya tidak mengerti. Coba tanya tentang kamar, harga, reservasi, atau promo!';
             const botMessageElement = document.createElement('p');
             botMessageElement.innerHTML = `<b>CintaBot:</b> ${botResponse}`;
             chatbotMessages.appendChild(botMessageElement);
@@ -113,10 +141,6 @@ document.addEventListener('DOMContentLoaded', function () {
             chatbotInput.value = '';
             chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
         }
-    });
-
-    closeChatbot.addEventListener('click', function () {
-        chatbot.style.display = 'none';
     });
 });
 
