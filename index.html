@@ -3,6 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hotel Cinta menawarkan pengalaman menginap romantis dengan paket eksklusif untuk pasangan. Pesan sekarang untuk kenangan tak terlupakan!">
+    <meta name="keywords" content="hotel romantis, hotel cinta, reservasi hotel, spa pasangan, honeymoon">
+    <meta name="author" content="Hotel Cinta">
     <title>Hotel Cinta 🏩 - Pengalaman Menginap Romantis</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -13,7 +16,12 @@
     <header>
         <nav aria-label="Navigasi utama">
             <div class="logo">Hotel Cinta 🏩</div>
-            <ul>
+            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
                 <li><a href="#home" aria-label="Beranda">Beranda</a></li>
                 <li><a href="#features" aria-label="Fitur">Fitur</a></li>
                 <li><a href="#gallery" aria-label="Galeri">Galeri</a></li>
@@ -24,10 +32,10 @@
             </ul>
         </nav>
         <div class="hero" id="home">
-            <img src="https://via.placeholder.com/1200x500.png?text=Hotel+Cinta+Banner" alt="Banner Hotel Cinta" class="hero-image">
+            <img src="https://via.placeholder.com/1200x500.png?text=Hotel+Cinta+Banner" alt="Banner Hotel Cinta" class="hero-image" loading="lazy">
             <div class="hero-text">
                 <h1>Selamat Datang di Hotel Cinta</h1>
-                <p>Ciptakan kenangan romantis dengan pengalaman mengin Lillah. 💖</p>
+                <p>Ciptakan kenangan romantis dengan pengalaman menginap yang romantis. 💖</p>
                 <a href="#reservation" class="cta-button">Pesan Sekarang</a>
             </div>
         </div>
@@ -56,9 +64,9 @@
     <section id="gallery" class="gallery fade-in">
         <h2>Galeri Hotel Cinta</h2>
         <div class="gallery-grid">
-            <img src="https://via.placeholder.com/400x300.png?text=Kamar+Romantis" alt="Kamar Romantis">
-            <img src="https://via.placeholder.com/400x300.png?text=Lobi+Elegan" alt="Lobi Elegan">
-            <img src="https://via.placeholder.com/400x300.png?text=Restoran+Romantis" alt="Restoran Romantis">
+            <img src="https://via.placeholder.com/400x300.png?text=Kamar+Romantis" alt="Kamar Romantis" loading="lazy">
+            <img src="https://via.placeholder.com/400x300.png?text=Lobi+Elegan" alt="Lobi Elegan" loading="lazy">
+            <img src="https://via.placeholder.com/400x300.png?text=Restoran+Romantis" alt="Restoran Romantis" loading="lazy">
         </div>
     </section>
 
@@ -126,6 +134,7 @@
     </div>
 
     <!-- Chatbot -->
+    <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Buka chatbot">💬</button>
     <div id="chatbot" class="chatbot">
         <div class="chatbot-header">
             <h3>Chat dengan CintaBot 💕</h3>
