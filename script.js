@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const responses = {
         'halo': `Halo! Selamat datang di Hotel Cinta. Bagaimana saya bisa membantu Anda? 💖 ${whatsappMessage}`,
         'kamar': `Kami memiliki Deluxe Room, Honeymoon Suite, dan Premium Suite. Mau info lebih lanjut? ${whatsappMessage}`,
-        'harga': `Harga mulai dari Rp1.000.000/malam untuk Deluxe Room. Silakan cek bagian reservasi! ${whatsappMessage}`,
+        'harga': `Harga mulai dari Rp60.000/jam atau Rp.150.000/malam untuk Deluxe Room. Silakan cek bagian reservasi! ${whatsappMessage}`,
         'reservasi': `Silakan isi formulir di bagian reservasi atau tanyakan detail di sini! ${whatsappMessage}`,
         'promo': `Kami sedang menawarkan diskon 20% untuk Honeymoon Suite! Cek bagian promo untuk detail. ${whatsappMessage}`
     };
