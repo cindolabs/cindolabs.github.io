@@ -39,7 +39,7 @@ Paradigma yang tepat membantu trader tetap rasional di tengah volatilitas pasar 
 Beberapa paradigma trading yang umum dalam konteks psikologi meliputi:
 
 1. **Paradigma Sistemik**  
-   Menggunakan sistem trading otomatis atau semi-otomatis untuk mengurangi bias emosional. Contohnya, algoritma trading seperti yang ditawarkan oleh platform seperti [Paradigma Trading](https://paradigma.finance/) membantu trader tetap objektif.
+   Menggunakan sistem trading otomatis atau semi-otomatis untuk mengurangi bias emosional. Contohnya, algoritma trading seperti yang ditawarkan oleh platform seperti [Puncak Lembah](https://puncaklembah.github.io) membantu trader tetap objektif.
 
 2. **Paradigma Behavioral Finance**  
    Berfokus pada memahami bias kognitif, seperti overconfidence atau loss aversion, untuk membuat keputusan yang lebih rasional berdasarkan perilaku pasar.
@@ -80,7 +80,7 @@ Pasar keuangan penuh dengan ketidakpastian, dan psikologi memainkan peran besar 
 Paradigma trader adalah fondasi kesuksesan dalam trading. Dengan mengembangkan pola pikir yang tepat, mengelola emosi, dan tetap disiplin, trader dapat menavigasi pasar dengan lebih percaya diri dan efektif. Mulailah dengan memahami diri sendiri, membangun sistem trading yang sesuai, dan terus belajar untuk memperkuat paradigma Anda.
 
 Untuk sumber belajar lebih lanjut, kunjungi:  
-- [Paradigma Trading](https://paradigma.finance/)  
+- [Puncak Lembah](https://puncaklembah.github.io)  
 - [Paradigma Education](https://trading.paradigma.education/)
 
 ---
