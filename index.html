@@ -3,153 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Hotel Cinta menawarkan pengalaman menginap romantis dengan paket eksklusif untuk pasangan. Pesan sekarang untuk kenangan tak terlupakan!">
-    <meta name="keywords" content="hotel romantis, hotel cinta, reservasi hotel, spa pasangan, honeymoon">
-    <meta name="author" content="Hotel Cinta">
-    <title>Hotel Cinta 🏩 - Pengalaman Menginap Romantis</title>
+    <title>Hocinko - Hotel Cinta Kopi</title>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Parisienne&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <nav aria-label="Navigasi utama">
-            <div class="logo">Hotel Cinta 🏩</div>
-            <button class="hamburger" aria-label="Toggle menu" aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="#home" aria-label="Beranda">Beranda</a></li>
-                <li><a href="#features" aria-label="Fitur">Fitur</a></li>
-                <li><a href="#gallery" aria-label="Galeri">Galeri</a></li>
-                <li><a href="#testimonials" aria-label="Testimoni">Testimoni</a></li>
-                <li><a href="#reservation" aria-label="Reservasi">Reservasi</a></li>
-                <li><a href="#map" aria-label="Lokasi">Lokasi</a></li>
-                <li><a href="#contact" aria-label="Kontak">Kontak</a></li>
-            </ul>
-        </nav>
-        <div class="hero" id="home">
-            <img src="https://via.placeholder.com/1200x500.png?text=Hotel+Cinta+Banner" alt="Banner Hotel Cinta" class="hero-image" loading="lazy">
-            <div class="hero-text">
-                <h1>Selamat Datang di Hotel Cinta</h1>
-                <p>Ciptakan kenangan romantis dengan pengalaman menginap yang romantis. 💖</p>
-                <a href="#reservation" class="cta-button">Pesan Sekarang</a>
-            </div>
-        </div>
-    </header>
-
-    <!-- Fitur -->
-    <section id="features" class="features fade-in">
-        <h2>Fitur Kami</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <h3>Paket Romantis</h3>
-                <p>Nikmati makan malam romantis dan dekorasi kamar dengan kelopak mawar. 🌹</p>
-            </div>
-            <div class="feature-card">
-                <h3>Spa Pasangan</h3>
-                <p>Relaksasi bersama pasangan dengan perawatan spa eksklusif.</p>
-            </div>
-            <div class="feature-card">
-                <h3>Reservasi Mudah</h3>
-                <p>Pesan kamar dengan cepat melalui sistem online kami.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Galeri -->
-    <section id="gallery" class="gallery fade-in">
-        <h2>Galeri Hotel Cinta</h2>
-        <div class="gallery-grid">
-            <img src="https://via.placeholder.com/400x300.png?text=Kamar+Romantis" alt="Kamar Romantis" loading="lazy">
-            <img src="https://via.placeholder.com/400x300.png?text=Lobi+Elegan" alt="Lobi Elegan" loading="lazy">
-            <img src="https://via.placeholder.com/400x300.png?text=Restoran+Romantis" alt="Restoran Romantis" loading="lazy">
-        </div>
-    </section>
-
-    <!-- Testimoni -->
-    <section id="testimonials" class="testimonials fade-in">
-        <h2>Testimoni Tamu</h2>
-        <div class="testimonial-slider">
-            <div class="testimonial-item active">
-                <p>"Hotel Cinta membuat honeymoon kami tak terlupakan! Kamar penuh kelopak mawar dan pelayanan super romantis. ❤️"</p>
-                <h4>- Ani & Budi</h4>
-            </div>
-            <div class="testimonial-item">
-                <p>"Spa pasangan di sini luar biasa! Suasana tenang dan dekorasi yang penuh cinta."</p>
-                <h4>- Citra & Dedi</h4>
-            </div>
-            <div class="testimonial-item">
-                <p>"Pemesanan mudah dan staf sangat ramah. Pasti kembali untuk anniversary berikutnya!"</p>
-                <h4>- Eka & Fajar</h4>
-            </div>
-        </div>
-    </section>
-
-    <!-- Reservasi -->
-    <section id="reservation" class="reservation fade-in">
-        <h2>Reservasi Sekarang</h2>
-        <form id="reservation-form" aria-label="Formulir Reservasi">
-            <label for="name">Nama:</label>
-            <input type="text" id="name" name="name" required aria-required="true">
-            <label for="checkin">Tanggal Check-in:</label>
-            <input type="date" id="checkin" name="checkin" required aria-required="true">
-            <label for="checkout">Tanggal Check-out:</label>
-            <input type="date" id="checkout" name="checkout" required aria-required="true">
-            <label for="room">Tipe Kamar:</label>
-            <select id="room" name="room" aria-label="Pilih tipe kamar">
-                <option value="deluxe">Deluxe Room</option>
-                <option value="suite">Honeymoon Suite</option>
-                <option value="premium">Premium Suite</option>
-            </select>
-            <button type="submit">Pesan Sekarang</button>
-        </form>
-    </section>
-
-    <!-- Peta -->
-    <section id="map" class="map fade-in">
-        <h2>Lokasi Kami</h2>
-        <div id="map-container" style="height: 400px;" role="region" aria-label="Peta lokasi Hotel Cinta"></div>
-    </section>
-
-    <!-- Kontak -->
-    <section id="contact" class="contact fade-in">
-        <h2>Hubungi Kami</h2>
-        <p>Email: <a href="mailto:support@hotelcinta.com">support@hotelcinta.com</a></p>
-        <p>X: <a href="https://x.com/hotelcinta">@HotelCinta</a></p>
-        <p>Telepon: +62 123 456 7890</p>
-    </section>
-
-    <!-- Pop-up Promosi -->
-    <div id="promo-popup" class="popup">
-        <div class="popup-content">
-            <span id="close-popup" class="close" aria-label="Tutup pop-up">&times;</span>
-            <h2>💖 Promo Spesial Honeymoon</h2>
-            <p>Dapatkan diskon 20% untuk paket Honeymoon Suite! Pesan sekarang untuk pengalaman romantis tak terlupakan.</p>
-            <a href="#reservation" class="cta-button">Pesan Sekarang</a>
-        </div>
+    <div class="container">
+        <div class="logo">🏩</div>
+        <h1>Hocinko - Hotel Cinta Kopi</h1>
+        <p>Selamat datang di tempat cinta dan investasi bertemu! <br> Acara Investasi Perdana: 8 September 2025.</p>
+        <button onclick="showMessage()">Pelajari Lebih Lanjut</button>
     </div>
-
-    <!-- Chatbot -->
-    <button id="chatbot-toggle" class="chatbot-toggle" aria-label="Buka chatbot">💬</button>
-    <div id="chatbot" class="chatbot">
-        <div class="chatbot-header">
-            <h3>Chat dengan CintaBot 💕</h3>
-            <span id="close-chatbot" aria-label="Tutup chatbot">&times;</span>
-        </div>
-        <div id="chatbot-messages" class="chatbot-messages" role="log" aria-live="polite"></div>
-        <input type="text" id="chatbot-input" placeholder="Tanya tentang reservasi..." aria-label="Masukkan pesan untuk chatbot">
-    </div>
-
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2025 Hotel Cinta. Dibuat dengan ❤️ untuk pasangan romantis.</p>
-    </footer>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
