@@ -3,8 +3,6 @@ title: Hocinko
 layout: default
 ---
 
-# Hocinko
-
 # Hocinko: Hotel Cinta Kopi
 
 **Selamat datang di Hocinko!**  
@@ -50,11 +48,11 @@ Kami mengadopsi filosofi *Honocoroko* (Hanacaraka) sebagai landasan nilai-nilai 
 
 ## Kontak Kami
 - **Email**: kontak@hocinko.id
-- **Telepon**: +62 123 456 7890
-- **Alamat**: Jalan Hanacaraka No. 20, Yogyakarta, Indonesia
+- **Telepon**: +628 999 587 888
+- **Alamat**: Jalan Panglima Sudirman No. 19, Bandarkedungmulyo, Indonesia
 - **Media Sosial**: 
   - Instagram: @HocinkoOfficial
-  - X: @HocinkoID
+  - 𝕏: [@hocinko](https://x.com/hocinko)
 
 **Ayo seduh kopi, sebarkan cinta, dan wujudkan perubahan bersama Hocinko!**
 
