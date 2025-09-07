@@ -29,7 +29,7 @@ Pada tanggal **8 September 2025**, Hocinko akan mengadakan acara istimewa: **Pel
   - Diskusi tentang peran kopi dalam ekonomi lokal.
   - Sesi interaktif tentang strategi investasi yang selaras dengan nilai-nilai budaya Jawa.
 - **Waktu**: 08:00 - 16:00 WIB
-- **Lokasi**: Hocinko Lounge, Jalan Hanacaraka No. 20, Yogyakarta, Indonesia.
+- **Lokasi**: Hocinko Lounge, Jalan Panglima Sudirman No. 19, Bandarkedungmulyo, Indonesia.
 
 ### Mengapa Ini Penting?
 Acara ini bukan hanya tentang investasi finansial, tetapi juga investasi dalam nilai-nilai kebersamaan, keberlanjutan, dan kebijaksanaan. Seperti aksara *ma ga ba tha nga* (menuju kematian), kami percaya bahwa setiap langkah investasi adalah bagian dari siklus yang lebih besar untuk meninggalkan warisan positif bagi generasi mendatang.
