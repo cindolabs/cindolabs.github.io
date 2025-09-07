@@ -24,7 +24,7 @@ Menciptakan ruang yang menginspirasi cinta, kreativitas, dan keberlanjutan melal
 Kami dengan bangga mengumumkan acara istimewa: **Pelatihan Investasi Perdana** pada **8 September 2025**. Acara ini menandai langkah awal Hocindo sebagai pusat pembelajaran investasi yang inovatif.
 
 ### Sorotan Acara
-- **Peserta Utama**: Seorang visioner yang akan menjadi **investor pertama** sekaligus **CEO Hocindo**. Tokoh ini akan memimpin Hocindo menuju masa depan yang lebih cerah, dengan semangat kepemimpinan yang selaras dengan filosofi *padha jayanya* (sama-sama menang).
+- **Peserta Utama**: Seorang visioner yang akan menjadi **investor pertama** sekaligus **CEO Hocindo**. Tokoh ini akan memimpin Hocindo menuju masa depan yang lebih cerah, dengan semangat kepemimpinan yang selaras dengan filosofi *padha jayanya* (sama-sama menang dan senang).
 - **Agenda**:
   - Pengenalan konsep investasi berkelanjutan.
   - Diskusi tentang peran kopi dalam ekonomi lokal.
