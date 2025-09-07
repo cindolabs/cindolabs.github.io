@@ -47,7 +47,7 @@ Kami mengadopsi filosofi *Hanacaraka* sebagai landasan nilai-nilai kami:
 - **Ma ga ba tha nga**: Kami berinvestasi untuk masa depan yang berkelanjutan.
 
 ## Kontak Kami
-- **Email**: kontak@hocindo.id
+- **Email**: ringinbambu@gmail.com
 - **Telepon**: +62 8999 587 888
 - **Alamat**: Jl. Panglima Sudirman No. 19, Bandarkedungmulyo, Indonesia
 - **Media Sosial**:
