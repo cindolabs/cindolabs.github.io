@@ -36,7 +36,7 @@ Kami dengan bangga mengumumkan acara istimewa: **Pelatihan Investasi Perdana** p
 Acara ini bukan hanya tentang investasi finansial, tetapi juga investasi dalam nilai-nilai kebersamaan, keberlanjutan, dan kebijaksanaan. Seperti aksara *ma ga ba tha nga* (menuju kematian), kami percaya setiap langkah investasi adalah bagian dari siklus besar untuk menciptakan warisan positif bagi generasi mendatang.
 
 ## Cara Bergabung
-- **Pendaftaran**: Kirim email ke `ringinbambu@gmail.com` atau kunjungi [www.hotelcinta.github.io](https://www.hotelcinta.github.io).
+- **Pendaftaran**: Kirim email ke `ringinbambu@gmail.com` atau kunjungi [www.hotelcinta.github.io](https://hotelcinta.github.io).
 - **Kuota Terbatas**: Acara eksklusif untuk 50 peserta terpilih.
 - **Persyaratan**: Terbuka untuk siapa saja yang bersemangat belajar tentang investasi dan trading dengan nilai kolaborasi dan cinta terhadap kopi.
 
