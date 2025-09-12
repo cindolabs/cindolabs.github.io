@@ -1,49 +1,45 @@
-// script.js
-document.addEventListener('DOMContentLoaded', function() {
-    // Navbar toggle for mobile
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+// Initialize AOS (Animate on Scroll)
+AOS.init({
+    duration: 1000,
+    once: true
+});
 
-    hamburger.addEventListener('click', function() {
-        navMenu.classList.toggle('active');
-    });
+// Navbar Scroll Effect
+window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+    } else {
+        navbar.classList.remove('scrolled');
+    }
+});
 
-    // Smooth scrolling for nav links
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').substring(1);
-            const targetSection = document.getElementById(targetId);
-            targetSection.scrollIntoView({ behavior: 'smooth' });
-            navMenu.classList.remove('active'); // Close menu on mobile
-        });
-    });
+// Hamburger Menu Toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-    // Contact form submission
-    const contactForm = document.getElementById('contact-form');
-    contactForm.addEventListener('submit', function(e) {
+hamburger.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    hamburger.classList.toggle('active');
+});
+
+// Smooth Scroll for Nav Links
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', (e) => {
         e.preventDefault();
-        alert('Pesan Anda telah dikirim! Terima kasih.');
-        this.reset();
-    });
-
-    // Event form submission in modal
-    const eventForm = document.getElementById('event-form');
-    eventForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        alert('Pendaftaran berhasil! Kami akan hubungi Anda segera.');
-        closeModal();
-        this.reset();
+        const targetId = link.getAttribute('href').substring(1);
+        document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        navMenu.classList.remove('active');
+        hamburger.classList.remove('active');
     });
 });
 
-// Function to scroll to section
+// Scroll to Section Function
 function scrollToSection(sectionId) {
     document.getElementById(sectionId).scrollIntoView({ behavior: 'smooth' });
 }
 
-// Modal functions
+// Modal Functions
 function openModal() {
     document.getElementById('modal').style.display = 'block';
 }
@@ -52,10 +48,51 @@ function closeModal() {
     document.getElementById('modal').style.display = 'none';
 }
 
-// Close modal when clicking outside
-window.onclick = function(event) {
+window.onclick = (event) => {
     const modal = document.getElementById('modal');
-    if (event.target == modal) {
+    if (event.target === modal) {
         closeModal();
     }
+};
+
+// Contact Form Submission
+document.getElementById('contact-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Pesan Anda telah dikirim! Kami akan segera menghubungi Anda.');
+    e.target.reset();
+});
+
+// Investment Form Submission
+document.getElementById('investment-form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    alert('Pendaftaran investasi berhasil! Tim kami akan menghubungi Anda.');
+    closeModal();
+    e.target.reset();
+});
+
+// Fetch Investment Data (Mock API Example)
+async function fetchInvestmentData() {
+    try {
+        // Ganti dengan API nyata jika tersedia
+        const response = await fetch('https://api.mocki.io/v2/51597ef3/investments');
+        const data = await response.json();
+        const investmentGrid = document.getElementById('investment-data');
+        
+        data.forEach(item => {
+            const card = document.createElement('div');
+            card.classList.add('investment-card');
+            card.innerHTML = `
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+                <p><strong>ROI: ${item.roi}%</strong></p>
+            `;
+            investmentGrid.appendChild(card);
+        });
+    } catch (error) {
+        console.error('Error fetching investment data:', error);
+        document.getElementById('investment-data').innerHTML = '<p>Maaf, data investasi tidak dapat dimuat.</p>';
+    }
 }
+
+// Load Investment Data on Page Load
+document.addEventListener('DOMContentLoaded', fetchInvestmentData);
