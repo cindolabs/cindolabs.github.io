@@ -4,15 +4,108 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hocindo - Hotel Cinta Dolar</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="logo">🏩</div>
-        <h1>Hocinko - Hotel Cinta Dolar</h1>
-        <p>Selamat datang di tempat cinta dan investasi bertemu! <br> Acara Investasi Perdana: 8 September 2025.</p>
-        <button onclick="showMessage()">Pelajari Lebih Lanjut</button>
+    <header>
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">Hocindo</div>
+                <ul class="nav-menu">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#about">Tentang</a></li>
+                    <li><a href="#services">Layanan</a></li>
+                    <li><a href="#event">Acara</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Selamat Datang di <span class="highlight">Hocindo</span></h1>
+            <p>Tempat di mana hotel mewah bertemu dengan rasa cinta yang mendalam dan peluang investasi yang menguntungkan.</p>
+            <button class="cta-button" onclick="scrollToSection('event')">Ikuti Acara Perdana</button>
+        </div>
+        <div class="hero-image">
+            <!-- Placeholder for background image -->
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>Latar Belakang Perusahaan</h2>
+            <p>Hocindo adalah perusahaan inovatif yang menggabungkan tiga elemen utama: usaha hotel berkualitas tinggi, rasa cinta yang menjadi inti dari setiap pengalaman kami, dan investasi cerdas untuk masa depan yang cerah. Didirikan dengan visi untuk menciptakan harmoni antara kemewahan, emosi, dan keuangan, kami menawarkan pengalaman unik yang tidak hanya memuaskan jiwa tetapi juga memperkaya portofolio Anda.</p>
+        </div>
+    </section>
+
+    <section id="services" class="services">
+        <div class="container">
+            <h2>Layanan Kami</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h3>Hotel Mewah</h3>
+                    <p>Menginap di resor kami yang dirancang untuk kenyamanan total, dengan fasilitas premium dan lokasi strategis.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Rasa Cinta</h3>
+                    <p>Pengalaman romantis dan emosional yang mendalam, termasuk paket khusus untuk pasangan dan acara pernikahan.</p>
+                </div>
+                <div class="service-card">
+                    <h3>Investasi</h3>
+                    <p>Peluang investasi eksklusif di sektor properti hotel dan proyek berkelanjutan dengan return tinggi.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="event" class="event">
+        <div class="container">
+            <h2>Acara Investasi Perdana</h2>
+            <p>Tanggal: 8 September 2025</p>
+            <p>Gabunglah dengan kami untuk meluncurkan peluang investasi pertama kami. Daftarkan diri sekarang!</p>
+            <button class="cta-button" onclick="openModal()">Daftar Sekarang</button>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Hubungi Kami</h2>
+            <form id="contact-form">
+                <input type="text" placeholder="Nama Anda" required>
+                <input type="email" placeholder="Email Anda" required>
+                <textarea placeholder="Pesan Anda" required></textarea>
+                <button type="submit">Kirim Pesan</button>
+            </form>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Hocindo. Semua hak dilindungi.</p>
+        </div>
+    </footer>
+
+    <!-- Modal for Event Registration -->
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2>Daftar Acara</h2>
+            <form id="event-form">
+                <input type="text" placeholder="Nama Lengkap" required>
+                <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Nomor Telepon" required>
+                <button type="submit">Daftar</button>
+            </form>
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
