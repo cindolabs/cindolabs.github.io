@@ -126,6 +126,24 @@
         </div>
     </section>
 
+    <!-- Chatbot Button and Window -->
+    <div class="chatbot-button" onclick="toggleChatbot()">
+        <i class="fas fa-comment-dots"></i>
+    </div>
+    <div id="chatbot" class="chatbot">
+        <div class="chatbot-header">
+            <h3>Chat dengan HocindoBot</h3>
+            <span class="chatbot-close" onclick="toggleChatbot()">&times;</span>
+        </div>
+        <div class="chatbot-body" id="chatbot-messages">
+            <div class="bot-message">Selamat datang! Saya HocindoBot. Tanya saya tentang hotel, acara romantis, atau investasi! 😊</div>
+        </div>
+        <div class="chatbot-footer">
+            <input type="text" id="chatbot-input" placeholder="Ketik pesan Anda...">
+            <button onclick="sendMessage()">Kirim</button>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer>
         <div class="container">
