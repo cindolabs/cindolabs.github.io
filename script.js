@@ -94,5 +94,57 @@ async function fetchInvestmentData() {
     }
 }
 
+// Chatbot Functionality
+function toggleChatbot() {
+    const chatbot = document.getElementById('chatbot');
+    chatbot.classList.toggle('active');
+}
+
+function sendMessage() {
+    const input = document.getElementById('chatbot-input');
+    const messages = document.getElementById('chatbot-messages');
+    const userMessage = input.value.trim();
+
+    if (userMessage === '') return;
+
+    // Tambahkan pesan pengguna
+    const userDiv = document.createElement('div');
+    userDiv.classList.add('user-message');
+    userDiv.textContent = userMessage;
+    messages.appendChild(userDiv);
+
+    // Respons otomatis dari bot
+    const botDiv = document.createElement('div');
+    botDiv.classList.add('bot-message');
+    botDiv.textContent = getBotResponse(userMessage.toLowerCase());
+    messages.appendChild(botDiv);
+
+    // Bersihkan input dan scroll ke bawah
+    input.value = '';
+    messages.scrollTop = messages.scrollHeight;
+}
+
+function getBotResponse(message) {
+    // Logika sederhana untuk respons otomatis
+    if (message.includes('hotel')) {
+        return 'Kami menawarkan hotel sederhana sampai resor bintang lima dengan fasilitas premium. Ingin tahu lebih lanjut tentang paket menginap?';
+    } else if (message.includes('cinta') || message.includes('romantis')) {
+        return 'Kami memiliki paket romantis seperti makan malam gacoan sampai di tepi pantai dan pernikahan impian. Apa yang Anda cari?';
+    } else if (message.includes('investasi')) {
+        return 'Peluang investasi kami mencakup properti hotel dengan ROI hingga 15%. Ingin mendaftar untuk acara investasi?';
+    } else if (message.includes('halo') || message.includes('hai')) {
+        return 'Hai! Apa yang bisa HocindoBot bantu hari ini?';
+    } else {
+        return 'Maaf, saya belum paham. Coba tanyakan tentang hotel, acara romantis, atau investasi ke 08999587888!';
+    }
+}
+
 // Load Investment Data on Page Load
 document.addEventListener('DOMContentLoaded', fetchInvestmentData);
+
+// Enter key untuk mengirim pesan di chatbot
+document.getElementById('chatbot-input').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        sendMessage();
+    }
+});
