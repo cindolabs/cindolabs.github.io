@@ -323,6 +323,122 @@ body {
     background: #b71c1c;
 }
 
+/* Chatbot Styles */
+.chatbot-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #d32f2f;
+    color: #fff;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 1000;
+    transition: transform 0.3s;
+}
+
+.chatbot-button:hover {
+    transform: scale(1.1);
+}
+
+.chatbot-button i {
+    font-size: 1.8em;
+}
+
+.chatbot {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 350px;
+    max-height: 500px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    display: none;
+    flex-direction: column;
+    z-index: 1000;
+}
+
+.chatbot.active {
+    display: flex;
+}
+
+.chatbot-header {
+    background: #d32f2f;
+    color: #fff;
+    padding: 15px;
+    border-radius: 10px 10px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chatbot-header h3 {
+    font-size: 1.2em;
+}
+
+.chatbot-close {
+    cursor: pointer;
+    font-size: 1.5em;
+}
+
+.chatbot-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    background: #f8f9fa;
+}
+
+.bot-message, .user-message {
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.bot-message {
+    background: #d32f2f;
+    color: #fff;
+    margin-right: 20px;
+}
+
+.user-message {
+    background: #e0e0e0;
+    margin-left: 20px;
+    text-align: right;
+}
+
+.chatbot-footer {
+    padding: 15px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    gap: 10px;
+}
+
+.chatbot-footer input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.chatbot-footer button {
+    background: #d32f2f;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.chatbot-footer button:hover {
+    background: #b71c1c;
+}
+
 /* Footer */
 footer {
     background: #222;
@@ -438,5 +554,11 @@ footer {
 
     .hero-content h1 {
         font-size: 2.5em;
+    }
+
+    .chatbot {
+        width: 90%;
+        bottom: 80px;
+        right: 5%;
     }
 }
