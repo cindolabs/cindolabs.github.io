@@ -62,18 +62,63 @@ document.getElementById('contact-form').addEventListener('submit', (e) => {
     e.target.reset();
 });
 
+// Konfigurasi Telegram Bot
+const TELEGRAM_BOT_TOKEN = '8320437529:AAHM9-j1kpXIdeV5JTf0SsdnUR_SYGeg-X0'; // Token bot hocindobot
+const TELEGRAM_CHAT_ID = 'YOUR_CHAT_ID'; // Ganti dengan Chat ID Anda (misalnya, 123456789)
+
 // Investment Form Submission
-document.getElementById('investment-form').addEventListener('submit', (e) => {
+document.getElementById('investment-form').addEventListener('submit', async (e) => {
     e.preventDefault();
-    alert('Pendaftaran investasi berhasil! Tim kami akan menghubungi Anda.');
-    closeModal();
-    e.target.reset();
+    
+    const formData = {
+        name: e.target.querySelector('input[name="name"]').value,
+        email: e.target.querySelector('input[name="email"]').value,
+        phone: e.target.querySelector('input[name="phone"]').value,
+        package: e.target.querySelector('select[name="package"]').value
+    };
+
+    // Format pesan untuk Telegram (menggunakan HTML untuk bold dan line break)
+    const message = `
+        <b>Pendaftaran Investasi Baru dari Hocindo!</b>
+        <b>Nama Lengkap:</b> ${formData.name}<br>
+        <b>Email:</b> ${formData.email}<br>
+        <b>Nomor Telepon:</b> ${formData.phone}<br>
+        <b>Paket Investasi:</b> ${formData.package}<br>
+        <i>Tanggal: ${new Date().toLocaleString('id-ID')}</i>
+    `;
+
+    try {
+        const response = await fetch(`https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                chat_id: TELEGRAM_CHAT_ID,
+                text: message,
+                parse_mode: 'HTML'
+            })
+        });
+
+        const result = await response.json();
+
+        if (result.ok) {
+            alert('Pendaftaran investasi berhasil! Data telah dikirim ke Telegram tim kami.');
+            closeModal();
+            e.target.reset();
+        } else {
+            console.error('Telegram API Error:', result);
+            alert(`Terjadi kesalahan: ${result.description}. Silakan coba lagi atau hubungi tim.`);
+        }
+    } catch (error) {
+        console.error('Error mengirim ke Telegram:', error);
+        alert('Terjadi kesalahan koneksi. Silakan coba lagi nanti.');
+    }
 });
 
 // Fetch Investment Data (Mock API Example)
 async function fetchInvestmentData() {
     try {
-        // Ganti dengan API nyata jika tersedia
         const response = await fetch('https://api.mocki.io/v2/51597ef3/investments');
         const data = await response.json();
         const investmentGrid = document.getElementById('investment-data');
@@ -107,35 +152,31 @@ function sendMessage() {
 
     if (userMessage === '') return;
 
-    // Tambahkan pesan pengguna
     const userDiv = document.createElement('div');
     userDiv.classList.add('user-message');
     userDiv.textContent = userMessage;
     messages.appendChild(userDiv);
 
-    // Respons otomatis dari bot
     const botDiv = document.createElement('div');
     botDiv.classList.add('bot-message');
     botDiv.textContent = getBotResponse(userMessage.toLowerCase());
     messages.appendChild(botDiv);
 
-    // Bersihkan input dan scroll ke bawah
     input.value = '';
     messages.scrollTop = messages.scrollHeight;
 }
 
 function getBotResponse(message) {
-    // Logika sederhana untuk respons otomatis
     if (message.includes('hotel')) {
-        return 'Kami menawarkan hotel sederhana sampai resor bintang lima dengan fasilitas premium. Ingin tahu lebih lanjut tentang paket menginap?';
+        return 'Kami menawarkan resor bintang lima dengan fasilitas premium. Ingin tahu lebih lanjut tentang paket menginap?';
     } else if (message.includes('cinta') || message.includes('romantis')) {
-        return 'Kami memiliki paket romantis seperti makan malam gacoan sampai di tepi pantai dan pernikahan impian. Apa yang Anda cari?';
+        return 'Kami memiliki paket romantis seperti makan malam di tepi pantai dan pernikahan impian. Apa yang Anda cari?';
     } else if (message.includes('investasi')) {
         return 'Peluang investasi kami mencakup properti hotel dengan ROI hingga 15%. Ingin mendaftar untuk acara investasi?';
     } else if (message.includes('halo') || message.includes('hai')) {
         return 'Hai! Apa yang bisa HocindoBot bantu hari ini?';
     } else {
-        return 'Maaf, saya belum paham. Coba tanyakan tentang hotel, acara romantis, atau investasi ke 08999587888!';
+        return 'Maaf, saya belum paham. Coba tanyakan tentang hotel, acara romantis, atau investasi!';
     }
 }
 
