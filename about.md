@@ -3,13 +3,13 @@ title: Selamat Datang
 layout: default
 ---
 
-Situs ini dibuat oleh @uqaleo untuk berbagi pengetahuan tentang membaca grafik di pasar keuangan.
+Situs ini dibuat oleh **Hocindo** untuk menerangkan apa itu Hocindo
  
-Misi: Membantu trader pemula memahami pola dan indikator teknikal.
+Misi: Saling membantu dalam melayani dan mempertumbuhkan modal
 
 <details>
   <summary> Mengapa Saya Membuat Situs Ini?</summary>
-  <p>Saya ingin mendokumentasikan pengalaman saya di pasar keuangan dan membantu orang lain belajar.</p>
+  <p>Hidup di ekosistem yang sama-sama berkecukupan adalah momentum hidup yang menyenangkan.</p>
   <p>"Pengetahuan adalah investasi terbaik." – Benjamin Franklin</p>
 </details>
 
