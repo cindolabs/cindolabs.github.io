@@ -116,4 +116,4 @@ Buku besar ini mencatat semua transaksi keuangan Hocindo untuk bulan pertama (Se
 ## Tentang Hocindo
 **Hotel Cinta Dolar (Hocindo)** adalah usaha yang berfokus pada layanan hotel strategis dengan kantor di Hotel Indah. Dengan semangat wirausaha ala Robert Kiyosaki, Hocindo bertujuan membangun aset finansial dengan pendekatan kreatif dan praktis.
 
-Untuk pertanyaan atau data tambahan, hubungi [email Anda] atau kunjungi repositori ini di GitHub.
+Untuk pertanyaan atau data tambahan, hubungi [ringinbambu@gmail.com] atau kunjungi repositori ini di GitHub.
