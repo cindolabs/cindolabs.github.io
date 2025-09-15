@@ -1,6 +1,6 @@
 # Pembukuan Hocindo: Hotel Cinta Dolar
 
-Selamat datang di pembukuan awal untuk **Hocindo (Hotel Cinta Dolar)**, sebuah usaha hotel strategis dengan kantor yang disewa di Hotel Indah. Modal awal usaha ini adalah **Rp300.000**, dan biaya sewa kantor strategis di Hotel Indah adalah **Rp500.000/bulan**. Berikut adalah tabel pembukuan awal untuk memantau keuangan bisnis, mencakup **Neraca Keuangan**, **Laporan Laba Rugi**, **Laporan Arus Kas**, dan **Penggalangan Dana dari Investor atau Pinjaman Lunak** untuk bulan pertama.
+Selamat datang di pembukuan awal untuk **Hocindo (Hotel Cinta Dolar)**, sebuah usaha hotel strategis dengan kantor yang disewa di Hotel Indah. Modal awal usaha ini adalah **Rp300.000**, dan biaya sewa kantor strategis di Hotel Indah adalah **Rp500.000/bulan**. Berikut adalah tabel pembukuan awal untuk memantau keuangan bisnis, mencakup **Neraca Keuangan**, **Laporan Laba Rugi**, **Laporan Arus Kas**, **Penggalangan Dana dari Investor atau Pinjaman Lunak**, dan **Buku Besar Keluar Masuk Keuangan** untuk bulan pertama.
 
 ## 1. Neraca Keuangan (Balance Sheet)
 Neraca ini menunjukkan posisi keuangan Hocindo pada akhir bulan pertama (asumsi awal operasional).
@@ -24,12 +24,10 @@ Neraca ini menunjukkan posisi keuangan Hocindo pada akhir bulan pertama (asumsi 
 | **Total Ekuitas**         |                                           | -200.000          |
 | **Total Liabilitas + Ekuitas** |                                   | 300.000           |
 
-**Catatan**: 
-- Total Aset = Total Liabilitas + Ekuitas. 
-- Ekuitas negatif (-Rp200.000) menunjukkan kebutuhan dana tambahan untuk menutup utang sewa.
+**Catatan**: Total Aset = Total Liabilitas + Ekuitas. Ekuitas negatif menunjukkan kebutuhan dana tambahan.
 
 ## 2. Laporan Laba Rugi (Income Statement)
-Laporan ini mencatat pendapatan dan pengeluaran untuk bulan pertama (asumsi bisnis baru mulai, belum ada pendapatan).
+Laporan ini mencatat pendapatan dan pengeluaran untuk bulan pertama (belum ada pendapatan).
 
 | Kategori                  | Item                                      | Jumlah (Rp)       |
 |---------------------------|-------------------------------------------|-------------------|
@@ -46,7 +44,7 @@ Laporan ini mencatat pendapatan dan pengeluaran untuk bulan pertama (asumsi bisn
 | **Total Pengeluaran**     |                                           | 570.000           |
 | **Laba Bersih**           | (Total Pendapatan - Total Pengeluaran)    | -570.000          |
 
-**Catatan**: Laba bersih negatif (-Rp570.000) karena belum ada pendapatan di bulan pertama.
+**Catatan**: Laba bersih negatif karena belum ada pendapatan.
 
 ## 3. Laporan Arus Kas (Cash Flow Statement)
 Laporan ini memantau aliran uang masuk dan keluar di bulan pertama.
@@ -64,10 +62,10 @@ Laporan ini memantau aliran uang masuk dan keluar di bulan pertama.
 | **Total Arus Kas Keluar** |                                           | 570.000           |
 | **Arus Kas Bersih**       | (Arus Kas Masuk - Arus Kas Keluar)        | -270.000          |
 
-**Catatan**: Arus kas bersih negatif (-Rp270.000) menunjukkan perlunya dana tambahan.
+**Catatan**: Arus kas bersih negatif menunjukkan perlunya dana tambahan.
 
 ## 4. Penggalangan Dana dari Investor atau Pinjaman Lunak
-Tabel ini mencatat rencana penggalangan dana untuk menutup kekurangan modal dan mendukung operasional Hocindo.
+Tabel ini mencatat rencana penggalangan dana untuk menutup kekurangan modal.
 
 | Sumber Dana               | Jumlah (Rp) | Jangka Waktu       | Tujuan Penggunaan                     | Catatan                              |
 |---------------------------|-------------|--------------------|---------------------------------------|--------------------------------------|
@@ -75,15 +73,38 @@ Tabel ini mencatat rencana penggalangan dana untuk menutup kekurangan modal dan 
 | Pinjaman Lunak (Keluarga) | 500.000     | 12 bulan           | Menutup utang sewa bulan pertama      | Tanpa bunga, cicilan Rp50.000/bulan  |
 | Pinjaman Lunak (Program UMKM) | 1.000.000 | 24 bulan         | Pengadaan peralatan kantor (komputer) | Bunga 2%/tahun, cicilan Rp45.000/bulan |
 
+**Catatan**: Total dana Rp2.500.000 untuk menutup kekurangan arus kas dan operasional awal.
+
+## 5. Buku Besar Keluar Masuk Keuangan
+Buku besar ini mencatat semua transaksi keuangan Hocindo untuk bulan pertama (September 2025).
+
+| Tanggal       | Deskripsi                              | Akun                     | Debit (Rp) | Kredit (Rp) | Saldo (Rp) |
+|---------------|----------------------------------------|--------------------------|------------|-------------|------------|
+| 01/09/2025    | Modal awal pemilik                     | Kas                      | 300.000    |             | 300.000    |
+|               |                                        | Modal Pemilik            |            | 300.000     | 300.000    |
+| 05/09/2025    | Penerimaan dana dari investor          | Kas                      | 1.000.000  |             | 1.300.000  |
+|               |                                        | Modal Ekuitas (Investor) |            | 1.000.000   | 1.300.000  |
+| 07/09/2025    | Penerimaan pinjaman lunak (keluarga)   | Kas                      | 500.000    |             | 1.800.000  |
+|               |                                        | Utang Pinjaman Lunak     |            | 500.000     | 1.800.000  |
+| 10/09/2025    | Penerimaan pinjaman lunak (UMKM)       | Kas                      | 1.000.000  |             | 2.800.000  |
+|               |                                        | Utang Pinjaman Lunak     |            | 1.000.000   | 2.800.000  |
+| 15/09/2025    | Pembayaran sewa kantor (Hotel Indah)   | Biaya Sewa Kantor        | 500.000    |             | 2.300.000  |
+|               |                                        | Kas                      |            | 500.000     | 2.300.000  |
+| 20/09/2025    | Pembayaran listrik dan internet        | Biaya Operasional        | 50.000     |             | 2.250.000  |
+|               |                                        | Kas                      |            | 50.000      | 2.250.000  |
+| 25/09/2025    | Biaya pemasaran (promosi awal)         | Biaya Pemasaran          | 20.000     |             | 2.230.000  |
+|               |                                        | Kas                      |            | 20.000      | 2.230.000  |
+
 **Catatan**:
-- Total dana yang dibutuhkan: Rp2.500.000 untuk menutup kekurangan arus kas (-Rp270.000) dan mendukung operasional awal (termasuk peralatan dan pemasaran).
-- Investor mendapatkan saham sebagai imbalan, sedangkan pinjaman lunak memiliki cicilan ringan untuk mengurangi beban keuangan.
-- Dana ini akan meningkatkan kas di neraca keuangan dan memungkinkan operasional tanpa ekuitas negatif.
+- **Saldo**: Diperbarui setelah setiap transaksi, dimulai dari nol, dengan kas sebagai acuan utama.
+- **Debit/Kredit**: Mengikuti prinsip akuntansi (debit meningkatkan aset/biaya, kredit meningkatkan liabilitas/ekuitas/pendapatan).
+- **Transaksi**: Termasuk modal awal, dana investor, pinjaman lunak, dan pengeluaran operasional (sewa, listrik, pemasaran).
+- Saldo akhir Rp2.230.000 mencerminkan kas yang tersisa setelah semua transaksi bulan pertama.
 
 ## Petunjuk Penggunaan
-1. **Modal Awal**: Modal Rp300.000 tidak cukup untuk menutup biaya sewa kantor (Rp500.000/bulan). Gunakan dana dari investor atau pinjaman lunak untuk menutup kekurangan.
+1. **Modal Awal**: Modal Rp300.000 tidak cukup untuk menutup biaya sewa kantor (Rp500.000/bulan). Dana tambahan dari investor dan pinjaman lunak (total Rp2.500.000) digunakan untuk operasional.
 2. **Strategi Pendapatan**: Mulai operasikan layanan (misalnya konsultasi hotel atau sewa kamar) untuk menghasilkan pendapatan di bulan berikutnya.
-3. **Perbarui Bulanan**: Catat transaksi (pendapatan, pengeluaran, pembayaran pinjaman) dan perbarui tabel setiap bulan.
+3. **Perbarui Bulanan**: Catat setiap transaksi di buku besar dan perbarui tabel lain setiap bulan.
 4. **Rekomendasi**:
    - Gunakan software akuntansi seperti Accurate atau QuickBooks untuk otomatisasi.
    - Buka rekening bank khusus untuk Hocindo agar keuangan terpisah dari pribadi.
