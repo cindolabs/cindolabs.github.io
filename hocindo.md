@@ -50,7 +50,7 @@ Kami mengadopsi filosofi *Hanacaraka* sebagai landasan nilai-nilai kami:
 ## Kontak Kami
 - **Email**: ringinbambu@gmail.com
 - **Telepon**: +62 8999 587 888 atau +62 8226 408 3228
-- **Alamat**: Jl. Panglima Sudirman No. 19, Bandarkedungmulyo, Indonesia
+- **Alamat**: Jl. Panglima Sudirman No. 19, Bandarkedungmulyo, Jombang - Jawa Timur, Indonesia
 - **Media Sosial**:
   - Instagram: [@Hocindo](https://instagram.com/hotelcintadolar)
   - 𝕏: [@hocindo](https://x.com/hocindo)
