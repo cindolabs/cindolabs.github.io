@@ -36,7 +36,7 @@ Kami dengan bangga mengumumkan acara istimewa: **Pelatihan Investasi Perdana** p
 Acara ini bukan hanya tentang investasi finansial, tetapi juga investasi dalam nilai-nilai kebersamaan, keberlanjutan, dan kebijaksanaan. Seperti aksara *ma ga ba tha nga* (menuju kematian), kami percaya setiap langkah investasi adalah bagian dari siklus besar untuk menciptakan warisan positif bagi generasi mendatang.
 
 ## Cara Bergabung
-- **Pendaftaran**: Kirim email ke `ringinbambu@gmail.com` atau kunjungi [www.hotelcinta.github.io](https://hotelcinta.github.io).
+- **Pendaftaran**: Kirim email ke `ringinbambu@gmail.com` atau kunjungi [www.hotelcinta.github.io](https://hocindo.github.io).
 - **Kuota Terbatas**: Acara eksklusif untuk 50 peserta terpilih.
 - **Persyaratan**: Terbuka untuk siapa saja yang bersemangat belajar tentang investasi dan trading dengan nilai kolaborasi dan cinta terhadap kopi.
 
@@ -52,10 +52,11 @@ Kami mengadopsi filosofi *Hanacaraka* sebagai landasan nilai-nilai kami:
 - **Telepon**: +62 8999 587 888 atau +62 8226 408 3228
 - **Alamat**: Jl. Panglima Sudirman No. 19, Bandarkedungmulyo, Indonesia
 - **Media Sosial**:
-  - Instagram: [@HocindoOfficial](https://instagram.com/hocindofficial)
+  - Instagram: [@Hocindo](https://instagram.com/hotelcintadolar)
   - 𝕏: [@hocindo](https://x.com/hocindo)
 
 **Ayo seduh kopi, sebarkan cinta, dan wujudkan perubahan bersama Hocindo!**
+**Pekerjakan uang Anda di Hocindo agar semakin beranak pinak**
 
 ---
 
