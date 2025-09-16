@@ -84,7 +84,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: radial-gradient(circle, var(--light-gold) 0%, var(--rolex-green) 70%);
+    background: linear-gradient(rgba(5, 97, 53, 0.5), rgba(5, 97, 53, 0.5)), url('new-hero-bg.jpg') no-repeat center center/cover;
     color: var(--white);
 }
 
