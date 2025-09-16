@@ -12,6 +12,8 @@ Membangun sesuatu yang besar? Anda butuh pemain-pemain <span style="color:blue">
 
 Ide terbaik pun akan <span style="color:red">gagal</span> tanpa kerja kelompok yang tepat.
 
+Kekayaan Tidak Datang Dari Keberuntungan — Itu Datang Dari Strategi
+
   
   
 
