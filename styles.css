@@ -84,7 +84,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, var(--rolex-green), var(--light-gold));
+    background: linear-gradient(135deg, var(--rolex-green), var(--light-gold), var(--white));
     color: var(--white);
 }
 
