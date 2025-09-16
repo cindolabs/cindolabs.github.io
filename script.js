@@ -86,9 +86,9 @@ document.getElementById('investment-form').addEventListener('submit', (e) => {
 // Simulate API Data for Investment Section
 document.addEventListener('DOMContentLoaded', () => {
     const investmentData = [
-        { title: 'Basic Package', description: 'Investasi awal dengan ROI stabil.', price: 'Rp 500 Juta', '32.258,06 USD' },
-        { title: 'Premium Package', description: 'Investasi dengan fasilitas eksklusif.', price: 'Rp 1 Miliar', '65.258,06 USD' },
-        { title: 'Elite Package', description: 'Investasi premium dengan keuntungan maksimal.', price: 'Rp 2 Miliar', '113.258,06 USD' }
+        { title: 'Basic Package', description: 'Investasi awal dengan ROI stabil.', price: 'Rp 500 Juta' },
+        { title: 'Premium Package', description: 'Investasi dengan fasilitas eksklusif.', price: 'Rp 1 Miliar' },
+        { title: 'Elite Package', description: 'Investasi premium dengan keuntungan maksimal.', price: 'Rp 2 Miliar' }
     ];
 
     const investmentGrid = document.getElementById('investment-data');
