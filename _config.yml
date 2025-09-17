@@ -8,19 +8,3 @@ lang: id_ID
 # Tema
 theme: minima # Akan dioverride oleh style.css
 # Alternatif: theme: jekyll-theme-cayman
-
-# Plugin
-plugins:
-  - jekyll-seo-tag # Untuk SEO
-  - jekyll-sitemap # Untuk sitemap.xml
-  - jekyll-paginate # Untuk paginasi (opsional)
-  - jekyll-include-cache # Untuk performa
-
-# Markdown
-markdown: kramdown
-kramdown:
-  input: GFM # Dukung tabel Markdown
-
-# Paginasi (opsional)
-paginate: 5
-paginate_path: "/investasi/page:num/"
