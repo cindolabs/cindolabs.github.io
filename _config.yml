@@ -1,2 +1,40 @@
-baseURL: "https://hocindo.github.io"
+# Konfigurasi dasar situs
 title: Hocindo 🏩
+description: Program Investasi Hocindo untuk pemula hingga investor besar.
+baseurl: "" # Kosongkan karena baseurl biasanya relatif ke root repo
+url: "https://hocindo.github.io" # URL utama situs Anda
+lang: id_ID # Bahasa Indonesia untuk SEO
+
+# Tema Jekyll
+theme: minima # Tema sederhana, bisa diganti seperti jekyll-theme-cayman
+# remote_theme: "mmistakes/minimal-mistakes@4.24.0" # Uncomment untuk tema eksternal
+
+# Plugin untuk fitur tambahan
+plugins:
+  - jekyll-sitemap # Buat sitemap.xml untuk SEO
+  - jekyll-seo-tag # Optimasi mesin pencari
+  - jekyll-feed # RSS feed (opsional untuk blog)
+
+# Pengaturan Markdown
+markdown: kramdown
+kramdown:
+  input: GFM # Dukung tabel Markdown seperti di proposal
+
+# Koleksi untuk halaman paket investasi
+collections:
+  packages:
+    output: true # Generate halaman untuk setiap paket
+    permalink: /packages/:name # URL seperti /packages/basic
+
+# Default front matter untuk file dalam koleksi
+defaults:
+  - scope:
+      path: ""
+      type: packages
+    values:
+      layout: package # Gunakan layout khusus untuk paket
+      permalink: /packages/:name
+
+# Pengaturan lain
+exclude: [Gemfile, Gemfile.lock, README.md] # File yang diabaikan
+timezone: Asia/Jakarta # Zona waktu Indonesia
