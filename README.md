@@ -8,7 +8,7 @@ layout: default
 <details>
   <summary><i>Kode Harta Karun</i></summary>
   <p>
-    Setiap bulan ada momentum bagus, dimana ada salah satu hari, grafiknya membentuk pola yang mudah dibaca dan diikuti, itu adalah kesempatan untuk meraih profit yang optimal.
+    Setiap bulan, terdapat momen ideal di mana grafik membentuk pola yang mudah dibaca dan diikuti, memberikan peluang untuk meraih keuntungan optimal.
   </p>
   <p>"La paciencia es amarga, pero su fruto es dulce". – Aristóteles</p>
 </details>
