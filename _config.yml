@@ -1,40 +1,64 @@
 # Konfigurasi dasar situs
 title: Hocindo 🏩
-description: Program Investasi Hocindo untuk pemula hingga investor besar.
-baseurl: "" # Kosongkan karena baseurl biasanya relatif ke root repo
-url: "https://hocindo.github.io" # URL utama situs Anda
-lang: id_ID # Bahasa Indonesia untuk SEO
+description: Solusi investasi terpercaya untuk semua kalangan.
+url: "https://hocindo.github.io" # URL situs Anda
+baseurl: "" # Kosong untuk root domain
+lang: id_ID # Bahasa Indonesia
 
 # Tema Jekyll
-theme: minima # Tema sederhana, bisa diganti seperti jekyll-theme-cayman
-# remote_theme: "mmistakes/minimal-mistakes@4.24.0" # Uncomment untuk tema eksternal
+theme: jekyll-theme-cayman # Tema berbeda, lebih modern dan bersih
+# Alternatif: theme: jekyll-theme-slate # Uncomment untuk tema lain
 
 # Plugin untuk fitur tambahan
 plugins:
-  - jekyll-sitemap # Buat sitemap.xml untuk SEO
-  - jekyll-seo-tag # Optimasi mesin pencari
-  - jekyll-feed # RSS feed (opsional untuk blog)
+  - jekyll-seo-tag # Optimasi SEO
+  - jekyll-sitemap # Generate sitemap.xml
+  - jekyll-paginate # Untuk paginasi (opsional, misalnya untuk daftar artikel)
+
+# Pengaturan SEO
+logo: /assets/images/logo.png # Ganti dengan path logo Anda (opsional)
+twitter:
+  username: hocindo # Ganti dengan username Twitter (opsional)
+  card: summary
+social:
+  name: Hocindo
+  links:
+    - https://twitter.com/hocindo # Ganti dengan link sosial media Anda
+    - https://www.instagram.com/hocindo # Opsional
+
+# Google Analytics
+google_analytics: UA-XXXXX-X # Ganti dengan ID Google Analytics Anda
 
 # Pengaturan Markdown
 markdown: kramdown
 kramdown:
-  input: GFM # Dukung tabel Markdown seperti di proposal
+  input: GFM # Dukung tabel Markdown untuk investasi
 
-# Koleksi untuk halaman paket investasi
+# Paginasi (opsional, untuk blog atau daftar paket)
+paginate: 5
+paginate_path: "/packages/page:num/"
+
+# Pengaturan koleksi untuk paket investasi
 collections:
   packages:
-    output: true # Generate halaman untuk setiap paket
-    permalink: /packages/:name # URL seperti /packages/basic
+    output: true
+    permalink: /investasi/:name # URL seperti /investasi/basic
 
-# Default front matter untuk file dalam koleksi
+# Default front matter
 defaults:
   - scope:
       path: ""
       type: packages
     values:
-      layout: package # Gunakan layout khusus untuk paket
-      permalink: /packages/:name
+      layout: package
+      permalink: /investasi/:name
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+      permalink: /blog/:year/:month/:day/:title
 
 # Pengaturan lain
-exclude: [Gemfile, Gemfile.lock, README.md] # File yang diabaikan
-timezone: Asia/Jakarta # Zona waktu Indonesia
+exclude: [Gemfile, Gemfile.lock, node_modules, vendor]
+timezone: Asia/Jakarta
