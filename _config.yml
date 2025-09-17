@@ -1,44 +1,45 @@
 # Konfigurasi dasar situs
 title: Hocindo 🏩
-description: Solusi investasi terpercaya untuk semua kalangan.
+description: Program Investasi Hocindo dengan desain elegan dan modern.
 url: "https://hocindo.github.io" # URL situs Anda
 baseurl: "" # Kosong untuk root domain
 lang: id_ID # Bahasa Indonesia
 
 # Tema Jekyll
-theme: jekyll-theme-cayman # Tema berbeda, lebih modern dan bersih
-# Alternatif: theme: jekyll-theme-slate # Uncomment untuk tema lain
+theme: minima # Tema dasar, akan dioverride oleh CSS kustom
+# Alternatif: theme: jekyll-theme-cayman
+# remote_theme: "mmistakes/minimal-mistakes@4.24.0" # Uncomment untuk tema eksternal
 
 # Plugin untuk fitur tambahan
 plugins:
-  - jekyll-seo-tag # Optimasi SEO
-  - jekyll-sitemap # Generate sitemap.xml
-  - jekyll-paginate # Untuk paginasi (opsional, misalnya untuk daftar artikel)
+  - jekyll-seo-tag # Optimasi SEO untuk navbar, hero, dll.
+  - jekyll-sitemap # Sitemap untuk navigasi
+  - jekyll-include-cache # Meningkatkan performa rendering
+  - jekyll-paginate # Untuk paginasi (opsional)
 
 # Pengaturan SEO
-logo: /assets/images/logo.png # Ganti dengan path logo Anda (opsional)
+logo: /assets/images/logo.png # Path ke logo untuk navbar
 twitter:
-  username: hocindo # Ganti dengan username Twitter (opsional)
-  card: summary
+  username: hocindo # Ganti dengan username Twitter Anda
 social:
   name: Hocindo
   links:
-    - https://twitter.com/hocindo # Ganti dengan link sosial media Anda
-    - https://www.instagram.com/hocindo # Opsional
+    - https://twitter.com/hocindo
+    - https://www.instagram.com/hocindo
 
 # Google Analytics
-google_analytics: UA-XXXXX-X # Ganti dengan ID Google Analytics Anda
+google_analytics: UA-XXXXX-X # Ganti dengan ID Analytics Anda
 
 # Pengaturan Markdown
 markdown: kramdown
 kramdown:
   input: GFM # Dukung tabel Markdown untuk investasi
 
-# Paginasi (opsional, untuk blog atau daftar paket)
+# Paginasi (opsional, untuk daftar paket atau blog)
 paginate: 5
-paginate_path: "/packages/page:num/"
+paginate_path: "/investasi/page:num/"
 
-# Pengaturan koleksi untuk paket investasi
+# Koleksi untuk paket investasi
 collections:
   packages:
     output: true
@@ -54,10 +55,9 @@ defaults:
       permalink: /investasi/:name
   - scope:
       path: ""
-      type: posts
     values:
-      layout: post
-      permalink: /blog/:year/:month/:day/:title
+      layout: default
+      css: /assets/css/style.css # Referensi CSS kustom
 
 # Pengaturan lain
 exclude: [Gemfile, Gemfile.lock, node_modules, vendor]
