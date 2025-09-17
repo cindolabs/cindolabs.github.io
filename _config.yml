@@ -4,34 +4,4 @@ description: Program Investasi Hocindo dengan desain elegan dan modern.
 url: "https://hocindo.github.io" # URL situs Anda
 baseurl: "" # Kosong untuk root domain
 lang: id_ID # Bahasa Indonesia
-
-# Pengaturan Markdown
-markdown: kramdown
-kramdown:
-  input: GFM # Dukung tabel Markdown untuk investasi
-
-# Paginasi (opsional, untuk daftar paket atau blog)
-paginate: 5
-paginate_path: "/investasi/page:num/"
-
-# Koleksi untuk paket investasi
-collections:
-  packages:
-    output: true
-    permalink: /investasi/:name # URL seperti /investasi/basic
-
-# Default front matter
-defaults:
-  - scope:
-      path: ""
-      type: packages
-    values:
-      layout: package
-      permalink: /investasi/:name
-  - scope:
-      path: ""
-    values:
-      layout: default
-      css: /assets/css/style.css # Referensi CSS kustom
-
-
+layout: default
