@@ -1,7 +1,26 @@
 # Konfigurasi dasar situs
 title: Hocindo 🏩
 description: Program Investasi Hocindo dengan desain elegan dan modern.
-url: "https://hocindo.github.io" # URL situs Anda
-baseurl: "" # Kosong untuk root domain
-lang: id_ID # Bahasa Indonesia
-layout: default
+url: "https://hocindo.github.io"
+baseurl: ""
+lang: id_ID
+
+# Tema
+theme: minima # Akan dioverride oleh style.css
+# Alternatif: theme: jekyll-theme-cayman
+
+# Plugin
+plugins:
+  - jekyll-seo-tag # Untuk SEO
+  - jekyll-sitemap # Untuk sitemap.xml
+  - jekyll-paginate # Untuk paginasi (opsional)
+  - jekyll-include-cache # Untuk performa
+
+# Markdown
+markdown: kramdown
+kramdown:
+  input: GFM # Dukung tabel Markdown
+
+# Paginasi (opsional)
+paginate: 5
+paginate_path: "/investasi/page:num/"
