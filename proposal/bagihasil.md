@@ -5,7 +5,7 @@ layout: default
 
 ### Investor HOCINDO - Skema Bagi Hasil 10% per Bulan
 
-Berikut adalah tabel untuk bagian README.md yang menjelaskan investor yang berinvestasi di HOCINDO dengan skema bagi hasil tetap sebesar 10% per bulan dari modal investasi. Tabel ini mencakup contoh investor fiktif, jumlah investasi, dan proyeksi bagi hasil bulanan. Skema ini dirancang untuk transparansi dan kemudahan pemahaman.
+Berikut adalah tabel ilustrasi untuk menjelaskan investor yang berinvestasi di HOCINDO dengan skema bagi hasil tetap sebesar 10% per bulan dari modal investasi. Tabel ini mencakup contoh investor fiktif, jumlah investasi, dan proyeksi bagi hasil bulanan. Skema ini dirancang untuk transparansi dan kemudahan pemahaman.
 
 | No. | Nama Investor | Jumlah Investasi (Rp) | Bagi Hasil Bulanan (10%) | Total Proyeksi Tahunan (Rp) | Status |
 |-----|---------------|-----------------------|---------------------------|-----------------------------|--------|
@@ -25,9 +25,9 @@ Tabel berikut membandingkan skema bagi hasil HOCINDO (10% per bulan) dengan depo
 
 | No. | Institusi                | Jumlah Investasi (Rp) | Bagi Hasil/Keuntungan | Total Keuntungan Tahunan (Rp) | Catatan                          |
 |-----|--------------------------|-----------------------|-----------------------|-------------------------------|----------------------------------|
-| 1   | HOCINDO                 | 100.000.000          | 10% per bulan        | 120.000.000                  | Bagi hasil bulanan, risiko lebih tinggi |
-| 2   | Bank Pemerintah (BRI)   | 100.000.000          | 3.5% per tahun       | 3.500.000                    | Deposito, bunga tahunan, dijamin LPS* |
-| 3   | Bank Swasta (BCA)       | 100.000.000          | 3.5% per tahun       | 3.500.000                    | Deposito, bunga tahunan, dijamin LPS* |
+| 1   | HOCINDO                  | 100.000.000           | 10% per bulan         | 120.000.000                   | Bagi hasil bulanan, risiko lebih tinggi |
+| 2   | Bank Pemerintah (BRI)    | 100.000.000           | 3.5% per tahun        | 3.500.000                     | Deposito, bunga tahunan, dijamin LPS* |
+| 3   | Bank Swasta (BCA)        | 100.000.000           | 3.5% per tahun        | 3.500.000                     | Deposito, bunga tahunan, dijamin LPS* |
 
 **Catatan:**
 - **HOCINDO**: Bagi hasil 10% per bulan menghasilkan Rp10.000.000 per bulan, atau Rp120.000.000 per tahun (tanpa memperhitungkan risiko investasi).
@@ -43,7 +43,7 @@ Tabel berikut membandingkan skema bagi hasil HOCINDO (10% per bulan) dengan depo
 #### Fitur Utama Basic Package
 - **Minimum Investasi**: Rp10.000.000
 - **Bagi Hasil**: 10% per bulan dari modal
-- **Durasi**: Minimum 6 bulan
+- **Durasi**: Minimum 1 sampai 6 bulan
 - **Keuntungan**: Pembayaran bulanan otomatis, tanpa biaya administrasi awal
 - **Risiko**: Standar investasi (tidak dijamin seperti deposito bank)
 
@@ -52,18 +52,18 @@ Tabel berikut membandingkan **Basic Package** dengan paket lain di HOCINDO untuk
 
 | Paket         | Minimum Investasi (Rp) | Bagi Hasil Bulanan | Durasi Minimum | Total Keuntungan Tahunan (Rp) | Fitur Tambahan                  |
 |---------------|-------------------------|--------------------|----------------|-------------------------------|---------------------------------|
-| **Basic**    | 10.000.000             | 10%               | 6 bulan       | 12.000.000                   | Pembayaran bulanan sederhana   |
-| **Standard** | 50.000.000             | 10%               | 12 bulan      | 60.000.000                   | Diversifikasi aset + laporan triwulanan |
-| **Premium**  | 100.000.000            | 10% + bonus 1%    | 12 bulan      | 132.000.000                  | Konsultasi pribadi + asuransi  |
+| **Basic**     | 10.000.000              | 10%                | 6 bulan        | 12.000.000                    | Pembayaran bulanan sederhana   |
+| **Standard**  | 50.000.000              | 10%                | 12 bulan       | 60.000.000                    | Diversifikasi aset + laporan triwulanan |
+| **Premium**   | 100.000.000             | 10% + bonus 1%     | 12 bulan       | 132.000.000                   | Konsultasi pribadi + asuransi  |
 
 #### Perbandingan dengan Deposito Bank
 Berikut perbandingan **Basic Package** HOCINDO dengan deposito bank pemerintah dan swasta (3.5% per tahun) untuk investasi Rp10.000.000 selama 1 tahun.
 
-| Institusi                | Jumlah Investasi (Rp) | Bagi Hasil/Keuntungan | Total Keuntungan Tahunan (Rp) | Catatan                          |
-|--------------------------|-----------------------|-----------------------|-------------------------------|----------------------------------|
-| **HOCINDO (Basic)**     | 10.000.000           | 10% per bulan        | 12.000.000                   | Bagi hasil bulanan, risiko lebih tinggi |
-| **Bank Pemerintah (BRI)** | 10.000.000           | 3.5% per tahun       | 350.000                     | Deposito, dijamin LPS*           |
-| **Bank Swasta (BCA)**    | 10.000.000           | 3.5% per tahun       | 350.000                     | Deposito, dijamin LPS*           |
+| Institusi                 | Jumlah Investasi (Rp) | Bagi Hasil/Keuntungan | Total Keuntungan Tahunan (Rp) | Catatan                          |
+|---------------------------|-----------------------|-----------------------|-------------------------------|----------------------------------|
+| **HOCINDO (Basic)**       | 10.000.000            | 10% per bulan         | 12.000.000                    | Bagi hasil bulanan, risiko lebih tinggi |
+| **Bank Pemerintah (BRI)** | 10.000.000            | 3.5% per tahun        | 350.000                       | Deposito, dijamin LPS*           |
+| **Bank Swasta (BCA)**     | 10.000.000            | 3.5% per tahun        | 350.000                       | Deposito, dijamin LPS*           |
 
 **Catatan:**
 - **HOCINDO**: Keuntungan dihitung sebagai 10% per bulan × 12 = Rp1.000.000/bulan × 12 = Rp12.000.000/tahun.
