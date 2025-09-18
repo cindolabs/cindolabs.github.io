@@ -36,16 +36,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const managedFundsElement = document.getElementById('managed-funds');
     const fundsGrowthElement = document.getElementById('funds-growth');
     const profitShareElement = document.getElementById('profit-share');
+    const managerCountElement = document.getElementById('manager-count');
+    const instrumentCountElement = document.getElementById('instrument-count');
 
     const investorCount = 5; // 5 Orang
     const managedFunds = 30000; // Rp30,000
     const fundsGrowth = 800; // Rp800
     const profitShare = 100; // Rp100
+    const managerCount = 2; // 2 Orang
+    const instrumentCount = 5; // 5 Instrumen
 
     investorCountElement.textContent = `${investorCount} Orang`;
     managedFundsElement.textContent = formatRupiah(managedFunds);
     fundsGrowthElement.textContent = formatRupiah(fundsGrowth);
     profitShareElement.textContent = formatRupiah(profitShare);
+    managerCountElement.textContent = `${managerCount} Orang`;
+    instrumentCountElement.textContent = `${instrumentCount} Instrumen`;
 
     // Investment Packages
     const investmentData = [
@@ -105,8 +111,8 @@ function getBotResponse(message) {
         return 'Hocindo menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?';
     } else if (message.includes('cinta') || message.includes('romantis')) {
         return 'Dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?';
-    } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor')) {
-        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: 5 investor, dana kelolaan Rp 30.000, pertumbuhan dana Rp 800, bagi hasil Rp 100, dan aset Anda Rp 100.000. Klik "Daftar Investasi" untuk detail!';
+    } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor') || message.includes('manajer') || message.includes('instrumen')) {
+        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 30.000, pertumbuhan dana Rp 800, bagi hasil Rp 100, dan aset Anda Rp 100.000. Klik "Daftar Investasi" untuk detail!';
     } else {
         return 'Saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
     }
