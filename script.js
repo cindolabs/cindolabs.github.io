@@ -24,11 +24,48 @@ function formatRupiah(number) {
     }).format(number);
 }
 
-// Display Asset Value on Page Load
+// Display Asset and Investment Stats on Page Load
 document.addEventListener('DOMContentLoaded', () => {
+    // Asset Value
     const assetValueElement = document.getElementById('asset-value');
-    const assetAmount = 100000; // Rp100,000 as the initial value
+    const assetAmount = 100000; // Rp100,000
     assetValueElement.textContent = formatRupiah(assetAmount);
+
+    // Investment Stats
+    const investorCountElement = document.getElementById('investor-count');
+    const managedFundsElement = document.getElementById('managed-funds');
+    const fundsGrowthElement = document.getElementById('funds-growth');
+    const profitShareElement = document.getElementById('profit-share');
+
+    const investorCount = 5; // 5 Orang
+    const managedFunds = 30000; // Rp30,000
+    const fundsGrowth = 800; // Rp800
+    const profitShare = 100; // Rp100
+
+    investorCountElement.textContent = `${investorCount} Orang`;
+    managedFundsElement.textContent = formatRupiah(managedFunds);
+    fundsGrowthElement.textContent = formatRupiah(fundsGrowth);
+    profitShareElement.textContent = formatRupiah(profitShare);
+
+    // Investment Packages
+    const investmentData = [
+        { title: 'Basic Package', description: 'Investasi awal dengan ROI stabil.', price: 'Rp 500 Juta' },
+        { title: 'Premium Package', description: 'Investasi dengan fasilitas eksklusif.', price: 'Rp 1 Miliar' },
+        { title: 'Elite Package', description: 'Investasi premium dengan keuntungan maksimal.', price: 'Rp 2 Miliar' }
+    ];
+
+    const investmentGrid = document.getElementById('investment-data');
+    investmentData.forEach(item => {
+        const card = document.createElement('div');
+        card.className = 'service-card';
+        card.setAttribute('data-aos', 'fade-up');
+        card.innerHTML = `
+            <h3>${item.title}</h3>
+            <p>${item.description}</p>
+            <p><strong>Harga: ${item.price}</strong></p>
+        `;
+        investmentGrid.appendChild(card);
+    });
 });
 
 // Chatbot Functionality
@@ -68,8 +105,8 @@ function getBotResponse(message) {
         return 'Hocindo menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?';
     } else if (message.includes('cinta') || message.includes('romantis')) {
         return 'Dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?';
-    } else if (message.includes('investasi') || message.includes('aset')) {
-        return 'Peluang investasi di Hocindo menawarkan ROI menarik di properti mewah. Total aset Anda saat ini: Rp 100.000. Klik "Daftar Investasi" untuk detail!';
+    } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor')) {
+        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: 5 investor, dana kelolaan Rp 30.000, pertumbuhan dana Rp 800, bagi hasil Rp 100, dan aset Anda Rp 100.000. Klik "Daftar Investasi" untuk detail!';
     } else {
         return 'Saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
     }
@@ -97,26 +134,4 @@ document.getElementById('investment-form').addEventListener('submit', (e) => {
     alert('Pendaftaran investasi berhasil! Tim Hocindo akan menghubungi Anda untuk langkah selanjutnya.');
     e.target.reset();
     closeModal();
-});
-
-// Simulate API Data for Investment Section
-document.addEventListener('DOMContentLoaded', () => {
-    const investmentData = [
-        { title: 'Basic Package', description: 'Investasi awal dengan ROI stabil.', price: 'Rp 500 Juta' },
-        { title: 'Premium Package', description: 'Investasi dengan fasilitas eksklusif.', price: 'Rp 1 Miliar' },
-        { title: 'Elite Package', description: 'Investasi premium dengan keuntungan maksimal.', price: 'Rp 2 Miliar' }
-    ];
-
-    const investmentGrid = document.getElementById('investment-data');
-    investmentData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'service-card';
-        card.setAttribute('data-aos', 'fade-up');
-        card.innerHTML = `
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <p><strong>Harga: ${item.price}</strong></p>
-        `;
-        investmentGrid.appendChild(card);
-    });
 });
