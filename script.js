@@ -15,6 +15,22 @@ function scrollToSection(sectionId) {
     document.querySelector(`#${sectionId}`).scrollIntoView({ behavior: 'smooth' });
 }
 
+// Format Rupiah Function
+function formatRupiah(number) {
+    return new Intl.NumberFormat('id-ID', {
+        style: 'currency',
+        currency: 'IDR',
+        minimumFractionDigits: 0
+    }).format(number);
+}
+
+// Display Asset Value on Page Load
+document.addEventListener('DOMContentLoaded', () => {
+    const assetValueElement = document.getElementById('asset-value');
+    const assetAmount = 100000; // Rp100,000 as the initial value
+    assetValueElement.textContent = formatRupiah(assetAmount);
+});
+
 // Chatbot Functionality
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
@@ -49,13 +65,13 @@ function sendMessage() {
 function getBotResponse(message) {
     message = message.toLowerCase();
     if (message.includes('hotel')) {
-        return 'Ghocin menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?';
+        return 'Hocindo menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?';
     } else if (message.includes('cinta') || message.includes('romantis')) {
         return 'Dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?';
-    } else if (message.includes('investasi')) {
-        return 'Peluang investasi di Ghocin menawarkan ROI menarik di properti mewah. Klik "Daftar Investasi" untuk detail!';
+    } else if (message.includes('investasi') || message.includes('aset')) {
+        return 'Peluang investasi di Hocindo menawarkan ROI menarik di properti mewah. Total aset Anda saat ini: Rp 100.000. Klik "Daftar Investasi" untuk detail!';
     } else {
-        return 'Saya GhocinBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
+        return 'Saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
     }
 }
 
@@ -71,14 +87,14 @@ function closeModal() {
 // Form Submission (Contact)
 document.getElementById('contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Pesan Anda telah dikirim! Tim Ghocin akan segera menghubungi Anda.');
+    alert('Pesan Anda telah dikirim! Tim Hocindo akan segera menghubungi Anda.');
     e.target.reset();
 });
 
 // Form Submission (Investment)
 document.getElementById('investment-form').addEventListener('submit', (e) => {
     e.preventDefault();
-    alert('Pendaftaran investasi berhasil! Tim Ghocin akan menghubungi Anda untuk langkah selanjutnya.');
+    alert('Pendaftaran investasi berhasil! Tim Hocindo akan menghubungi Anda untuk langkah selanjutnya.');
     e.target.reset();
     closeModal();
 });
