@@ -10,6 +10,7 @@ Dalam dunia trading, keberhasilan tidak hanya ditentukan oleh analisis pasar ata
 ## Apa Itu Paradigma Trader?
 
 Paradigma trader adalah kerangka berpikir yang memandu trader dalam menganalisis pasar, mengelola risiko, dan mengeksekusi perdagangan. Dalam psikologi, paradigma ini mencakup:
+
 - **Pola pikir (mindset)**: Keyakinan tentang kemampuan, risiko, dan pasar.
 - **Kontrol emosi**: Kemampuan untuk mengelola keserakahan, ketakutan, atau euforia.
 - **Disiplin**: Konsistensi dalam mengikuti rencana trading dan strategi.
@@ -50,6 +51,7 @@ Beberapa paradigma trading yang umum dalam konteks psikologi meliputi:
 ## Perubahan Paradigma (Paradigm Shift)
 
 Menurut Van K. Tharp, seorang ahli psikologi trading, kesuksesan trading memerlukan perubahan paradigma berikut:
+
 - **Bukan soal prediksi pasar**: Keberhasilan bergantung pada strategi keluar (exit strategy) dan manajemen risiko, bukan hanya memprediksi harga.
 - **Bukan soal selalu benar**: Trader tidak perlu memenangkan setiap perdagangan. Dengan ekspektasi positif, keuntungan besar dapat mengimbangi kerugian kecil.
 - **Fokus pada diri sendiri**: Trading yang sukses bergantung pada pengendalian diri dan sistem yang sesuai dengan kepribadian trader, bukan hanya kondisi pasar.
@@ -71,9 +73,42 @@ Menurut Van K. Tharp, seorang ahli psikologi trading, kesuksesan trading memerlu
 ## Mengapa Paradigma Trader Penting?
 
 Pasar keuangan penuh dengan ketidakpastian, dan psikologi memainkan peran besar dalam menentukan keberhasilan. Paradigma trader yang kuat membantu:
+
 - Mengurangi keputusan impulsif berbasis emosi.
 - Meningkatkan konsistensi dalam strategi trading.
 - Membangun ketahanan mental untuk menghadapi kerugian dan volatilitas.
+
+## Masalah #1 yang Dihadapi Setiap Pedagang
+
+> *Masalah #1 yang dihadapi setiap pedagang bukanlah saat masuk atau keluar. Itu sesuatu yang jauh lebih tersembunyi. 🧵*
+
+1. Selama beberapa dekade, para pedagang terobsesi dengan:  
+   - Indikator yang lebih baik  
+   - Entri yang lebih tajam  
+   - Rasio risiko-imbalan yang sempurna  
+   Namun, 90% masih kehilangan uang. Mengapa?
+
+2. Karena inti permasalahannya bukanlah teknis.  
+   Itu emosional.  
+   Sistem yang buruk dapat bertahan dengan disiplin.  
+   Tetapi sistem terbaik pun runtuh karena psikologi yang lemah.
+
+3. Inilah kebenarannya:  
+   Kebanyakan pedagang tidak gagal karena mereka tidak bisa berdagang.  
+   Mereka gagal karena mereka tidak bisa duduk diam.  
+   Mereka mengejar pengaturan.  
+   Mereka mencari kepastian.  
+   Mereka bereaksi terhadap rasa takut dan keserakahan.
+
+4. Inilah biaya diam-diamnya:  
+   Bukan karena kurangnya keterampilan, tetapi karena kurangnya kejelasan.  
+   Jika pikiranmu keruh, setiap grayang menjadi sinyal.  
+   Jika emosi Anda keras, tidak ada aturan yang dapat menyelamatkan Anda.
+
+5. Solusinya?  
+   Berhentilah mencari sistem yang sempurna.  
+   Mulailah membuat cermin yang sempurna.  
+   Yang menunjukkan impuls Anda sebelum pasar menghukumnya.
 
 ## Penutup
 
@@ -84,4 +119,5 @@ Untuk sumber belajar lebih lanjut, kunjungi:
 - [Paradigma Education](https://trading.paradigma.education/)
 
 ---
+
 *Catatan: Artikel ini dibuat untuk tujuan edukasi dan tidak merupakan saran keuangan. Trading melibatkan risiko tinggi, dan keputusan harus dibuat dengan hati-hati.*
