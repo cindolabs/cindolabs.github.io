@@ -275,6 +275,32 @@
     gap: 20px;
 }
 
+.asset-display {
+    text-align: center;
+    margin-bottom: 40px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9); /* Latar belakang putih semi-transparan untuk kontras */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sesuai dengan .navbar */
+    transition: transform 0.3s; /* Efek hover serupa dengan .service-card */
+}
+
+.asset-display:hover {
+    transform: translateY(-10px);
+}
+
+.asset-display h3 {
+    font-size: 24px;
+    color: var(--rolex-green);
+    margin-bottom: 15px;
+}
+
+#asset-value {
+    font-size: 32px;
+    font-weight: bold;
+    color: var(--light-gold);
+}
+
 /* Contact Section */
 .contact {
     padding: 80px 0;
@@ -532,5 +558,18 @@ footer p {
 
     .hero p {
         font-size: 16px;
+    }
+
+    .asset-display {
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .asset-display h3 {
+        font-size: 20px;
+    }
+
+    #asset-value {
+        font-size: 24px;
     }
 }
