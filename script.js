@@ -26,10 +26,18 @@ function formatRupiah(number) {
 
 // Display Asset and Investment Stats on Page Load
 document.addEventListener('DOMContentLoaded', () => {
-    // Asset Value
+    // Asset Values
     const assetValueElement = document.getElementById('asset-value');
+    const depositedBalanceElement = document.getElementById('deposited-balance');
+    const withdrawnBalanceElement = document.getElementById('withdrawn-balance');
+
     const assetAmount = 100000; // Rp100,000
+    const depositedBalance = 500000; // Rp500,000
+    const withdrawnBalance = 10000; // Rp10,000
+
     assetValueElement.textContent = formatRupiah(assetAmount);
+    depositedBalanceElement.textContent = formatRupiah(depositedBalance);
+    withdrawnBalanceElement.textContent = formatRupiah(withdrawnBalance);
 
     // Investment Stats
     const investorCountElement = document.getElementById('investor-count');
@@ -111,8 +119,8 @@ function getBotResponse(message) {
         return 'Hocindo menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?';
     } else if (message.includes('cinta') || message.includes('romantis')) {
         return 'Dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?';
-    } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor') || message.includes('manajer') || message.includes('instrumen')) {
-        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 30.000, pertumbuhan dana Rp 800, bagi hasil Rp 100, dan aset Anda Rp 100.000. Klik "Daftar Investasi" untuk detail!';
+    } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor') || message.includes('manajer') || message.includes('instrumen') || message.includes('saldo')) {
+        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: Aset Anda Rp 100.000, Saldo Disetor Rp 500.000, Saldo Ditarik Rp 10.000, 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 30.000, pertumbuhan dana Rp 800, bagi hasil Rp 100. Klik "Daftar Investasi" untuk detail!';
     } else {
         return 'Saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
     }
