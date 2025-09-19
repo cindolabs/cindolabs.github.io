@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Hocindo — Logo Preview</title>
+  <style>
+    :root{ --rolex-green:#006847; --gold:#D4AF37; --white:#ffffff }
+    html,body{height:100%;margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial}
+    .page{display:flex;align-items:center;justify-content:center;height:100vh;background:linear-gradient(180deg,var(--rolex-green), #004c3f);}
+    .card{display:flex;flex-direction:column;align-items:center;padding:28px;border-radius:18px;background:rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(0,0,0,0.35)}
+    .label{margin-top:18px;color:var(--white);letter-spacing:6px;font-weight:700}
+    .desc{margin-top:6px;color:rgba(255,255,255,0.8);font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="card">
+      <!-- SVG logo -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="260" height="260" viewBox="0 0 260 260" role="img" aria-label="Hocindo logo">
+        <defs>
+          <linearGradient id="g1" x1="0" x2="1">
+            <stop offset="0" stop-color="#0a8f65" />
+            <stop offset="1" stop-color="#005d44" />
+          </linearGradient>
+        </defs>
+
+        <!-- Background circle (perfectly centered) -->
+        <circle cx="130" cy="130" r="120" fill="url(#g1)" stroke="white" stroke-width="4"/>
+
+        <!-- Emblem: stylized H -->
+        <g>
+          <!-- Left vertical -->
+          <rect x="90" y="70" width="20" height="120" rx="4" fill="#ffffff" opacity="0.95"/>
+          <!-- Right vertical -->
+          <rect x="150" y="70" width="20" height="120" rx="4" fill="#ffffff" opacity="0.95"/>
+          <!-- Center chevron -->
+          <path d="M110 120 L130 95 L150 120 L140 135 L130 120 L120 135 Z" fill="var(--gold)" opacity="0.95"/>
+        </g>
+
+        <!-- Wordmark below emblem -->
+        <text x="50%" y="230" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-weight="800" font-size="28" fill="#ffffff">HOCINDO</text>
+      </svg>
+
+      <div class="label">HOCINDO</div>
+      <div class="desc">Minimal — Premium — GitHub-ready (SVG)</div>
+    </div>
+  </div>
+</body>
+</html>
