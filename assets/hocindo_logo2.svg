@@ -37,12 +37,12 @@
   <polygon points="292,450 512,270 732,450" fill="url(#gold)" stroke="#fff" stroke-width="8"/>
 
   <!-- Main Text -->
-  <text x="512" y="830" text-anchor="middle" font-size="80" font-weight="bold" fill="#ffffff" letter-spacing="10">
+  <text x="512" y="810" text-anchor="middle" font-size="80" font-weight="bold" fill="#ffffff" letter-spacing="10">
     HOCINDO
   </text>
 
   <!-- Subtitle -->
-  <text x="512" y="900" text-anchor="middle" font-size="36" font-weight="normal" fill="#D4AF37" letter-spacing="4">
+  <text x="512" y="880" text-anchor="middle" font-size="36" font-weight="normal" fill="#D4AF37" letter-spacing="4">
     CREATIVE HOTEL
   </text>
 </svg>
