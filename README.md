@@ -13,6 +13,8 @@ layout: default
   <p>"La paciencia es amarga, pero su fruto es dulce". – Aristóteles</p>
 </details>
 
+<img src="/assets/hocindo.svg" width="180" alt="Hocindo">
+
 <details>
   <summary>Klik untuk melihat detail</summary>
   <p>"Jika ada Tuhan, dari mana semua kejahatan ini berasal? Jika tidak ada Tuhan, dari mana kebaikan berasal?" – Anicius Manlius Severinus Boethius</p>
