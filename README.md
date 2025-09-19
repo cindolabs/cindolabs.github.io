@@ -9,7 +9,7 @@
     <img src="https://img.shields.io/badge/Instagram-hocindo-pink?logo=instagram&logoColor=white">
   </a>
   <a href="https://x.com/hocindo">
-    <img src="https://img.shields.io/badge/Twitter-hocindo-blue?logo=twitter&logoColor=white">
+    <img src="https://img.shields.io/badge/hocindo-blue?logo=x&logoColor=white">
   </a>
   <a href="https://www.facebook.com/hotelcintadolar">
     <img src="https://img.shields.io/badge/Facebook-hocindo-blue?logo=facebook&logoColor=white">
