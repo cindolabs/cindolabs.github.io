@@ -1,0 +1,41 @@
+<!-- Hocindo Creative Hotel (Square 1024x1024) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Hocindo Hotel Logo">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#006847"/>
+      <stop offset="100%" stop-color="#004c3f"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#fff" stroke-width="12"/>
+
+  <!-- Hotel Base -->
+  <rect x="312" y="412" width="400" height="350" fill="#ffffff" stroke="url(#gold)" stroke-width="12" rx="20"/>
+
+  <!-- Windows -->
+  <g fill="#006847" opacity="0.9">
+    <rect x="352" y="452" width="80" height="80" rx="10"/>
+    <rect x="472" y="452" width="80" height="80" rx="10"/>
+    <rect x="592" y="452" width="80" height="80" rx="10"/>
+    <rect x="352" y="572" width="80" height="80" rx="10"/>
+    <rect x="472" y="572" width="80" height="80" rx="10"/>
+    <rect x="592" y="572" width="80" height="80" rx="10"/>
+  </g>
+
+  <!-- Door -->
+  <rect x="472" y="672" width="80" height="90" fill="url(#gold)" rx="10"/>
+
+  <!-- Roof -->
+  <polygon points="292,412 512,252 732,412" fill="url(#gold)" stroke="#fff" stroke-width="8"/>
+
+  <!-- Text Logo -->
+  <text x="512" y="860" text-anchor="middle" font-size="80" font-weight="bold" fill="#ffffff" letter-spacing="10">
+    HOCINDO
+  </text>
+</svg>
