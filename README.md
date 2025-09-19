@@ -1,7 +1,7 @@
 # Hocindo
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/assets/hocindo_logo.svg" alt="Hocindo Logo" width="180">
+  <img src="https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/assets/hocindo_logo1.svg" alt="Hocindo Logo" width="180">
 </p>
 
 <p align="center">
