@@ -37,7 +37,7 @@
     tr:nth-child(even) {
       background-color: #f2f2f2;
     }
-    .form-container {
+    .form-container, .roi-container {
       margin: 20px 0;
       padding: 10px;
       background-color: #fff;
@@ -102,6 +102,13 @@
     <input type="text" id="rekening" placeholder="No. Rekening" required>
     <input type="text" id="nominal" placeholder="Nominal (Rp)" required>
     <button onclick="tambahTransaksi()">Tambah</button>
+  </div>
+
+  <div class="roi-container">
+    <h3>Kalkulator ROI</h3>
+    <input type="number" id="roiPercent" placeholder="ROI per bulan (%)" min="0" step="0.1" required>
+    <button onclick="hitungROI()">Hitung ROI</button>
+    <p><strong>Estimasi Keuntungan:</strong> <span id="roiResult">Rp 0,00</span></p>
   </div>
 
   <div class="action-buttons">
@@ -194,7 +201,6 @@
       let chartConfig = {};
 
       if (type === "pie") {
-        // Pie Chart: Proporsi per investor
         document.getElementById("chartTitle").textContent = "Proporsi Investasi per Investor";
         rows.forEach(row => {
           const nama = row.cells[1].textContent;
@@ -230,7 +236,6 @@
           }
         };
       } else if (type === "bar") {
-        // Bar Chart: Nominal per tanggal
         document.getElementById("chartTitle").textContent = "Investasi per Tanggal";
         const dateMap = {};
         rows.forEach(row => {
@@ -279,7 +284,6 @@
           }
         };
       } else if (type === "line") {
-        // Line Chart: Tren saldo
         document.getElementById("chartTitle").textContent = "Tren Saldo Kumulatif";
         rows.forEach(row => {
           const tanggal = row.cells[0].textContent;
@@ -330,7 +334,6 @@
       chart = new Chart(ctx, chartConfig);
       currentChartType = type;
 
-      // Update tombol aktif
       document.querySelectorAll(".chart-switcher button").forEach(btn => {
         btn.classList.remove("active");
         if (btn.textContent.toLowerCase().includes(type)) {
@@ -391,6 +394,18 @@
       document.getElementById("totalInvestasi").textContent = `Rp ${total.toLocaleString("id-ID")},00`;
       document.querySelector(".summary p:nth-child(2)").textContent = `Jumlah Investor: ${rows.length}`;
       document.querySelector(".summary p:nth-child(3)").textContent = `Dana Kelolaan: Rp ${total.toLocaleString("id-ID")},00`;
+      updateROI();
+    }
+
+    function hitungROI() {
+      const roiPercent = parseFloat(document.getElementById("roiPercent").value);
+      if (isNaN(roiPercent) || roiPercent < 0) {
+        alert("Masukkan persentase ROI yang valid!");
+        return;
+      }
+      const totalInvestasi = parseFloat(document.getElementById("totalInvestasi").textContent.replace(/[^0-9]/g, ""));
+      const keuntungan = (totalInvestasi * roiPercent) / 100;
+      document.getElementById("roiResult").textContent = `Rp ${keuntungan.toLocaleString("id-ID")},00`;
     }
 
     function exportToCSV() {
