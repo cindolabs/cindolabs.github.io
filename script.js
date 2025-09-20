@@ -58,8 +58,8 @@ document.addEventListener('DOMContentLoaded', () => {
     managedFundsElement.textContent = formatRupiah(managedFunds);
     fundsGrowthElement.textContent = formatRupiah(fundsGrowth);
     profitShareElement.textContent = formatRupiah(profitShare);
-    managerCountElement.textContent = `${managerCount} Orang`;
-    instrumentCountElement.textContent = `${instrumentCount} Instrumen`;
+    managerCountElement.textContent = `${managerCount};
+    instrumentCountElement.textContent = `${instrumentCount} Simbol`;
 
     // Investment Packages
     const investmentData = [
