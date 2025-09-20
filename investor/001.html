@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catatan Keuangan HOCINDO</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: #006400; /* Warna hijau ala Rolex */
+      color: white;
+    }
+    tr:nth-child(even) {background-color: #f2f2f2;}
+    .summary {margin-bottom: 20px;}
+    button {
+      padding: 10px;
+      background-color: #006400;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {background-color: #008000;}
+  </style>
+</head>
+<body>
+  <div class="summary">
+    <h2>Catatan Keuangan Investor HOCINDO - September 2025</h2>
+    <p><strong>Total Investasi Bulan Ini:</strong> <span id="totalInvestasi">Rp 150.000</span></p>
+    <p><strong>Jumlah Investor:</strong> 2</p>
+    <p><strong>Dana Kelolaan:</strong> Rp 150.000</p>
+  </div>
+
+  <table id="transaksiTable">
+    <tr>
+      <th>Tanggal</th>
+      <th>Nama Investor</th>
+      <th>No. Rekening</th>
+      <th>Jenis Transaksi</th>
+      <th>Nominal</th>
+      <th>Saldo</th>
+    </tr>
+    <tr>
+      <td>2025-09-08</td>
+      <td>Mochamad Tabrani</td>
+      <td>Blu BCA 0022 2858 8888</td>
+      <td>Investasi</td>
+      <td>Rp 50.000</td>
+      <td>Rp 50.000</td>
+    </tr>
+    <tr>
+      <td>2025-09-09</td>
+      <td>Pipit Puspita</td>
+      <td>Mandiri 1234 5678 9012</td>
+      <td>Investasi</td>
+      <td>Rp 100.000</td>
+      <td>Rp 150.000</td>
+    </tr>
+  </table>
+
+  <button onclick="tambahTransaksi()">Tambah Transaksi</button>
+
+  <script>
+    function tambahTransaksi() {
+      let table = document.getElementById("transaksiTable");
+      let row = table.insertRow(-1);
+      let data = ["2025-09-10", "Investor Baru", "Bank Lain 5678 1234 9012", "Investasi", "Rp 50.000", "Rp 200.000"];
+      for (let i = 0; i < data.length; i++) {
+        let cell = row.insertCell(i);
+        cell.innerHTML = data[i];
+      }
+      updateTotal();
+    }
+
+    function updateTotal() {
+      let rows = document.querySelectorAll("#transaksiTable tr:not(:first-child)");
+      let total = 0;
+      rows.forEach(row => {
+        let nominal = row.cells[4].textContent.replace("Rp ", "").replace(".", "");
+        total += parseInt(nominal);
+      });
+      document.getElementById("totalInvestasi").textContent = `Rp ${total.toLocaleString()}`;
+    }
+  </script>
+</body>
+</html>
