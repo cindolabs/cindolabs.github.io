@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const managerCount = 2; // 2 Orang
     const instrumentCount = 5; // 5 Instrumen
 
-    investorCountElement.textContent = `${investorCount} Orang`;
+    investorCountElement.textContent = `${investorCount};
     managedFundsElement.textContent = formatRupiah(managedFunds);
     fundsGrowthElement.textContent = formatRupiah(fundsGrowth);
     profitShareElement.textContent = formatRupiah(profitShare);
