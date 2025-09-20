@@ -4,15 +4,33 @@ AOS.init();
 // Navbar Hamburger Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const navLinks = document.querySelectorAll('.nav-link');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
+if (hamburger && navMenu) {
+    hamburger.addEventListener('click', () => {
+        const isExpanded = navMenu.classList.toggle('active');
+        hamburger.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isExpanded);
+    });
+
+    // Close menu when a link is clicked
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            navMenu.classList.remove('active');
+            hamburger.classList.remove('active');
+            hamburger.setAttribute('aria-expanded', 'false');
+        });
+    });
+} else {
+    console.error('Hamburger atau nav-menu tidak ditemukan');
+}
 
 // Smooth Scroll
 function scrollToSection(sectionId) {
-    document.querySelector(`#${sectionId}`).scrollIntoView({ behavior: 'smooth' });
+    const section = document.querySelector(`#${sectionId}`);
+    if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+    }
 }
 
 // Format Rupiah Function
@@ -20,7 +38,7 @@ function formatRupiah(number) {
     return new Intl.NumberFormat('id-ID', {
         style: 'currency',
         currency: 'IDR',
-        minimumFractionDigits: 0
+        minimumFractionDigits: 2
     }).format(number);
 }
 
@@ -31,13 +49,13 @@ document.addEventListener('DOMContentLoaded', () => {
     const depositedBalanceElement = document.getElementById('deposited-balance');
     const withdrawnBalanceElement = document.getElementById('withdrawn-balance');
 
-    const assetAmount = 100000; // Rp100,000
-    const depositedBalance = 500000; // Rp500,000
-    const withdrawnBalance = 10000; // Rp10,000
+    const assetAmount = 100000;
+    const depositedBalance = 500000;
+    const withdrawnBalance = 10000;
 
-    assetValueElement.textContent = formatRupiah(assetAmount);
-    depositedBalanceElement.textContent = formatRupiah(depositedBalance);
-    withdrawnBalanceElement.textContent = formatRupiah(withdrawnBalance);
+    if (assetValueElement) assetValueElement.textContent = formatRupiah(assetAmount);
+    if (depositedBalanceElement) depositedBalanceElement.textContent = formatRupiah(depositedBalance);
+    if (withdrawnBalanceElement) withdrawnBalanceElement.textContent = formatRupiah(withdrawnBalance);
 
     // Investment Stats
     const investorCountElement = document.getElementById('investor-count');
@@ -47,19 +65,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const managerCountElement = document.getElementById('manager-count');
     const instrumentCountElement = document.getElementById('instrument-count');
 
-    const investorCount = 5; // 5 Orang
-    const managedFunds = 30000; // Rp30,000
-    const fundsGrowth = 800; // Rp800
-    const profitShare = 100; // Rp100
-    const managerCount = 2; // 2 Orang
-    const instrumentCount = 5; // 5 Instrumen
+    const investorCount = 5;
+    const managedFunds = 35834.68; // Sesuai dengan HTML
+    const fundsGrowth = 936.44; // Sesuai dengan HTML
+    const profitShare = 100;
+    const managerCount = 2;
+    const instrumentCount = 5;
 
-    investorCountElement.textContent = `${investorCount};
-    managedFundsElement.textContent = formatRupiah(managedFunds);
-    fundsGrowthElement.textContent = formatRupiah(fundsGrowth);
-    profitShareElement.textContent = formatRupiah(profitShare);
-    managerCountElement.textContent = `${managerCount};
-    instrumentCountElement.textContent = `${instrumentCount} Simbol`;
+    if (investorCountElement) investorCountElement.textContent = investorCount;
+    if (managedFundsElement) managedFundsElement.textContent = formatRupiah(managedFunds);
+    if (fundsGrowthElement) fundsGrowthElement.textContent = formatRupiah(fundsGrowth);
+    if (profitShareElement) profitShareElement.textContent = formatRupiah(profitShare);
+    if (managerCountElement) managerCountElement.textContent = managerCount;
+    if (instrumentCountElement) instrumentCountElement.textContent = `${instrumentCount} Simbol`;
 
     // Investment Packages
     const investmentData = [
@@ -69,23 +87,35 @@ document.addEventListener('DOMContentLoaded', () => {
     ];
 
     const investmentGrid = document.getElementById('investment-data');
-    investmentData.forEach(item => {
-        const card = document.createElement('div');
-        card.className = 'service-card';
-        card.setAttribute('data-aos', 'fade-up');
-        card.innerHTML = `
-            <h3>${item.title}</h3>
-            <p>${item.description}</p>
-            <p><strong>Harga: ${item.price}</strong></p>
-        `;
-        investmentGrid.appendChild(card);
-    });
+    if (investmentGrid) {
+        investmentData.forEach(item => {
+            const card = document.createElement('div');
+            card.className = 'service-card';
+            card.setAttribute('data-aos', 'fade-up');
+            card.innerHTML = `
+                <h3>${item.title}</h3>
+                <p>${item.description}</p>
+                <p><strong>Harga: ${item.price}</strong></p>
+                <button onclick="viewPackageDetails('${item.title}')">Lihat Detail</button>
+            `;
+            investmentGrid.appendChild(card);
+        });
+    } else {
+        console.error('Element #investment-data tidak ditemukan');
+    }
 });
+
+// View Package Details
+function viewPackageDetails(title) {
+    alert(`Detail untuk ${title}: Segera hubungi tim kami untuk informasi lebih lanjut!`);
+}
 
 // Chatbot Functionality
 function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
-    chatbot.style.display = chatbot.style.display === 'block' ? 'none' : 'block';
+    if (chatbot) {
+        chatbot.classList.toggle('active');
+    }
 }
 
 function sendMessage() {
@@ -93,24 +123,26 @@ function sendMessage() {
     const messages = document.getElementById('chatbot-messages');
     const message = input.value.trim();
 
-    if (message) {
-        // Add user message
-        const userMessage = document.createElement('div');
-        userMessage.className = 'user-message';
-        userMessage.textContent = message;
-        messages.appendChild(userMessage);
-
-        // Simulate bot response
-        setTimeout(() => {
-            const botMessage = document.createElement('div');
-            botMessage.className = 'bot-message';
-            botMessage.textContent = getBotResponse(message);
-            messages.appendChild(botMessage);
-            messages.scrollTop = messages.scrollHeight;
-        }, 500);
-
-        input.value = '';
+    if (!message || !message.replace(/\s/g, '').length) {
+        return;
     }
+
+    // Add user message
+    const userMessage = document.createElement('div');
+    userMessage.className = 'user-message';
+    userMessage.textContent = message;
+    messages.appendChild(userMessage);
+
+    // Simulate bot response
+    setTimeout(() => {
+        const botMessage = document.createElement('div');
+        botMessage.className = 'bot-message';
+        botMessage.textContent = getBotResponse(message);
+        messages.appendChild(botMessage);
+        messages.scrollTop = messages.scrollHeight;
+    }, 500);
+
+    input.value = '';
 }
 
 function getBotResponse(message) {
@@ -120,7 +152,9 @@ function getBotResponse(message) {
     } else if (message.includes('cinta') || message.includes('romantis')) {
         return 'Dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?';
     } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor') || message.includes('manajer') || message.includes('instrumen') || message.includes('saldo')) {
-        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: Aset Anda Rp 100.000, Saldo Disetor Rp 500.000, Saldo Ditarik Rp 10.000, 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 30.000, pertumbuhan dana Rp 800, bagi hasil Rp 100. Klik "Daftar Investasi" untuk detail!';
+        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: Aset Anda Rp 100.000, Saldo Disetor Rp 500.000, Saldo Ditarik Rp 10.000, 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 35.834,68, pertumbuhan dana Rp 936,44, bagi hasil Rp 100. Klik "Daftar Investasi" untuk detail!';
+    } else if (message.includes('apa itu') || message.includes('tentang')) {
+        return 'Hocindo adalah hotel kreatif yang menggabungkan penginapan, bisnis, dan investasi strategis. Tanya saya lebih lanjut!';
     } else {
         return 'Saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
     }
@@ -128,16 +162,28 @@ function getBotResponse(message) {
 
 // Modal Functionality
 function openModal() {
-    document.getElementById('modal').style.display = 'flex';
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.classList.add('active');
+        modal.querySelector('input[name="name"]').focus();
+    }
 }
 
 function closeModal() {
-    document.getElementById('modal').style.display = 'none';
+    const modal = document.getElementById('modal');
+    if (modal) {
+        modal.classList.remove('active');
+    }
 }
 
 // Form Submission (Contact)
 document.getElementById('contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const emailInput = e.target.querySelector('input[name="email"]');
+    if (!emailInput.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert('Email tidak valid!');
+        return;
+    }
     alert('Pesan Anda telah dikirim! Tim Hocindo akan segera menghubungi Anda.');
     e.target.reset();
 });
@@ -145,6 +191,11 @@ document.getElementById('contact-form').addEventListener('submit', (e) => {
 // Form Submission (Investment)
 document.getElementById('investment-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const emailInput = e.target.querySelector('input[name="email"]');
+    if (!emailInput.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
+        alert('Email tidak valid!');
+        return;
+    }
     alert('Pendaftaran investasi berhasil! Tim Hocindo akan menghubungi Anda untuk langkah selanjutnya.');
     e.target.reset();
     closeModal();
