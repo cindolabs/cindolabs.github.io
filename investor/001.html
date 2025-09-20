@@ -1,99 +1,196 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catatan Keuangan HOCINDO</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f4f4;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 8px;
-      text-align: left;
-    }
-    th {
-      background-color: #006400; /* Warna hijau ala Rolex */
-      color: white;
-    }
-    tr:nth-child(even) {background-color: #f2f2f2;}
-    .summary {margin-bottom: 20px;}
-    button {
-      padding: 10px;
-      background-color: #006400;
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
-    button:hover {background-color: #008000;}
-  </style>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ <title>Catatan Keuangan HOCINDO - September 2025</title>
+ <style>
+ body {
+ font-family: Arial, sans-serif;
+ margin: 20px;
+ background-color: #f4f4f4;
+ color: #333;
+ }
+ h2 {
+ color: #006400;
+ }
+ .summary {
+ margin-bottom: 20px;
+ }
+ table {
+ width: 100%;
+ border-collapse: collapse;
+ margin-top: 20px;
+ background-color: white;
+ box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ }
+ th, td {
+ border: 1px solid #ddd;
+ padding: 10px;
+ text-align: left;
+ }
+ th {
+ background-color: #006400;
+ color: white;
+ }
+ tr:nth-child(even) {
+ background-color: #f2f2f2;
+ }
+ .form-container {
+ margin: 20px 0;
+ padding: 10px;
+ background-color: #fff;
+ border-radius: 5px;
+ box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+ }
+ input, button {
+ padding: 8px;
+ margin: 5px;
+ font-size: 14px;
+ }
+ button {
+ background-color: #006400;
+ color: white;
+ border: none;
+ border-radius: 3px;
+ cursor: pointer;
+ }
+ button:hover {
+ background-color: #008000;
+ }
+ .notes {
+ margin-top: 20px;
+ font-size: 14px;
+ color: #555;
+ }
+ </style>
 </head>
 <body>
-  <div class="summary">
-    <h2>Catatan Keuangan Investor HOCINDO - September 2025</h2>
-    <p><strong>Total Investasi Bulan Ini:</strong> <span id="totalInvestasi">Rp 150.000</span></p>
-    <p><strong>Jumlah Investor:</strong> 2</p>
-    <p><strong>Dana Kelolaan:</strong> Rp 150.000</p>
-  </div>
+ <div class="summary">
+ <h2>Catatan Keuangan Investor HOCINDO - September 2025</h2>
+ <p><strong>Total Investasi Bulan Ini:</strong> <span id="totalInvestasi">Rp 385.000,00</span></p>
+ <p><strong>Jumlah Investor:</strong> 5</p>
+ <p><strong>Dana Kelolaan:</strong> Rp 385.000,00</p>
+ </div>
 
-  <table id="transaksiTable">
-    <tr>
-      <th>Tanggal</th>
-      <th>Nama Investor</th>
-      <th>No. Rekening</th>
-      <th>Jenis Transaksi</th>
-      <th>Nominal</th>
-      <th>Saldo</th>
-    </tr>
-    <tr>
-      <td>2025-09-08</td>
-      <td>Mochamad Tabrani</td>
-      <td>Blu BCA 0022 2858 8888</td>
-      <td>Investasi</td>
-      <td>Rp 50.000</td>
-      <td>Rp 50.000</td>
-    </tr>
-    <tr>
-      <td>2025-09-09</td>
-      <td>Pipit Puspita</td>
-      <td>Mandiri 1234 5678 9012</td>
-      <td>Investasi</td>
-      <td>Rp 100.000</td>
-      <td>Rp 150.000</td>
-    </tr>
-  </table>
+ <div class="form-container">
+ <h3>Tambah Transaksi</h3>
+ <input type="date" id="tanggal" required>
+ <input type="text" id="nama" placeholder="Nama Investor" required>
+ <input type="text" id="rekening" placeholder="No. Rekening" required>
+ <input type="text" id="nominal" placeholder="Nominal (Rp)" required>
+ <button onclick="tambahTransaksi()">Tambah</button>
+ </div>
 
-  <button onclick="tambahTransaksi()">Tambah Transaksi</button>
+ <table id="transaksiTable">
+ <tr>
+ <th>Tanggal</th>
+ <th>Nama Investor</th>
+ <th>No. Rekening</th>
+ <th>Jenis Transaksi</th>
+ <th>Nominal</th>
+ <th>Saldo</th>
+ </tr>
+ <tr>
+ <td>2025-09-08</td>
+ <td>Mochamad Tabrani</td>
+ <td>Blu BCA 0022 2858 8888</td>
+ <td>Investasi</td>
+ <td>Rp 50.000,00</td>
+ <td>Rp 50.000,00</td>
+ </tr>
+ <tr>
+ <td>2025-09-08</td>
+ <td>Pipit Puspita</td>
+ <td>BCA 1234 5678 9012</td>
+ <td>Investasi</td>
+ <td>Rp 50.000,00</td>
+ <td>Rp 100.000,00</td>
+ </tr>
+ <tr>
+ <td>2025-09-10</td>
+ <td>Sangaji</td>
+ <td>BRI 5678 1234 0001</td>
+ <td>Investasi</td>
+ <td>Rp 100.000,00</td>
+ <td>Rp 200.000,00</td>
+ </tr>
+ <tr>
+ <td>2025-09-10</td>
+ <td>Asmini</td>
+ <td>Mandiri 5678 1234 0002</td>
+ <td>Investasi</td>
+ <td>Rp 135.000,00</td>
+ <td>Rp 335.000,00</td>
+ </tr>
+ <tr>
+ <td>2025-09-10</td>
+ <td>Rasyid</td>
+ <td>BNI 5678 1234 0003</td>
+ <td>Investasi</td>
+ <td>Rp 50.000,00</td>
+ <td>Rp 385.000,00</td>
+ </tr>
+ </table>
 
-  <script>
-    function tambahTransaksi() {
-      let table = document.getElementById("transaksiTable");
-      let row = table.insertRow(-1);
-      let data = ["2025-09-10", "Investor Baru", "Bank Lain 5678 1234 9012", "Investasi", "Rp 50.000", "Rp 200.000"];
-      for (let i = 0; i < data.length; i++) {
-        let cell = row.insertCell(i);
-        cell.innerHTML = data[i];
-      }
-      updateTotal();
-    }
+ <div class="notes">
+ <h3>Catatan Tambahan</h3>
+ <ul>
+ <li>Transaksi oleh Mochamad Tabrani merupakan investasi awal untuk produk UMKM Hocindo.</li>
+ <li>Transaksi oleh Pipit Puspita merupakan tambahan investasi untuk alokasi saham.</li>
+ <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham, emas, atau aset lainnya.</li>
+ </ul>
+ </div>
 
-    function updateTotal() {
-      let rows = document.querySelectorAll("#transaksiTable tr:not(:first-child)");
-      let total = 0;
-      rows.forEach(row => {
-        let nominal = row.cells[4].textContent.replace("Rp ", "").replace(".", "");
-        total += parseInt(nominal);
-      });
-      document.getElementById("totalInvestasi").textContent = `Rp ${total.toLocaleString()}`;
-    }
-  </script>
+ <script>
+ function tambahTransaksi() {
+ const tanggal = document.getElementById("tanggal").value;
+ const nama = document.getElementById("nama").value;
+ const rekening = document.getElementById("rekening").value;
+ const nominalInput = document.getElementById("nominal").value.replace(/[^0-9]/g, "");
+ if (!tanggal || !nama || !rekening || !nominalInput) {
+ alert("Isi semua kolom!");
+ return;
+ }
+
+ const nominal = parseInt(nominalInput);
+ const table = document.getElementById("transaksiTable");
+ const rows = table.querySelectorAll("tr:not(:first-child)");
+ let saldoTerakhir = 0;
+ if (rows.length > 0) {
+ const lastRow = rows[rows.length - 1];
+ saldoTerakhir = parseInt(lastRow.cells[5].textContent.replace(/[^0-9]/g, ""));
+ }
+ const saldoBaru = saldoTerakhir + nominal;
+
+ const row = table.insertRow(-1);
+ row.innerHTML = `
+ <td>${tanggal}</td>
+ <td>${nama}</td>
+ <td>${rekening}</td>
+ <td>Investasi</td>
+ <td>Rp ${nominal.toLocaleString("id-ID")},00</td>
+ <td>Rp ${saldoBaru.toLocaleString("id-ID")},00</td>
+ `;
+
+ updateSummary(); 
+ document.getElementById("tanggal").value = "";
+ document.getElementById("nama").value = "";
+ document.getElementById("rekening").value = "";
+ document.getElementById("nominal").value = "";
+ }
+
+ function updateSummary() {
+ const rows = document.querySelectorAll("#transaksiTable tr:not(:first-child)");
+ let total = 0;
+ rows.forEach(row => {
+ const nominal = parseInt(row.cells[4].textContent.replace(/[^0-9]/g, ""));
+ total += nominal;
+ });
+ document.getElementById("totalInvestasi").textContent = `Rp ${total.toLocaleString("id-ID")},00`;
+ document.querySelector(".summary p:nth-child(2)").textContent = `Jumlah Investor: ${rows.length}`;
+ document.querySelector(".summary p:nth-child(3)").textContent = `Dana Kelolaan: Rp ${total.toLocaleString("id-ID")},00`;
+ }
+ </script>
 </body>
 </html>
