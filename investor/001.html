@@ -152,7 +152,7 @@
     <ul>
       <li>Transaksi oleh Mochamad Tabrani merupakan investasi awal untuk produk UMKM Hocindo.</li>
       <li>Transaksi oleh Pipit Puspita merupakan tambahan investasi untuk alokasi saham.</li>
-      <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham, emas, atau aset lainnya.</li>
+      <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham hotel, emas, atau aset lainnya.</li>
     </ul>
   </div>
 
@@ -169,9 +169,13 @@
 
       rows.forEach(row => {
         const nama = row.cells[1].textContent;
-        const nominal = parseInt(row.cells[4].textContent.replace(/[^0-9]/g, ""));
+        // Parsing nominal dengan menghapus "Rp ", ".", dan ",00"
+        const nominalText = row.cells[4].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
+        const nominal = parseFloat(nominalText);
         labels.push(nama);
         data.push(nominal);
+        // Debugging: Log nominal untuk memastikan parsing benar
+        console.log(`Investor: ${nama}, Nominal: ${nominal}`);
       });
 
       if (chart) chart.destroy(); // Hancurkan chart lama kalau ada
