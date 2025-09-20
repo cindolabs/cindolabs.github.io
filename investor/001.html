@@ -72,6 +72,19 @@
       border-radius: 5px;
       box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
+    .action-buttons {
+      margin: 10px 0;
+    }
+    .chart-switcher {
+      margin: 10px 0;
+      text-align: center;
+    }
+    .chart-switcher button {
+      margin: 0 5px;
+    }
+    .chart-switcher button.active {
+      background-color: #004d00;
+    }
   </style>
 </head>
 <body>
@@ -91,8 +104,19 @@
     <button onclick="tambahTransaksi()">Tambah</button>
   </div>
 
+  <div class="action-buttons">
+    <button onclick="exportToCSV()">Export ke CSV</button>
+    <button onclick="exportChart()">Export Chart ke PNG</button>
+  </div>
+
+  <div class="chart-switcher">
+    <button onclick="switchChart('pie')" class="active">Pie Chart</button>
+    <button onclick="switchChart('bar')">Bar Chart</button>
+    <button onclick="switchChart('line')">Line Chart</button>
+  </div>
+
   <div class="chart-container">
-    <h3>Proporsi Investasi per Investor</h3>
+    <h3 id="chartTitle">Proporsi Investasi per Investor</h3>
     <canvas id="investasiChart"></canvas>
   </div>
 
@@ -152,7 +176,7 @@
     <ul>
       <li>Transaksi oleh Mochamad Tabrani merupakan investasi awal untuk produk UMKM Hocindo.</li>
       <li>Transaksi oleh Pipit Puspita merupakan tambahan investasi untuk alokasi saham.</li>
-      <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham hotel, emas, atau aset lainnya.</li>
+      <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham, emas, atau aset lainnya.</li>
     </ul>
   </div>
 
@@ -160,51 +184,163 @@
     // Inisialisasi Chart.js
     const ctx = document.getElementById("investasiChart").getContext("2d");
     let chart;
+    let currentChartType = "pie";
 
-    function updateChart() {
+    function updateChart(type = currentChartType) {
       const rows = document.querySelectorAll("#transaksiTable tr:not(:first-child)");
-      const labels = [];
-      const data = [];
+      let labels = [];
+      let data = [];
       const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"];
+      let chartConfig = {};
 
-      rows.forEach(row => {
-        const nama = row.cells[1].textContent;
-        // Parsing nominal dengan menghapus "Rp ", ".", dan ",00"
-        const nominalText = row.cells[4].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
-        const nominal = parseFloat(nominalText);
-        labels.push(nama);
-        data.push(nominal);
-        // Debugging: Log nominal untuk memastikan parsing benar
-        console.log(`Investor: ${nama}, Nominal: ${nominal}`);
-      });
-
-      if (chart) chart.destroy(); // Hancurkan chart lama kalau ada
-      chart = new Chart(ctx, {
-        type: "pie",
-        data: {
-          labels: labels,
-          datasets: [{
-            data: data,
-            backgroundColor: colors,
-            borderColor: "#fff",
-            borderWidth: 2
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: { position: "top" },
-            tooltip: {
-              callbacks: {
-                label: function(context) {
-                  const value = context.raw;
-                  return `Rp ${value.toLocaleString("id-ID")},00`;
+      if (type === "pie") {
+        // Pie Chart: Proporsi per investor
+        document.getElementById("chartTitle").textContent = "Proporsi Investasi per Investor";
+        rows.forEach(row => {
+          const nama = row.cells[1].textContent;
+          const nominalText = row.cells[4].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
+          const nominal = parseFloat(nominalText);
+          labels.push(nama);
+          data.push(nominal);
+        });
+        chartConfig = {
+          type: "pie",
+          data: {
+            labels: labels,
+            datasets: [{
+              data: data,
+              backgroundColor: colors,
+              borderColor: "#fff",
+              borderWidth: 2
+            }]
+          },
+          options: {
+            responsive: true,
+            plugins: {
+              legend: { position: "top" },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.raw;
+                    return `Rp ${value.toLocaleString("id-ID")},00`;
+                  }
                 }
               }
             }
           }
+        };
+      } else if (type === "bar") {
+        // Bar Chart: Nominal per tanggal
+        document.getElementById("chartTitle").textContent = "Investasi per Tanggal";
+        const dateMap = {};
+        rows.forEach(row => {
+          const tanggal = row.cells[0].textContent;
+          const nominalText = row.cells[4].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
+          const nominal = parseFloat(nominalText);
+          dateMap[tanggal] = (dateMap[tanggal] || 0) + nominal;
+        });
+        labels = Object.keys(dateMap);
+        data = Object.values(dateMap);
+        chartConfig = {
+          type: "bar",
+          data: {
+            labels: labels,
+            datasets: [{
+              label: "Nominal Investasi",
+              data: data,
+              backgroundColor: "#36A2EB",
+              borderColor: "#36A2EB",
+              borderWidth: 1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  callback: function(value) {
+                    return `Rp ${value.toLocaleString("id-ID")}`;
+                  }
+                }
+              }
+            },
+            plugins: {
+              legend: { display: false },
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.raw;
+                    return `Rp ${value.toLocaleString("id-ID")},00`;
+                  }
+                }
+              }
+            }
+          }
+        };
+      } else if (type === "line") {
+        // Line Chart: Tren saldo
+        document.getElementById("chartTitle").textContent = "Tren Saldo Kumulatif";
+        rows.forEach(row => {
+          const tanggal = row.cells[0].textContent;
+          const saldoText = row.cells[5].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
+          const saldo = parseFloat(saldoText);
+          labels.push(tanggal);
+          data.push(saldo);
+        });
+        chartConfig = {
+          type: "line",
+          data: {
+            labels: labels,
+            datasets: [{
+              label: "Saldo",
+              data: data,
+              borderColor: "#FF6384",
+              fill: false,
+              tension: 0.1
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true,
+                ticks: {
+                  callback: function(value) {
+                    return `Rp ${value.toLocaleString("id-ID")}`;
+                  }
+                }
+              }
+            },
+            plugins: {
+              tooltip: {
+                callbacks: {
+                  label: function(context) {
+                    const value = context.raw;
+                    return `Rp ${value.toLocaleString("id-ID")},00`;
+                  }
+                }
+              }
+            }
+          }
+        };
+      }
+
+      if (chart) chart.destroy();
+      chart = new Chart(ctx, chartConfig);
+      currentChartType = type;
+
+      // Update tombol aktif
+      document.querySelectorAll(".chart-switcher button").forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.textContent.toLowerCase().includes(type)) {
+          btn.classList.add("active");
         }
       });
+    }
+
+    function switchChart(type) {
+      updateChart(type);
     }
 
     function tambahTransaksi() {
@@ -255,6 +391,31 @@
       document.getElementById("totalInvestasi").textContent = `Rp ${total.toLocaleString("id-ID")},00`;
       document.querySelector(".summary p:nth-child(2)").textContent = `Jumlah Investor: ${rows.length}`;
       document.querySelector(".summary p:nth-child(3)").textContent = `Dana Kelolaan: Rp ${total.toLocaleString("id-ID")},00`;
+    }
+
+    function exportToCSV() {
+      const rows = document.querySelectorAll("#transaksiTable tr");
+      let csv = "Tanggal,Nama Investor,No. Rekening,Jenis Transaksi,Nominal,Saldo\n";
+      rows.forEach((row, index) => {
+        if (index === 0) {
+          csv += Array.from(row.cells).map(cell => `"${cell.textContent}"`).join(",") + "\n";
+        } else {
+          csv += Array.from(row.cells).map(cell => `"${cell.textContent.replace(/"/g, '""')}"`).join(",") + "\n";
+        }
+      });
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "hocindo-transaksi-2025.csv";
+      link.click();
+    }
+
+    function exportChart() {
+      const canvas = document.getElementById("investasiChart");
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = `hocindo-${currentChartType}-chart.png`;
+      link.click();
     }
 
     // Inisialisasi chart saat halaman dimuat
