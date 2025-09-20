@@ -3,16 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hocindo - Hotel kreatif dengan penginapan, bisnis, dan peluang investasi strategis di Indonesia.">
+    <meta name="keywords" content="hotel, investasi, bisnis, Hocindo, penginapan">
     <title>Hocindo</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Navbar -->
     <header class="navbar">
         <div class="container">
             <div class="logo">
-                <img src="hocindo.svg" alt="Hocindo Logo" class="logo-img">
+                <img src="hocindo.webp" alt="Hocindo Logo" class="logo-img">
             </div>
             <nav class="nav-menu">
                 <ul>
@@ -24,7 +27,7 @@
                     <li><a href="#contact" class="nav-link">Kontak</a></li>
                 </ul>
             </nav>
-            <div class="hamburger">
+            <div class="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -51,7 +54,10 @@
                     <p>Visi kami adalah menciptakan pengalaman yang menarik dalam kenyamanan menginap dan bisnis yang menguntungkan</p>
                 </div>
                 <div class="about-image">
-                    <img src="about-image.jpg" alt="About Hocindo">
+                    <picture>
+                        <source srcset="about-image.webp" type="image/webp">
+                        <img src="about-image.jpg" alt="Interior hotel mewah Hocindo" loading="lazy">
+                    </picture>
                 </div>
             </div>
         </div>
@@ -63,17 +69,17 @@
             <h2>Layanan Kami</h2>
             <div class="services-grid">
                 <div class="service-card" data-aos="fade-up">
-                    <i class="fas fa-hotel"></i>
+                    <i class="fas fa-hotel" aria-hidden="true"></i>
                     <h3>Hotel Sederhana dan Mewah</h3>
                     <p>Hotel sederhana hingga resor bintang lima dengan fasilitas premium dan pelayanan penuh perhatian.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-heart"></i>
+                    <i class="fas fa-heart" aria-hidden="true"></i>
                     <h3>Pengalaman Cinta</h3>
                     <p>Paket romantis, pernikahan impian, dan acara intim untuk momen tak terlupakan.</p>
                 </div>
                 <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
                     <h3>Investasi Cerdas</h3>
                     <p>Peluang investasi di properti hotel dan proyek berkelanjutan dengan keuntungan menjanjikan.</p>
                 </div>
@@ -87,15 +93,24 @@
             <h2>Galeri</h2>
             <div class="gallery-grid">
                 <div class="gallery-item" data-aos="zoom-in">
-                    <img src="gallery1.jpg" alt="Hotel">
+                    <picture>
+                        <source srcset="gallery1.webp" type="image/webp">
+                        <img src="gallery1.jpg" alt="Kamar hotel mewah Hocindo" loading="lazy">
+                    </picture>
                     <div class="gallery-overlay">Hotel Mewah</div>
                 </div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <img src="gallery2.jpg" alt="Romantic Dinner">
+                    <picture>
+                        <source srcset="gallery2.webp" type="image/webp">
+                        <img src="gallery2.jpg" alt="Makan malam romantis di Hocindo" loading="lazy">
+                    </picture>
                     <div class="gallery-overlay">Makan Malam Romantis</div>
                 </div>
                 <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                    <img src="gallery3.jpg" alt="Investment">
+                    <picture>
+                        <source srcset="gallery3.webp" type="image/webp">
+                        <img src="gallery3.jpg" alt="Proyek investasi properti Hocindo" loading="lazy">
+                    </picture>
                     <div class="gallery-overlay">Proyek Investasi</div>
                 </div>
             </div>
@@ -110,17 +125,17 @@
                 <h3>Ringkasan Keuangan Anda</h3>
                 <div class="asset-grid">
                     <div class="asset-item">
-                        <i class="fas fa-coins"></i>
+                        <i class="fas fa-coins" aria-hidden="true"></i>
                         <h4>Saldo yang tersedia</h4>
                         <p id="asset-value">Rp 100.000</p>
                     </div>
                     <div class="asset-item">
-                        <i class="fas fa-money-bill-wave"></i>
+                        <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
                         <h4>Saldo Disetor</h4>
                         <p id="deposited-balance">Rp 500.000</p>
                     </div>
                     <div class="asset-item">
-                        <i class="fas fa-hand-holding"></i>
+                        <i class="fas fa-hand-holding" aria-hidden="true"></i>
                         <h4>Saldo Ditarik</h4>
                         <p id="withdrawn-balance">Rp 10.000</p>
                     </div>
@@ -128,39 +143,37 @@
             </div>
             <div class="investment-stats" data-aos="fade-up" data-aos-delay="200">
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-users"></i>
+                    <i class="fas fa-users" aria-hidden="true"></i>
                     <h3>Investor Aktif</h3>
                     <p id="investor-count">5</p>
                 </div>
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-wallet"></i>
+                    <i class="fas fa-wallet" aria-hidden="true"></i>
                     <h3>Dana Kelolaan</h3>
                     <p id="managed-funds">Rp 35.834,68</p>
                 </div>
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-chart-line"></i>
+                    <i class="fas fa-chart-line" aria-hidden="true"></i>
                     <h3>Pertumbuhan Dana</h3>
-                    <p id="funds-growth">Rp 936.44</p>
+                    <p id="funds-growth">Rp 936,44</p>
                 </div>
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fas fa-hand-holding-usd"></i>
+                    <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
                     <h3>Bagi Hasil Investasi</h3>
                     <p id="profit-share">Rp 100</p>
                 </div>
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="600">
-                    <i class="fas fa-user-tie"></i>
+                    <i class="fas fa-user-tie" aria-hidden="true"></i>
                     <h3>Manajer Investasi</h3>
                     <p id="manager-count">2</p>
                 </div>
                 <div class="stat-item" data-aos="fade-up" data-aos-delay="700">
-                    <i class="fas fa-briefcase"></i>
+                    <i class="fas fa-briefcase" aria-hidden="true"></i>
                     <h3>Instrumen Investasi</h3>
                     <p id="instrument-count">5 Simbol</p>
                 </div>
             </div>
-            <div id="investment-data" class="investment-grid">
-                <!-- Data akan dimuat melalui JavaScript -->
-            </div>
+            <div id="investment-data" class="investment-grid"></div>
             <button class="cta-button" onclick="openModal()">Daftar Investasi</button>
         </div>
     </section>
@@ -170,9 +183,9 @@
         <div class="container">
             <h2>Hubungi Kami</h2>
             <form id="contact-form">
-                <input type="text" placeholder="Nama Lengkap" required>
-                <input type="email" placeholder="Email" required>
-                <textarea placeholder="Pesan Anda" required></textarea>
+                <input type="text" name="name" placeholder="Nama Lengkap" required>
+                <input type="email" name="email" placeholder="Email" required>
+                <textarea name="message" placeholder="Pesan Anda" required></textarea>
                 <button type="submit">Kirim Pesan</button>
             </form>
         </div>
@@ -180,14 +193,14 @@
 
     <!-- Chatbot Button and Window -->
     <div class="chatbot-button" onclick="toggleChatbot()">
-        <i class="fas fa-comment-dots"></i>
+        <i class="fas fa-comment-dots" aria-hidden="true"></i>
     </div>
     <div id="chatbot" class="chatbot">
         <div class="chatbot-header">
             <h3>Chat dengan HocindoBot</h3>
             <span class="chatbot-close" onclick="toggleChatbot()">&times;</span>
         </div>
-        <div class="chatbot-body" id="chatbot-messages">
+        <div class="chatbot-body" id="chatbot-messages" aria-live="polite">
             <div class="bot-message">Selamat datang! Saya HocindoBot. Tanya saya tentang hotel atau investasi! 😊</div>
         </div>
         <div class="chatbot-footer">
@@ -208,24 +221,30 @@
                     <p>Address TON <a href="https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW" target="_blank">UQAleo...TRwW</a></p>
                 </div>
                 <div class="footer-social">
-                    <a href="https://www.instagram.com/hotelcintadolar/"><i class="fab fa-instagram"></i></a>
-                    <a href="https://x.com/hocindo"><i class="fab fa-twitter"></i></a>
-                    <a href="https://www.facebook.com/hotelcintadolar"><i class="fab fa-facebook"></i></a>
+                    <a href="https://www.instagram.com/hotelcintadolar/" aria-label="Instagram Hocindo"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                    <a href="https://x.com/hocindo" aria-label="Twitter Hocindo"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                    <a href="https://www.facebook.com/hotelcintadolar" aria-label="Facebook Hocindo"><i class="fab fa-facebook" aria-hidden="true"></i></a>
                 </div>
+            </div>
+            <div class="disclaimer">
+                <h3>Penafian</h3>
+                <p>Informasi yang tercantum di sini disediakan hanya untuk tujuan informasi dan diskusi dan tidak dimaksudkan sebagai rekomendasi untuk investasi, layanan, produk, atau saran lain apa pun, dan tidak akan merupakan atau menyiratkan penawaran apa pun. Setiap peluang investasi dan/atau produk atau layanan yang ditampilkan di sini hanya akan diselesaikan sesuai dengan materi penawaran resmi, surat pernyataan minat, dan/atau perjanjian lain sebagaimana ditentukan oleh Hocindo yang berisi detail lengkap mengenai risiko, investasi minimum, biaya, dan pengeluaran dari transaksi tersebut. Ketentuan setiap produk, layanan, atau peluang investasi tertentu, termasuk ukuran, biaya, dan karakteristik lainnya, tercantum dalam dokumen konstituen yang berlaku untuk produk, layanan, atau peluang investasi tertentu tersebut dan mungkin berbeda secara material dari yang disajikan dalam presentasi ini. Ketentuan tersebut dapat berubah sewaktu-waktu tanpa pemberitahuan. Untuk informasi lebih lanjut tentang Hocindo dan produk serta layanannya, silakan <a href="https://x.ai/grok" target="_blank">lihat di sini</a>.</p>
+                <p>Kutipan yang terdapat dalam materi ini terkait dengan layanan Hocindo tidak boleh ditafsirkan dengan cara apa pun sebagai dukungan atas saran, analisis, atau layanan lain yang diberikan Hocindo kepada kliennya.</p>
+                <p>"Aset di platform" mengacu pada jumlah dana yang disalurkan oleh manajer investasi yang menggunakan perangkat lunak Hocindo, termasuk layanan administrasi dana. Hal ini tidak mengacu pada jumlah dana yang disalurkan atau dikelola oleh penasihat pelaporan bebas pajak afiliasi Hocindo, Hocindo Advisors, LLC ("Hocindo Advisors").</p>
             </div>
             <p>&copy; 2025 Hocindo. Semua hak dilindungi.</p>
         </div>
     </footer>
 
     <!-- Modal for Investment Registration -->
-    <div id="modal" class="modal">
+    <div id="modal" class="modal" role="dialog" aria-modal="true">
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2>Daftar Investasi</h2>
             <form id="investment-form">
                 <input type="text" name="name" placeholder="Nama Lengkap" required>
                 <input type="email" name="email" placeholder="Email" required>
-                <input type="tel" name="phone" placeholder="Nomor Telepon" required>
+                <input type="tel" name="phone" placeholder="Nomor Telepon" pattern="[0-9]{10,12}" required>
                 <select name="package" required>
                     <option value="" disabled selected>Pilih Paket Investasi</option>
                     <option value="basic">Basic Package</option>
