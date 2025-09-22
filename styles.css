@@ -342,11 +342,13 @@
 
 .hero-content {
     background: rgba(0, 104, 71, 0.75);
-    padding: clamp(30px, 5vw, 50px);
+    padding: clamp(20px, 5vw, 40px); /* Reduced padding for smaller screens */
     border-radius: var(--border-radius);
     backdrop-filter: blur(5px);
-    max-width: 800px;
-    margin: 0 20px;
+    max-width: clamp(300px, 80vw, 700px); /* Adjusted max-width for better scaling */
+    width: 100%; /* Ensure it takes full available width */
+    margin: 0 auto; /* Center horizontally */
+    box-sizing: border-box;
 }
 
 .hero h1 {
