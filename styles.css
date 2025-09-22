@@ -3,17 +3,15 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Lora', Arial, sans-serif;
+    font-family: 'Roboto', Arial, sans-serif;
 }
 
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 
 /* Colors */
 :root {
     --rolex-green: #056135;
     --light-gold: #d4a017;
-    --dark-gold: #b8860b;
-    --cream: #f5f5dc;
     --white: #ffffff;
     --dark-gray: #333333;
     --light-gray: #f4f4f4;
@@ -48,7 +46,7 @@
     position: sticky;
     top: 80px;
     width: 100%;
-    background: linear-gradient(90deg, var(--rolex-green), var(--dark-gold));
+    background: var(--rolex-green);
     color: var(--white);
     z-index: 900;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -67,7 +65,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px;
+    padding: 15px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -83,9 +81,8 @@
 }
 
 .welcome-banner-content h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 28px;
-    font-weight: 700;
+    font-size: 24px;
+    font-weight: 500;
 }
 
 .welcome-banner-content p {
@@ -159,7 +156,7 @@
 
 .welcome-close:hover,
 .welcome-close:focus {
-    color: var(--cream);
+    color: var(--light-gold);
     transform: scale(1.1);
     outline: none;
 }
@@ -198,26 +195,8 @@
 .nav-link {
     color: var(--white);
     text-decoration: none;
-    font-family: 'Playfair Display', serif;
     font-size: 16px;
-    position: relative;
     transition: color 0.3s;
-}
-
-.nav-link::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    bottom: -2px;
-    left: 0;
-    background: var(--light-gold);
-    transition: width 0.3s;
-}
-
-.nav-link:hover::after,
-.nav-link:focus::after {
-    width: 100%;
 }
 
 .nav-link:hover,
@@ -259,33 +238,20 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative;
+    background: linear-gradient(rgba(5, 97, 53, 0.5), rgba(5, 97, 53, 0.5)), url('new-hero-bg.webp') no-repeat center center/cover;
+    background-attachment: fixed;
     color: var(--white);
     padding-top: 60px;
-    overflow: hidden;
-}
-
-.hero-video {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    filter: brightness(0.6);
 }
 
 .hero-content {
     background: rgba(5, 97, 53, 0.7);
     padding: 40px;
     border-radius: 10px;
-    max-width: 800px;
 }
 
 .hero h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 56px;
+    font-size: 48px;
     margin-bottom: 20px;
 }
 
@@ -304,8 +270,7 @@
 }
 
 .subtitle-text {
-    font-family: 'Playfair Display', serif;
-    color: var(--cream);
+    color: var(--light-gold);
 }
 
 .cta-button {
@@ -314,29 +279,27 @@
     padding: 15px 30px;
     border: none;
     border-radius: 5px;
-    font-family: 'Playfair Display', serif;
     font-size: 18px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
 .cta-button:hover,
 .cta-button:focus {
-    background: var(--cream);
+    background: var(--white);
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    outline: none;
+    outline: 3px solid var(--light-gold);
+    outline-offset: 2px;
 }
 
 /* About Section */
 .about {
     padding: 80px 0;
-    background: var(--cream);
+    background: var(--light-gray);
 }
 
 .about h2 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     margin-bottom: 40px;
     color: var(--rolex-green);
@@ -362,7 +325,6 @@
     width: 100%;
     max-width: 500px;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 /* Services Section */
@@ -373,7 +335,6 @@
 
 .services h2 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     margin-bottom: 40px;
     color: var(--rolex-green);
@@ -406,7 +367,6 @@
 }
 
 .service-card h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 24px;
     margin-bottom: 10px;
     color: var(--rolex-green);
@@ -440,7 +400,6 @@
 
 .testimonials h2 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     margin-bottom: 40px;
     color: var(--rolex-green);
@@ -473,7 +432,6 @@
 }
 
 .testimonial-card h4 {
-    font-family: 'Playfair Display', serif;
     font-size: 18px;
     color: var(--rolex-green);
 }
@@ -486,7 +444,6 @@
 
 .gallery h2 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     margin-bottom: 40px;
     color: var(--rolex-green);
@@ -502,7 +459,6 @@
     position: relative;
     overflow: hidden;
     border-radius: 10px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
 }
 
 .gallery-item img {
@@ -528,7 +484,6 @@
     justify-content: center;
     opacity: 0;
     transition: opacity 0.3s;
-    font-family: 'Playfair Display', serif;
 }
 
 .gallery-item:hover .gallery-overlay {
@@ -545,7 +500,6 @@
 
 .investment h2 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     margin-bottom: 40px;
     color: var(--light-gold);
@@ -572,7 +526,6 @@
 }
 
 .asset-display h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 24px;
     color: var(--rolex-green);
     text-align: center;
@@ -697,12 +650,11 @@
 /* Contact Section */
 .contact {
     padding: 80px 0;
-    background: var(--cream);
+    background: var(--light-gray);
 }
 
 .contact h2 {
     text-align: center;
-    font-family: 'Playfair Display', serif;
     font-size: 36px;
     margin-bottom: 40px;
     color: var(--rolex-green);
@@ -722,13 +674,12 @@
     border: 1px solid var(--rolex-green);
     border-radius: 5px;
     font-size: 16px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
 }
 
 #contact-form input:focus,
 #contact-form textarea:focus {
     border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
     outline: none;
 }
 
@@ -738,18 +689,17 @@
     padding: 15px;
     border: none;
     border-radius: 5px;
-    font-family: 'Playfair Display', serif;
     font-size: 18px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
 #contact-form button:hover,
 #contact-form button:focus {
     background: var(--light-gold);
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    outline: none;
+    outline: 3px solid var(--light-gold);
+    outline-offset: 2px;
 }
 
 /* Chatbot */
@@ -767,15 +717,15 @@
     justify-content: center;
     cursor: pointer;
     font-size: 24px;
-    transition: transform 0.3s, box-shadow 0.3s;
+    transition: transform 0.3s;
     position: relative;
 }
 
 .chatbot-button:hover,
 .chatbot-button:focus {
     transform: scale(1.1);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    outline: none;
+    outline: 3px solid var(--light-gold);
+    outline-offset: 2px;
 }
 
 .chatbot-button[data-tooltip]:hover::after {
@@ -836,7 +786,7 @@
 }
 
 .bot-message {
-    background: var(--cream);
+    background: var(--light-gray);
 }
 
 .user-message {
@@ -856,12 +806,11 @@
     padding: 10px;
     border: 1px solid var(--rolex-green);
     border-radius: 5px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
 }
 
 #chatbot-input:focus {
     border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
     outline: none;
 }
 
@@ -872,15 +821,15 @@
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
 .chatbot-footer button:hover,
 .chatbot-footer button:focus {
     background: var(--light-gold);
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    outline: none;
+    outline: 3px solid var(--light-gold);
+    outline-offset: 2px;
 }
 
 /* Footer */
@@ -898,7 +847,6 @@ footer {
 }
 
 .footer-info h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 24px;
     margin-bottom: 20px;
 }
@@ -924,7 +872,6 @@ footer {
 }
 
 .disclaimer h3 {
-    font-family: 'Playfair Display', serif;
     font-size: 18px;
     margin-bottom: 10px;
 }
@@ -936,7 +883,7 @@ footer {
 
 .disclaimer a:hover,
 .disclaimer a:focus {
-    color: var(--cream);
+    color: var(--white);
 }
 
 footer p {
@@ -990,13 +937,12 @@ footer p {
     padding: 15px;
     border: 1px solid var(--rolex-green);
     border-radius: 5px;
-    transition: border-color 0.3s, box-shadow 0.3s;
+    transition: border-color 0.3s;
 }
 
 #investment-form input:focus,
 #investment-form select:focus {
     border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
     outline: none;
 }
 
@@ -1006,17 +952,16 @@ footer p {
     padding: 15px;
     border: none;
     border-radius: 5px;
-    font-family: 'Playfair Display', serif;
     cursor: pointer;
-    transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+    transition: background 0.3s, transform 0.3s;
 }
 
 #investment-form button:hover,
 #investment-form button:focus {
     background: var(--light-gold);
     transform: scale(1.05);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    outline: none;
+    outline: 3px solid var(--light-gold);
+    outline-offset: 2px;
 }
 
 .close {
@@ -1036,7 +981,7 @@ footer p {
     .welcome-banner-content {
         flex-direction: column;
         align-items: flex-start;
-        padding: 15px;
+        padding: 10px 15px;
     }
 
     .welcome-icon {
@@ -1098,15 +1043,23 @@ footer p {
     }
 
     .hero h1 {
-        font-size: 32px;
+        font-size: 28px;
     }
 
     .hero p {
-        font-size: 16px;
+        font-size: 14px;
     }
 
     .dynamic-subtitle {
         font-size: 18px;
+    }
+
+    .hero {
+        background-attachment: scroll;
+    }
+
+    .investment {
+        background-attachment: scroll;
     }
 
     .about-content {
