@@ -1,23 +1,33 @@
 // Initialize AOS
-AOS.init();
+AOS.init({
+    duration: 800,
+    once: true
+});
 
 // Welcome Banner Functionality
 function showWelcomeBanner() {
     const welcomeBanner = document.getElementById('welcome-banner');
     const welcomeMessage = document.getElementById('welcome-message');
-    const userName = sessionStorage.getItem('userName') || '';
+    const personalizeForm = document.getElementById('personalize-form');
+    const userName = localStorage.getItem('visitorName') || '';
 
-    if (!sessionStorage.getItem('welcomeBannerShown') && welcomeBanner) {
-        // Personalize message if user name is available
+    if (!localStorage.getItem('welcomeBannerShown') && welcomeBanner) {
         if (userName) {
-            welcomeMessage.textContent = `Halo ${userName}, nikmati pengalaman menginap yang luar biasa dan jelajahi peluang investasi strategis dengan kami!`;
+            welcomeMessage.textContent = `Halo ${userName}, tempat sederhana yang memuliakan tamu dan investor!`;
+            personalizeForm.style.display = 'none';
+        } else {
+            personalizeForm.style.display = 'flex';
         }
         welcomeBanner.classList.add('active');
-        sessionStorage.setItem('welcomeBannerShown', 'true');
+        localStorage.setItem('welcomeBannerShown', 'true');
 
-        // Set focus on close button for accessibility
+        // Set focus on close button or personalize form for accessibility
         const closeButton = welcomeBanner.querySelector('.welcome-close');
-        closeButton.focus();
+        if (!userName) {
+            document.getElementById('visitor-name').focus();
+        } else {
+            closeButton.focus();
+        }
     }
 }
 
@@ -28,10 +38,48 @@ function closeWelcomeBanner() {
     }
 }
 
+// Personalize Form Submission
+document.getElementById('personalize-form')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const nameInput = document.getElementById('visitor-name').value.trim();
+    if (nameInput) {
+        localStorage.setItem('visitorName', nameInput);
+        document.getElementById('welcome-message').textContent = `Halo ${nameInput}, tempat sederhana yang memuliakan tamu dan investor!`;
+        document.getElementById('personalize-form').style.display = 'none';
+    }
+});
+
 // Show welcome banner on page load
 document.addEventListener('DOMContentLoaded', () => {
     showWelcomeBanner();
+
+    // Auto-greet in chatbot after 5 seconds
+    setTimeout(() => {
+        const userName = localStorage.getItem('visitorName') || 'Tamu';
+        const messages = document.getElementById('chatbot-messages');
+        const botMessage = document.createElement('div');
+        botMessage.className = 'bot-message';
+        botMessage.textContent = `Halo ${userName}, selamat datang di Hocindo! Bagaimana saya bisa membantu Anda hari ini?`;
+        messages.appendChild(botMessage);
+        messages.scrollTop = messages.scrollHeight;
+    }, 5000);
 });
+
+// Dynamic Subtitle in Hero Section
+const subtitles = ['Kemewahan', 'Kenyamanan', 'Keuntungan', 'Keramahan'];
+let subtitleIndex = 0;
+function changeSubtitle() {
+    const subtitleElement = document.querySelector('.subtitle-text');
+    if (subtitleElement) {
+        subtitleElement.style.opacity = 0;
+        setTimeout(() => {
+            subtitleElement.textContent = subtitles[subtitleIndex];
+            subtitleElement.style.opacity = 1;
+            subtitleIndex = (subtitleIndex + 1) % subtitles.length;
+        }, 500);
+    }
+}
+setInterval(changeSubtitle, 3000);
 
 // Navbar Hamburger Toggle
 const hamburger = document.querySelector('.hamburger');
@@ -45,7 +93,6 @@ if (hamburger && navMenu) {
         hamburger.setAttribute('aria-expanded', isExpanded);
     });
 
-    // Close menu when a link is clicked
     navLinks.forEach(link => {
         link.addEventListener('click', () => {
             navMenu.classList.remove('active');
@@ -98,8 +145,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const instrumentCountElement = document.getElementById('instrument-count');
 
     const investorCount = 5;
-    const managedFunds = 35834.68; // Sesuai dengan HTML
-    const fundsGrowth = 936.44; // Sesuai dengan HTML
+    const managedFunds = 35834.68;
+    const fundsGrowth = 936.44;
     const profitShare = 100;
     const managerCount = 2;
     const instrumentCount = 5;
@@ -147,6 +194,9 @@ function toggleChatbot() {
     const chatbot = document.getElementById('chatbot');
     if (chatbot) {
         chatbot.classList.toggle('active');
+        if (chatbot.classList.contains('active')) {
+            document.getElementById('chatbot-input').focus();
+        }
     }
 }
 
@@ -178,17 +228,18 @@ function sendMessage() {
 }
 
 function getBotResponse(message) {
+    const userName = localStorage.getItem('visitorName') || 'Tamu';
     message = message.toLowerCase();
     if (message.includes('hotel')) {
-        return 'Hocindo menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?';
+        return `Halo ${userName}, Hocindo menawarkan pengalaman menginap dengan daya tarik kemewahan dan romansa! Ingin tahu lebih banyak tentang fasilitas kami?`;
     } else if (message.includes('cinta') || message.includes('romantis')) {
-        return 'Dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?';
+        return `Halo ${userName}, dengan gravitasi cinta, kami punya paket romantis dan acara spesial untuk Anda. Tertarik untuk pernikahan impian?`;
     } else if (message.includes('investasi') || message.includes('aset') || message.includes('dana') || message.includes('investor') || message.includes('manajer') || message.includes('instrumen') || message.includes('saldo')) {
-        return 'Peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: Aset Anda Rp 100.000, Saldo Disetor Rp 500.000, Saldo Ditarik Rp 10.000, 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 35.834,68, pertumbuhan dana Rp 936,44, bagi hasil Rp 100. Klik "Daftar Investasi" untuk detail!';
+        return `Halo ${userName}, peluang investasi di Hocindo menawarkan ROI menarik! Saat ini: Aset Anda Rp 100.000, Saldo Disetor Rp 500.000, Saldo Ditarik Rp 10.000, 5 investor, 2 manajer investasi, 5 instrumen investasi, dana kelolaan Rp 35.834,68, pertumbuhan dana Rp 936,44, bagi hasil Rp 100. Klik "Daftar Investasi" untuk detail!`;
     } else if (message.includes('apa itu') || message.includes('tentang')) {
-        return 'Hocindo adalah hotel kreatif yang menggabungkan penginapan, bisnis, dan investasi strategis. Tanya saya lebih lanjut!';
+        return `Halo ${userName}, Hocindo adalah hotel kreatif yang menggabungkan penginapan, bisnis, dan investasi strategis. Tanya saya lebih lanjut!`;
     } else {
-        return 'Saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?';
+        return `Halo ${userName}, saya HocindoBot, siap membantu Anda menjelajahi gravitasi cinta dan kemewahan! Apa yang ingin Anda tahu?`;
     }
 }
 
@@ -209,7 +260,7 @@ function closeModal() {
 }
 
 // Form Submission (Contact)
-document.getElementById('contact-form').addEventListener('submit', (e) => {
+document.getElementById('contact-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const nameInput = e.target.querySelector('input[name="name"]').value;
     const emailInput = e.target.querySelector('input[name="email"]');
@@ -217,13 +268,13 @@ document.getElementById('contact-form').addEventListener('submit', (e) => {
         alert('Email tidak valid!');
         return;
     }
-    sessionStorage.setItem('userName', nameInput); // Store name for personalization
+    localStorage.setItem('visitorName', nameInput); // Store name for personalization
     alert('Pesan Anda telah dikirim! Tim Hocindo akan segera menghubungi Anda.');
     e.target.reset();
 });
 
 // Form Submission (Investment)
-document.getElementById('investment-form').addEventListener('submit', (e) => {
+document.getElementById('investment-form')?.addEventListener('submit', (e) => {
     e.preventDefault();
     const nameInput = e.target.querySelector('input[name="name"]').value;
     const emailInput = e.target.querySelector('input[name="email"]');
@@ -231,7 +282,7 @@ document.getElementById('investment-form').addEventListener('submit', (e) => {
         alert('Email tidak valid!');
         return;
     }
-    sessionStorage.setItem('userName', nameInput); // Store name for personalization
+    localStorage.setItem('visitorName', nameInput); // Store name for personalization
     alert('Pendaftaran investasi berhasil! Tim Hocindo akan menghubungi Anda untuk langkah selanjutnya.');
     e.target.reset();
     closeModal();
