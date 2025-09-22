@@ -1,6 +1,45 @@
 // Initialize AOS
 AOS.init();
 
+// Welcome Popup Functionality
+function showWelcomePopup() {
+    const welcomePopup = document.getElementById('welcome-popup');
+    const welcomeMessage = document.getElementById('welcome-message');
+    const userName = sessionStorage.getItem('userName') || '';
+
+    if (!sessionStorage.getItem('welcomePopupShown') && welcomePopup) {
+        // Personalize message if user name is available
+        if (userName) {
+            welcomeMessage.textContent = `Halo ${userName}, nikmati pengalaman menginap yang luar biasa dan jelajahi peluang investasi strategis dengan kami!`;
+        }
+        welcomePopup.classList.add('active');
+        sessionStorage.setItem('welcomePopupShown', 'true');
+
+        // Auto-close after 10 seconds if no interaction
+        setTimeout(() => {
+            if (welcomePopup.classList.contains('active')) {
+                closeWelcomePopup();
+            }
+        }, 10000);
+
+        // Set focus on close button for accessibility
+        const closeButton = welcomePopup.querySelector('.welcome-close');
+        closeButton.focus();
+    }
+}
+
+function closeWelcomePopup() {
+    const welcomePopup = document.getElementById('welcome-popup');
+    if (welcomePopup) {
+        welcomePopup.classList.remove('active');
+    }
+}
+
+// Show welcome popup on page load
+document.addEventListener('DOMContentLoaded', () => {
+    showWelcomePopup();
+});
+
 // Navbar Hamburger Toggle
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
@@ -179,11 +218,13 @@ function closeModal() {
 // Form Submission (Contact)
 document.getElementById('contact-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const nameInput = e.target.querySelector('input[name="name"]').value;
     const emailInput = e.target.querySelector('input[name="email"]');
     if (!emailInput.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
         alert('Email tidak valid!');
         return;
     }
+    sessionStorage.setItem('userName', nameInput); // Store name for personalization
     alert('Pesan Anda telah dikirim! Tim Hocindo akan segera menghubungi Anda.');
     e.target.reset();
 });
@@ -191,11 +232,13 @@ document.getElementById('contact-form').addEventListener('submit', (e) => {
 // Form Submission (Investment)
 document.getElementById('investment-form').addEventListener('submit', (e) => {
     e.preventDefault();
+    const nameInput = e.target.querySelector('input[name="name"]').value;
     const emailInput = e.target.querySelector('input[name="email"]');
     if (!emailInput.value.match(/^[^\s@]+@[^\s@]+\.[^\s@]+$/)) {
         alert('Email tidak valid!');
         return;
     }
+    sessionStorage.setItem('userName', nameInput); // Store name for personalization
     alert('Pendaftaran investasi berhasil! Tim Hocindo akan menghubungi Anda untuk langkah selanjutnya.');
     e.target.reset();
     closeModal();
