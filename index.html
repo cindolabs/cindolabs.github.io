@@ -5,22 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Hocindo - Hotel kreatif dengan penginapan, bisnis, dan peluang investasi strategis di Indonesia.">
     <meta name="keywords" content="hotel, investasi, bisnis, Hocindo, penginapan">
-    <title>Hocindo</title>
+    <title>Hocindo - Tempat Sederhana yang Memuliakan</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Lora:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="hocindo.svg" type="image/svg+xml">
     <link rel="alternate icon" href="hocindo.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="hocindo.png">
 </head>
 <body>
+    <!-- Skip to Content Link -->
+    <a href="#main-content" class="skip-link">Langsung ke konten utama</a>
+
     <!-- Welcome Banner -->
     <div id="welcome-banner" class="welcome-banner" role="alert" aria-labelledby="welcome-title">
         <div class="welcome-banner-content">
-            <h2 id="welcome-title">Selamat Datang di Hocindo!</h2>
-            <p id="welcome-message">Tempat sederhana yang memuliakan tamu dan investor</p>
-            <button onclick="closeWelcomeBanner()" class="welcome-close" aria-label="Tutup banner selamat datang">
-                <i class="fas fa-times"></i>
-            </button>
+            <img src="welcome-icon.png" alt="Ikon Selamat Datang" class="welcome-icon">
+            <div class="welcome-text">
+                <h2 id="welcome-title">Selamat Datang di Hocindo!</h2>
+                <p id="welcome-message" class="typing-effect">Tempat sederhana yang memuliakan tamu dan investor</p>
+                <form id="personalize-form" class="personalize-form" style="display: none;">
+                    <input type="text" id="visitor-name" placeholder="Masukkan nama Anda (opsional)" aria-label="Nama pengunjung">
+                    <button type="submit">Sapa Saya</button>
+                </form>
+            </div>
+            <div class="welcome-actions">
+                <button class="cta-button" onclick="scrollToSection('investment')">Jelajahi Investasi</button>
+                <button onclick="closeWelcomeBanner()" class="welcome-close" aria-label="Tutup banner selamat datang">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -37,6 +52,7 @@
                     <li><a href="#services" class="nav-link">Layanan</a></li>
                     <li><a href="#gallery" class="nav-link">Galeri</a></li>
                     <li><a href="#investment" class="nav-link">Investasi</a></li>
+                    <li><a href="#testimonials" class="nav-link">Testimoni</a></li>
                     <li><a href="#contact" class="nav-link">Kontak</a></li>
                     <li><a href="https://hocindo.github.io/logo2" class="nav-link">Logo</a></li>
                 </ul>
@@ -49,165 +65,196 @@
         </div>
     </header>
 
-    <!-- Hero Section with Parallax -->
-    <section id="home" class="hero parallax">
-        <div class="hero-content">
-            <h1>Hocindo</h1>
-            <p><span class="highlight">Hotel Kreatif, Kelas Bisnis Dan Investasi</span></p>
-            <h2>Tempat sederhana yang memuliakan Tamu dan Investor</h2>
-            <button class="cta-button" onclick="scrollToSection('investment')">Jelajahi Investasi</button>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about">
-        <div class="container">
-            <h2>Tentang Kami</h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>Hocindo adalah hotel kreatif yang memiliki fitur penginapan, bisnis dan investasi strategis dengan bagi hasil tinggi</p>
-                    <p>Visi kami adalah menciptakan pengalaman yang menarik dalam kenyamanan menginap dan bisnis yang menguntungkan</p>
+    <!-- Main Content -->
+    <main id="main-content">
+        <!-- Hero Section with Video Background -->
+        <section id="home" class="hero parallax">
+            <video autoplay muted loop class="hero-video">
+                <source src="hero-video.mp4" type="video/mp4">
+                <source src="hero-video.webm" type="video/webm">
+                Gambar latar belakang hotel mewah Hocindo
+            </video>
+            <div class="hero-content" data-aos="fade-up" data-aos-duration="1000">
+                <h1 data-aos="fade-up" data-aos-delay="200">Hocindo</h1>
+                <p data-aos="fade-up" data-aos-delay="400"><span class="highlight">Hotel Kreatif, Kelas Bisnis Dan Investasi</span></p>
+                <div class="dynamic-subtitle" data-aos="fade-up" data-aos-delay="600">
+                    <span class="subtitle-text">Kemewahan</span>
                 </div>
-                <div class="about-image">
-                    <picture>
-                        <source srcset="about-image.webp" type="image/webp">
-                        <img src="about-image.jpg" alt="Interior hotel mewah Hocindo" loading="lazy">
-                    </picture>
-                </div>
+                <button class="cta-button" onclick="scrollToSection('investment')" data-aos="fade-up" data-aos-delay="800">Jelajahi Investasi</button>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
-        <div class="container">
-            <h2>Layanan Kami</h2>
-            <div class="services-grid">
-                <div class="service-card" data-aos="fade-up">
-                    <i class="fas fa-hotel" aria-hidden="true"></i>
-                    <h3>Hotel Sederhana dan Mewah</h3>
-                    <p>Hotel sederhana hingga resor bintang lima dengan fasilitas premium dan pelayanan penuh perhatian.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-heart" aria-hidden="true"></i>
-                    <h3>Pengalaman Cinta</h3>
-                    <p>Paket romantis, pernikahan impian, dan acara intim untuk momen tak terlupakan.</p>
-                </div>
-                <div class="service-card" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <h3>Investasi Cerdas</h3>
-                    <p>Peluang investasi di properti hotel dan proyek berkelanjutan dengan keuntungan menjanjikan.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <h2>Galeri</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item" data-aos="zoom-in">
-                    <picture>
-                        <source srcset="gallery1.webp" type="image/webp">
-                        <img src="gallery1.jpg" alt="Kamar hotel mewah Hocindo" loading="lazy">
-                    </picture>
-                    <div class="gallery-overlay">Hotel Mewah</div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
-                    <picture>
-                        <source srcset="gallery2.webp" type="image/webp">
-                        <img src="gallery2.jpg" alt="Makan malam romantis di Hocindo" loading="lazy">
-                    </picture>
-                    <div class="gallery-overlay">Makan Malam Romantis</div>
-                </div>
-                <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
-                    <picture>
-                        <source srcset="gallery3.webp" type="image/webp">
-                        <img src="gallery3.jpg" alt="Proyek investasi properti Hocindo" loading="lazy">
-                    </picture>
-                    <div class="gallery-overlay">Proyek Investasi</div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Investment Section with Asset and Stats Features -->
-    <section id="investment" class="investment parallax">
-        <div class="container">
-            <h2>Peluang Investasi</h2>
-            <div class="asset-display" data-aos="fade-up">
-                <h3>Ringkasan Keuangan Anda</h3>
-                <div class="asset-grid">
-                    <div class="asset-item">
-                        <i class="fas fa-coins" aria-hidden="true"></i>
-                        <h4>Saldo yang tersedia</h4>
-                        <p id="asset-value">Rp 100.000</p>
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 data-aos="fade-up">Tentang Kami</h2>
+                <div class="about-content">
+                    <div class="about-text" data-aos="fade-right">
+                        <p>Hocindo adalah hotel kreatif yang memiliki fitur penginapan, bisnis, dan investasi strategis dengan bagi hasil tinggi.</p>
+                        <p>Visi kami adalah menciptakan pengalaman yang menarik dalam kenyamanan menginap dan bisnis yang menguntungkan.</p>
                     </div>
-                    <div class="asset-item">
-                        <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
-                        <h4>Saldo Disetor</h4>
-                        <p id="deposited-balance">Rp 500.000</p>
-                    </div>
-                    <div class="asset-item">
-                        <i class="fas fa-hand-holding" aria-hidden="true"></i>
-                        <h4>Saldo Ditarik</h4>
-                        <p id="withdrawn-balance">Rp 10.000</p>
+                    <div class="about-image" data-aos="fade-left">
+                        <picture>
+                            <source srcset="about-image.webp" type="image/webp">
+                            <img src="about-image.jpg" alt="Interior hotel mewah Hocindo" loading="lazy">
+                        </picture>
                     </div>
                 </div>
             </div>
-            <div class="investment-stats" data-aos="fade-up" data-aos-delay="200">
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
-                    <i class="fas fa-users" aria-hidden="true"></i>
-                    <h3>Investor Aktif</h3>
-                    <p id="investor-count">5</p>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="300">
-                    <i class="fas fa-wallet" aria-hidden="true"></i>
-                    <h3>Dana Kelolaan</h3>
-                    <p id="managed-funds">Rp 35.834,68</p>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="400">
-                    <i class="fas fa-chart-line" aria-hidden="true"></i>
-                    <h3>Pertumbuhan Dana</h3>
-                    <p id="funds-growth">Rp 936,44</p>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="500">
-                    <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
-                    <h3>Bagi Hasil Investasi</h3>
-                    <p id="profit-share">Rp 100</p>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="600">
-                    <i class="fas fa-user-tie" aria-hidden="true"></i>
-                    <h3>Manajer Investasi</h3>
-                    <p id="manager-count">2</p>
-                </div>
-                <div class="stat-item" data-aos="fade-up" data-aos-delay="700">
-                    <i class="fas fa-briefcase" aria-hidden="true"></i>
-                    <h3>Instrumen Investasi</h3>
-                    <p id="instrument-count">5 Simbol</p>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="services">
+            <div class="container">
+                <h2 data-aos="fade-up">Layanan Kami</h2>
+                <div class="services-grid">
+                    <div class="service-card" data-aos="fade-up" data-tooltip="Fasilitas premium untuk kenyamanan Anda">
+                        <i class="fas fa-hotel" aria-hidden="true"></i>
+                        <h3>Hotel Sederhana dan Mewah</h3>
+                        <p>Hotel sederhana hingga resor bintang lima dengan fasilitas premium dan pelayanan penuh perhatian.</p>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="200" data-tooltip="Momen romantis yang tak terlupakan">
+                        <i class="fas fa-heart" aria-hidden="true"></i>
+                        <h3>Pengalaman Cinta</h3>
+                        <p>Paket romantis, pernikahan impian, dan acara intim untuk momen tak terlupakan.</p>
+                    </div>
+                    <div class="service-card" data-aos="fade-up" data-aos-delay="400" data-tooltip="Keuntungan investasi yang menjanjikan">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <h3>Investasi Cerdas</h3>
+                        <p>Peluang investasi di properti hotel dan proyek berkelanjutan dengan keuntungan menjanjikan.</p>
+                    </div>
                 </div>
             </div>
-            <div id="investment-data" class="investment-grid"></div>
-            <button class="cta-button" onclick="openModal()">Daftar Investasi</button>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Hubungi Kami</h2>
-            <form id="contact-form">
-                <input type="text" name="name" placeholder="Nama Lengkap" required>
-                <input type="email" name="email" placeholder="Email" required>
-                <textarea name="message" placeholder="Pesan Anda" required></textarea>
-                <button type="submit">Kirim Pesan</button>
-            </form>
-        </div>
-    </section>
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="testimonials">
+            <div class="container">
+                <h2 data-aos="fade-up">Apa Kata Tamu & Investor Kami</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="200">
+                        <p>"Pengalaman menginap di Hocindo luar biasa! Pelayanan yang ramah dan fasilitas mewah."</p>
+                        <h4>- Ani, Tamu</h4>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="400">
+                        <p>"Investasi di Hocindo memberikan hasil yang menjanjikan. Tim sangat profesional!"</p>
+                        <h4>- Budi, Investor</h4>
+                    </div>
+                    <div class="testimonial-card" data-aos="fade-up" data-aos-delay="600">
+                        <p>"Acara pernikahan kami di Hocindo begitu indah dan tak terlupakan."</p>
+                        <h4>- Citra, Pengantin</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery" class="gallery">
+            <div class="container">
+                <h2 data-aos="fade-up">Galeri</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item" data-aos="zoom-in">
+                        <picture>
+                            <source srcset="gallery1.webp" type="image/webp">
+                            <img src="gallery1.jpg" alt="Kamar hotel mewah Hocindo" loading="lazy">
+                        </picture>
+                        <div class="gallery-overlay">Hotel Mewah</div>
+                    </div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="200">
+                        <picture>
+                            <source srcset="gallery2.webp" type="image/webp">
+                            <img src="gallery2.jpg" alt="Makan malam romantis di Hocindo" loading="lazy">
+                        </picture>
+                        <div class="gallery-overlay">Makan Malam Romantis</div>
+                    </div>
+                    <div class="gallery-item" data-aos="zoom-in" data-aos-delay="400">
+                        <picture>
+                            <source srcset="gallery3.webp" type="image/webp">
+                            <img src="gallery3.jpg" alt="Proyek investasi properti Hocindo" loading="lazy">
+                        </picture>
+                        <div class="gallery-overlay">Proyek Investasi</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Investment Section with Asset and Stats Features -->
+        <section id="investment" class="investment parallax">
+            <div class="container">
+                <h2 data-aos="fade-up">Peluang Investasi</h2>
+                <div class="asset-display" data-aos="fade-up">
+                    <h3>Ringkasan Keuangan Anda</h3>
+                    <div class="asset-grid">
+                        <div class="asset-item" data-tooltip="Jumlah saldo yang tersedia untuk investasi">
+                            <i class="fas fa-coins" aria-hidden="true"></i>
+                            <h4>Saldo yang tersedia</h4>
+                            <p id="asset-value">Rp 100.000</p>
+                        </div>
+                        <div class="asset-item" data-tooltip="Total dana yang telah disetor">
+                            <i class="fas fa-money-bill-wave" aria-hidden="true"></i>
+                            <h4>Saldo Disetor</h4>
+                            <p id="deposited-balance">Rp 500.000</p>
+                        </div>
+                        <div class="asset-item" data-tooltip="Total dana yang telah ditarik">
+                            <i class="fas fa-hand-holding" aria-hidden="true"></i>
+                            <h4>Saldo Ditarik</h4>
+                            <p id="withdrawn-balance">Rp 10.000</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="investment-stats" data-aos="fade-up" data-aos-delay="200">
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="200" data-tooltip="Jumlah investor aktif saat ini">
+                        <i class="fas fa-users" aria-hidden="true"></i>
+                        <h3>Investor Aktif</h3>
+                        <p id="investor-count">5</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="300" data-tooltip="Total dana yang dikelola">
+                        <i class="fas fa-wallet" aria-hidden="true"></i>
+                        <h3>Dana Kelolaan</h3>
+                        <p id="managed-funds">Rp 35.834,68</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="400" data-tooltip="Pertumbuhan dana investasi">
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
+                        <h3>Pertumbuhan Dana</h3>
+                        <p id="funds-growth">Rp 936,44</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="500" data-tooltip="Keuntungan dari bagi hasil">
+                        <i class="fas fa-hand-holding-usd" aria-hidden="true"></i>
+                        <h3>Bagi Hasil Investasi</h3>
+                        <p id="profit-share">Rp 100</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="600" data-tooltip="Jumlah manajer investasi">
+                        <i class="fas fa-user-tie" aria-hidden="true"></i>
+                        <h3>Manajer Investasi</h3>
+                        <p id="manager-count">2</p>
+                    </div>
+                    <div class="stat-item" data-aos="fade-up" data-aos-delay="700" data-tooltip="Jumlah instrumen investasi">
+                        <i class="fas fa-briefcase" aria-hidden="true"></i>
+                        <h3>Instrumen Investasi</h3>
+                        <p id="instrument-count">5 Simbol</p>
+                    </div>
+                </div>
+                <div id="investment-data" class="investment-grid"></div>
+                <button class="cta-button" onclick="openModal()" data-aos="fade-up">Daftar Investasi</button>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 data-aos="fade-up">Hubungi Kami</h2>
+                <form id="contact-form" data-aos="fade-up" data-aos-delay="200">
+                    <input type="text" name="name" placeholder="Nama Lengkap" required>
+                    <input type="email" name="email" placeholder="Email" required>
+                    <textarea name="message" placeholder="Pesan Anda" required></textarea>
+                    <button type="submit">Kirim Pesan</button>
+                </form>
+            </div>
+        </section>
+    </main>
 
     <!-- Chatbot Button and Window -->
-    <div class="chatbot-button" onclick="toggleChatbot()">
+    <div class="chatbot-button" onclick="toggleChatbot()" data-tooltip="Chat dengan kami!">
         <i class="fas fa-comment-dots" aria-hidden="true"></i>
     </div>
     <div id="chatbot" class="chatbot">
