@@ -4,41 +4,43 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
-    scroll-behavior: smooth; /* Smooth scrolling for anchor links */
-    -webkit-font-smoothing: antialiased; /* Better font rendering */
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
 /* Font Imports */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
-/* Enhanced Color Variables with Dark Mode Support */
+/* Updated Color Variables to Match SVG */
 :root {
-    --rolex-green: #056135;
-    --light-gold: #d4a017;
+    --hocindo-green: #006847; /* Primary green from SVG */
+    --hocindo-green-dark: #004c3f; /* Darker green from SVG */
+    --hocindo-gold: #D4AF37; /* Light gold from SVG */
+    --hocindo-gold-dark: #b8860b; /* Darker gold from SVG */
     --white: #ffffff;
     --dark-gray: #333333;
     --light-gray: #f4f4f4;
     --shadow-color: rgba(0, 0, 0, 0.15);
     --transition-duration: 0.3s;
     --border-radius: 8px;
-    --container-max-width: 1280px; /* Slightly wider container */
+    --container-max-width: 1280px;
     --font-size-base: 16px;
     --font-size-heading: 2.5rem;
 
     /* Dark Mode Colors */
     --bg-dark: #1a1a1a;
     --text-dark: #e0e0e0;
-    --rolex-green-dark: #0a8c4c;
-    --light-gold-dark: #e6b800;
+    --hocindo-green-dark-mode: #00875a; /* Adjusted for dark mode */
+    --hocindo-gold-dark-mode: #e6b800; /* Adjusted for dark mode */
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --white: var(--bg-dark);
         --dark-gray: var(--text-dark);
-        --rolex-green: var(--rolex-green-dark);
-        --light-gold: var(--light-gold-dark);
+        --hocindo-green: var(--hocindo-green-dark-mode);
+        --hocindo-gold: var(--hocindo-gold-dark-mode);
         --light-gray: #2a2a2a;
     }
 }
@@ -59,7 +61,7 @@
     position: absolute;
     top: -60px;
     left: 0;
-    background: var(--rolex-green);
+    background: var(--hocindo-green);
     color: var(--white);
     padding: 12px 20px;
     z-index: 10000;
@@ -70,7 +72,7 @@
 
 .skip-link:focus {
     top: 0;
-    outline: 3px solid var(--light-gold);
+    outline: 3px solid var(--hocindo-gold);
     outline-offset: 2px;
 }
 
@@ -88,14 +90,14 @@
     position: sticky;
     top: 80px;
     width: 100%;
-    background: var(--rolex-green);
+    background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     z-index: 900;
     box-shadow: 0 4px 12px var(--shadow-color);
     opacity: 0;
     transform: translateY(-20px);
     transition: opacity var(--transition-duration) ease, transform var(--transition-duration) ease;
-    will-change: opacity, transform; /* Performance optimization */
+    will-change: opacity, transform;
 }
 
 .welcome-banner.active {
@@ -123,7 +125,7 @@
 }
 
 .welcome-icon:hover {
-    transform: rotate(10deg); /* Subtle hover animation */
+    transform: rotate(10deg);
 }
 
 .welcome-text {
@@ -146,7 +148,7 @@
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
-    border-right: 3px solid var(--light-gold);
+    border-right: 3px solid var(--hocindo-gold);
     animation: typing 4s steps(40, end) infinite, blink-caret 0.75s step-end infinite;
     will-change: width, border-color;
 }
@@ -158,7 +160,7 @@
 
 @keyframes blink-caret {
     from, to { border-color: transparent; }
-    50% { border-color: var(--light-gold); }
+    50% { border-color: var(--hocindo-gold); }
 }
 
 .personalize-form {
@@ -170,21 +172,21 @@
 
 .personalize-form input {
     padding: 10px 12px;
-    border: 1px solid var(--light-gold);
+    border: 1px solid var(--hocindo-gold);
     border-radius: var(--border-radius);
     font-size: clamp(14px, 2.5vw, 15px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
 }
 
 .personalize-form input:focus {
-    border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); /* Adjusted for gold */
     outline: none;
 }
 
 .personalize-form button {
-    background: var(--light-gold);
-    color: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%); /* SVG-inspired gold gradient */
+    color: var(--hocindo-green);
     border: none;
     padding: 10px 20px;
     border-radius: var(--border-radius);
@@ -219,14 +221,14 @@
 
 .welcome-close:hover,
 .welcome-close:focus {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
     transform: scale(1.15);
     outline: none;
 }
 
 /* Navbar */
 .navbar {
-    background: var(--rolex-green);
+    background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     position: fixed;
     width: 100%;
@@ -274,7 +276,7 @@
 
 .nav-link:hover,
 .nav-link:focus {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
     background: rgba(255, 255, 255, 0.1);
     border-radius: var(--border-radius);
     outline: none;
@@ -287,7 +289,7 @@
     left: 50%;
     width: 0;
     height: 2px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     transition: width var(--transition-duration) ease, left var(--transition-duration) ease;
 }
 
@@ -330,7 +332,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, rgba(5, 97, 53, 0.6) 0%, rgba(5, 97, 53, 0.4) 100%), url('new-hero-bg.webp') no-repeat center center/cover;
+    background: linear-gradient(135deg, rgba(0, 104, 71, 0.6) 0%, rgba(0, 76, 63, 0.4) 100%), url('new-hero-bg.webp') no-repeat center center/cover;
     background-attachment: fixed;
     color: var(--white);
     padding-top: 80px;
@@ -339,10 +341,10 @@
 }
 
 .hero-content {
-    background: rgba(5, 97, 53, 0.75);
+    background: rgba(0, 104, 71, 0.75);
     padding: clamp(30px, 5vw, 50px);
     border-radius: var(--border-radius);
-    backdrop-filter: blur(5px); /* Subtle glassmorphism effect */
+    backdrop-filter: blur(5px);
     max-width: 800px;
     margin: 0 20px;
 }
@@ -355,7 +357,7 @@
 }
 
 .hero .highlight {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
     position: relative;
 }
 
@@ -366,7 +368,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     transform: scaleX(0);
     transform-origin: right;
     transition: transform var(--transition-duration) ease;
@@ -390,12 +392,12 @@
 }
 
 .subtitle-text {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
 }
 
 .cta-button {
-    background: var(--light-gold);
-    color: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%); /* SVG-inspired gold gradient */
+    color: var(--hocindo-green);
     padding: 16px 32px;
     border: none;
     border-radius: var(--border-radius);
@@ -423,7 +425,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     position: relative;
 }
 
@@ -432,7 +434,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     margin: 12px auto 0;
 }
 
@@ -471,7 +473,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
 }
 
 .services h2::after {
@@ -479,7 +481,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     margin: 12px auto 0;
 }
 
@@ -506,7 +508,7 @@
 
 .service-card i {
     font-size: 48px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     margin-bottom: 24px;
     transition: transform var(--transition-duration);
 }
@@ -518,7 +520,7 @@
 .service-card h3 {
     font-size: clamp(20px, 3vw, 24px);
     margin-bottom: 12px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
 }
 
 .service-card p {
@@ -533,7 +535,7 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--rolex-green);
+    background: var(--hocindo-green);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -553,7 +555,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
 }
 
 .testimonials h2::after {
@@ -561,7 +563,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     margin: 12px auto 0;
 }
 
@@ -594,7 +596,7 @@
 
 .testimonial-card h4 {
     font-size: clamp(16px, 2.5vw, 18px);
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     font-weight: 500;
 }
 
@@ -608,7 +610,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
 }
 
 .gallery h2::after {
@@ -616,7 +618,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     margin: 12px auto 0;
 }
 
@@ -650,7 +652,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(5, 97, 53, 0.8);
+    background: rgba(0, 104, 71, 0.8);
     color: var(--white);
     display: flex;
     align-items: center;
@@ -667,7 +669,7 @@
 /* Investment Section */
 .investment {
     padding: clamp(60px, 10vw, 100px) 0;
-    background: linear-gradient(135deg, rgba(5, 97, 53, 0.6) 0%, rgba(5, 97, 53, 0.4) 100%), url('investment-bg.webp') no-repeat center center/cover;
+    background: linear-gradient(135deg, rgba(0, 104, 71, 0.6) 0%, rgba(0, 76, 63, 0.4) 100%), url('investment-bg.webp') no-repeat center center/cover;
     background-attachment: fixed;
     color: var(--white);
 }
@@ -676,7 +678,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
 }
 
 .investment h2::after {
@@ -684,7 +686,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     margin: 12px auto 0;
 }
 
@@ -710,7 +712,7 @@
 
 .asset-display h3 {
     font-size: clamp(20px, 3vw, 24px);
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     text-align: center;
     margin-bottom: 24px;
     font-weight: 600;
@@ -733,7 +735,7 @@
 
 .asset-item:hover {
     transform: scale(1.08);
-    background: rgba(5, 97, 53, 0.15);
+    background: rgba(0, 104, 71, 0.15);
 }
 
 .asset-item[data-tooltip]:hover::after {
@@ -742,7 +744,7 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--rolex-green);
+    background: var(--hocindo-green);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -754,13 +756,13 @@
 
 .asset-item i {
     font-size: 32px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     margin-bottom: 12px;
 }
 
 .asset-item h4 {
     font-size: clamp(14px, 2.5vw, 16px);
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -768,7 +770,7 @@
 .asset-item p {
     font-size: clamp(16px, 2.5vw, 18px);
     font-weight: bold;
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
 }
 
 .investment-stats {
@@ -780,7 +782,7 @@
     background: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 12px var(--shadow-color);
-    border: 1px solid rgba(5, 97, 53, 0.25);
+    border: 1px solid rgba(0, 104, 71, 0.25);
 }
 
 .stat-item {
@@ -794,7 +796,7 @@
 
 .stat-item:hover {
     transform: scale(1.08);
-    background: rgba(5, 97, 53, 0.15);
+    background: rgba(0, 104, 71, 0.15);
 }
 
 .stat-item[data-tooltip]:hover::after {
@@ -803,7 +805,7 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--rolex-green);
+    background: var(--hocindo-green);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -815,13 +817,13 @@
 
 .stat-item i {
     font-size: 32px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     margin-bottom: 12px;
 }
 
 .stat-item h3 {
     font-size: clamp(14px, 2.5vw, 16px);
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -829,7 +831,7 @@
 .stat-item p {
     font-size: clamp(16px, 2.5vw, 18px);
     font-weight: bold;
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
 }
 
 /* Contact Section */
@@ -842,7 +844,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--rolex-green);
+    color: var(--hocindo-green);
 }
 
 .contact h2::after {
@@ -850,7 +852,7 @@
     display: block;
     width: 60px;
     height: 3px;
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     margin: 12px auto 0;
 }
 
@@ -865,7 +867,7 @@
 #contact-form input,
 #contact-form textarea {
     padding: 16px;
-    border: 1px solid var(--rolex-green);
+    border: 1px solid var(--hocindo-green);
     border-radius: var(--border-radius);
     font-size: clamp(15px, 2.5vw, 16px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
@@ -873,13 +875,13 @@
 
 #contact-form input:focus,
 #contact-form textarea:focus {
-    border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     outline: none;
 }
 
 #contact-form button {
-    background: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     padding: 16px;
     border: none;
@@ -892,7 +894,7 @@
 
 #contact-form button:hover,
 #contact-form button:focus {
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     transform: translateY(-3px);
     box-shadow: 0 6px 16px var(--shadow-color);
     outline: none;
@@ -903,7 +905,7 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     width: 60px;
     height: 60px;
@@ -929,7 +931,7 @@
     position: absolute;
     bottom: calc(100% + 10px);
     right: 0;
-    background: var(--rolex-green);
+    background: var(--hocindo-green);
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -960,7 +962,7 @@
 }
 
 .chatbot-header {
-    background: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     padding: 12px 16px;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -992,7 +994,7 @@
 }
 
 .user-message {
-    background: var(--rolex-green);
+    background: var(--hocindo-green);
     color: var(--white);
     text-align: right;
     box-shadow: 0 2px 8px var(--shadow-color);
@@ -1009,20 +1011,20 @@
 #chatbot-input {
     flex: 1;
     padding: 12px;
-    border: 1px solid var(--rolex-green);
+    border: 1px solid var(--hocindo-green);
     border-radius: var(--border-radius);
     font-size: clamp(14px, 2.5vw, 15px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
 }
 
 #chatbot-input:focus {
-    border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     outline: none;
 }
 
 .chatbot-footer button {
-    background: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     border: none;
     padding: 12px 16px;
@@ -1035,7 +1037,7 @@
 
 .chatbot-footer button:hover,
 .chatbot-footer button:focus {
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     transform: translateY(-2px);
     box-shadow: 0 4px 12px var(--shadow-color);
     outline: none;
@@ -1043,7 +1045,7 @@
 
 /* Footer */
 footer {
-    background: var(--rolex-green);
+    background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     padding: clamp(40px, 8vw, 60px) 0;
 }
@@ -1076,7 +1078,7 @@ footer {
 
 .footer-social a:hover,
 .footer-social a:focus {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
     transform: translateY(-3px);
     outline: none;
 }
@@ -1093,7 +1095,7 @@ footer {
 }
 
 .disclaimer a {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
     text-decoration: none;
     transition: color var(--transition-duration);
 }
@@ -1155,7 +1157,7 @@ footer p {
 #investment-form input,
 #investment-form select {
     padding: 16px;
-    border: 1px solid var(--rolex-green);
+    border: 1px solid var(--hocindo-green);
     border-radius: var(--border-radius);
     font-size: clamp(15px, 2.5vw, 16px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
@@ -1163,13 +1165,13 @@ footer p {
 
 #investment-form input:focus,
 #investment-form select:focus {
-    border-color: var(--light-gold);
-    box-shadow: 0 0 8px rgba(212, 160, 23, 0.3);
+    border-color: var(--hocindo-gold);
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     outline: none;
 }
 
 #investment-form button {
-    background: var(--rolex-green);
+    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
     color: var(--white);
     padding: 16px;
     border: none;
@@ -1182,7 +1184,7 @@ footer p {
 
 #investment-form button:hover,
 #investment-form button:focus {
-    background: var(--light-gold);
+    background: var(--hocindo-gold);
     transform: translateY(-3px);
     box-shadow: 0 6px 16px var(--shadow-color);
     outline: none;
@@ -1198,7 +1200,7 @@ footer p {
 
 .close:hover,
 .close:focus {
-    color: var(--light-gold);
+    color: var(--hocindo-gold);
 }
 
 /* Responsive Design */
@@ -1253,7 +1255,7 @@ footer p {
         top: 80px;
         left: 0;
         width: 100%;
-        background: var(--rolex-green);
+        background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
         transform: translateY(-20px);
         opacity: 0;
         transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease;
