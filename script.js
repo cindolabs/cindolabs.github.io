@@ -1,43 +1,36 @@
 // Initialize AOS
 AOS.init();
 
-// Welcome Popup Functionality
-function showWelcomePopup() {
-    const welcomePopup = document.getElementById('welcome-popup');
+// Welcome Banner Functionality
+function showWelcomeBanner() {
+    const welcomeBanner = document.getElementById('welcome-banner');
     const welcomeMessage = document.getElementById('welcome-message');
     const userName = sessionStorage.getItem('userName') || '';
 
-    if (!sessionStorage.getItem('welcomePopupShown') && welcomePopup) {
+    if (!sessionStorage.getItem('welcomeBannerShown') && welcomeBanner) {
         // Personalize message if user name is available
         if (userName) {
             welcomeMessage.textContent = `Halo ${userName}, nikmati pengalaman menginap yang luar biasa dan jelajahi peluang investasi strategis dengan kami!`;
         }
-        welcomePopup.classList.add('active');
-        sessionStorage.setItem('welcomePopupShown', 'true');
-
-        // Auto-close after 10 seconds if no interaction
-        setTimeout(() => {
-            if (welcomePopup.classList.contains('active')) {
-                closeWelcomePopup();
-            }
-        }, 10000);
+        welcomeBanner.classList.add('active');
+        sessionStorage.setItem('welcomeBannerShown', 'true');
 
         // Set focus on close button for accessibility
-        const closeButton = welcomePopup.querySelector('.welcome-close');
+        const closeButton = welcomeBanner.querySelector('.welcome-close');
         closeButton.focus();
     }
 }
 
-function closeWelcomePopup() {
-    const welcomePopup = document.getElementById('welcome-popup');
-    if (welcomePopup) {
-        welcomePopup.classList.remove('active');
+function closeWelcomeBanner() {
+    const welcomeBanner = document.getElementById('welcome-banner');
+    if (welcomeBanner) {
+        welcomeBanner.classList.remove('active');
     }
 }
 
-// Show welcome popup on page load
+// Show welcome banner on page load
 document.addEventListener('DOMContentLoaded', () => {
-    showWelcomePopup();
+    showWelcomeBanner();
 });
 
 // Navbar Hamburger Toggle
