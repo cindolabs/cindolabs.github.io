@@ -24,6 +24,63 @@
     padding: 0 20px;
 }
 
+/* Welcome Banner Styles */
+.welcome-banner {
+    display: none;
+    position: sticky;
+    top: 80px; /* Adjusted for navbar height */
+    width: 100%;
+    background: var(--rolex-green);
+    color: var(--white);
+    z-index: 900;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    opacity: 0;
+    transform: translateY(-20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.welcome-banner.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.welcome-banner-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.welcome-banner-content h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+.welcome-banner-content p {
+    font-size: 16px;
+    margin-left: 20px;
+    flex: 1;
+}
+
+.welcome-close {
+    background: none;
+    border: none;
+    color: var(--white);
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.welcome-close:hover,
+.welcome-close:focus {
+    color: var(--light-gold);
+    transform: scale(1.1);
+    outline: none;
+}
+
 /* Navbar */
 .navbar {
     background: var(--rolex-green);
@@ -107,6 +164,7 @@
     background: linear-gradient(rgba(5, 97, 53, 0.5), rgba(5, 97, 53, 0.5)), url('new-hero-bg.webp') no-repeat center center/cover;
     background-attachment: fixed;
     color: var(--white);
+    padding-top: 60px; /* Adjusted for welcome banner */
 }
 
 .hero-content {
@@ -724,94 +782,30 @@ footer p {
     color: var(--light-gold);
 }
 
-/* Welcome Pop-up Styles */
-.welcome-popup {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Menggunakan latar belakang semi-transparan tanpa mengubah tema */
-    z-index: 2000; /* Lebih tinggi dari elemen lain */
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-.welcome-popup.active {
-    display: flex;
-    opacity: 1;
-}
-
-.welcome-popup-content {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 12px;
-    text-align: center;
-    max-width: 450px;
-    width: 90%;
-    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    transform: translateY(50px);
-    transition: transform 0.5s ease, opacity 0.5s ease;
-}
-
-.welcome-popup.active .welcome-popup-content {
-    transform: translateY(0);
-    opacity: 1;
-}
-
-.welcome-close {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    font-size: 28px;
-    cursor: pointer;
-    color: var(--rolex-green);
-    transition: color 0.3s;
-}
-
-.welcome-close:hover,
-.welcome-close:focus {
-    color: var(--light-gold);
-    outline: none;
-}
-
-.welcome-popup-content h2 {
-    font-size: 28px;
-    margin-bottom: 15px;
-    color: var(--rolex-green);
-}
-
-.welcome-popup-content p {
-    font-size: 16px;
-    line-height: 1.6;
-    color: var(--dark-gray);
-    margin-bottom: 20px;
-}
-
-.welcome-popup-content .cta-button {
-    background: var(--rolex-green);
-    color: var(--white);
-    padding: 12px 24px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.welcome-popup-content .cta-button:hover,
-.welcome-popup-content .cta-button:focus {
-    background: var(--light-gold);
-    transform: scale(1.05);
-    outline: 3px solid var(--light-gold);
-    outline-offset: 2px;
-}
-
 /* Responsive */
 @media (max-width: 768px) {
+    .welcome-banner-content {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 15px;
+    }
+
+    .welcome-banner-content h2 {
+        font-size: 20px;
+    }
+
+    .welcome-banner-content p {
+        font-size: 14px;
+        margin-left: 0;
+        margin-top: 10px;
+    }
+
+    .welcome-close {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+    }
+
     .nav-menu {
         display: none;
         position: absolute;
@@ -909,23 +903,5 @@ footer p {
     .chatbot {
         width: 90%;
         right: 5%;
-    }
-
-    .welcome-popup-content {
-        max-width: 90%;
-        padding: 20px;
-    }
-
-    .welcome-popup-content h2 {
-        font-size: 24px;
-    }
-
-    .welcome-popup-content p {
-        font-size: 14px;
-    }
-
-    .welcome-popup-content .cta-button {
-        padding: 10px 20px;
-        font-size: 14px;
     }
 }
