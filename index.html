@@ -13,6 +13,17 @@
     <link rel="apple-touch-icon" href="hocindo.png">
 </head>
 <body>
+    <!-- Welcome Banner -->
+    <div id="welcome-banner" class="welcome-banner" role="alert" aria-labelledby="welcome-title">
+        <div class="welcome-banner-content">
+            <h2 id="welcome-title">Selamat Datang di Hocindo!</h2>
+            <p id="welcome-message">Tempat sederhana yang memuliakan tamu dan investor</p>
+            <button onclick="closeWelcomeBanner()" class="welcome-close" aria-label="Tutup banner selamat datang">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+
     <!-- Navbar -->
     <header class="navbar">
         <div class="container">
@@ -209,16 +220,6 @@
         <div class="chatbot-footer">
             <input type="text" id="chatbot-input" placeholder="Ketik pesan Anda...">
             <button onclick="sendMessage()">Kirim</button>
-        </div>
-    </div>
-
-    <!-- Welcome Pop-up -->
-    <div id="welcome-popup" class="welcome-popup" role="dialog" aria-modal="true" aria-labelledby="welcome-title">
-        <div class="welcome-popup-content">
-            <span class="welcome-close" onclick="closeWelcomePopup()" role="button" aria-label="Tutup pop-up selamat datang">&times;</span>
-            <h2 id="welcome-title">Selamat Datang di Hocindo!</h2>
-            <p id="welcome-message">Nikmati pengalaman menginap yang luar biasa dan jelajahi peluang investasi strategis dengan kami.</p>
-            <button onclick="closeWelcomePopup()" class="cta-button" aria-label="Lanjutkan ke situs">Jelajahi Sekarang</button>
         </div>
     </div>
 
