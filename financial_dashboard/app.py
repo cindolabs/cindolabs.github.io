@@ -12,16 +12,16 @@ st.set_page_config(
 
 # ---------------------- DATA AWAL ----------------------
 data = [
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Mochamad Tabrani", "Jumlah": 50000, "Investor": "Mochamad Tabrani"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Pipit", "Jumlah": 50000, "Investor": "Pipit"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Sangaji", "Jumlah": 100000, "Investor": "Sangaji"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Asmin", "Jumlah": 135000, "Investor": "Asmin"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Rasyid", "Jumlah": 50000, "Investor": "Rasyid"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pengeluaran", "Deskripsi": "Biaya Operasional", "Jumlah": -10000, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Dana Manajer", "Deskripsi": "Dana Dikelola Manajer", "Jumlah": -100000, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Dana Cadangan", "Deskripsi": "Dana Cadangan", "Jumlah": -275000, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pertumbuhan", "Deskripsi": "Pertumbuhan Dana Manajer", "Jumlah": 900, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Bagi Hasil", "Deskripsi": "Bagi Hasil Investor", "Jumlah": -100, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23, 8, 0), "Kategori": "Pemasukan", "Deskripsi": "Investasi Mochamad Tabrani", "Jumlah": 50000, "Investor": "Mochamad Tabrani"},
+    {"Tanggal": datetime(2025, 9, 23, 9, 15), "Kategori": "Pemasukan", "Deskripsi": "Investasi Pipit", "Jumlah": 50000, "Investor": "Pipit"},
+    {"Tanggal": datetime(2025, 9, 23, 8, 0), "Kategori": "Pemasukan", "Deskripsi": "Investasi Sangaji", "Jumlah": 100000, "Investor": "Sangaji"},
+    {"Tanggal": datetime(2025, 9, 23, 10, 30), "Kategori": "Pemasukan", "Deskripsi": "Investasi Asmin", "Jumlah": 135000, "Investor": "Asmin"},
+    {"Tanggal": datetime(2025, 9, 23, 11, 45), "Kategori": "Pemasukan", "Deskripsi": "Investasi Rasyid", "Jumlah": 50000, "Investor": "Rasyid"},
+    {"Tanggal": datetime(2025, 9, 23, 15, 45), "Kategori": "Pengeluaran", "Deskripsi": "Biaya Operasional", "Jumlah": -10000, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23, 16, 10), "Kategori": "Dana Manajer", "Deskripsi": "Dana Dikelola Manajer", "Jumlah": -100000, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23, 17, 20), "Kategori": "Dana Cadangan", "Deskripsi": "Dana Cadangan", "Jumlah": -275000, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23, 18, 5), "Kategori": "Pertumbuhan", "Deskripsi": "Pertumbuhan Dana Manajer", "Jumlah": 900, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23, 19, 0), "Kategori": "Bagi Hasil", "Deskripsi": "Bagi Hasil Investor", "Jumlah": -100, "Investor": "N/A"},
 ]
 df = pd.DataFrame(data)
 
@@ -34,6 +34,9 @@ def hitung_bunga(row):
 df["Bunga"] = df.apply(hitung_bunga, axis=1)
 df = df[["Tanggal", "Kategori", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
 
+# Format kolom tanggal agar tampil jam juga
+df["Tanggal"] = pd.to_datetime(df["Tanggal"]).dt.strftime("%d-%m-%Y %H:%M")
+
 # ---------------------- HEADER ----------------------
 st.markdown(
     """
@@ -44,6 +47,8 @@ st.markdown(
 )
 
 # ---------------------- METRICS ----------------------
+col1, col2, col3, col4 = st.columns(4)
+
 total_pemasukan = df[df["Kategori"] == "Pemasukan"]["Jumlah"].sum()
 total_pengeluaran = abs(df[df["Kategori"] == "Pengeluaran"]["Jumlah"].sum())
 dana_manajer = abs(df[df["Kategori"] == "Dana Manajer"]["Jumlah"].sum())
@@ -52,54 +57,21 @@ pertumbuhan = df[df["Kategori"] == "Pertumbuhan"]["Jumlah"].sum()
 bagi_hasil = abs(df[df["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
 saldo = df["Jumlah"].sum()
 
-# Styling untuk metrics
-st.markdown("""
-    <style>
-    .metric-card {
-        background: rgba(46, 204, 113, 0.15);
-        padding: 20px;
-        border-radius: 15px;
-        text-align: center;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-        margin-bottom: 15px;
-    }
-    .metric-title {
-        font-size: 16px;
-        font-weight: bold;
-        color: #006400;
-    }
-    .metric-value {
-        font-size: 20px;
-        color: #004d00;
-    }
-    </style>
-""", unsafe_allow_html=True)
-
-st.markdown("### 📌 Ringkasan Keuangan")
-
-col1, col2, col3, col4 = st.columns(4)
-with col1:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>💰 Pemasukan</div><div class='metric-value'>Rp {total_pemasukan:,.0f}</div></div>", unsafe_allow_html=True)
-with col2:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>📉 Pengeluaran</div><div class='metric-value'>Rp {total_pengeluaran:,.0f}</div></div>", unsafe_allow_html=True)
-with col3:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>🧑‍💼 Dana Manajer</div><div class='metric-value'>Rp {dana_manajer:,.0f}</div></div>", unsafe_allow_html=True)
-with col4:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>📊 Saldo</div><div class='metric-value'>Rp {saldo:,.0f}</div></div>", unsafe_allow_html=True)
+col1.metric("💰 Pemasukan", f"Rp {total_pemasukan:,.0f}")
+col2.metric("📉 Pengeluaran", f"Rp {total_pengeluaran:,.0f}")
+col3.metric("🧑‍💼 Dana Manajer", f"Rp {dana_manajer:,.0f}")
+col4.metric("📊 Saldo", f"Rp {saldo:,.0f}")
 
 col5, col6, col7 = st.columns(3)
-with col5:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>🏦 Dana Cadangan</div><div class='metric-value'>Rp {dana_cadangan:,.0f}</div></div>", unsafe_allow_html=True)
-with col6:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>📈 Pertumbuhan</div><div class='metric-value'>Rp {pertumbuhan:,.0f}</div></div>", unsafe_allow_html=True)
-with col7:
-    st.markdown(f"<div class='metric-card'><div class='metric-title'>🤝 Bagi Hasil</div><div class='metric-value'>Rp {bagi_hasil:,.0f}</div></div>", unsafe_allow_html=True)
+col5.metric("🏦 Dana Cadangan", f"Rp {dana_cadangan:,.0f}")
+col6.metric("📈 Pertumbuhan", f"Rp {pertumbuhan:,.0f}")
+col7.metric("🤝 Bagi Hasil", f"Rp {bagi_hasil:,.0f}")
 
 # ---------------------- NAVIGASI ----------------------
 menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "🏆 Investor"])
 
 if menu == "📊 Grafik":
-    st.subheader("📊 Grafik Keuangan")
+    st.subheader("Grafik Keuangan")
     colA, colB, colC = st.columns(3)
 
     with colA:
@@ -136,53 +108,8 @@ if menu == "📊 Grafik":
         st.plotly_chart(bar_chart, use_container_width=True)
 
 elif menu == "📑 Transaksi":
-    st.subheader("📑 Daftar Transaksi Lengkap")
+    st.subheader("📑 Daftar Transaksi")
     st.dataframe(df, use_container_width=True, height=400)
-
-    # Tabel pemasukan
-    st.markdown("### 💰 Rincian Pemasukan")
-    pemasukan_df = df[df["Kategori"] == "Pemasukan"][["Tanggal", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
-    st.dataframe(
-        pemasukan_df.style.format({"Jumlah": "Rp {:,.0f}", "Bunga": "Rp {:,.0f}"}).applymap(
-            lambda _: "background-color: rgba(0,255,0,0.2)", subset=["Jumlah", "Bunga"]
-        ),
-        use_container_width=True,
-        height=300
-    )
-
-    # Tabel pengeluaran
-    st.markdown("### 📉 Rincian Pengeluaran")
-    pengeluaran_df = df[df["Jumlah"] < 0][["Tanggal", "Kategori", "Deskripsi", "Jumlah"]]
-    st.dataframe(
-        pengeluaran_df.style.format({"Jumlah": "Rp {:,.0f}"}).applymap(
-            lambda _: "background-color: rgba(255,0,0,0.2)", subset=["Jumlah"]
-        ),
-        use_container_width=True,
-        height=250
-    )
-
-    # Ringkasan pengeluaran per kategori
-    st.markdown("### 🧾 Ringkasan Pengeluaran per Kategori")
-    ringkasan_pengeluaran = pengeluaran_df.groupby("Kategori")[["Jumlah"]].sum().reset_index()
-    ringkasan_pengeluaran["Jumlah"] = ringkasan_pengeluaran["Jumlah"].abs()  # ubah jadi positif
-    st.dataframe(
-        ringkasan_pengeluaran.style.format({"Jumlah": "Rp {:,.0f}"}).applymap(
-            lambda _: "background-color: rgba(255,200,200,0.5)", subset=["Jumlah"]
-        ),
-        use_container_width=True,
-        height=200
-    )
-
-    # Grafik pie chart pengeluaran per kategori
-    st.markdown("### 📊 Grafik Pengeluaran per Kategori")
-    pie_pengeluaran = px.pie(
-        ringkasan_pengeluaran,
-        names="Kategori",
-        values="Jumlah",
-        title="Distribusi Pengeluaran per Kategori",
-        color_discrete_sequence=px.colors.sequential.Reds
-    )
-    st.plotly_chart(pie_pengeluaran, use_container_width=True)
 
 elif menu == "🏆 Investor":
     st.subheader("🏆 Ranking Investor (Pemasukan + Bunga)")
