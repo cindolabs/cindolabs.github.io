@@ -56,15 +56,6 @@ if 'transaksi' not in st.session_state:
         st.session_state.transaksi["Tanggal"] = pd.to_datetime(st.session_state.transaksi["Tanggal"])
         st.session_state.transaksi.to_csv("transaksi.csv", index=False)
 
-# ---------------------- HEADER ----------------------
-st.markdown(
-    """
-    <h1 style='text-align: center; color: #D4AF37;'>💼 Dashboard Keuangan Hocindo</h1>
-    <p style='text-align: center; color: #ccc;'>Manajemen keuangan interaktif untuk Hotel Kreatif Indonesia</p>
-    <hr style='border: 1px solid #D4AF37;'>
-    """, unsafe_allow_html=True
-)
-
 # ---------------------- INPUT TRANSAKSI ----------------------
 st.sidebar.header("Tambah Transaksi")
 with st.sidebar.form("form_transaksi"):
@@ -188,6 +179,12 @@ with tab3:
     ranking = ranking.sort_values("Jumlah", ascending=False)
     ranking["Jumlah"] = ranking["Jumlah"].apply(lambda x: f"Rp {x:,.0f}")
     st.table(ranking)
+
+    st.subheader("🏆 Analisis ROI Investor")
+    roi_data = filtered_data[filtered_data["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
+    roi_data["ROI"] = roi_data["Jumlah"] / total_pemasukan * 100
+    roi_data["ROI"] = roi_data["ROI"].apply(lambda x: f"{x:.2f}%")
+    st.table(roi_data)
 
 # ---------------------- CATATAN ----------------------
 st.markdown("**Catatan**: Gunakan filter untuk analisis spesifik. Data disimpan di `transaksi.csv`. Hubungi admin untuk kata sandi atau pertanyaan.")
