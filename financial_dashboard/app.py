@@ -25,6 +25,17 @@ data = [
 ]
 df = pd.DataFrame(data)
 
+# ---------------------- TAMBAH KOLOM BUNGA ----------------------
+def hitung_bunga(row):
+    if row["Kategori"] == "Pemasukan":
+        return row["Jumlah"] * 0.05  # bunga 5%
+    return 0
+
+df["Bunga"] = df.apply(hitung_bunga, axis=1)
+
+# Atur urutan kolom: Tanggal, Kategori, Deskripsi, Jumlah, Investor, Bunga
+df = df[["Tanggal", "Kategori", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
+
 # ---------------------- HEADER ----------------------
 st.markdown(
     """
@@ -55,19 +66,32 @@ col5.metric("🏦 Dana Cadangan", f"Rp {dana_cadangan:,.0f}")
 col6.metric("📈 Pertumbuhan", f"Rp {pertumbuhan:,.0f}")
 col7.metric("🤝 Bagi Hasil", f"Rp {bagi_hasil:,.0f}")
 
-# ---------------------- TABS ----------------------
+# ---------------------- NAVIGASI ----------------------
 menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "🏆 Investor"])
 
 if menu == "📊 Grafik":
     st.subheader("Grafik Keuangan")
-    # grafik pie, line, bar ditaruh di sini
+    colA, colB, colC = st.columns(3)
+
+    with colA:
+        pie_chart = px.pie(df[df["Kategori"] == "Pemasukan"], names="Investor", values="Jumlah", title="Distribusi Pemasukan per Investor")
+        st.plotly_chart(pie_chart, use_container_width=True)
+
+    with colB:
+        line_chart = px.line(df, x="Tanggal", y="Jumlah", color="Kategori", markers=True, title="Tren Keuangan")
+        st.plotly_chart(line_chart, use_container_width=True)
+
+    with colC:
+        bar_chart = px.bar(df[df["Kategori"] == "Pemasukan"], x="Investor", y="Bunga", title="Bunga per Investor", color="Investor")
+        st.plotly_chart(bar_chart, use_container_width=True)
 
 elif menu == "📑 Transaksi":
     st.subheader("📑 Daftar Transaksi")
     st.dataframe(df, use_container_width=True, height=400)
 
 elif menu == "🏆 Investor":
-    st.subheader("🏆 Ranking Investor")
-    ranking = df[df["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
-    ranking = ranking.sort_values("Jumlah", ascending=False)
+    st.subheader("🏆 Ranking Investor (Pemasukan + Bunga)")
+    ranking = df[df["Kategori"] == "Pemasukan"].groupby("Investor")[["Jumlah", "Bunga"]].sum().reset_index()
+    ranking["Total"] = ranking["Jumlah"] + ranking["Bunga"]
+    ranking = ranking.sort_values("Total", ascending=False)
     st.table(ranking)
