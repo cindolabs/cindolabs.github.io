@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>💼 Dashboard Keuangan Hocindo</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f9fdf9; }
+    h1 { text-align: center; color: #2ecc71; }
+    .cards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin: 20px 0; }
+    .card {
+      background: #eafaf1; padding: 15px; border-radius: 12px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    .card h3 { margin: 0; font-size: 14px; color: #006400; }
+    .card p { font-size: 18px; color: #004d00; margin: 5px 0 0; }
+    nav { display: flex; gap: 20px; justify-content: center; margin: 20px 0; }
+    nav button { padding: 8px 16px; border: none; background: #27ae60; color: white; border-radius: 6px; cursor: pointer; }
+    nav button.active { background: #1e8449; }
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+    table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #2ecc71; color: white; }
+  </style>
+</head>
+<body>
+
+  <h1>💼 Dashboard Keuangan Hocindo</h1>
+  
+  <!-- Metrics -->
+  <div class="cards">
+    <div class="card"><h3>💰 Pemasukan</h3><p id="pemasukan">Rp 0</p></div>
+    <div class="card"><h3>📉 Pengeluaran</h3><p id="pengeluaran">Rp 0</p></div>
+    <div class="card"><h3>🧑‍💼 Dana Manajer</h3><p>Rp 100,000</p></div>
+    <div class="card"><h3>📊 Saldo</h3><p id="saldo">Rp 0</p></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav>
+    <button class="tab-btn active" data-tab="grafik">📊 Grafik</button>
+    <button class="tab-btn" data-tab="transaksi">📑 Transaksi</button>
+    <button class="tab-btn" data-tab="investor">🏆 Investor</button>
+  </nav>
+
+  <!-- Tab Content -->
+  <div id="grafik" class="tab-content active">
+    <canvas id="chart1"></canvas>
+  </div>
+  
+  <div id="transaksi" class="tab-content">
+    <table>
+      <thead>
+        <tr><th>Tanggal</th><th>Kategori</th><th>Deskripsi</th><th>Jumlah</th><th>Investor</th></tr>
+      </thead>
+      <tbody id="transaksi-body"></tbody>
+    </table>
+  </div>
+  
+  <div id="investor" class="tab-content">
+    <p>Ranking investor akan ditampilkan di sini...</p>
+  </div>
+
+  <script>
+    // Data JSON
+    const data = [
+      { tanggal: "2025-09-23 08:00", kategori: "Pemasukan", deskripsi: "Investasi Mochamad Tabrani", jumlah: 50000, investor: "Mochamad Tabrani" },
+      { tanggal: "2025-09-23 09:30", kategori: "Pemasukan", deskripsi: "Investasi Pipit", jumlah: 50000, investor: "Pipit" },
+      { tanggal: "2025-09-23 10:15", kategori: "Pemasukan", deskripsi: "Investasi Sangaji", jumlah: 100000, investor: "Sangaji" },
+      { tanggal: "2025-09-23 13:00", kategori: "Pengeluaran", deskripsi: "Biaya Operasional", jumlah: -10000, investor: "N/A" }
+    ];
+
+    // Hitung metrics
+    const totalPemasukan = data.filter(d => d.kategori==="Pemasukan").reduce((a,b)=>a+b.jumlah,0);
+    const totalPengeluaran = Math.abs(data.filter(d => d.kategori==="Pengeluaran").reduce((a,b)=>a+b.jumlah,0));
+    const saldo = data.reduce((a,b)=>a+b.jumlah,0);
+    document.getElementById("pemasukan").textContent = "Rp " + totalPemasukan.toLocaleString();
+    document.getElementById("pengeluaran").textContent = "Rp " + totalPengeluaran.toLocaleString();
+    document.getElementById("saldo").textContent = "Rp " + saldo.toLocaleString();
+
+    // Isi tabel transaksi
+    const tbody = document.getElementById("transaksi-body");
+    data.forEach(row=>{
+      tbody.innerHTML += `<tr>
+        <td>${row.tanggal}</td>
+        <td>${row.kategori}</td>
+        <td>${row.deskripsi}</td>
+        <td>Rp ${row.jumlah.toLocaleString()}</td>
+        <td>${row.investor}</td>
+      </tr>`;
+    });
+
+    // Grafik Chart.js
+    const ctx = document.getElementById('chart1').getContext('2d');
+    new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: data.map(d=>d.investor),
+        datasets: [{
+          label: 'Jumlah',
+          data: data.map(d=>d.jumlah),
+          backgroundColor: data.map(d=>d.jumlah>0?"#27ae60":"#e74c3c")
+        }]
+      }
+    });
+
+    // Tabs
+    document.querySelectorAll(".tab-btn").forEach(btn=>{
+      btn.addEventListener("click", ()=>{
+        document.querySelectorAll(".tab-btn").forEach(b=>b.classList.remove("active"));
+        document.querySelectorAll(".tab-content").forEach(tab=>tab.classList.remove("active"));
+        btn.classList.add("active");
+        document.getElementById(btn.dataset.tab).classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
