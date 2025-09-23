@@ -12,16 +12,16 @@ st.set_page_config(
 
 # ---------------------- DATA AWAL ----------------------
 data = [
-    {"Tanggal": datetime(2025, 9, 8), "Kategori": "Pemasukan", "Deskripsi": "Investasi Mochamad Tabrani", "Jumlah": 50000, "Investor": "Mochamad Tabrani"},
-    {"Tanggal": datetime(2025, 9, 8), "Kategori": "Pemasukan", "Deskripsi": "Investasi Pipit", "Jumlah": 50000, "Investor": "Pipit"},
-    {"Tanggal": datetime(2025, 9, 10), "Kategori": "Pemasukan", "Deskripsi": "Investasi Sangaji", "Jumlah": 100000, "Investor": "Sangaji"},
-    {"Tanggal": datetime(2025, 9, 10), "Kategori": "Pemasukan", "Deskripsi": "Investasi Asmin", "Jumlah": 135000, "Investor": "Asmin"},
-    {"Tanggal": datetime(2025, 9, 10), "Kategori": "Pemasukan", "Deskripsi": "Investasi Rasyid", "Jumlah": 50000, "Investor": "Rasyid"},
-    {"Tanggal": datetime(2025, 9, 10), "Kategori": "Pengeluaran", "Deskripsi": "Biaya Operasional", "Jumlah": -10000, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 11), "Kategori": "Dana Manajer", "Deskripsi": "Dana Dikelola Manajer", "Jumlah": -100000, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 11), "Kategori": "Dana Cadangan", "Deskripsi": "Dana Cadangan", "Jumlah": -275000, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 12), "Kategori": "Pertumbuhan", "Deskripsi": "Pertumbuhan Dana Manajer", "Jumlah": 900, "Investor": "N/A"},
-    {"Tanggal": datetime(2025, 9, 13), "Kategori": "Bagi Hasil", "Deskripsi": "Bagi Hasil Investor", "Jumlah": -100, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Mochamad Tabrani", "Jumlah": 50000, "Investor": "Mochamad Tabrani"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Pipit", "Jumlah": 50000, "Investor": "Pipit"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Sangaji", "Jumlah": 100000, "Investor": "Sangaji"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Asmin", "Jumlah": 135000, "Investor": "Asmin"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Rasyid", "Jumlah": 50000, "Investor": "Rasyid"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pengeluaran", "Deskripsi": "Biaya Operasional", "Jumlah": -10000, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Dana Manajer", "Deskripsi": "Dana Dikelola Manajer", "Jumlah": -100000, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Dana Cadangan", "Deskripsi": "Dana Cadangan", "Jumlah": -275000, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pertumbuhan", "Deskripsi": "Pertumbuhan Dana Manajer", "Jumlah": 900, "Investor": "N/A"},
+    {"Tanggal": datetime(2025, 9, 23), "Kategori": "Bagi Hasil", "Deskripsi": "Bagi Hasil Investor", "Jumlah": -100, "Investor": "N/A"},
 ]
 df = pd.DataFrame(data)
 
@@ -172,6 +172,17 @@ elif menu == "📑 Transaksi":
         use_container_width=True,
         height=200
     )
+
+    # Grafik pie chart pengeluaran per kategori
+    st.markdown("### 📊 Grafik Pengeluaran per Kategori")
+    pie_pengeluaran = px.pie(
+        ringkasan_pengeluaran,
+        names="Kategori",
+        values="Jumlah",
+        title="Distribusi Pengeluaran per Kategori",
+        color_discrete_sequence=px.colors.sequential.Reds
+    )
+    st.plotly_chart(pie_pengeluaran, use_container_width=True)
 
 elif menu == "🏆 Investor":
     st.subheader("🏆 Ranking Investor (Pemasukan + Bunga)")
