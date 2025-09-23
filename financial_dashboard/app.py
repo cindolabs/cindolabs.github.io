@@ -68,7 +68,7 @@ col6.metric("📈 Pertumbuhan", f"Rp {pertumbuhan:,.0f}")
 col7.metric("🤝 Bagi Hasil", f"Rp {bagi_hasil:,.0f}")
 
 # ---------------------- NAVIGASI ----------------------
-menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "🏆 Investor"])
+menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "💰 Pemasukan", "📉 Pengeluaran", "🏆 Investor"])
 
 if menu == "📊 Grafik":
     st.subheader("Grafik Keuangan")
@@ -110,6 +110,16 @@ if menu == "📊 Grafik":
 elif menu == "📑 Transaksi":
     st.subheader("📑 Daftar Transaksi")
     st.dataframe(df, use_container_width=True, height=400)
+
+elif menu == "💰 Pemasukan":
+    st.subheader("💰 Detail Pemasukan")
+    pemasukan = df[df["Kategori"] == "Pemasukan"]
+    st.dataframe(pemasukan, use_container_width=True, height=400)
+
+elif menu == "📉 Pengeluaran":
+    st.subheader("📉 Detail Pengeluaran")
+    pengeluaran = df[df["Kategori"] == "Pengeluaran"]
+    st.dataframe(pengeluaran, use_container_width=True, height=400)
 
 elif menu == "🏆 Investor":
     st.subheader("🏆 Ranking Investor (Pemasukan + Bunga)")
