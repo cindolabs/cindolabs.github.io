@@ -5,14 +5,16 @@ import plotly.graph_objects as go
 from datetime import datetime
 import os
 
-# Tema Hocindo (CSS kustom)
+# Tema Hocindo dengan kontras lebih baik
 st.markdown("""
     <style>
     .main { background: linear-gradient(to bottom, #006847, #004c3f); color: #D4AF37; }
     .sidebar .sidebar-content { background: #1a3c34; color: #D4AF37; }
     h1, h2, h3, h4 { color: #D4AF37; }
     .stButton>button { background: linear-gradient(to right, #D4AF37, #b8860b); color: #004c3f; }
-    .stMetric { background: #1a3c34; border-radius: 10px; padding: 10px; }
+    .stMetric { background: #2e5d4f; border-radius: 10px; padding: 10px; color: #FFFFFF !important; }
+    .stMetric label { color: #FFFFFF !important; }
+    .stMetric .metric-value { color: #FFFFFF !important; }
     </style>
 """, unsafe_allow_html=True)
 
@@ -91,7 +93,7 @@ pertumbuhan = st.session_state.transaksi[st.session_state.transaksi["Kategori"] 
 bagi_hasil = abs(st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
 saldo = total_pemasukan - total_pengeluaran - dana_manajer - dana_cadangan - bagi_hasil + pertumbuhan
 
-# Metrik
+# Metrik dengan warna lebih jelas
 st.header("Ringkasan Keuangan")
 col1, col2, col3 = st.columns(3)
 col1.metric("Total Pemasukan", f"Rp {total_pemasukan:,.2f}")
@@ -105,10 +107,16 @@ st.metric("Bagi Hasil", f"Rp {bagi_hasil:,.2f}")
 
 # Visualisasi 1: Pie chart distribusi pemasukan per investor
 st.header("Distribusi Pemasukan per Investor")
-if not filtered_data[filtered_data["Kategori"] == "Pemasukan"].empty:
+try:
     pie_data = filtered_data[filtered_data["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
-    fig_pie = px.pie(pie_data, values="Jumlah", names="Investor", title="Pemasukan per Investor", color_discrete_sequence=px.colors.sequential.Golds)
-    st.plotly_chart(fig_pie)
+    if not pie_data.empty and pie_data["Jumlah"].sum() > 0:
+        fig_pie = px.pie(pie_data, values="Jumlah", names="Investor", title="Pemasukan per Investor", color_discrete_sequence=px.colors.sequential.Golds)
+        st.plotly_chart(fig_pie)
+    else:
+        st.warning("Tidak ada data pemasukan untuk ditampilkan dalam pie chart.")
+except Exception as e:
+    st.error("Gagal membuat pie chart. Periksa data pemasukan.")
+    st.write(f"Detail error: {str(e)}")
 
 # Visualisasi 2: Bar chart untuk dana manajer, cadangan, dan bagi hasil
 st.header("Dana Manajer, Cadangan, dan Bagi Hasil")
@@ -126,6 +134,8 @@ if not filtered_data.empty:
     tren_data["Saldo Kumulatif"] = tren_data["Jumlah"].cumsum()
     fig_tren = px.line(tren_data, x="Tanggal", y="Saldo Kumulatif", title="Tren Saldo Harian", color_discrete_sequence=["#D4AF37"])
     st.plotly_chart(fig_tren)
+else:
+    st.warning("Tidak ada data untuk ditampilkan dalam tren saldo.")
 
 # Ekspor data
 st.header("Ekspor Data")
