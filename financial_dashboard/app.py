@@ -76,6 +76,22 @@ if submit:
     st.session_state.transaksi = df
     st.sidebar.success("✅ Transaksi berhasil ditambahkan!")
 
+# ---------------------- UPLOAD CSV ----------------------
+st.sidebar.header("📂 Upload CSV Eksternal")
+uploaded_file = st.sidebar.file_uploader("Upload file CSV transaksi", type="csv")
+
+if uploaded_file is not None:
+    try:
+        new_df = pd.read_csv(uploaded_file)
+        new_df["Tanggal"] = pd.to_datetime(new_df["Tanggal"])
+        # Gabung data lama + baru, hapus duplikat
+        df = pd.concat([df, new_df], ignore_index=True).drop_duplicates().reset_index(drop=True)
+        save_data(df)
+        st.session_state.transaksi = df
+        st.sidebar.success("✅ Data CSV berhasil di-merge!")
+    except Exception as e:
+        st.sidebar.error(f"Gagal membaca file: {e}")
+
 # ---------------------- FILTER ----------------------
 st.header("🔎 Filter Transaksi")
 col1, col2 = st.columns(2)
@@ -153,4 +169,4 @@ with tab4:
 st.header("⬇️ Ekspor Data")
 st.download_button("Unduh CSV", data=filtered.to_csv(index=False), file_name="transaksi_hocindo.csv", mime="text/csv")
 
-st.info("ℹ️ Data disimpan otomatis di **transaksi.csv**. Gunakan filter untuk analisis lebih detail.")
+st.info("ℹ️ Data disimpan otomatis di **transaksi.csv**. Anda juga bisa upload file CSV eksternal untuk digabung dengan data lama.")
