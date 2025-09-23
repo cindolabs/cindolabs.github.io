@@ -32,16 +32,14 @@ def hitung_bunga(row):
     return 0
 
 df["Bunga"] = df.apply(hitung_bunga, axis=1)
-
-# Atur urutan kolom: Tanggal, Kategori, Deskripsi, Jumlah, Investor, Bunga
 df = df[["Tanggal", "Kategori", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
 
 # ---------------------- HEADER ----------------------
 st.markdown(
     """
-    <h1 style='text-align: center; color: #FFD700;'>💼 Dashboard Keuangan Hocindo</h1>
-    <p style='text-align: center; color: #ccc;'>Visualisasi interaktif dan ringkasan keuangan terkini</p>
-    <hr style='border: 1px solid #444;'>
+    <h1 style='text-align: center; color: #2ecc71;'>💼 Dashboard Keuangan Hocindo</h1>
+    <p style='text-align: center; color: #27ae60;'>Visualisasi interaktif dan ringkasan keuangan terkini</p>
+    <hr style='border: 1px solid #27ae60;'>
     """, unsafe_allow_html=True
 )
 
@@ -74,15 +72,36 @@ if menu == "📊 Grafik":
     colA, colB, colC = st.columns(3)
 
     with colA:
-        pie_chart = px.pie(df[df["Kategori"] == "Pemasukan"], names="Investor", values="Jumlah", title="Distribusi Pemasukan per Investor")
+        pie_chart = px.pie(
+            df[df["Kategori"] == "Pemasukan"],
+            names="Investor",
+            values="Jumlah",
+            title="Distribusi Pemasukan per Investor",
+            color_discrete_sequence=px.colors.sequential.Greens
+        )
         st.plotly_chart(pie_chart, use_container_width=True)
 
     with colB:
-        line_chart = px.line(df, x="Tanggal", y="Jumlah", color="Kategori", markers=True, title="Tren Keuangan")
+        line_chart = px.line(
+            df,
+            x="Tanggal",
+            y="Jumlah",
+            color="Kategori",
+            markers=True,
+            title="Tren Keuangan",
+            color_discrete_sequence=px.colors.sequential.Greens
+        )
         st.plotly_chart(line_chart, use_container_width=True)
 
     with colC:
-        bar_chart = px.bar(df[df["Kategori"] == "Pemasukan"], x="Investor", y="Bunga", title="Bunga per Investor", color="Investor")
+        bar_chart = px.bar(
+            df[df["Kategori"] == "Pemasukan"],
+            x="Investor",
+            y="Bunga",
+            title="Bunga per Investor",
+            color="Investor",
+            color_discrete_sequence=px.colors.sequential.Greens
+        )
         st.plotly_chart(bar_chart, use_container_width=True)
 
 elif menu == "📑 Transaksi":
