@@ -42,6 +42,7 @@ Visi kami adalah **menciptakan pengalaman menginap yang nyaman sekaligus memberi
 | 🚀 Deployment | [GitHub Pages](https://pages.github.com/) |
 | 💳 Investasi & Bisnis | Smart Contracts, Blockchain (Ethereum/Polygon) |
 | 📊 Data & Analitik | Google Analytics, AI-powered insights |
+| 💼 Pembukuan | [Hocindo streamlit](https://hocindo.streamlit.app/)
 
 ---
 
