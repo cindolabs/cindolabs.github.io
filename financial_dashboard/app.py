@@ -56,47 +56,17 @@ col6.metric("📈 Pertumbuhan", f"Rp {pertumbuhan:,.0f}")
 col7.metric("🤝 Bagi Hasil", f"Rp {bagi_hasil:,.0f}")
 
 # ---------------------- TABS ----------------------
-tab1, tab2, tab3 = st.tabs(["📊 Grafik", "📑 Transaksi", "🏆 Investor"])
+menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "🏆 Investor"])
 
-with tab1:
+if menu == "📊 Grafik":
     st.subheader("Grafik Keuangan")
-    colA, colB = st.columns(2)
+    # grafik pie, line, bar ditaruh di sini
 
-    # Pie Chart Pemasukan per Investor
-    with colA:
-        pie_data = df[df["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
-        fig_pie = px.pie(pie_data, values="Jumlah", names="Investor", hole=0.4,
-                         title="Distribusi Investor", color_discrete_sequence=px.colors.sequential.Gold)
-        st.plotly_chart(fig_pie, use_container_width=True)
-
-    # Line Chart Saldo
-    with colB:
-        df_sorted = df.sort_values("Tanggal")
-        df_sorted["Saldo Kumulatif"] = df_sorted["Jumlah"].cumsum()
-        fig_line = px.line(df_sorted, x="Tanggal", y="Saldo Kumulatif", markers=True,
-                           title="Pergerakan Saldo", color_discrete_sequence=["#FFD700"])
-        st.plotly_chart(fig_line, use_container_width=True)
-
-    # Bar Chart Dana
-    st.subheader("Dana Manajer, Cadangan, dan Bagi Hasil")
-    bar_data = pd.DataFrame({
-        "Kategori": ["Dana Manajer", "Dana Cadangan", "Bagi Hasil"],
-        "Jumlah": [dana_manajer, dana_cadangan, bagi_hasil]
-    })
-    fig_bar = px.bar(bar_data, x="Kategori", y="Jumlah", text="Jumlah",
-                     title="Perbandingan Dana", color="Kategori",
-                     color_discrete_map={
-                         "Dana Manajer": "#FFD700",
-                         "Dana Cadangan": "#DAA520",
-                         "Bagi Hasil": "#B8860B"
-                     })
-    st.plotly_chart(fig_bar, use_container_width=True)
-
-with tab2:
+elif menu == "📑 Transaksi":
     st.subheader("📑 Daftar Transaksi")
     st.dataframe(df, use_container_width=True, height=400)
 
-with tab3:
+elif menu == "🏆 Investor":
     st.subheader("🏆 Ranking Investor")
     ranking = df[df["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
     ranking = ranking.sort_values("Jumlah", ascending=False)
