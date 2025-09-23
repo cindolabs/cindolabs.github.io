@@ -1,34 +1,30 @@
 import streamlit as st
 import pandas as pd
 import plotly.express as px
-import plotly.graph_objects as go
 from datetime import datetime
 import os
 
-# Tema Hocindo dengan kontras lebih baik
+# ---------------------- THEME & STYLE ----------------------
+st.set_page_config(page_title="Dashboard Keuangan Hocindo", page_icon="💰", layout="wide")
+
 st.markdown("""
     <style>
     .main { background: linear-gradient(to bottom, #006847, #004c3f); color: #D4AF37; }
     .sidebar .sidebar-content { background: #1a3c34; color: #D4AF37; }
-    h1, h2, h3, h4 { color: #D4AF37; }
-    .stButton>button { background: linear-gradient(to right, #D4AF37, #b8860b); color: #004c3f; }
-    .stMetric { background: #2e5d4f; border-radius: 10px; padding: 10px; color: #FFFFFF !important; }
-    .stMetric label { color: #FFFFFF !important; }
-    .stMetric .metric-value { color: #FFFFFF !important; }
+    h1, h2, h3, h4 { color: #D4AF37; font-weight: bold; }
+    .stButton>button { background: linear-gradient(to right, #D4AF37, #b8860b); color: #004c3f; font-weight: bold; border-radius: 8px; }
+    .stMetric { background: #2e5d4f; border-radius: 12px; padding: 10px; color: #FFFFFF !important; box-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+    .stDataFrame { border-radius: 10px; overflow: hidden; }
     </style>
 """, unsafe_allow_html=True)
 
-# Judul
-st.title("Dashboard Keuangan Hocindo - Lanjutan")
-
-# Inisialisasi data
-if 'transaksi' not in st.session_state:
-    # Muat data dari CSV jika ada
+# ---------------------- FUNCTIONS ----------------------
+def load_data():
     if os.path.exists("transaksi.csv"):
-        st.session_state.transaksi = pd.read_csv("transaksi.csv")
-        st.session_state.transaksi["Tanggal"] = pd.to_datetime(st.session_state.transaksi["Tanggal"])
+        df = pd.read_csv("transaksi.csv")
+        df["Tanggal"] = pd.to_datetime(df["Tanggal"])
+        return df
     else:
-        # Data awal berdasarkan input Anda
         initial_data = [
             {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Mochamad Tabrani", "Jumlah": 50000, "Investor": "Mochamad Tabrani"},
             {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pemasukan", "Deskripsi": "Investasi Pipit", "Jumlah": 50000, "Investor": "Pipit"},
@@ -41,108 +37,120 @@ if 'transaksi' not in st.session_state:
             {"Tanggal": datetime(2025, 9, 23), "Kategori": "Pertumbuhan", "Deskripsi": "Pertumbuhan Dana Manajer", "Jumlah": 900, "Investor": "N/A"},
             {"Tanggal": datetime(2025, 9, 23), "Kategori": "Bagi Hasil", "Deskripsi": "Bagi Hasil Investor", "Jumlah": -100, "Investor": "N/A"}
         ]
-        st.session_state.transaksi = pd.DataFrame(initial_data)
-        st.session_state.transaksi["Tanggal"] = pd.to_datetime(st.session_state.transaksi["Tanggal"])
-        st.session_state.transaksi.to_csv("transaksi.csv", index=False)
+        df = pd.DataFrame(initial_data)
+        df.to_csv("transaksi.csv", index=False)
+        return df
 
-# Sidebar untuk input transaksi
-st.sidebar.header("Input Transaksi Baru")
+def save_data(df):
+    df.to_csv("transaksi.csv", index=False)
+
+# ---------------------- LOAD DATA ----------------------
+if "transaksi" not in st.session_state:
+    st.session_state.transaksi = load_data()
+
+df = st.session_state.transaksi
+
+# ---------------------- TITLE ----------------------
+st.title("💼 Dashboard Keuangan Hocindo")
+
+# ---------------------- SIDEBAR INPUT ----------------------
+st.sidebar.header("➕ Input Transaksi Baru")
 with st.sidebar.form("form_transaksi"):
-    tanggal = st.date_input("Tanggal")
+    tanggal = st.date_input("Tanggal", datetime.today())
     kategori = st.selectbox("Kategori", ["Pemasukan", "Pengeluaran", "Dana Manajer", "Dana Cadangan", "Pertumbuhan", "Bagi Hasil"])
     deskripsi = st.text_input("Deskripsi")
     jumlah = st.number_input("Jumlah (IDR)", format="%.2f")
     investor = st.text_input("Investor (kosongkan jika tidak relevan)", value="N/A")
     submit = st.form_submit_button("Tambah Transaksi")
 
-# Tambah transaksi baru
 if submit:
-    new_transaksi = pd.DataFrame({
-        "Tanggal": [tanggal],
-        "Kategori": [kategori],
-        "Deskripsi": [deskripsi],
-        "Jumlah": [jumlah if kategori in ["Pemasukan", "Pertumbuhan"] else -jumlah],
-        "Investor": [investor]
-    })
-    st.session_state.transaksi = pd.concat([st.session_state.transaksi, new_transaksi], ignore_index=True)
-    st.session_state.transaksi.to_csv("transaksi.csv", index=False)
-    st.success("Transaksi ditambahkan!")
+    new_data = pd.DataFrame([{
+        "Tanggal": tanggal,
+        "Kategori": kategori,
+        "Deskripsi": deskripsi,
+        "Jumlah": jumlah if kategori in ["Pemasukan", "Pertumbuhan"] else -jumlah,
+        "Investor": investor
+    }])
+    df = pd.concat([df, new_data], ignore_index=True)
+    save_data(df)
+    st.session_state.transaksi = df
+    st.sidebar.success("✅ Transaksi berhasil ditambahkan!")
 
-# Filter data
-st.header("Filter Transaksi")
+# ---------------------- FILTER ----------------------
+st.header("🔎 Filter Transaksi")
 col1, col2 = st.columns(2)
 with col1:
-    filter_kategori = st.multiselect("Pilih Kategori", options=["Pemasukan", "Pengeluaran", "Dana Manajer", "Dana Cadangan", "Pertumbuhan", "Bagi Hasil"], default=["Pemasukan", "Pengeluaran"])
+    filter_kategori = st.multiselect("Pilih Kategori", df["Kategori"].unique(), default=df["Kategori"].unique())
 with col2:
-    filter_investor = st.multiselect("Pilih Investor", options=st.session_state.transaksi["Investor"].unique(), default=["Mochamad Tabrani", "Pipit", "Sangaji", "Asmin", "Rasyid"])
-filtered_data = st.session_state.transaksi[
-    (st.session_state.transaksi["Kategori"].isin(filter_kategori)) &
-    (st.session_state.transaksi["Investor"].isin(filter_investor))
-]
+    filter_investor = st.multiselect("Pilih Investor", df["Investor"].unique(), default=df["Investor"].unique())
 
-# Tabel transaksi
-st.header("Daftar Transaksi")
-st.dataframe(filtered_data)
+filtered = df[(df["Kategori"].isin(filter_kategori)) & (df["Investor"].isin(filter_investor))]
 
-# Ringkasan keuangan
-total_pemasukan = st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Pemasukan"]["Jumlah"].sum()
-total_pengeluaran = abs(st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Pengeluaran"]["Jumlah"].sum())
-dana_manajer = abs(st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Dana Manajer"]["Jumlah"].sum())
-dana_cadangan = abs(st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Dana Cadangan"]["Jumlah"].sum())
-pertumbuhan = st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Pertumbuhan"]["Jumlah"].sum()
-bagi_hasil = abs(st.session_state.transaksi[st.session_state.transaksi["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
+# ---------------------- TABEL ----------------------
+st.header("📋 Daftar Transaksi")
+st.dataframe(filtered, use_container_width=True)
+
+# ---------------------- RINGKASAN ----------------------
+st.header("📊 Ringkasan Keuangan")
+total_pemasukan = df[df["Kategori"] == "Pemasukan"]["Jumlah"].sum()
+total_pengeluaran = abs(df[df["Kategori"] == "Pengeluaran"]["Jumlah"].sum())
+dana_manajer = abs(df[df["Kategori"] == "Dana Manajer"]["Jumlah"].sum())
+dana_cadangan = abs(df[df["Kategori"] == "Dana Cadangan"]["Jumlah"].sum())
+pertumbuhan = df[df["Kategori"] == "Pertumbuhan"]["Jumlah"].sum()
+bagi_hasil = abs(df[df["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
 saldo = total_pemasukan - total_pengeluaran - dana_manajer - dana_cadangan - bagi_hasil + pertumbuhan
 
-# Metrik dengan warna lebih jelas
-st.header("Ringkasan Keuangan")
 col1, col2, col3 = st.columns(3)
-col1.metric("Total Pemasukan", f"Rp {total_pemasukan:,.2f}")
-col2.metric("Total Pengeluaran", f"Rp {total_pengeluaran:,.2f}")
-col3.metric("Saldo Bersih", f"Rp {saldo:,.2f}")
+col1.metric("💰 Total Pemasukan", f"Rp {total_pemasukan:,.2f}")
+col2.metric("📉 Total Pengeluaran", f"Rp {total_pengeluaran:,.2f}")
+col3.metric("📊 Saldo Bersih", f"Rp {saldo:,.2f}")
 col4, col5, col6 = st.columns(3)
-col4.metric("Dana Manajer", f"Rp {dana_manajer:,.2f}")
-col5.metric("Dana Cadangan", f"Rp {dana_cadangan:,.2f}")
-col6.metric("Pertumbuhan", f"Rp {pertumbuhan:,.2f}")
-st.metric("Bagi Hasil", f"Rp {bagi_hasil:,.2f}")
+col4.metric("🧑‍💼 Dana Manajer", f"Rp {dana_manajer:,.2f}")
+col5.metric("🏦 Dana Cadangan", f"Rp {dana_cadangan:,.2f}")
+col6.metric("📈 Pertumbuhan", f"Rp {pertumbuhan:,.2f}")
+st.metric("🤝 Bagi Hasil", f"Rp {bagi_hasil:,.2f}")
 
-# Visualisasi 1: Pie chart distribusi pemasukan per investor
-st.header("Distribusi Pemasukan per Investor")
-try:
-    pie_data = filtered_data[filtered_data["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
-    if not pie_data.empty and pie_data["Jumlah"].sum() > 0:
-        fig_pie = px.pie(pie_data, values="Jumlah", names="Investor", title="Pemasukan per Investor", color_discrete_sequence=px.colors.sequential.Golds)
-        st.plotly_chart(fig_pie)
+# ---------------------- VISUALISASI ----------------------
+st.header("📈 Visualisasi Keuangan")
+tab1, tab2, tab3, tab4 = st.tabs(["📊 Pie Investor", "📊 Bar Dana", "📈 Tren Saldo", "🌳 TreeMap"])
+
+with tab1:
+    pie_data = filtered[filtered["Kategori"] == "Pemasukan"].groupby("Investor")["Jumlah"].sum().reset_index()
+    if not pie_data.empty:
+        fig = px.pie(pie_data, values="Jumlah", names="Investor", color_discrete_sequence=px.colors.sequential.Golds, hole=0.3)
+        st.plotly_chart(fig, use_container_width=True)
     else:
-        st.warning("Tidak ada data pemasukan untuk ditampilkan dalam pie chart.")
-except Exception as e:
-    st.error("Gagal membuat pie chart. Periksa data pemasukan.")
-    st.write(f"Detail error: {str(e)}")
+        st.warning("Tidak ada data pemasukan untuk pie chart.")
 
-# Visualisasi 2: Bar chart untuk dana manajer, cadangan, dan bagi hasil
-st.header("Dana Manajer, Cadangan, dan Bagi Hasil")
-bar_data = pd.DataFrame({
-    "Kategori": ["Dana Manajer", "Dana Cadangan", "Bagi Hasil"],
-    "Jumlah": [dana_manajer, dana_cadangan, bagi_hasil]
-})
-fig_bar = px.bar(bar_data, x="Kategori", y="Jumlah", title="Perbandingan Dana", color_discrete_sequence=["#D4AF37"])
-st.plotly_chart(fig_bar)
+with tab2:
+    bar_data = pd.DataFrame({
+        "Kategori": ["Dana Manajer", "Dana Cadangan", "Bagi Hasil"],
+        "Jumlah": [dana_manajer, dana_cadangan, bagi_hasil]
+    })
+    fig = px.bar(bar_data, x="Kategori", y="Jumlah", text="Jumlah", color="Kategori",
+                 color_discrete_sequence=px.colors.sequential.Agsunset)
+    st.plotly_chart(fig, use_container_width=True)
 
-# Visualisasi 3: Tren saldo harian
-st.header("Tren Saldo Harian")
-if not filtered_data.empty:
-    tren_data = filtered_data.sort_values("Tanggal")
-    tren_data["Saldo Kumulatif"] = tren_data["Jumlah"].cumsum()
-    fig_tren = px.line(tren_data, x="Tanggal", y="Saldo Kumulatif", title="Tren Saldo Harian", color_discrete_sequence=["#D4AF37"])
-    st.plotly_chart(fig_tren)
-else:
-    st.warning("Tidak ada data untuk ditampilkan dalam tren saldo.")
+with tab3:
+    if not filtered.empty:
+        filtered = filtered.sort_values("Tanggal")
+        filtered["Saldo Kumulatif"] = filtered["Jumlah"].cumsum()
+        fig = px.line(filtered, x="Tanggal", y="Saldo Kumulatif", markers=True, color_discrete_sequence=["#D4AF37"])
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning("Tidak ada data untuk ditampilkan.")
 
-# Ekspor data
-st.header("Ekspor Data")
-if st.button("Unduh Data sebagai CSV"):
-    filtered_data.to_csv("export_transaksi.csv", index=False)
-    with open("export_transaksi.csv", "rb") as file:
-        st.download_button("Unduh CSV", file, file_name="transaksi_hocindo.csv")
+with tab4:
+    treemap_data = filtered.groupby(["Kategori", "Investor"])["Jumlah"].sum().reset_index()
+    if not treemap_data.empty:
+        fig = px.treemap(treemap_data, path=["Kategori", "Investor"], values="Jumlah", color="Jumlah",
+                         color_continuous_scale="Viridis")
+        st.plotly_chart(fig, use_container_width=True)
+    else:
+        st.warning("Data kosong untuk Treemap.")
 
-# Catatan
-st.write("Catatan: Gunakan filter untuk analisis spesifik. Data disimpan secara permanen di transaksi.csv.")
+# ---------------------- EKSPOR ----------------------
+st.header("⬇️ Ekspor Data")
+st.download_button("Unduh CSV", data=filtered.to_csv(index=False), file_name="transaksi_hocindo.csv", mime="text/csv")
+
+st.info("ℹ️ Data disimpan otomatis di **transaksi.csv**. Gunakan filter untuk analisis lebih detail.")
