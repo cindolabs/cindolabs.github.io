@@ -139,7 +139,7 @@ elif menu == "📑 Transaksi":
     st.subheader("📑 Daftar Transaksi Lengkap")
     st.dataframe(df, use_container_width=True, height=400)
 
-    # Tambahan tabel pemasukan
+    # Tabel pemasukan
     st.markdown("### 💰 Rincian Pemasukan")
     pemasukan_df = df[df["Kategori"] == "Pemasukan"][["Tanggal", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
     st.dataframe(
@@ -150,12 +150,24 @@ elif menu == "📑 Transaksi":
         height=300
     )
 
-    # Tambahan tabel pengeluaran
+    # Tabel pengeluaran
     st.markdown("### 📉 Rincian Pengeluaran")
-    pengeluaran_df = df[df["Kategori"] == "Pengeluaran"][["Tanggal", "Deskripsi", "Jumlah"]]
+    pengeluaran_df = df[df["Jumlah"] < 0][["Tanggal", "Kategori", "Deskripsi", "Jumlah"]]
     st.dataframe(
         pengeluaran_df.style.format({"Jumlah": "Rp {:,.0f}"}).applymap(
             lambda _: "background-color: rgba(255,0,0,0.2)", subset=["Jumlah"]
+        ),
+        use_container_width=True,
+        height=250
+    )
+
+    # Ringkasan pengeluaran per kategori
+    st.markdown("### 🧾 Ringkasan Pengeluaran per Kategori")
+    ringkasan_pengeluaran = pengeluaran_df.groupby("Kategori")[["Jumlah"]].sum().reset_index()
+    ringkasan_pengeluaran["Jumlah"] = ringkasan_pengeluaran["Jumlah"].abs()  # ubah jadi positif
+    st.dataframe(
+        ringkasan_pengeluaran.style.format({"Jumlah": "Rp {:,.0f}"}).applymap(
+            lambda _: "background-color: rgba(255,200,200,0.5)", subset=["Jumlah"]
         ),
         use_container_width=True,
         height=200
