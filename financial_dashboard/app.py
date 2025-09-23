@@ -43,12 +43,21 @@ st.markdown(
     """, unsafe_allow_html=True
 )
 
-# ---------------------- METRICS STYLING ----------------------
+# ---------------------- METRICS ----------------------
+total_pemasukan = df[df["Kategori"] == "Pemasukan"]["Jumlah"].sum()
+total_pengeluaran = abs(df[df["Kategori"] == "Pengeluaran"]["Jumlah"].sum())
+dana_manajer = abs(df[df["Kategori"] == "Dana Manajer"]["Jumlah"].sum())
+dana_cadangan = abs(df[df["Kategori"] == "Dana Cadangan"]["Jumlah"].sum())
+pertumbuhan = df[df["Kategori"] == "Pertumbuhan"]["Jumlah"].sum()
+bagi_hasil = abs(df[df["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
+saldo = df["Jumlah"].sum()
+
+# Styling untuk metrics
 st.markdown("""
     <style>
     .metric-card {
-        background: rgba(46, 204, 113, 0.15); /* hijau transparan */
-        padding: 18px;
+        background: rgba(46, 204, 113, 0.15);
+        padding: 20px;
         border-radius: 15px;
         text-align: center;
         box-shadow: 0 4px 10px rgba(0,0,0,0.15);
@@ -58,29 +67,16 @@ st.markdown("""
         font-size: 16px;
         font-weight: bold;
         color: #006400;
-        margin-bottom: 8px;
     }
     .metric-value {
         font-size: 20px;
-        font-weight: bold;
         color: #004d00;
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Hitung ringkasan
-total_pemasukan = df[df["Kategori"] == "Pemasukan"]["Jumlah"].sum()
-total_pengeluaran = abs(df[df["Kategori"] == "Pengeluaran"]["Jumlah"].sum())
-dana_manajer = abs(df[df["Kategori"] == "Dana Manajer"]["Jumlah"].sum())
-dana_cadangan = abs(df[df["Kategori"] == "Dana Cadangan"]["Jumlah"].sum())
-pertumbuhan = df[df["Kategori"] == "Pertumbuhan"]["Jumlah"].sum()
-bagi_hasil = abs(df[df["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
-saldo = df["Jumlah"].sum()
-
-# ---------------------- METRICS ----------------------
 st.markdown("### 📌 Ringkasan Keuangan")
 
-# Baris 1 (4 kotak)
 col1, col2, col3, col4 = st.columns(4)
 with col1:
     st.markdown(f"<div class='metric-card'><div class='metric-title'>💰 Pemasukan</div><div class='metric-value'>Rp {total_pemasukan:,.0f}</div></div>", unsafe_allow_html=True)
@@ -91,7 +87,6 @@ with col3:
 with col4:
     st.markdown(f"<div class='metric-card'><div class='metric-title'>📊 Saldo</div><div class='metric-value'>Rp {saldo:,.0f}</div></div>", unsafe_allow_html=True)
 
-# Baris 2 (3 kotak)
 col5, col6, col7 = st.columns(3)
 with col5:
     st.markdown(f"<div class='metric-card'><div class='metric-title'>🏦 Dana Cadangan</div><div class='metric-value'>Rp {dana_cadangan:,.0f}</div></div>", unsafe_allow_html=True)
@@ -104,7 +99,7 @@ with col7:
 menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "🏆 Investor"])
 
 if menu == "📊 Grafik":
-    st.subheader("Grafik Keuangan")
+    st.subheader("📊 Grafik Keuangan")
     colA, colB, colC = st.columns(3)
 
     with colA:
@@ -141,8 +136,30 @@ if menu == "📊 Grafik":
         st.plotly_chart(bar_chart, use_container_width=True)
 
 elif menu == "📑 Transaksi":
-    st.subheader("📑 Daftar Transaksi")
+    st.subheader("📑 Daftar Transaksi Lengkap")
     st.dataframe(df, use_container_width=True, height=400)
+
+    # Tambahan tabel pemasukan
+    st.markdown("### 💰 Rincian Pemasukan")
+    pemasukan_df = df[df["Kategori"] == "Pemasukan"][["Tanggal", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
+    st.dataframe(
+        pemasukan_df.style.format({"Jumlah": "Rp {:,.0f}", "Bunga": "Rp {:,.0f}"}).applymap(
+            lambda _: "background-color: rgba(0,255,0,0.2)", subset=["Jumlah", "Bunga"]
+        ),
+        use_container_width=True,
+        height=300
+    )
+
+    # Tambahan tabel pengeluaran
+    st.markdown("### 📉 Rincian Pengeluaran")
+    pengeluaran_df = df[df["Kategori"] == "Pengeluaran"][["Tanggal", "Deskripsi", "Jumlah"]]
+    st.dataframe(
+        pengeluaran_df.style.format({"Jumlah": "Rp {:,.0f}"}).applymap(
+            lambda _: "background-color: rgba(255,0,0,0.2)", subset=["Jumlah"]
+        ),
+        use_container_width=True,
+        height=200
+    )
 
 elif menu == "🏆 Investor":
     st.subheader("🏆 Ranking Investor (Pemasukan + Bunga)")
