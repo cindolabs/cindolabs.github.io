@@ -1,440 +1,82 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catatan Keuangan HOCINDO - September 2025</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 20px;
-      background-color: #f4f4f4;
-      color: #333;
-    }
-    h2, h3 {
-      color: #006400;
-    }
-    .summary {
-      margin-bottom: 20px;
-    }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-      background-color: white;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    th, td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: left;
-    }
-    th {
-      background-color: #006400;
-      color: white;
-    }
-    tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-    .form-container, .roi-container {
-      margin: 20px 0;
-      padding: 10px;
-      background-color: #fff;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    input, button {
-      padding: 8px;
-      margin: 5px;
-      font-size: 14px;
-    }
-    button {
-      background-color: #006400;
-      color: white;
-      border: none;
-      border-radius: 3px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #008000;
-    }
-    .notes {
-      margin-top: 20px;
-      font-size: 14px;
-      color: #555;
-    }
-    .chart-container {
-      max-width: 500px;
-      margin: 20px auto;
-      padding: 10px;
-      background-color: white;
-      border-radius: 5px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    }
-    .action-buttons {
-      margin: 10px 0;
-    }
-    .chart-switcher {
-      margin: 10px 0;
-      text-align: center;
-    }
-    .chart-switcher button {
-      margin: 0 5px;
-    }
-    .chart-switcher button.active {
-      background-color: #004d00;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Pemegang Saham Hocindo</title>
+    <style>
+        table {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        th {
+            background-color: #f4f4f4;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        h2, p {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+    </style>
 </head>
 <body>
-  <div class="summary">
-    <h2>Catatan Keuangan Investor HOCINDO - September 2025</h2>
-    <p><strong>Total Investasi Bulan Ini:</strong> <span id="totalInvestasi">Rp 385.000,00</span></p>
-    <p><strong>Jumlah Investor:</strong> 5</p>
-    <p><strong>Dana Kelolaan:</strong> Rp 385.000,00</p>
-  </div>
-
-  <div class="form-container">
-    <h3>Tambah Transaksi</h3>
-    <input type="date" id="tanggal" required>
-    <input type="text" id="nama" placeholder="Nama Investor" required>
-    <input type="text" id="rekening" placeholder="No. Rekening" required>
-    <input type="text" id="nominal" placeholder="Nominal (Rp)" required>
-    <button onclick="tambahTransaksi()">Tambah</button>
-  </div>
-
-  <div class="roi-container">
-    <h3>Kalkulator ROI</h3>
-    <input type="number" id="roiPercent" placeholder="ROI per bulan (%)" min="0" step="0.1" required>
-    <button onclick="hitungROI()">Hitung ROI</button>
-    <p><strong>Estimasi Keuntungan:</strong> <span id="roiResult">Rp 0,00</span></p>
-  </div>
-
-  <div class="action-buttons">
-    <button onclick="exportToCSV()">Export ke CSV</button>
-    <button onclick="exportChart()">Export Chart ke PNG</button>
-  </div>
-
-  <div class="chart-switcher">
-    <button onclick="switchChart('pie')" class="active">Pie Chart</button>
-    <button onclick="switchChart('bar')">Bar Chart</button>
-    <button onclick="switchChart('line')">Line Chart</button>
-  </div>
-
-  <div class="chart-container">
-    <h3 id="chartTitle">Proporsi Investasi per Investor</h3>
-    <canvas id="investasiChart"></canvas>
-  </div>
-
-  <table id="transaksiTable">
-    <tr>
-      <th>Tanggal</th>
-      <th>Nama Investor</th>
-      <th>No. Rekening</th>
-      <th>Jenis Transaksi</th>
-      <th>Nominal</th>
-      <th>Saldo</th>
-    </tr>
-    <tr>
-      <td>2025-09-08</td>
-      <td>Mochamad Tabrani</td>
-      <td>Blu BCA 0022 2858 8888</td>
-      <td>Investasi</td>
-      <td>Rp 50.000,00</td>
-      <td>Rp 50.000,00</td>
-    </tr>
-    <tr>
-      <td>2025-09-08</td>
-      <td>Pipit Puspita</td>
-      <td>BCA 1234 **** ****</td>
-      <td>Investasi</td>
-      <td>Rp 50.000,00</td>
-      <td>Rp 100.000,00</td>
-    </tr>
-    <tr>
-      <td>2025-09-10</td>
-      <td>Sangaji</td>
-      <td>BRI 5678 **** ****</td>
-      <td>Investasi</td>
-      <td>Rp 100.000,00</td>
-      <td>Rp 200.000,00</td>
-    </tr>
-    <tr>
-      <td>2025-09-10</td>
-      <td>Asmini</td>
-      <td>Mandiri 5678 **** ****</td>
-      <td>Investasi</td>
-      <td>Rp 135.000,00</td>
-      <td>Rp 335.000,00</td>
-    </tr>
-    <tr>
-      <td>2025-09-10</td>
-      <td>Rasyid</td>
-      <td>BNI 5678 **** ****</td>
-      <td>Investasi</td>
-      <td>Rp 50.000,00</td>
-      <td>Rp 385.000,00</td>
-    </tr>
-  </table>
-
-  <div class="notes">
-    <h3>Catatan Tambahan</h3>
-    <ul>
-      <li>Transaksi oleh Mochamad Tabrani merupakan investasi awal untuk produk UMKM Hocindo.</li>
-      <li>Transaksi oleh Pipit Puspita dan lainnya merupakan tambahan investasi untuk alokasi hotel.</li>
-      <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham hotel, emas, atau aset lainnya.</li>
-    </ul>
-  </div>
-
-  <script>
-    // Inisialisasi Chart.js
-    const ctx = document.getElementById("investasiChart").getContext("2d");
-    let chart;
-    let currentChartType = "pie";
-
-    function updateChart(type = currentChartType) {
-      const rows = document.querySelectorAll("#transaksiTable tr:not(:first-child)");
-      let labels = [];
-      let data = [];
-      const colors = ["#FF6384", "#36A2EB", "#FFCE56", "#4BC0C0", "#9966FF", "#FF9F40"];
-      let chartConfig = {};
-
-      if (type === "pie") {
-        document.getElementById("chartTitle").textContent = "Proporsi Investasi per Investor";
-        rows.forEach(row => {
-          const nama = row.cells[1].textContent;
-          const nominalText = row.cells[4].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
-          const nominal = parseFloat(nominalText);
-          labels.push(nama);
-          data.push(nominal);
-        });
-        chartConfig = {
-          type: "pie",
-          data: {
-            labels: labels,
-            datasets: [{
-              data: data,
-              backgroundColor: colors,
-              borderColor: "#fff",
-              borderWidth: 2
-            }]
-          },
-          options: {
-            responsive: true,
-            plugins: {
-              legend: { position: "top" },
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const value = context.raw;
-                    return `Rp ${value.toLocaleString("id-ID")},00`;
-                  }
-                }
-              }
-            }
-          }
-        };
-      } else if (type === "bar") {
-        document.getElementById("chartTitle").textContent = "Investasi per Tanggal";
-        const dateMap = {};
-        rows.forEach(row => {
-          const tanggal = row.cells[0].textContent;
-          const nominalText = row.cells[4].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
-          const nominal = parseFloat(nominalText);
-          dateMap[tanggal] = (dateMap[tanggal] || 0) + nominal;
-        });
-        labels = Object.keys(dateMap);
-        data = Object.values(dateMap);
-        chartConfig = {
-          type: "bar",
-          data: {
-            labels: labels,
-            datasets: [{
-              label: "Nominal Investasi",
-              data: data,
-              backgroundColor: "#36A2EB",
-              borderColor: "#36A2EB",
-              borderWidth: 1
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  callback: function(value) {
-                    return `Rp ${value.toLocaleString("id-ID")}`;
-                  }
-                }
-              }
-            },
-            plugins: {
-              legend: { display: false },
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const value = context.raw;
-                    return `Rp ${value.toLocaleString("id-ID")},00`;
-                  }
-                }
-              }
-            }
-          }
-        };
-      } else if (type === "line") {
-        document.getElementById("chartTitle").textContent = "Tren Saldo Kumulatif";
-        rows.forEach(row => {
-          const tanggal = row.cells[0].textContent;
-          const saldoText = row.cells[5].textContent.replace("Rp ", "").replace(",00", "").replace(/\./g, "");
-          const saldo = parseFloat(saldoText);
-          labels.push(tanggal);
-          data.push(saldo);
-        });
-        chartConfig = {
-          type: "line",
-          data: {
-            labels: labels,
-            datasets: [{
-              label: "Saldo",
-              data: data,
-              borderColor: "#FF6384",
-              fill: false,
-              tension: 0.1
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true,
-                ticks: {
-                  callback: function(value) {
-                    return `Rp ${value.toLocaleString("id-ID")}`;
-                  }
-                }
-              }
-            },
-            plugins: {
-              tooltip: {
-                callbacks: {
-                  label: function(context) {
-                    const value = context.raw;
-                    return `Rp ${value.toLocaleString("id-ID")},00`;
-                  }
-                }
-              }
-            }
-          }
-        };
-      }
-
-      if (chart) chart.destroy();
-      chart = new Chart(ctx, chartConfig);
-      currentChartType = type;
-
-      document.querySelectorAll(".chart-switcher button").forEach(btn => {
-        btn.classList.remove("active");
-        if (btn.textContent.toLowerCase().includes(type)) {
-          btn.classList.add("active");
-        }
-      });
-    }
-
-    function switchChart(type) {
-      updateChart(type);
-    }
-
-    function tambahTransaksi() {
-      const tanggal = document.getElementById("tanggal").value;
-      const nama = document.getElementById("nama").value;
-      const rekening = document.getElementById("rekening").value;
-      const nominalInput = document.getElementById("nominal").value.replace(/[^0-9]/g, "");
-      if (!tanggal || !nama || !rekening || !nominalInput) {
-        alert("Isi semua kolom!");
-        return;
-      }
-
-      const nominal = parseInt(nominalInput);
-      const table = document.getElementById("transaksiTable");
-      const rows = table.querySelectorAll("tr:not(:first-child)");
-      let saldoTerakhir = 0;
-      if (rows.length > 0) {
-        const lastRow = rows[rows.length - 1];
-        saldoTerakhir = parseInt(lastRow.cells[5].textContent.replace(/[^0-9]/g, ""));
-      }
-      const saldoBaru = saldoTerakhir + nominal;
-
-      const row = table.insertRow(-1);
-      row.innerHTML = `
-        <td>${tanggal}</td>
-        <td>${nama}</td>
-        <td>${rekening}</td>
-        <td>Investasi</td>
-        <td>Rp ${nominal.toLocaleString("id-ID")},00</td>
-        <td>Rp ${saldoBaru.toLocaleString("id-ID")},00</td>
-      `;
-
-      updateSummary();
-      updateChart();
-      document.getElementById("tanggal").value = "";
-      document.getElementById("nama").value = "";
-      document.getElementById("rekening").value = "";
-      document.getElementById("nominal").value = "";
-    }
-
-    function updateSummary() {
-      const rows = document.querySelectorAll("#transaksiTable tr:not(:first-child)");
-      let total = 0;
-      rows.forEach(row => {
-        const nominal = parseInt(row.cells[4].textContent.replace(/[^0-9]/g, ""));
-        total += nominal;
-      });
-      document.getElementById("totalInvestasi").textContent = `Rp ${total.toLocaleString("id-ID")},00`;
-      document.querySelector(".summary p:nth-child(2)").textContent = `Jumlah Investor: ${rows.length}`;
-      document.querySelector(".summary p:nth-child(3)").textContent = `Dana Kelolaan: Rp ${total.toLocaleString("id-ID")},00`;
-      updateROI();
-    }
-
-    function hitungROI() {
-      const roiPercent = parseFloat(document.getElementById("roiPercent").value);
-      if (isNaN(roiPercent) || roiPercent < 0) {
-        alert("Masukkan persentase ROI yang valid!");
-        return;
-      }
-      const totalInvestasi = parseFloat(document.getElementById("totalInvestasi").textContent.replace(/[^0-9]/g, ""));
-      const keuntungan = (totalInvestasi * roiPercent) / 100;
-      document.getElementById("roiResult").textContent = `Rp ${keuntungan.toLocaleString("id-ID")},00`;
-    }
-
-    function exportToCSV() {
-      const rows = document.querySelectorAll("#transaksiTable tr");
-      let csv = "Tanggal,Nama Investor,No. Rekening,Jenis Transaksi,Nominal,Saldo\n";
-      rows.forEach((row, index) => {
-        if (index === 0) {
-          csv += Array.from(row.cells).map(cell => `"${cell.textContent}"`).join(",") + "\n";
-        } else {
-          csv += Array.from(row.cells).map(cell => `"${cell.textContent.replace(/"/g, '""')}"`).join(",") + "\n";
-        }
-      });
-      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
-      const link = document.createElement("a");
-      link.href = URL.createObjectURL(blob);
-      link.download = "hocindo-transaksi-2025.csv";
-      link.click();
-    }
-
-    function exportChart() {
-      const canvas = document.getElementById("investasiChart");
-      const link = document.createElement("a");
-      link.href = canvas.toDataURL("image/png");
-      link.download = `hocindo-${currentChartType}-chart.png`;
-      link.click();
-    }
-
-    // Inisialisasi chart saat halaman dimuat
-    updateChart();
-  </script>
+    <h2>Daftar Pemegang Saham Hocindo</h2>
+    <p>Harga per lembar saham: Rp 100</p>
+    <table>
+        <thead>
+            <tr>
+                <th>No</th>
+                <th>Nama Pemegang Saham</th>
+                <th>Jumlah Investasi (Rp)</th>
+                <th>Jumlah Lembar Saham</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>1</td>
+                <td>Mochamad Tabrani</td>
+                <td>50.000</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>Pipit</td>
+                <td>50.000</td>
+                <td>500</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>Sangaji</td>
+                <td>100.000</td>
+                <td>1.000</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>Asmini</td>
+                <td>135.000</td>
+                <td>1.350</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>Rasyid</td>
+                <td>50.000</td>
+                <td>500</td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
