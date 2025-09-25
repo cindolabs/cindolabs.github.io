@@ -253,7 +253,8 @@
         document.getElementById("chartTitle").textContent = "Proporsi Lembar Saham per Investor";
         rows.forEach(row => {
           const nama = row.cells[1].textContent;
-          const saham = parseFloat(row.cells[5].textContent);
+          const sahamText = row.cells[5].textContent.replace(/\./g, ""); // Hapus pemisah ribuan
+          const saham = parseInt(sahamText); // Parse sebagai integer
           labels.push(nama);
           data.push(saham);
         });
