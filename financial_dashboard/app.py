@@ -143,16 +143,16 @@ def calculate_fund_allocation(df):
     try:
         if df.empty:
             logger.warning("DataFrame is empty for fund allocation")
-            return pd.DataFrame(columns=["nama", "total_saham", "proporsi_saham", "bagian_dana"])
+            return pd.DataFrame(columns=["nama", "saham", "proporsi_saham", "bagian_dana"])
         investor_summary = df.groupby("nama").agg({"saham": "sum"}).reset_index()
         total_saham = investor_summary["saham"].sum()
         investor_summary["proporsi_saham"] = investor_summary["saham"] / total_saham
         investor_summary["bagian_dana"] = investor_summary["proporsi_saham"] * DANA_KELOLAAN_BARU
-        return investor_summary[["nama", "total_saham", "proporsi_saham", "bagian_dana"]]
+        return investor_summary[["nama", "saham", "proporsi_saham", "bagian_dana"]]
     except Exception as e:
         logger.error(f"Error calculating fund allocation: {str(e)}")
-        st.error(f"Error calculating fund allocation: {e}")
-        return pd.DataFrame(columns=["nama", "total_saham", "proporsi_saham", "bagian_dana"])
+        st.error(f"Error calculating fund allocation: {str(e)}")
+        return pd.DataFrame(columns=["nama", "saham", "proporsi_saham", "bagian_dana"])
 
 # Hitung perkiraan pendapatan per investor
 def calculate_investor_earnings(df, roi_percent):
@@ -257,7 +257,7 @@ if check_login():
         fund_allocation = calculate_fund_allocation(df)
         if not fund_allocation.empty:
             fund_allocation_display = fund_allocation.copy()
-            fund_allocation_display["total_saham"] = fund_allocation_display["total_saham"].apply(lambda x: f"{x:,.0f}")
+            fund_allocation_display["saham"] = fund_allocation_display["saham"].apply(lambda x: f"{x:,.0f}")
             fund_allocation_display["proporsi_saham"] = fund_allocation_display["proporsi_saham"].apply(lambda x: f"{x:.2%}")
             fund_allocation_display["bagian_dana"] = fund_allocation_display["bagian_dana"].apply(lambda x: f"Rp {x:,.0f}")
             st.dataframe(fund_allocation_display, use_container_width=True)
