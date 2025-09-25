@@ -1,5 +1,6 @@
-# Dashboard Keuangan Modern
-streamlit>=1.38.0
-pandas>=2.2.2
-plotly>=5.24.1
-numpy>=1.26.4
+streamlit
+pandas
+requests
+plotly
+streamlit-aggrid
+reportlab
