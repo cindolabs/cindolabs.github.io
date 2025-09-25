@@ -5,9 +5,28 @@ import requests
 from datetime import datetime
 import plotly.express as px
 import os
-from io import BytesIO
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
+import logging
+
+# Setup logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Try importing reportlab, fallback if not available
+try:
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
+    st.warning("Library 'reportlab' tidak terinstall. Fitur export PDF tidak tersedia. Install dengan: pip install reportlab")
+
+# Try importing streamlit-aggrid
+try:
+    from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
+    AGGRID_AVAILABLE = True
+except ImportError:
+    AGGRID_AVAILABLE = False
+    st.warning("Library 'streamlit-aggrid' tidak terinstall. Menggunakan tabel standar. Install dengan: pip install streamlit-aggrid")
 
 # Konfigurasi Streamlit
 st.set_page_config(page_title="Dashboard Keuangan HOCINDO", layout="wide", initial_sidebar_state="expanded")
@@ -16,14 +35,6 @@ st.set_page_config(page_title="Dashboard Keuangan HOCINDO", layout="wide", initi
 HARGA_SAHAM = 100
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/financial_dashboard/transaksi.json"
 GITHUB_API_URL = "https://api.github.com/repos/hocindo/hocindo.github.io/contents/financial_dashboard/transaksi.json"
-
-# Cek apakah streamlit-aggrid terinstall
-try:
-    from st_aggrid import AgGrid, GridOptionsBuilder, GridUpdateMode
-    AGGRID_AVAILABLE = True
-except ImportError:
-    AGGRID_AVAILABLE = False
-    st.warning("streamlit-aggrid tidak terinstall. Menggunakan tabel standar. Install dengan: pip install streamlit-aggrid")
 
 # Autentikasi sederhana
 def check_login():
@@ -34,7 +45,7 @@ def check_login():
         username = st.sidebar.text_input("Username")
         password = st.sidebar.text_input("Password", type="password")
         if st.sidebar.button("Login"):
-            if username == "admin" and password == "hocindo2025":  # Ganti dengan autentikasi lebih aman jika perlu
+            if username == "admin" and password == "hocindo2025":
                 st.session_state.logged_in = True
                 st.rerun()
             else:
@@ -46,6 +57,7 @@ def check_login():
 @st.cache_data
 def load_data_from_github(_timestamp):
     try:
+        logger.info(f"Fetching data from {GITHUB_RAW_URL}")
         response = requests.get(GITHUB_RAW_URL, timeout=10)
         if response.status_code == 200:
             data = response.json()
@@ -54,16 +66,20 @@ def load_data_from_github(_timestamp):
             if all(col in df.columns for col in required_columns):
                 return df
             else:
+                logger.error("Invalid transaksi.json format: Missing required columns")
                 st.error("Format transaksi.json tidak valid: kolom hilang.")
                 return get_default_data()
         else:
+            logger.warning(f"Failed to fetch data from GitHub: Status {response.status_code}")
             st.warning(f"Gagal load data dari GitHub (status: {response.status_code}). Menggunakan data default.")
             return get_default_data()
     except Exception as e:
+        logger.error(f"Error fetching data: {str(e)}")
         st.error(f"Error fetching data: {e}")
         return get_default_data()
 
 def get_default_data():
+    logger.info("Using default data")
     return pd.DataFrame([
         {"tanggal": "2025-09-08", "nama": "Mochamad Tabrani", "rekening": "Blu BCA 0022 2858 8888", "jenis": "Investasi", "nominal": 50000, "saham": 500, "saldo": 50000},
         {"tanggal": "2025-09-08", "nama": "Pipit Puspita", "rekening": "BCA 1234 **** ****", "jenis": "Investasi", "nominal": 50000, "saham": 500, "saldo": 100000},
@@ -77,30 +93,35 @@ def save_to_github(df):
     try:
         token = st.secrets.get("GITHUB_TOKEN", None)
         if not token:
+            logger.warning("GitHub token not found. Saving locally.")
             st.error("GitHub token tidak ditemukan di secrets.toml! Data disimpan lokal.")
             df.to_json("transaksi.json", orient="records", indent=4)
             return False
         content = base64.b64encode(json.dumps(df.to_dict('records'), indent=4).encode()).decode()
         headers = {"Authorization": f"token {token}", "Accept": "application/vnd.github.v3+json"}
         
-        # Get SHA file saat ini
+        logger.info(f"Fetching SHA from {GITHUB_API_URL}")
         response = requests.get(GITHUB_API_URL, headers=headers)
         sha = response.json().get("sha") if response.status_code == 200 else None
         
-        # Update file
         payload = {
             "message": f"Update transaksi.json pada {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}",
             "content": content,
             "sha": sha
         }
+        logger.info("Updating transaksi.json on GitHub")
         response = requests.put(GITHUB_API_URL, headers=headers, json=payload)
         if response.status_code in [200, 201]:
+            logger.info("Successfully updated transaksi.json on GitHub")
             st.success("Data berhasil diupdate ke GitHub!")
             return True
         else:
+            logger.error(f"Failed to update GitHub: {response.json().get('message', 'Unknown error')}")
             st.error(f"Gagal update GitHub: {response.json().get('message', 'Unknown error')}")
+            df.to_json("transaksi.json", orient="records", indent=4)
             return False
     except Exception as e:
+        logger.error(f"Error updating GitHub: {str(e)}")
         st.error(f"Error updating GitHub: {e}")
         df.to_json("transaksi.json", orient="records", indent=4)
         return False
@@ -109,6 +130,7 @@ def save_to_github(df):
 def calculate_summary(df):
     try:
         if df.empty:
+            logger.warning("DataFrame is empty")
             return {"total_investasi": 0, "total_saham": 0, "jumlah_investor": 0, "dana_kelolaan": 0}
         return {
             "total_investasi": df["nominal"].sum(),
@@ -117,6 +139,7 @@ def calculate_summary(df):
             "dana_kelolaan": df["nominal"].sum()
         }
     except Exception as e:
+        logger.error(f"Error calculating summary: {str(e)}")
         st.error(f"Error calculating summary: {e}")
         return {"total_investasi": 0, "total_saham": 0, "jumlah_investor": 0, "dana_kelolaan": 0}
 
@@ -125,6 +148,7 @@ def add_transaction(df, new_data):
     try:
         nominal = int(new_data["nominal"])
         if nominal % HARGA_SAHAM != 0:
+            logger.error("Nominal is not a multiple of 100")
             st.error("Nominal harus kelipatan Rp 100!")
             return df
         saham = nominal // HARGA_SAHAM
@@ -139,14 +163,17 @@ def add_transaction(df, new_data):
             "saham": saham,
             "saldo": saldo_baru
         }])
+        logger.info(f"Adding new transaction: {new_data}")
         return pd.concat([df, new_row], ignore_index=True)
     except Exception as e:
+        logger.error(f"Error adding transaction: {str(e)}")
         st.error(f"Error adding transaction: {e}")
         return df
 
 # Hapus transaksi
 def delete_transaction(df, index):
     try:
+        logger.info(f"Deleting transaction at index {index}")
         df = df.drop(index).reset_index(drop=True)
         saldo = 0
         for i in range(len(df)):
@@ -154,11 +181,15 @@ def delete_transaction(df, index):
             df.at[i, "saldo"] = saldo
         return df
     except Exception as e:
+        logger.error(f"Error deleting transaction: {str(e)}")
         st.error(f"Error deleting transaction: {e}")
         return df
 
 # Export ke PDF
 def export_to_pdf(df):
+    if not REPORTLAB_AVAILABLE:
+        st.error("Cannot generate PDF: reportlab not installed.")
+        return None
     try:
         buffer = BytesIO()
         c = canvas.Canvas(buffer, pagesize=letter)
@@ -174,8 +205,10 @@ def export_to_pdf(df):
                 y = 750
         c.save()
         buffer.seek(0)
+        logger.info("PDF generated successfully")
         return buffer
     except Exception as e:
+        logger.error(f"Error generating PDF: {str(e)}")
         st.error(f"Error generating PDF: {e}")
         return None
 
@@ -233,56 +266,5 @@ if check_login():
                 fig = px.line(df, x="tanggal", y="saldo", title="Tren Saldo Kumulatif")
             st.plotly_chart(fig, use_container_width=True)
         except Exception as e:
-            st.error(f"Error rendering chart: {e}")
-
-        # Export
-        col_export1, col_export2, col_export3 = st.columns(3)
-        with col_export1:
-            csv = df.to_csv(index=False).encode('utf-8')
-            st.download_button("📥 Export CSV", csv, "hocindo-transaksi.csv", "text/csv")
-        with col_export2:
-            pdf_buffer = export_to_pdf(df)
-            if pdf_buffer:
-                st.download_button("📄 Export PDF", pdf_buffer, "hocindo-laporan.pdf", "application/pdf")
-        with col_export3:
-            if st.button("🔄 Refresh dari GitHub"):
-                st.cache_data.clear()
-                st.rerun()
-
-    elif action == "Tambah Transaksi":
-        st.subheader("➕ Tambah Transaksi")
-        with st.form("add_transaction"):
-            tanggal = st.date_input("Tanggal", value=datetime.now())
-            nama = st.text_input("Nama Investor")
-            rekening = st.text_input("No. Rekening")
-            nominal = st.number_input("Nominal (Rp)", min_value=100, step=100)
-            submitted = st.form_submit_button("Tambah")
-            if submitted:
-                if nama and rekening:
-                    new_data = {"tanggal": tanggal.strftime("%Y-%m-%d"), "nama": nama, "rekening": rekening, "nominal": nominal}
-                    df = add_transaction(df, new_data)
-                    if save_to_github(df):
-                        st.cache_data.clear()
-                        st.rerun()
-                else:
-                    st.error("Isi semua kolom!")
-
-    elif action == "Kalkulator ROI":
-        st.subheader("💰 Kalkulator ROI")
-        roi_percent = st.number_input("ROI per bulan (%)", min_value=0.0, step=0.1)
-        if roi_percent > 0:
-            try:
-                keuntungan = (summary['total_investasi'] * roi_percent) / 100
-                st.success(f"Estimasi Keuntungan: **Rp {keuntungan:,.0f}**")
-            except Exception as e:
-                st.error(f"Error calculating ROI: {e}")
-
-    # Catatan
-    st.subheader("📝 Catatan")
-    st.info("""
-    - Transaksi awal untuk UMKM dan saham hotel.
-    - Data disimpan di GitHub via API (atau lokal jika token tidak tersedia).
-    - Harga saham: Rp 100/lembar.
-    """)
-else:
-    st.warning("Silakan login di sidebar untuk mengakses dashboard.")
+            logger.error(f"Error rendering chart: {str(e)}")
+            st.error(f"
