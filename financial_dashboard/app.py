@@ -1,291 +1,231 @@
-import streamlit as st
-import pandas as pd
-import plotly.express as px
-import plotly.graph_objects as go
-from datetime import datetime
-import io
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catatan Keuangan HOCINDO - September 2025</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* CSS tetap sama seperti kode asli Anda */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+      color: #333;
+    }
+    h2, h3 {
+      color: #006400;
+    }
+    .summary {
+      margin-bottom: 20px;
+    }
+    table {
+      width: 100%;
+      max-width: 1000px;
+      border-collapse: collapse;
+      margin-top: 20px;
+      background-color: white;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #006400;
+      color: white;
+    }
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    .form-container, .roi-container {
+      margin: 20px 0;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    input, button {
+      padding: 8px;
+      margin: 5px;
+      font-size: 14px;
+    }
+    button {
+      background-color: #006400;
+      color: white;
+      border: none;
+      border-radius: 3px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #008000;
+    }
+    .notes {
+      margin-top: 20px;
+      font-size: 14px;
+      color: #555;
+    }
+    .chart-container {
+      max-width: 500px;
+      margin: 20px auto;
+      padding: 10px;
+      background-color: white;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .action-buttons {
+      margin: 10px 0;
+    }
+    .chart-switcher {
+      margin: 10px 0;
+      text-align: center;
+    }
+    .chart-switcher button {
+      margin: 0 5px;
+    }
+    .chart-switcher button.active {
+      background-color: #004d00;
+    }
+  </style>
+</head>
+<body>
+  <div class="summary">
+    <h2>Catatan Keuangan Investor HOCINDO - September 2025</h2>
+    <p><strong>Harga per Lembar Saham:</strong> Rp {{ harga_saham }}</p>
+    <p><strong>Total Investasi Bulan Ini:</strong> <span id="totalInvestasi">Rp {{ "{:,.0f}".format(summary.total_investasi) }},00</span></p>
+    <p><strong>Total Lembar Saham:</strong> <span id="totalSaham">{{ summary.total_saham }}</span></p>
+    <p><strong>Jumlah Investor:</strong> <span id="jumlahInvestor">{{ summary.jumlah_investor }}</span></p>
+    <p><strong>Dana Kelolaan:</strong> <span id="danaKelolaan">Rp {{ "{:,.0f}".format(summary.dana_kelolaan) }},00</span></p>
+  </div>
 
-# ---------------------- PAGE CONFIG ----------------------
-st.set_page_config(
-    page_title="Dashboard Keuangan Hocindo",
-    page_icon="💰",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+  <div class="form-container">
+    <h3>Tambah Transaksi</h3>
+    <input type="date" id="tanggal" required>
+    <input type="text" id="nama" placeholder="Nama Investor" required>
+    <input type="text" id="rekening" placeholder="No. Rekening" required>
+    <input type="text" id="nominal" placeholder="Nominal (Rp)" required>
+    <button onclick="tambahTransaksi()">Tambah</button>
+  </div>
 
-# ---------------------- FUNGSI UTILITAS ----------------------
-def load_data():
-    """Memuat dan memvalidasi data awal."""
-    data = [
-        {"Tanggal": datetime(2025, 9, 23, 8, 0), "Kategori": "Pemasukan", "Deskripsi": "Investasi Mochamad Tabrani", "Jumlah": 50000, "Investor": "Mochamad Tabrani"},
-        {"Tanggal": datetime(2025, 9, 23, 9, 30), "Kategori": "Pemasukan", "Deskripsi": "Investasi Pipit", "Jumlah": 50000, "Investor": "Pipit"},
-        {"Tanggal": datetime(2025, 9, 23, 10, 15), "Kategori": "Pemasukan", "Deskripsi": "Investasi Sangaji", "Jumlah": 100000, "Investor": "Sangaji"},
-        {"Tanggal": datetime(2025, 9, 23, 11, 0), "Kategori": "Pemasukan", "Deskripsi": "Investasi Asmin", "Jumlah": 135000, "Investor": "Asmin"},
-        {"Tanggal": datetime(2025, 9, 23, 12, 45), "Kategori": "Pemasukan", "Deskripsi": "Investasi Rasyid", "Jumlah": 50000, "Investor": "Rasyid"},
-        {"Tanggal": datetime(2025, 9, 23, 13, 0), "Kategori": "Pengeluaran", "Deskripsi": "Biaya Operasional", "Jumlah": -10000, "Investor": "N/A"},
-        {"Tanggal": datetime(2025, 9, 23, 14, 30), "Kategori": "Dana Manajer", "Deskripsi": "Dana Dikelola Manajer", "Jumlah": -100000, "Investor": "N/A"},
-        {"Tanggal": datetime(2025, 9, 23, 15, 15), "Kategori": "Dana Cadangan", "Deskripsi": "Dana Cadangan", "Jumlah": -275000, "Investor": "N/A"},
-        {"Tanggal": datetime(2025, 9, 23, 16, 0), "Kategori": "Pertumbuhan", "Deskripsi": "Pertumbuhan Dana Manajer", "Jumlah": 900, "Investor": "N/A"},
-        {"Tanggal": datetime(2025, 9, 23, 17, 30), "Kategori": "Bagi Hasil", "Deskripsi": "Bagi Hasil Investor", "Jumlah": -100, "Investor": "N/A"},
-    ]
-    df = pd.DataFrame(data)
-    
-    # Validasi data
-    if df.empty:
-        st.error("Data kosong! Silakan masukkan data yang valid.")
-        return None
-    
-    # Tambah kolom bunga
-    df["Bunga"] = df.apply(lambda row: row["Jumlah"] * 0.05 if row["Kategori"] == "Pemasukan" else 0, axis=1)
-    df = df[["Tanggal", "Kategori", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
-    
-    # Format tanggal
-    df["Tanggal"] = pd.to_datetime(df["Tanggal"]).dt.strftime("%d-%m-%Y %H:%M")
-    return df
+  <div class="roi-container">
+    <h3>Kalkulator ROI</h3>
+    <input type="number" id="roiPercent" placeholder="ROI per bulan (%)" min="0" step="0.1" required>
+    <button onclick="hitungROI()">Hitung ROI</button>
+    <p><strong>Estimasi Keuntungan:</strong> <span id="roiResult">Rp 0,00</span></p>
+  </div>
 
-def calculate_metrics(df):
-    """Menghitung metrik keuangan."""
-    if df is None:
-        return 0, 0, 0, 0, 0, 0, 0
-    
-    total_pemasukan = df[df["Kategori"] == "Pemasukan"]["Jumlah"].sum()
-    total_pengeluaran = abs(df[df["Kategori"] == "Pengeluaran"]["Jumlah"].sum())
-    dana_manajer = abs(df[df["Kategori"] == "Dana Manajer"]["Jumlah"].sum())
-    dana_cadangan = abs(df[df["Kategori"] == "Dana Cadangan"]["Jumlah"].sum())
-    pertumbuhan = df[df["Kategori"] == "Pertumbuhan"]["Jumlah"].sum()
-    bagi_hasil = abs(df[df["Kategori"] == "Bagi Hasil"]["Jumlah"].sum())
-    saldo = df["Jumlah"].sum()
-    
-    return total_pemasukan, total_pengeluaran, dana_manajer, dana_cadangan, pertumbuhan, bagi_hasil, saldo
+  <div class="action-buttons">
+    <button onclick="exportToCSV()">Export ke CSV</button>
+    <button onclick="exportChart()">Export Chart ke PNG</button>
+  </div>
 
-def display_metrics(total_pemasukan, total_pengeluaran, dana_manajer, dana_cadangan, pertumbuhan, bagi_hasil, saldo):
-    """Menampilkan metrik keuangan dalam kartu."""
-    st.markdown("""
-        <style>
-        .metric-card {
-            background: rgba(46, 204, 113, 0.15);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            margin-bottom: 15px;
+  <div class="chart-switcher">
+    <button onclick="switchChart('pie')" class="active">Pie Chart</button>
+    <button onclick="switchChart('bar')">Bar Chart</button>
+    <button onclick="switchChart('line')">Line Chart</button>
+    <button onclick="switchChart('pie_saham')">Pie Chart (Saham)</button>
+  </div>
+
+  <div class="chart-container">
+    <h3 id="chartTitle">Proporsi Investasi per Investor</h3>
+    <canvas id="investasiChart"></canvas>
+  </div>
+
+  <table id="transaksiTable">
+    <tr>
+      <th>Tanggal</th>
+      <th>Nama Investor</th>
+      <th>No. Rekening</th>
+      <th>Jenis Transaksi</th>
+      <th>Nominal</th>
+      <th>Jumlah Lembar Saham</th>
+      <th>Saldo</th>
+    </tr>
+    {% for tx in transaksi %}
+    <tr>
+      <td>{{ tx.tanggal }}</td>
+      <td>{{ tx.nama }}</td>
+      <td>{{ tx.rekening }}</td>
+      <td>{{ tx.jenis }}</td>
+      <td>Rp {{ "{:,.0f}".format(tx.nominal) }},00</td>
+      <td>{{ "{:,.0f}".format(tx.saham) }}</td>
+      <td>Rp {{ "{:,.0f}".format(tx.saldo) }},00</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <div class="notes">
+    <h3>Catatan Tambahan</h3>
+    <ul>
+      <li>Transaksi oleh Mochamad Tabrani merupakan investasi awal untuk produk UMKM Hocindo.</li>
+      <li>Transaksi oleh Pipit Puspita dan lainnya merupakan tambahan investasi untuk alokasi saham hotel.</li>
+      <li>Dana akan dikelola oleh tim Hocindo untuk alokasi saham hotel, emas, atau aset lainnya.</li>
+      <li>Harga saham per lembar adalah Rp {{ harga_saham }}, dengan jumlah lembar saham dihitung berdasarkan nominal investasi.</li>
+    </ul>
+  </div>
+
+  <script>
+    // JavaScript tetap sama seperti kode asli, tapi modifikasi tambahTransaksi untuk POST ke Flask
+    const HARGA_PER_SAHAM = {{ harga_saham }};
+
+    // ... (semua fungsi updateChart, switchChart, hitungROI, exportToCSV, exportChart tetap sama seperti kode asli Anda)
+
+    // Modifikasi tambahTransaksi untuk kirim ke server
+    async function tambahTransaksi() {
+      const tanggal = document.getElementById("tanggal").value;
+      const nama = document.getElementById("nama").value;
+      const rekening = document.getElementById("rekening").value;
+      const nominalInput = document.getElementById("nominal").value.replace(/[^0-9]/g, "");
+      if (!tanggal || !nama || !rekening || !nominalInput) {
+        alert("Isi semua kolom!");
+        return;
+      }
+
+      const nominal = parseInt(nominalInput);
+      const jumlahSaham = Math.floor(nominal / HARGA_PER_SAHAM);
+
+      try {
+        const response = await fetch('/api/add-transaction', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ tanggal, nama, rekening, nominal: nominalInput })
+        });
+        const result = await response.json();
+        if (result.success) {
+          // Tambah row ke tabel
+          const table = document.getElementById("transaksiTable");
+          const row = table.insertRow(-1);
+          row.innerHTML = `
+            <td>${tanggal}</td>
+            <td>${nama}</td>
+            <td>${rekening}</td>
+            <td>Investasi</td>
+            <td>Rp ${nominal.toLocaleString("id-ID")},00</td>
+            <td>${jumlahSaham.toLocaleString("id-ID")}</td>
+            <td>Rp ${result.new_entry.saldo.toLocaleString("id-ID")},00</td>
+          `;
+          // Update summary dari server
+          document.getElementById("totalInvestasi").textContent = `Rp ${result.summary.total_investasi.toLocaleString("id-ID")},00`;
+          document.getElementById("totalSaham").textContent = result.summary.total_saham.toLocaleString("id-ID");
+          document.getElementById("jumlahInvestor").textContent = result.summary.jumlah_investor;
+          document.getElementById("danaKelolaan").textContent = `Rp ${result.summary.dana_kelolaan.toLocaleString("id-ID")},00`;
+          updateChart();  // Refresh chart
+          // Clear form
+          document.getElementById("tanggal").value = "";
+          document.getElementById("nama").value = "";
+          document.getElementById("rekening").value = "";
+          document.getElementById("nominal").value = "";
+        } else {
+          alert("Gagal menambah transaksi!");
         }
-        .metric-title {
-            font-size: 16px;
-            font-weight: bold;
-            color: #006400;
-        }
-        .metric-value {
-            font-size: 20px;
-            color: #004d00;
-        }
-        </style>
-    """, unsafe_allow_html=True)
-    
-    st.markdown("### 📌 Ringkasan Keuangan")
-    col1, col2, col3, col4 = st.columns(4)
-    with col1:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>💰 Pemasukan</div><div class='metric-value'>Rp {total_pemasukan:,.0f}</div></div>", unsafe_allow_html=True)
-    with col2:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>📉 Pengeluaran</div><div class='metric-value'>Rp {total_pengeluaran:,.0f}</div></div>", unsafe_allow_html=True)
-    with col3:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>🧑‍💼 Dana Manajer</div><div class='metric-value'>Rp {dana_manajer:,.0f}</div></div>", unsafe_allow_html=True)
-    with col4:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>📊 Saldo</div><div class='metric-value'>Rp {saldo:,.0f}</div></div>", unsafe_allow_html=True)
-    
-    col5, col6, col7 = st.columns(3)
-    with col5:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>🏦 Dana Cadangan</div><div class='metric-value'>Rp {dana_cadangan:,.0f}</div></div>", unsafe_allow_html=True)
-    with col6:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>📈 Pertumbuhan</div><div class='metric-value'>Rp {pertumbuhan:,.0f}</div></div>", unsafe_allow_html=True)
-    with col7:
-        st.markdown(f"<div class='metric-card'><div class='metric-title'>🤝 Bagi Hasil</div><div class='metric-value'>Rp {bagi_hasil:,.0f}</div></div>", unsafe_allow_html=True)
+      } catch (error) {
+        alert("Error: " + error);
+      }
+    }
 
-def apply_filters(df):
-    """Menambahkan filter interaktif untuk data."""
-    if df is None:
-        return None
-    
-    st.sidebar.markdown("### 🔍 Filter Data")
-    
-    # Filter tanggal
-    df["Tanggal"] = pd.to_datetime(df["Tanggal"], format="%d-%m-%Y %H:%M")
-    min_date = df["Tanggal"].min().date()
-    max_date = df["Tanggal"].max().date()
-    date_range = st.sidebar.date_input("Pilih Rentang Tanggal", [min_date, max_date])
-    
-    if len(date_range) == 2:
-        start_date, end_date = date_range
-        df = df[(df["Tanggal"].dt.date >= start_date) & (df["Tanggal"].dt.date <= end_date)]
-    
-    # Filter kategori
-    categories = ["Semua"] + list(df["Kategori"].unique())
-    selected_category = st.sidebar.selectbox("Pilih Kategori", categories)
-    if selected_category != "Semua":
-        df = df[df["Kategori"] == selected_category]
-    
-    # Filter investor
-    investors = ["Semua"] + list(df["Investor"].unique())
-    selected_investor = st.sidebar.selectbox("Pilih Investor", investors)
-    if selected_investor != "Semua":
-        df = df[df["Investor"] == selected_investor]
-    
-    # Format ulang tanggal setelah filter
-    df["Tanggal"] = df["Tanggal"].dt.strftime("%d-%m-%Y %H:%M")
-    return df
-
-def download_data(df, filename="data_keuangan.csv"):
-    """Fungsi untuk mengunduh data sebagai CSV."""
-    if df is None:
-        return
-    
-    csv = df.to_csv(index=False)
-    st.sidebar.download_button(
-        label="📥 Unduh Data (CSV)",
-        data=csv,
-        file_name=filename,
-        mime="text/csv"
-    )
-
-# ---------------------- HEADER ----------------------
-st.markdown(
-    """
-    <h1 style='text-align: center; color: #2ecc71;'>💼 Dashboard Keuangan Hocindo</h1>
-    <p style='text-align: center; color: #27ae60;'>Visualisasi interaktif dan ringkasan keuangan terkini</p>
-    <hr style='border: 1px solid #27ae60;'>
-    """, unsafe_allow_html=True
-)
-
-# ---------------------- LOAD DATA ----------------------
-df = load_data()
-
-# ---------------------- FILTER DATA ----------------------
-filtered_df = apply_filters(df)
-
-# ---------------------- METRIK ----------------------
-total_pemasukan, total_pengeluaran, dana_manajer, dana_cadangan, pertumbuhan, bagi_hasil, saldo = calculate_metrics(filtered_df)
-display_metrics(total_pemasukan, total_pengeluaran, dana_manajer, dana_cadangan, pertumbuhan, bagi_hasil, saldo)
-
-# ---------------------- DOWNLOAD DATA ----------------------
-download_data(filtered_df)
-
-# ---------------------- NAVIGASI ----------------------
-menu = st.sidebar.radio("Navigasi", ["📊 Grafik", "📑 Transaksi", "🏆 Investor", "🔥 Heatmap"])
-
-if menu == "📊 Grafik":
-    st.subheader("📊 Grafik Keuangan")
-    if filtered_df is not None and not filtered_df.empty:
-        colA, colB, colC = st.columns(3)
-        
-        with colA:
-            pie_chart = px.pie(
-                filtered_df[filtered_df["Kategori"] == "Pemasukan"],
-                names="Investor",
-                values="Jumlah",
-                title="Distribusi Pemasukan per Investor",
-                color_discrete_sequence=px.colors.sequential.Greens
-            )
-            st.plotly_chart(pie_chart, use_container_width=True)
-        
-        with colB:
-            line_chart = px.line(
-                filtered_df,
-                x="Tanggal",
-                y="Jumlah",
-                color="Kategori",
-                markers=True,
-                title="Tren Keuangan",
-                color_discrete_sequence=px.colors.sequential.Greens
-            )
-            st.plotly_chart(line_chart, use_container_width=True)
-        
-        with colC:
-            bar_chart = px.bar(
-                filtered_df[filtered_df["Kategori"] == "Pemasukan"],
-                x="Investor",
-                y="Bunga",
-                title="Bunga per Investor",
-                color="Investor",
-                color_discrete_sequence=px.colors.sequential.Greens
-            )
-            st.plotly_chart(bar_chart, use_container_width=True)
-
-elif menu == "📑 Transaksi":
-    st.subheader("📑 Daftar Transaksi Lengkap")
-    if filtered_df is not None and not filtered_df.empty:
-        st.dataframe(filtered_df, use_container_width=True, height=400)
-        
-        # Tabel pemasukan
-        st.markdown("### 💰 Rincian Pemasukan")
-        pemasukan_df = filtered_df[filtered_df["Kategori"] == "Pemasukan"][["Tanggal", "Deskripsi", "Jumlah", "Investor", "Bunga"]]
-        st.dataframe(
-            pemasukan_df.style.format({"Jumlah": "Rp {:,.0f}", "Bunga": "Rp {:,.0f}"}).apply(
-                lambda _: ["background-color: rgba(0,255,0,0.2)"] * len(_), axis=1
-            ),
-            use_container_width=True,
-            height=300
-        )
-        
-        # Tabel pengeluaran
-        st.markdown("### 📉 Rincian Pengeluaran")
-        pengeluaran_df = filtered_df[filtered_df["Jumlah"] < 0][["Tanggal", "Kategori", "Deskripsi", "Jumlah"]]
-        st.dataframe(
-            pengeluaran_df.style.format({"Jumlah": "Rp {:,.0f}"}).apply(
-                lambda _: ["background-color: rgba(255,0,0,0.2)"] * len(_), axis=1
-            ),
-            use_container_width=True,
-            height=250
-        )
-        
-        # Ringkasan pengeluaran per kategori
-        st.markdown("### 🧾 Ringkasan Pengeluaran per Kategori")
-        ringkasan_pengeluaran = pengeluaran_df.groupby("Kategori")[["Jumlah"]].sum().reset_index()
-        ringkasan_pengeluaran["Jumlah"] = ringkasan_pengeluaran["Jumlah"].abs()
-        st.dataframe(
-            ringkasan_pengeluaran.style.format({"Jumlah": "Rp {:,.0f}"}).apply(
-                lambda _: ["background-color: rgba(255,200,200,0.5)"] * len(_), axis=1
-            ),
-            use_container_width=True,
-            height=200
-        )
-        
-        # Grafik pie chart pengeluaran
-        st.markdown("### 📊 Grafik Pengeluaran per Kategori")
-        pie_pengeluaran = px.pie(
-            ringkasan_pengeluaran,
-            names="Kategori",
-            values="Jumlah",
-            title="Distribusi Pengeluaran per Kategori",
-            color_discrete_sequence=px.colors.sequential.Reds
-        )
-        st.plotly_chart(pie_pengeluaran, use_container_width=True)
-    else:
-        st.warning("Tidak ada data yang sesuai dengan filter.")
-
-elif menu == "🏆 Investor":
-    st.subheader("🏆 Ranking Investor (Pemasukan + Bunga)")
-    if filtered_df is not None and not filtered_df.empty:
-        ranking = filtered_df[filtered_df["Kategori"] == "Pemasukan"].groupby("Investor")[["Jumlah", "Bunga"]].sum().reset_index()
-        ranking["Total"] = ranking["Jumlah"] + ranking["Bunga"]
-        ranking = ranking.sort_values("Total", ascending=False)
-        st.dataframe(
-            ranking.style.format({"Jumlah": "Rp {:,.0f}", "Bunga": "Rp {:,.0f}", "Total": "Rp {:,.0f}"}),
-            use_container_width=True
-        )
-    else:
-        st.warning("Tidak ada data investor yang sesuai dengan filter.")
-
-elif menu == "🔥 Heatmap":
-    st.subheader("🔥 Heatmap Korelasi Keuangan")
-    if filtered_df is not None and not filtered_df.empty:
-        # Membuat pivot table untuk heatmap
-        pivot_table = filtered_df.pivot_table(values="Jumlah", index="Kategori", columns="Investor", aggfunc="sum", fill_value=0)
-        heatmap = px.imshow(
-            pivot_table,
-            title="Heatmap Kontribusi Keuangan per Kategori dan Investor",
-            color_continuous_scale="Greens",
-            labels={"color": "Jumlah (Rp)"}
-        )
-        st.plotly_chart(heatmap, use_container_width=True)
-    else:
-        st.warning("Tidak ada data untuk heatmap.")
+    // Inisialisasi chart saat halaman dimuat
+    updateChart();
+  </script>
+</body>
+</html>
