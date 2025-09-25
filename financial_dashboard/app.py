@@ -6,16 +6,14 @@ from datetime import datetime
 import plotly.express as px
 import os
 from io import BytesIO
-from reportlab.lib.pagesizes import letter
-from reportlab.pdfgen import canvas
-
-# Konfigurasi Streamlit
-st.set_page_config(page_title="Dashboard Keuangan HOCINDO", layout="wide", initial_sidebar_state="expanded")
-
-# Harga saham per lembar
-HARGA_SAHAM = 100
-GITHUB_RAW_URL = "https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/financial_dashboard/transaksi.json"
-GITHUB_API_URL = "https://api.github.com/repos/hocindo/hocindo.github.io/contents/financial_dashboard/transaksi.json"
+import base64
+try:
+    from reportlab.lib.pagesizes import letter
+    from reportlab.pdfgen import canvas
+    REPORTLAB_AVAILABLE = True
+except ImportError:
+    REPORTLAB_AVAILABLE = False
+    st.warning("Library 'reportlab' tidak terinstall. Fitur export PDF tidak tersedia. Install dengan: pip install reportlab")
 
 # Cek apakah streamlit-aggrid terinstall
 try:
@@ -24,6 +22,14 @@ try:
 except ImportError:
     AGGRID_AVAILABLE = False
     st.warning("streamlit-aggrid tidak terinstall. Menggunakan tabel standar. Install dengan: pip install streamlit-aggrid")
+
+# Konfigurasi Streamlit
+st.set_page_config(page_title="Dashboard Keuangan HOCINDO", layout="wide", initial_sidebar_state="expanded")
+
+# Harga saham per lembar
+HARGA_SAHAM = 100
+GITHUB_RAW_URL = "https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/financial_dashboard/transaksi.json"
+GITHUB_API_URL = "https://api.github.com/repos/hocindo/hocindo.github.io/contents/financial_dashboard/transaksi.json"
 
 # Autentikasi sederhana
 def check_login():
@@ -34,7 +40,7 @@ def check_login():
         username = st.sidebar.text_input("Username")
         password = st.sidebar.text_input("Password", type="password")
         if st.sidebar.button("Login"):
-            if username == "admin" and password == "hocindo2025":  # Ganti dengan autentikasi lebih aman jika perlu
+            if username == "admin" and password == "hocindo2025":
                 st.session_state.logged_in = True
                 st.rerun()
             else:
@@ -120,6 +126,21 @@ def calculate_summary(df):
         st.error(f"Error calculating summary: {e}")
         return {"total_investasi": 0, "total_saham": 0, "jumlah_investor": 0, "dana_kelolaan": 0}
 
+# Hitung perkiraan pendapatan per investor
+def calculate_investor_earnings(df, roi_percent):
+    try:
+        if df.empty or roi_percent <= 0:
+            return pd.DataFrame(columns=["nama", "total_investasi", "total_saham", "estimasi_pendapatan"])
+        investor_summary = df.groupby("nama").agg({
+            "nominal": "sum",
+            "saham": "sum"
+        }).reset_index()
+        investor_summary["estimasi_pendapatan"] = investor_summary["nominal"] * (roi_percent / 100)
+        return investor_summary[["nama", "total_investasi", "total_saham", "estimasi_pendapatan"]]
+    except Exception as e:
+        st.error(f"Error calculating investor earnings: {e}")
+        return pd.DataFrame(columns=["nama", "total_investasi", "total_saham", "estimasi_pendapatan"])
+
 # Tambah transaksi
 def add_transaction(df, new_data):
     try:
@@ -159,6 +180,9 @@ def delete_transaction(df, index):
 
 # Export ke PDF
 def export_to_pdf(df):
+    if not REPORTLAB_AVAILABLE:
+        st.error("Cannot generate PDF: reportlab not installed.")
+        return None
     try:
         buffer = BytesIO()
         c = canvas.Canvas(buffer, pagesize=letter)
@@ -241,9 +265,10 @@ if check_login():
             csv = df.to_csv(index=False).encode('utf-8')
             st.download_button("📥 Export CSV", csv, "hocindo-transaksi.csv", "text/csv")
         with col_export2:
-            pdf_buffer = export_to_pdf(df)
-            if pdf_buffer:
-                st.download_button("📄 Export PDF", pdf_buffer, "hocindo-laporan.pdf", "application/pdf")
+            if REPORTLAB_AVAILABLE:
+                pdf_buffer = export_to_pdf(df)
+                if pdf_buffer:
+                    st.download_button("📄 Export PDF", pdf_buffer, "hocindo-laporan.pdf", "application/pdf")
         with col_export3:
             if st.button("🔄 Refresh dari GitHub"):
                 st.cache_data.clear()
@@ -273,7 +298,30 @@ if check_login():
         if roi_percent > 0:
             try:
                 keuntungan = (summary['total_investasi'] * roi_percent) / 100
-                st.success(f"Estimasi Keuntungan: **Rp {keuntungan:,.0f}**")
+                st.success(f"Estimasi Keuntungan Total: **Rp {keuntungan:,.0f}**")
+                
+                # Perkiraan Pendapatan Investor
+                st.subheader("📈 Perkiraan Pendapatan per Investor")
+                investor_earnings = calculate_investor_earnings(df, roi_percent)
+                if not investor_earnings.empty:
+                    # Format columns for display
+                    investor_earnings_display = investor_earnings.copy()
+                    investor_earnings_display["total_investasi"] = investor_earnings_display["total_investasi"].apply(lambda x: f"Rp {x:,.0f}")
+                    investor_earnings_display["total_saham"] = investor_earnings_display["total_saham"].apply(lambda x: f"{x:,.0f}")
+                    investor_earnings_display["estimasi_pendapatan"] = investor_earnings_display["estimasi_pendapatan"].apply(lambda x: f"Rp {x:,.0f}")
+                    st.dataframe(investor_earnings_display, use_container_width=True)
+                    
+                    # Bar chart for earnings
+                    fig_earnings = px.bar(
+                        investor_earnings,
+                        x="nama",
+                        y="estimasi_pendapatan",
+                        title="Perkiraan Pendapatan per Investor",
+                        labels={"estimasi_pendapatan": "Estimasi Pendapatan (Rp)", "nama": "Nama Investor"}
+                    )
+                    st.plotly_chart(fig_earnings, use_container_width=True)
+                else:
+                    st.warning("Tidak ada data investor untuk menghitung pendapatan.")
             except Exception as e:
                 st.error(f"Error calculating ROI: {e}")
 
@@ -283,6 +331,7 @@ if check_login():
     - Transaksi awal untuk UMKM dan saham hotel.
     - Data disimpan di GitHub via API (atau lokal jika token tidak tersedia).
     - Harga saham: Rp 100/lembar.
+    - Login: Username 'admin', Password 'hocindo2025'.
     """)
 else:
     st.warning("Silakan login di sidebar untuk mengakses dashboard.")
