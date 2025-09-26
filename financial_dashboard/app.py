@@ -239,6 +239,9 @@ if check_login():
         if AGGRID_AVAILABLE:
             gb = GridOptionsBuilder.from_dataframe(df)
             gb.configure_default_column(editable=True)
+            # Atur lebar kolom saham dan saldo
+            gb.configure_column("saham", width=100)  # Lebar kolom saham
+            gb.configure_column("saldo", width=120)  # Lebar kolom saldo
             gb.configure_selection("single")
             grid_response = AgGrid(df, gridOptions=gb.build(), update_mode=GridUpdateMode.MODEL_CHANGED, height=300)
             df = grid_response["data"]
@@ -250,7 +253,11 @@ if check_login():
                         st.cache_data.clear()
                         st.rerun()
         else:
-            st.dataframe(df, use_container_width=True)
+            # Format angka untuk tampilan lebih ringkas di st.dataframe
+            df_display = df.copy()
+            df_display["saham"] = df_display["saham"].apply(lambda x: f"{x:,.0f}")
+            df_display["saldo"] = df_display["saldo"].apply(lambda x: f"{x/1000:.0f}K")
+            st.dataframe(df_display, use_container_width=True)
 
         # Pembagian Dana Kelolaan
         st.subheader("📊 Pembagian Dana Kelolaan per Investor")
