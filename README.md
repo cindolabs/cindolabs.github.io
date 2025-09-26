@@ -38,7 +38,7 @@ Menyediakan akomodasi yang memadukan kesederhanaan elegan dengan kemewahan moder
 
 ### 🛏️ Produk Hocindo
 - **Layanan Hospitalitas**: Pengalaman menginap kelas dunia yang menggabungkan kenyamanan dan kemewahan untuk berbagai kebutuhan, dari wisata hingga acara khusus.
-- **Investasi Saham Tertutup**: Program investasi properti hotel yang dirancang untuk memberikan nilai tambah jangka panjang dengan bagi hasil yang menarik.
+- **Investasi Saham Tertutup**: Program investasi properti hotel dan lainnya yang dirancang untuk memberikan nilai tambah jangka panjang dengan bagi hasil yang menarik.
 
 ---
 
@@ -49,7 +49,7 @@ Menyediakan akomodasi yang memadukan kesederhanaan elegan dengan kemewahan moder
 | 🌐 Website             | [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Python](https://www.python.org/) |
 | 🎨 Desain              | [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), Figma, Canva     |
 | 🚀 Deployment          | [GitHub Pages](https://pages.github.com/)                                |
-| 💳 Investasi & Bisnis  | Smart Contracts, Blockchain (Ethereum/Polygon)                           |
+| 💳 Investasi & Bisnis  | Saham, Emas, Bitcoin, Forex, Blockchain (Ethereum/Polygon)               |
 | 📊 Data & Analitik     | Google Analytics, AI-powered insights                                   |
 | 💼 Pembukuan           | [Hocindo Streamlit Dashboard](https://hocindo.streamlit.app/)            |
 
