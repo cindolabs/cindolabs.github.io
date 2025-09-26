@@ -367,6 +367,7 @@ if check_login():
     - Dana kelolaan saat ini: Rp 500,000, dibagi berdasarkan proporsi saham.
     - Data disimpan di GitHub via API (atau lokal jika token tidak tersedia).
     - Harga saham: Rp 100/lembar.
+    - Dengan konstitusi baru Hocindo yang menjunjung tinggi privasi, data pembeli saham tertutup Hocindo dijaga kerahasiaannya.
     - Login: Username 'admin', Password 'hocindo2025'.
     """)
 else:
