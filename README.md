@@ -17,32 +17,62 @@
 </p>
 
 <p align="center">
-  <b>Hotel Kreatif</b> yang menggabungkan <b>penginapan</b>, <b>bisnis</b>, dan <b>investasi strategis</b> dengan konsep premium dan berkelanjutan.
+  <b>Hotel Kreatif</b> yang menggabungkan <b>penginapan premium</b>, <b>bisnis inovatif</b>, dan <b>investasi strategis</b> dengan konsep berkelanjutan.
 </p>
 
 ---
 
 ## ✨ Tentang Kami
-**Hocindo** adalah hotel kreatif yang memiliki fitur:
-- 🏨 Penginapan sederhana hingga resor bintang lima  
-- 💖 Paket romantis, pernikahan, dan acara spesial  
-- 📈 Investasi properti hotel dengan sistem bagi hasil tinggi  
+**Hocindo** adalah hotel kreatif yang menawarkan pengalaman unik melalui:
+- 🏨 Akomodasi berkualitas, dari penginapan sederhana hingga resor bintang lima.
+- 💖 Paket eksklusif untuk acara romantis, pernikahan, dan kegiatan spesial lainnya.
+- 📈 Investasi saham tertutup dengan potensi bagi hasil yang kompetitif.
+
+Dengan konstitusi baru Hocindo yang menjunjung tinggi privasi, data pembeli saham tertutup dijaga kerahasiaannya untuk memastikan keamanan dan kepercayaan investor.
 
 ### 🎯 Visi
-Visi kami adalah **menciptakan pengalaman menginap yang nyaman sekaligus memberikan peluang investasi yang menguntungkan.**
+Menghadirkan pengalaman menginap yang tak terlupakan sekaligus mendukung kesuksesan bisnis yang berkelanjutan bagi para mitra dan investor.
+
+### 🎯 Misi
+Menyediakan akomodasi yang memadukan kesederhanaan elegan dengan kemewahan modern, mengutamakan kenyamanan tamu, kepuasan pelanggan, dan keuntungan investor.
+
+### 🛏️ Produk Hocindo
+- **Layanan Hospitalitas**: Pengalaman menginap kelas dunia yang menggabungkan kenyamanan dan kemewahan untuk berbagai kebutuhan, dari wisata hingga acara khusus.
+- **Investasi Saham Tertutup**: Program investasi properti hotel yang dirancang untuk memberikan nilai tambah jangka panjang dengan bagi hasil yang menarik.
 
 ---
 
 ## ⚙️ Tech Stack
 
-| Kategori | Teknologi |
-|----------|-----------|
-| 🌐 Website | [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Python](https://www.python.org/) |
-| 🎨 Desain | [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), Figma, Canva |
-| 🚀 Deployment | [GitHub Pages](https://pages.github.com/) |
-| 💳 Investasi & Bisnis | Smart Contracts, Blockchain (Ethereum/Polygon) |
-| 📊 Data & Analitik | Google Analytics, AI-powered insights |
-| 💼 Pembukuan | [Hocindo streamlit](https://hocindo.streamlit.app/)
+| Kategori                | Teknologi                                                                 |
+|-------------------------|---------------------------------------------------------------------------|
+| 🌐 Website             | [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Python](https://www.python.org/) |
+| 🎨 Desain              | [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), Figma, Canva     |
+| 🚀 Deployment          | [GitHub Pages](https://pages.github.com/)                                |
+| 💳 Investasi & Bisnis  | Smart Contracts, Blockchain (Ethereum/Polygon)                           |
+| 📊 Data & Analitik     | Google Analytics, AI-powered insights                                   |
+| 💼 Pembukuan           | [Hocindo Streamlit Dashboard](https://hocindo.streamlit.app/)            |
+
+### 🐍 Penggunaan Python
+Python digunakan untuk mengembangkan **Dashboard Keuangan HOCINDO**, sebuah aplikasi berbasis [Streamlit](https://streamlit.io/) yang mengelola transaksi investasi saham tertutup. Fitur utama meliputi:
+- **Manajemen Transaksi**: Menambah, menghapus, dan mengedit transaksi investasi.
+- **Visualisasi Data**: Grafik interaktif menggunakan [Plotly](https://plotly.com/python/) untuk analisis investasi.
+- **Integrasi GitHub**: Sinkronisasi data transaksi melalui GitHub API.
+- **Keamanan Data**: Autentikasi pengguna dan perlindungan privasi data sesuai konstitusi baru Hocindo.
+- **Fitur ROI**: Kalkulator perkiraan pendapatan berbasis persentase ROI.
+
+Contoh kode untuk tabel interaktif dengan kolom `saham` dan `saldo` yang diperpendek:
+```python
+import streamlit as st
+from st_aggrid import AgGrid, GridOptionsBuilder
+
+# Tabel Interaktif
+gb = GridOptionsBuilder.from_dataframe(df)
+gb.configure_column("saham", width=100)  # Lebar kolom saham
+gb.configure_column("saldo", width=120)  # Lebar kolom saldo
+gb.configure_selection("single")
+AgGrid(df, gridOptions=gb.build(), height=300)
+```
 
 ---
 
