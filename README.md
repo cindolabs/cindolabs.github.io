@@ -37,7 +37,7 @@ Visi kami adalah **menciptakan pengalaman menginap yang nyaman sekaligus memberi
 
 | Kategori | Teknologi |
 |----------|-----------|
-| 🌐 Website | [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) |
+| 🌐 Website | [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Python](https://www.python.org/) |
 | 🎨 Desain | [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), Figma, Canva |
 | 🚀 Deployment | [GitHub Pages](https://pages.github.com/) |
 | 💳 Investasi & Bisnis | Smart Contracts, Blockchain (Ethereum/Polygon) |
