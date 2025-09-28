@@ -486,6 +486,7 @@
             </div>
             <i class="fas fa-bars hamburger" id="hamburger"></i>
             <nav class="nav-menu" id="nav-menu">
+                <a href="https://hocindo.github.io" target="_blank" rel="noopener noreferrer"><i class="fas fa-home"></i> Beranda</a>
                 <a href="#about"><i class="fas fa-info-circle"></i> Tentang Kami</a>
                 <a href="#benefits"><i class="fas fa-chart-line"></i> Keuntungan</a>
                 <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
@@ -589,8 +590,8 @@
             });
         });
 
-        // Smooth Scroll
-        document.querySelectorAll('.nav-menu a').forEach(anchor => {
+        // Smooth Scroll for Internal Links
+        document.querySelectorAll('.nav-menu a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
@@ -640,8 +641,10 @@
                 return 'Berinvestasi bersama Hocindo memberikan wawasan mendalam, potensi keuntungan tinggi, akses eksklusif, dan pendidikan investasi. Ingin tahu lebih lanjut?';
             } else if (msg.includes('kontak') || msg.includes('hubungi') || msg.includes('telegram')) {
                 return 'Anda dapat menghubungi kami melalui Telegram di https://t.me/hocindo, email info@hocindo.com, atau telepon +62 8999 587 888. Ingin saya bantu hubungkan?';
+            } else if (msg.includes('beranda') || msg.includes('home')) {
+                return 'Anda dapat mengunjungi halaman Beranda kami di https://hocindo.github.io untuk informasi lebih lanjut!';
             } else {
-                return 'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang saham tertutup, keuntungan, atau kontak!';
+                return 'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang saham tertutup, keuntungan, kontak, atau beranda!';
             }
         }
 
