@@ -1,0 +1,48 @@
+<!-- Hocindo Creative Hotel (Golden Ratio + Subtitle) -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Hocindo Hotel Logo Golden Ratio">
+  <defs>
+    <!-- Gradients -->
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#006847"/>
+      <stop offset="100%" stop-color="#004c3f"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#D4AF37"/>
+      <stop offset="100%" stop-color="#b8860b"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#fff" stroke-width="12"/>
+
+  <!-- Hotel Base (Golden Ratio box: 400×247) -->
+  <rect x="312" y="450" width="400" height="247" fill="#ffffff" stroke="url(#gold)" stroke-width="12" rx="20"/>
+
+  <!-- Windows -->
+  <g fill="#006847" opacity="0.9">
+    <!-- Row 1 -->
+    <rect x="352" y="470" width="80" height="80" rx="10"/>
+    <rect x="472" y="470" width="80" height="80" rx="10"/>
+    <rect x="592" y="470" width="80" height="80" rx="10"/>
+    <!-- Row 2 -->
+    <rect x="352" y="570" width="80" height="80" rx="10"/>
+    <rect x="472" y="570" width="80" height="80" rx="10"/>
+    <rect x="592" y="570" width="80" height="80" rx="10"/>
+  </g>
+
+  <!-- Door -->
+  <rect x="472" y="640" width="80" height="57" fill="url(#gold)" rx="10"/>
+
+  <!-- Roof -->
+  <polygon points="292,450 512,270 732,450" fill="url(#gold)" stroke="#fff" stroke-width="8"/>
+
+  <!-- Main Text -->
+  <text x="512" y="810" text-anchor="middle" font-size="80" font-weight="bold" fill="#ffffff" letter-spacing="10">
+    HOCINDO
+  </text>
+
+  <!-- Subtitle -->
+  <text x="512" y="880" text-anchor="middle" font-size="36" font-weight="normal" fill="#D4AF37" letter-spacing="4">
+    CREATIVE HOTEL
+  </text>
+</svg>
