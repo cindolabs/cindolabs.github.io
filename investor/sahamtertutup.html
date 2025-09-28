@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hocindo - Investasi Saham Tertutup</title>
+    <title>Hocindo - Investasi Saham Tertutup untuk Masa Depan</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
 
         body {
@@ -17,43 +18,49 @@
             color: #333;
         }
 
-        /* Gaya untuk Navbar Baru */
         .navbar {
             background-color: #006847;
             padding: 1rem;
             color: white;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
         .logo-img {
-            height: 40px; /* Sesuaikan ukuran logo */
+            height: 50px;
         }
 
-        nav {
-            background-color: #004c3f;
-            padding: 1rem;
-        }
-
-        nav ul {
-            list-style: none;
+        .nav-menu {
             display: flex;
-            justify-content: center;
             gap: 2rem;
         }
 
-        nav a {
+        .nav-menu a {
             color: white;
             text-decoration: none;
             font-weight: bold;
+            transition: color 0.3s;
         }
 
-        nav a:hover {
+        .nav-menu a:hover {
             color: #3498db;
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: white;
         }
 
         .section {
@@ -67,6 +74,7 @@
         .section h2 {
             color: #2c3e50;
             margin-bottom: 1rem;
+            font-size: 1.8rem;
         }
 
         .cta-button {
@@ -77,10 +85,22 @@
             text-decoration: none;
             border-radius: 5px;
             margin-top: 1rem;
+            font-weight: bold;
         }
 
         .cta-button:hover {
             background-color: #2980b9;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .benefits-list i {
+            color: #3498db;
+            margin-right: 0.5rem;
         }
 
         .faq-item {
@@ -91,6 +111,13 @@
         .faq-question {
             font-weight: bold;
             color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-question i {
+            margin-right: 0.5rem;
+            color: #3498db;
         }
 
         .faq-answer {
@@ -100,28 +127,56 @@
             border-radius: 5px;
         }
 
+        .contact-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info i {
+            color: #3498db;
+            font-size: 1.2rem;
+        }
+
         footer {
             background-color: #2c3e50;
             color: white;
             text-align: center;
-            padding: 1rem;
-            position: relative;
-            bottom: 0;
+            padding: 2rem;
             width: 100%;
         }
 
         @media (max-width: 768px) {
             .logo-img {
-                height: 30px;
+                height: 40px;
             }
 
-            nav ul {
+            .nav-menu {
+                display: none;
                 flex-direction: column;
-                gap: 1rem;
+                position: absolute;
+                top: 70px;
+                left: 0;
+                right: 0;
+                background-color: #004c3f;
+                padding: 1rem;
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .hamburger {
+                display: block;
             }
 
             .container {
                 padding: 1rem;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
             }
         }
     </style>
@@ -133,65 +188,71 @@
             <div class="logo">
                 <img src="hocindo.svg" alt="Hocindo Logo" class="logo-img">
             </div>
+            <i class="fas fa-bars hamburger" id="hamburger"></i>
+            <nav class="nav-menu" id="nav-menu">
+                <a href="#about"><i class="fas fa-info-circle"></i> Tentang Kami</a>
+                <a href="#benefits"><i class="fas fa-chart-line"></i> Keuntungan</a>
+                <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
+                <a href="#contact"><i class="fas fa-envelope"></i> Kontak</a>
+            </nav>
         </div>
     </header>
-
-    <nav>
-        <ul>
-            <li><a href="#about">Tentang Kami</a></li>
-            <li><a href="#benefits">Keuntungan</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#contact">Kontak</a></li>
-        </ul>
-    </nav>
 
     <div class="container">
         <div class="section" id="about">
             <h2>Tentang Hocindo</h2>
-            <p>Hocindo adalah platform investasi saham tertutup yang dirancang untuk membantu investor memahami seluk-beluk perusahaan rintisan (startup) sebelum beralih ke investasi saham terbuka. Kami memberikan kesempatan bagi investor untuk terlibat langsung dengan perusahaan-perusahaan potensial pada tahap awal perkembangan mereka.</p>
-            <p>Dengan berinvestasi di saham tertutup, Anda dapat mempelajari dinamika bisnis, strategi pertumbuhan, dan potensi perusahaan sebelum mereka go public. Ini adalah langkah awal yang strategis untuk membangun pemahaman mendalam tentang dunia investasi.</p>
-            <a href="#contact" class="cta-button">Mulai Berinvestasi</a>
+            <p>Hocindo adalah platform investasi saham tertutup terkemuka yang dirancang untuk memberdayakan investor dalam memahami dinamika perusahaan rintisan (startup) sebelum melangkah ke pasar saham terbuka. Kami menyediakan akses eksklusif untuk berinvestasi pada perusahaan-perusahaan inovatif di tahap awal perkembangan mereka, memberikan peluang untuk pertumbuhan portofolio yang signifikan.</p>
+            <p>Melalui pendekatan strategis kami, investor dapat mempelajari operasional bisnis, strategi pertumbuhan, dan potensi perusahaan sebelum go public. Hocindo berkomitmen untuk menjadi mitra terpercaya dalam perjalanan investasi Anda, dengan fokus pada transparansi, pendidikan, dan peluang jangka panjang.</p>
+            <a href="#contact" class="cta-button">Mulai Berinvestasi Sekarang</a>
         </div>
 
         <div class="section" id="benefits">
-            <h2>Keuntungan Berinvestasi di Saham Tertutup</h2>
-            <ul>
-                <li><strong>Pemahaman Mendalam:</strong> Investor mendapatkan wawasan langsung tentang operasional dan strategi perusahaan rintisan.</li>
-                <li><strong>Potensi Keuntungan Tinggi:</strong> Saham tertutup sering kali memiliki valuasi awal yang lebih rendah, memberikan peluang keuntungan besar saat perusahaan berkembang.</li>
-                <li><strong>Akses Eksklusif:</strong> Berinvestasi di perusahaan sebelum go public memberikan keunggulan kompetitif.</li>
-                <li><strong>Pendidikan Investasi:</strong> Belajar dinamika pasar saham melalui pengalaman langsung dengan startup.</li>
+            <h2>Keuntungan Berinvestasi Bersama Hocindo</h2>
+            <ul class="benefits-list">
+                <li><i class="fas fa-eye"></i> <strong>Wawasan Mendalam:</strong> Dapatkan pemahaman langsung tentang strategi dan operasional perusahaan rintisan.</li>
+                <li><i class="fas fa-arrow-up"></i> <strong>Potensi Keuntungan Tinggi:</strong> Investasi pada valuasi awal yang rendah membuka peluang keuntungan besar saat perusahaan berkembang.</li>
+                <li><i class="fas fa-lock"></i> <strong>Akses Eksklusif:</strong> Berpartisipasi dalam peluang investasi yang hanya tersedia bagi investor terpilih sebelum perusahaan go public.</li>
+                <li><i class="fas fa-graduation-cap"></i> <strong>Pendidikan Investasi:</strong> Tingkatkan pemahaman Anda tentang pasar saham melalui pengalaman langsung dengan startup.</li>
             </ul>
         </div>
 
         <div class="section" id="faq">
             <h2>Pertanyaan Umum (FAQ)</h2>
             <div class="faq-item">
-                <div class="faq-question">Apa itu saham tertutup?</div>
-                <div class="faq-answer">Saham tertutup adalah saham perusahaan yang belum diperdagangkan di bursa saham publik. Hanya investor tertentu yang dapat membelinya, biasanya melalui platform seperti Hocindo.</div>
+                <div class="faq-question"><i class="fas fa-question"></i> Apa itu saham tertutup?</div>
+                <div class="faq-answer">Saham tertutup adalah saham perusahaan yang belum diperdagangkan di bursa saham publik, hanya tersedia untuk investor terpilih melalui platform seperti Hocindo.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Mengapa berinvestasi di saham tertutup?</div>
-                <div class="faq-answer">Investasi saham tertutup memungkinkan Anda untuk terlibat dengan perusahaan rintisan yang memiliki potensi pertumbuhan tinggi sekaligus mempelajari dinamika bisnis mereka.</div>
+                <div class="faq-question"><i class="fas fa-lightbulb"></i> Mengapa memilih investasi saham tertutup?</div>
+                <div class="faq-answer">Investasi saham tertutup memberikan peluang untuk terlibat dengan perusahaan rintisan berpotensi tinggi, sekaligus memperdalam pemahaman tentang dinamika bisnis mereka.</div>
             </div>
             <div class="faq-item">
-                <div class="faq-question">Apa risiko investasi di saham tertutup?</div>
-                <div class="faq-answer">Seperti semua investasi, saham tertutup memiliki risiko, termasuk risiko likuiditas dan kegagalan bisnis. Namun, Hocindo membantu memitigasi risiko dengan penyaringan perusahaan yang ketat.</div>
+                <div class="faq-question"><i class="fas fa-exclamation-triangle"></i> Apa risiko investasi saham tertutup?</div>
+                <div class="faq-answer">Seperti semua investasi, saham tertutup memiliki risiko, termasuk likuiditas terbatas dan potensi kegagalan bisnis. Hocindo memitigasi risiko ini melalui proses penyaringan perusahaan yang ketat.</div>
             </div>
         </div>
 
         <div class="section" id="contact">
             <h2>Hubungi Kami</h2>
-            <p>Siap untuk memulai perjalanan investasi Anda? Hubungi tim kami untuk informasi lebih lanjut!</p>
-            <p>Email: ringinbambu@gmail.com | Telepon: +62 8999 587 888</p>
-            <a href="mailto:info@hocindo.com" class="cta-button">Kontak Sekarang</a>
+            <p>Mulai perjalanan investasi Anda bersama Hocindo. Tim kami siap membantu Anda menjelajahi peluang investasi saham tertutup dengan panduan profesional.</p>
+            <div class="contact-info">
+                <i class="fas fa-envelope"></i>
+                <p>Email: <a href="mailto:info@hocindo.com">info@hocindo.com</a></p>
+            </div>
+            <div class="contact-info">
+                <i class="fas fa-phone"></i>
+                <p>Telepon: +62 8999 587 888</p>
+            </div>
+            <a href="mailto:info@hocindo.com" class="cta-button">Hubungi Kami Sekarang</a>
         </div>
     </div>
 
     <footer>
-        <p>&copy; 2025 Hocindo. Semua hak dilindungi.</p>
+        <p>&copy; 2025 Hocindo. Hak cipta dilindungi undang-undang.</p>
     </footer>
 
     <script>
+        // FAQ Toggle
         document.querySelectorAll('.faq-item').forEach(item => {
             item.addEventListener('click', () => {
                 const answer = item.querySelector('.faq-answer');
@@ -200,15 +261,24 @@
             });
         });
 
-        // Smooth scroll untuk navigasi
-        document.querySelectorAll('nav a').forEach(anchor => {
+        // Smooth Scroll
+        document.querySelectorAll('.nav-menu a').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetId = this.getAttribute('href');
                 document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
+                // Tutup menu di mobile setelah klik
+                if (window.innerWidth <= 768) {
+                    document.getElementById('nav-menu').classList.remove('active');
+                }
             });
+        });
+
+        // Hamburger Menu Toggle
+        document.getElementById('hamburger').addEventListener('click', () => {
+            document.getElementById('nav-menu').classList.toggle('active');
         });
     </script>
 </body>
