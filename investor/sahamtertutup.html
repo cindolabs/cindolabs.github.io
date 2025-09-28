@@ -5,285 +5,379 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hocindo - Investasi Saham Tertutup untuk Masa Depan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            line-height: 1.6;
-            color: #2d3748;
-            background-color: #f7fafc;
+            line-height: 1.7;
+            color: #1f2a44;
+            background-color: #f9fafb;
         }
 
+        /* Navbar */
         .navbar {
-            background: linear-gradient(90deg, #006847, #004c3f);
-            padding: 1rem;
-            color: white;
-            position: sticky;
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 1rem 0;
+            position: fixed;
             top: 0;
+            width: 100%;
             z-index: 1000;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        .container {
-            max-width: 1280px;
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            max-width: 1320px;
             margin: 0 auto;
             padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
         }
 
         .logo-img {
-            height: 55px;
+            height: 48px;
             transition: transform 0.3s ease;
         }
 
         .logo-img:hover {
-            transform: scale(1.1);
+            transform: scale(1.05);
         }
 
         .nav-menu {
             display: flex;
             gap: 2.5rem;
+            align-items: center;
         }
 
         .nav-menu a {
-            color: white;
+            color: #1f2a44;
             text-decoration: none;
             font-weight: 500;
             font-size: 1rem;
-            transition: color 0.3s, transform 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: background 0.3s, color 0.3s;
         }
 
         .nav-menu a:hover {
-            color: #63b3ed;
-            transform: translateY(-2px);
+            background: #f1f5f9;
+            color: #2563eb;
         }
 
         .nav-menu i {
             margin-right: 0.5rem;
+            color: #2563eb;
         }
 
         .hamburger {
             display: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
-            color: white;
-            transition: transform 0.3s;
+            color: #1f2a44;
+            transition: color 0.3s;
         }
 
         .hamburger:hover {
-            transform: rotate(90deg);
+            color: #2563eb;
+        }
+
+        /* Main Content */
+        .main-content {
+            margin-top: 80px;
+            padding: 3rem 0;
+        }
+
+        .container {
+            max-width: 1320px;
+            margin: 0 auto;
+            padding: 0 2rem;
         }
 
         .section {
-            margin: 2rem 0;
-            padding: 2.5rem;
+            margin-bottom: 4rem;
+            padding: 3rem;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            transition: transform 0.3s ease;
+            border-radius: 16px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            transition: box-shadow 0.3s ease;
         }
 
         .section:hover {
-            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .section h2 {
-            color: #2d3748;
-            margin-bottom: 1.2rem;
-            font-size: 2rem;
-            font-weight: 600;
+            color: #1f2a44;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.025em;
+        }
+
+        .section p {
+            font-size: 1.1rem;
+            color: #4b5563;
+            margin-bottom: 1.25rem;
+            line-height: 1.8;
         }
 
         .cta-button {
             display: inline-flex;
             align-items: center;
-            padding: 0.8rem 2rem;
-            background: #3182ce;
+            padding: 0.9rem 2.25rem;
+            background: #2563eb;
             color: white;
             text-decoration: none;
             border-radius: 8px;
-            margin-top: 1.5rem;
             font-weight: 500;
+            font-size: 1rem;
             transition: background 0.3s, transform 0.3s;
         }
 
         .cta-button:hover {
-            background: #2b6cb0;
-            transform: scale(1.05);
+            background: #1d4ed8;
+            transform: translateY(-2px);
         }
 
         .cta-button i {
-            margin-right: 0.5rem;
+            margin-right: 0.6rem;
+        }
+
+        .benefits-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
         .benefits-list li {
             display: flex;
             align-items: flex-start;
-            margin-bottom: 1.2rem;
             font-size: 1.1rem;
+            color: #4b5563;
+            line-height: 1.6;
         }
 
         .benefits-list i {
-            color: #3182ce;
-            margin-right: 0.8rem;
-            font-size: 1.3rem;
+            color: #2563eb;
+            margin-right: 1rem;
+            font-size: 1.5rem;
+            margin-top: 0.25rem;
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 1.5rem;
         }
 
         .faq-item {
-            margin-bottom: 1.2rem;
-            cursor: pointer;
-            border-bottom: 1px solid #edf2f7;
-            padding-bottom: 1rem;
+            padding: 1.5rem;
+            background: #f9fafb;
+            border-radius: 12px;
+            transition: background 0.3s;
+        }
+
+        .faq-item:hover {
+            background: #f1f5f9;
         }
 
         .faq-question {
             font-weight: 600;
-            color: #2d3748;
+            color: #1f2a44;
+            font-size: 1.15rem;
             display: flex;
             align-items: center;
-            font-size: 1.1rem;
+            cursor: pointer;
         }
 
         .faq-question i {
-            margin-right: 0.8rem;
-            color: #3182ce;
+            margin-right: 1rem;
+            color: #2563eb;
+            transition: transform 0.3s;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(90deg);
         }
 
         .faq-answer {
             display: none;
-            padding: 1.2rem;
-            background: #f7fafc;
-            border-radius: 8px;
-            margin-top: 0.8rem;
+            padding: 1.25rem 0 0 2rem;
+            font-size: 1rem;
+            color: #4b5563;
+            line-height: 1.7;
         }
 
         .contact-info {
             display: flex;
             align-items: center;
-            gap: 1.2rem;
-            margin-bottom: 1.2rem;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
             font-size: 1.1rem;
+            color: #4b5563;
         }
 
         .contact-info i {
-            color: #3182ce;
-            font-size: 1.4rem;
+            color: #2563eb;
+            font-size: 1.5rem;
         }
 
-        /* Chatbot Styles */
+        /* Chatbot */
         .chatbot {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 30px;
+            right: 30px;
             z-index: 1000;
         }
 
         .chatbot-toggle {
-            background: #3182ce;
+            background: #2563eb;
             color: white;
             border: none;
             border-radius: 50%;
-            width: 60px;
-            height: 60px;
+            width: 56px;
+            height: 56px;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-            transition: transform 0.3s;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
         }
 
         .chatbot-toggle:hover {
+            background: #1d4ed8;
             transform: scale(1.1);
         }
 
         .chatbot-window {
             display: none;
-            width: 320px;
+            width: 380px;
             background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            border-radius: 16px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
             overflow: hidden;
-            margin-top: 10px;
+            transform: translateY(20px);
+            opacity: 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .chatbot-window.active {
+            display: block;
+            transform: translateY(0);
+            opacity: 1;
         }
 
         .chatbot-header {
-            background: #3182ce;
+            background: #2563eb;
             color: white;
-            padding: 1rem;
+            padding: 1rem 1.5rem;
             font-weight: 500;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-header .close-chatbot {
+            cursor: pointer;
+            font-size: 1rem;
+            transition: color 0.3s;
+        }
+
+        .chatbot-header .close-chatbot:hover {
+            color: #dbeafe;
         }
 
         .chatbot-body {
-            max-height: 300px;
+            max-height: 340px;
             overflow-y: auto;
-            padding: 1rem;
+            padding: 1.5rem;
+            background: #f9fafb;
         }
 
         .chatbot-message {
-            margin-bottom: 1rem;
-            padding: 0.8rem;
-            border-radius: 8px;
+            margin-bottom: 1.25rem;
+            padding: 0.8rem 1.2rem;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.5;
         }
 
         .chatbot-message.user {
-            background: #e6f3ff;
-            margin-left: 10%;
-            border-bottom-right-radius: 0;
+            background: #dbeafe;
+            margin-left: 20%;
+            border-bottom-right-radius: 4px;
         }
 
         .chatbot-message.bot {
-            background: #f7fafc;
-            margin-right: 10%;
-            border-bottom-left-radius: 0;
+            background: white;
+            margin-right: 20%;
+            border-bottom-left-radius: 4px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.05);
         }
 
         .chatbot-input {
             display: flex;
-            border-top: 1px solid #edf2f7;
-            padding: 0.8rem;
+            padding: 1rem 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            background: white;
         }
 
         .chatbot-input input {
             flex: 1;
-            padding: 0.8rem;
-            border: 1px solid #e2e8f0;
+            padding: 0.9rem;
+            border: 1px solid #e5e7eb;
             border-radius: 8px;
+            font-size: 0.95rem;
             outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .chatbot-input input:focus {
+            border-color: #2563eb;
         }
 
         .chatbot-input button {
-            background: #3182ce;
+            background: #2563eb;
             color: white;
             border: none;
-            padding: 0.8rem 1.2rem;
+            padding: 0.9rem 1.5rem;
             border-radius: 8px;
-            margin-left: 0.5rem;
+            margin-left: 1rem;
             cursor: pointer;
+            transition: background 0.3s;
         }
 
         .chatbot-input button:hover {
-            background: #2b6cb0;
+            background: #1d4ed8;
         }
 
+        /* Footer */
         footer {
-            background: #2d3748;
+            background: #1f2a44;
             color: white;
             text-align: center;
-            padding: 2rem;
-            font-size: 0.9rem;
+            padding: 2.5rem;
+            font-size: 0.95rem;
+            font-weight: 400;
+            border-top: 1px solid #374151;
         }
 
+        /* Responsive */
         @media (max-width: 768px) {
+            .navbar .container {
+                padding: 0 1.5rem;
+            }
+
             .logo-img {
-                height: 45px;
+                height: 40px;
             }
 
             .nav-menu {
@@ -293,34 +387,69 @@
                 top: 70px;
                 left: 0;
                 right: 0;
-                background: #004c3f;
-                padding: 1.5rem;
-                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+                background: white;
+                padding: 2rem;
+                box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+                border-bottom: 1px solid #e5e7eb;
             }
 
             .nav-menu.active {
                 display: flex;
             }
 
+            .nav-menu a {
+                padding: 1rem;
+                font-size: 1.1rem;
+                color: #1f2a44;
+            }
+
+            .nav-menu a:hover {
+                background: #f1f5f9;
+            }
+
             .hamburger {
                 display: block;
             }
 
-            .container {
-                padding: 1rem;
+            .main-content {
+                margin-top: 70px;
+                padding: 2rem 0;
             }
 
+            .section {
+                padding: 2rem;
+            }
+
+            .section h2 {
+                font-size: 1.75rem;
+            }
+
+            .benefits-list {
+                grid-template-columns: 1fr;
+            }
+
+            .chatbot {
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .chatbot-window {
+                width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
             .section {
                 padding: 1.5rem;
             }
 
             .section h2 {
-                font-size: 1.6rem;
+                font-size: 1.5rem;
             }
 
-            .chatbot-window {
-                width: 90%;
-                right: 5%;
+            .cta-button {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.95rem;
             }
         }
     </style>
@@ -342,52 +471,57 @@
         </div>
     </header>
 
-    <div class="container">
-        <div class="section" id="about">
-            <h2>Tentang Hocindo</h2>
-            <p>Hocindo adalah platform investasi saham tertutup terkemuka yang dirancang untuk memberdayakan investor dalam memahami dinamika perusahaan rintisan (startup) sebelum melangkah ke pasar saham terbuka. Kami menyediakan akses eksklusif untuk berinvestasi pada perusahaan-perusahaan inovatif di tahap awal perkembangan mereka, memberikan peluang untuk pertumbuhan portofolio yang signifikan.</p>
-            <p>Melalui pendekatan strategis kami, investor dapat mempelajari operasional bisnis, strategi pertumbuhan, dan potensi perusahaan sebelum go public. Hocindo berkomitmen untuk menjadi mitra terpercaya dalam perjalanan investasi Anda, dengan fokus pada transparansi, pendidikan, dan peluang jangka panjang.</p>
-            <a href="#contact" class="cta-button"><i class="fas fa-rocket"></i> Mulai Berinvestasi Sekarang</a>
-        </div>
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="container">
+            <div class="section" id="about">
+                <h2>Tentang Hocindo</h2>
+                <p>Hocindo adalah platform investasi saham tertutup terkemuka yang dirancang untuk memberdayakan investor dalam memahami dinamika perusahaan rintisan (startup) sebelum melangkah ke pasar saham terbuka. Kami menyediakan akses eksklusif untuk berinvestasi pada perusahaan-perusahaan inovatif di tahap awal perkembangan mereka, memberikan peluang untuk pertumbuhan portofolio yang signifikan.</p>
+                <p>Melalui pendekatan strategis kami, investor dapat mempelajari operasional bisnis, strategi pertumbuhan, dan potensi perusahaan sebelum go public. Hocindo berkomitmen untuk menjadi mitra terpercaya dalam perjalanan investasi Anda, dengan fokus pada transparansi, pendidikan, dan peluang jangka panjang.</p>
+                <a href="#contact" class="cta-button"><i class="fas fa-rocket"></i> Mulai Berinvestasi Sekarang</a>
+            </div>
 
-        <div class="section" id="benefits">
-            <h2>Keuntungan Berinvestasi Bersama Hocindo</h2>
-            <ul class="benefits-list">
-                <li><i class="fas fa-eye"></i> <strong>Wawasan Mendalam:</strong> Dapatkan pemahaman langsung tentang strategi dan operasional perusahaan rintisan.</li>
-                <li><i class="fas fa-arrow-up"></i> <strong>Potensi Keuntungan Tinggi:</strong> Investasi pada valuasi awal yang rendah membuka peluang keuntungan besar saat perusahaan berkembang.</li>
-                <li><i class="fas fa-lock"></i> <strong>Akses Eksklusif:</strong> Berpartisipasi dalam peluang investasi yang hanya tersedia bagi investor terpilih sebelum perusahaan go public.</li>
-                <li><i class="fas fa-graduation-cap"></i> <strong>Pendidikan Investasi:</strong> Tingkatkan pemahaman Anda tentang pasar saham melalui pengalaman langsung dengan startup.</li>
-            </ul>
-        </div>
+            <div class="section" id="benefits">
+                <h2>Keuntungan Berinvestasi Bersama Hocindo</h2>
+                <ul class="benefits-list">
+                    <li><i class="fas fa-eye"></i> <strong>Wawasan Mendalam:</strong> Dapatkan pemahaman langsung tentang strategi dan operasional perusahaan rintisan.</li>
+                    <li><i class="fas fa-arrow-up"></i> <strong>Potensi Keuntungan Tinggi:</strong> Investasi pada valuasi awal yang rendah membuka peluang keuntungan besar saat perusahaan berkembang.</li>
+                    <li><i class="fas fa-lock"></i> <strong>Akses Eksklusif:</strong> Berpartisipasi dalam peluang investasi yang hanya tersedia bagi investor terpilih sebelum perusahaan go public.</li>
+                    <li><i class="fas fa-graduation-cap"></i> <strong>Pendidikan Investasi:</strong> Tingkatkan pemahaman Anda tentang pasar saham melalui pengalaman langsung dengan startup.</li>
+                </ul>
+            </div>
 
-        <div class="section" id="faq">
-            <h2>Pertanyaan Umum (FAQ)</h2>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-question"></i> Apa itu saham tertutup?</div>
-                <div class="faq-answer">Saham tertutup adalah saham perusahaan yang belum diperdagangkan di bursa saham publik, hanya tersedia untuk investor terpilih melalui platform seperti Hocindo.</div>
+            <div class="section" id="faq">
+                <h2>Pertanyaan Umum (FAQ)</h2>
+                <div class="faq-list">
+                    <div class="faq-item">
+                        <div class="faq-question"><i class="fas fa-question"></i> Apa itu saham tertutup?</div>
+                        <div class="faq-answer">Saham tertutup adalah saham perusahaan yang belum diperdagangkan di bursa saham publik, hanya tersedia untuk investor terpilih melalui platform seperti Hocindo.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question"><i class="fas fa-lightbulb"></i> Mengapa memilih investasi saham tertutup?</div>
+                        <div class="faq-answer">Investasi saham tertutup memberikan peluang untuk terlibat dengan perusahaan rintisan berpotensi tinggi, sekaligus memperdalam pemahaman tentang dinamika bisnis mereka.</div>
+                    </div>
+                    <div class="faq-item">
+                        <div class="faq-question"><i class="fas fa-exclamation-triangle"></i> Apa risiko investasi saham tertutup?</div>
+                        <div class="faq-answer">Seperti semua investasi, saham tertutup memiliki risiko, termasuk likuiditas terbatas dan potensi kegagalan bisnis. Hocindo memitigasi risiko ini melalui proses penyaringan perusahaan yang ketat.</div>
+                    </div>
+                </div>
             </div>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-lightbulb"></i> Mengapa memilih investasi saham tertutup?</div>
-                <div class="faq-answer">Investasi saham tertutup memberikan peluang untuk terlibat dengan perusahaan rintisan berpotensi tinggi, sekaligus memperdalam pemahaman tentang dinamika bisnis mereka.</div>
-            </div>
-            <div class="faq-item">
-                <div class="faq-question"><i class="fas fa-exclamation-triangle"></i> Apa risiko investasi saham tertutup?</div>
-                <div class="faq-answer">Seperti semua investasi, saham tertutup memiliki risiko, termasuk likuiditas terbatas dan potensi kegagalan bisnis. Hocindo memitigasi risiko ini melalui proses penyaringan perusahaan yang ketat.</div>
-            </div>
-        </div>
 
-        <div class="section" id="contact">
-            <h2>Hubungi Kami</h2>
-            <p>Mulai perjalanan investasi Anda bersama Hocindo. Tim kami siap membantu Anda menjelajahi peluang investasi saham tertutup dengan panduan profesional.</p>
-            <div class="contact-info">
-                <i class="fas fa-envelope"></i>
-                <p>Email: <a href="mailto:info@hocindo.com">info@hocindo.com</a></p>
+            <div class="section" id="contact">
+                <h2>Hubungi Kami</h2>
+                <p>Mulai perjalanan investasi Anda bersama Hocindo. Tim kami siap membantu Anda menjelajahi peluang investasi saham tertutup dengan panduan profesional.</p>
+                <div class="contact-info">
+                    <i class="fas fa-envelope"></i>
+                    <p>Email: <a href="mailto:info@hocindo.com">info@hocindo.com</a></p>
+                </div>
+                <div class="contact-info">
+                    <i class="fas fa-phone"></i>
+                    <p>Telepon: +62 8999 587 888</p>
+                </div>
+                <a href="mailto:info@hocindo.com" class="cta-button"><i class="fas fa-paper-plane"></i> Hubungi Kami Sekarang</a>
             </div>
-            <div class="contact-info">
-                <i class="fas fa-phone"></i>
-                <p>Telepon: +62 8999 587 888</p>
-            </div>
-            <a href="mailto:info@hocindo.com" class="cta-button"><i class="fas fa-paper-plane"></i> Hubungi Kami Sekarang</a>
         </div>
     </div>
 
@@ -397,7 +531,10 @@
             <i class="fas fa-comment-dots"></i>
         </button>
         <div class="chatbot-window" id="chatbot-window">
-            <div class="chatbot-header">Hocindo Chatbot</div>
+            <div class="chatbot-header">
+                Hocindo Chatbot
+                <i class="fas fa-times close-chatbot" id="close-chatbot"></i>
+            </div>
             <div class="chatbot-body" id="chatbot-body">
                 <div class="chatbot-message bot">Selamat datang! Bagaimana saya bisa membantu Anda hari ini?</div>
             </div>
@@ -418,7 +555,14 @@
             item.addEventListener('click', () => {
                 const answer = item.querySelector('.faq-answer');
                 const isVisible = answer.style.display === 'block';
-                answer.style.display = isVisible ? 'none' : 'block';
+                document.querySelectorAll('.faq-item').forEach(i => {
+                    i.classList.remove('active');
+                    i.querySelector('.faq-answer').style.display = 'none';
+                });
+                if (!isVisible) {
+                    answer.style.display = 'block';
+                    item.classList.add('active');
+                }
             });
         });
 
@@ -444,12 +588,17 @@
         // Chatbot Functionality
         const chatbotToggle = document.getElementById('chatbot-toggle');
         const chatbotWindow = document.getElementById('chatbot-window');
+        const closeChatbot = document.getElementById('close-chatbot');
         const chatbotBody = document.getElementById('chatbot-body');
         const chatbotInput = document.getElementById('chatbot-input');
         const chatbotSend = document.getElementById('chatbot-send');
 
         chatbotToggle.addEventListener('click', () => {
-            chatbotWindow.style.display = chatbotWindow.style.display === 'block' ? 'none' : 'block';
+            chatbotWindow.classList.toggle('active');
+        });
+
+        closeChatbot.addEventListener('click', () => {
+            chatbotWindow.classList.remove('active');
         });
 
         function addMessage(text, sender) {
