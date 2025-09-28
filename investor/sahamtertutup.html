@@ -17,16 +17,21 @@
             color: #333;
         }
 
-        header {
+        /* Gaya untuk Navbar Baru */
+        .navbar {
             background-color: #006847;
-            color: white;
             padding: 1rem;
-            text-align: center;
+            color: white;
         }
 
-        header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo-img {
+            height: 40px; /* Sesuaikan ukuran logo */
         }
 
         nav {
@@ -49,12 +54,6 @@
 
         nav a:hover {
             color: #3498db;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 2rem;
         }
 
         .section {
@@ -112,8 +111,8 @@
         }
 
         @media (max-width: 768px) {
-            header h1 {
-                font-size: 1.8rem;
+            .logo-img {
+                height: 30px;
             }
 
             nav ul {
@@ -128,9 +127,13 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Hocindo</h1>
-        <p>Platform Investasi Saham Tertutup untuk Masa Depan Anda</p>
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container">
+            <div class="logo">
+                <img src="hocindo.svg" alt="Hocindo Logo" class="logo-img">
+            </div>
+        </div>
     </header>
 
     <nav>
