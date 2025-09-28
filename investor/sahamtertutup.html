@@ -487,6 +487,7 @@
             <i class="fas fa-bars hamburger" id="hamburger"></i>
             <nav class="nav-menu" id="nav-menu">
                 <a href="https://hocindo.github.io" target="_blank" rel="noopener noreferrer"><i class="fas fa-home"></i> Beranda</a>
+                <a href="https://hocindo.streamlit.app" target="_blank" rel="noopener noreferrer"><i class="fas fa-user-tie"></i> Investor</a>
                 <a href="#about"><i class="fas fa-info-circle"></i> Tentang Kami</a>
                 <a href="#benefits"><i class="fas fa-chart-line"></i> Keuntungan</a>
                 <a href="#faq"><i class="fas fa-question-circle"></i> FAQ</a>
@@ -643,8 +644,10 @@
                 return 'Anda dapat menghubungi kami melalui Telegram di https://t.me/hocindo, email info@hocindo.com, atau telepon +62 8999 587 888. Ingin saya bantu hubungkan?';
             } else if (msg.includes('beranda') || msg.includes('home')) {
                 return 'Anda dapat mengunjungi halaman Beranda kami di https://hocindo.github.io untuk informasi lebih lanjut!';
+            } else if (msg.includes('investor')) {
+                return 'Kunjungi halaman Investor kami di https://hocindo.streamlit.app untuk informasi dan layanan khusus investor!';
             } else {
-                return 'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang saham tertutup, keuntungan, kontak, atau beranda!';
+                return 'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang saham tertutup, keuntungan, kontak, beranda, atau investor!';
             }
         }
 
