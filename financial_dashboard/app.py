@@ -21,8 +21,13 @@ except ImportError:
     AGGRID_AVAILABLE = False
     st.warning("streamlit-aggrid tidak terinstall. Menggunakan tabel standar. Install dengan: pip install streamlit-aggrid")
 
-# Konfigurasi Streamlit
-st.set_page_config(page_title="Dashboard Keuangan HOCINDO", layout="wide", initial_sidebar_state="expanded")
+# Konfigurasi Streamlit dengan favicon
+st.set_page_config(
+    page_title="Dashboard Keuangan HOCINDO",
+    layout="wide",
+    initial_sidebar_state="expanded",
+    page_icon="hocindo.svg"  # Path ke favicon di direktori proyek
+)
 
 # Harga saham per lembar dan dana kelolaan
 HARGA_SAHAM = 100
