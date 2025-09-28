@@ -228,6 +228,29 @@
             font-size: 1.5rem;
         }
 
+        .telegram-link {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.9rem 2.25rem;
+            background: #0088cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 500;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.3s;
+            margin-top: 1rem;
+        }
+
+        .telegram-link:hover {
+            background: #006db3;
+            transform: translateY(-2px);
+        }
+
+        .telegram-link i {
+            margin-right: 0.6rem;
+        }
+
         /* Chatbot */
         .chatbot {
             position: fixed;
@@ -447,7 +470,7 @@
                 font-size: 1.5rem;
             }
 
-            .cta-button {
+            .cta-button, .telegram-link {
                 padding: 0.8rem 1.5rem;
                 font-size: 0.95rem;
             }
@@ -520,7 +543,7 @@
                     <i class="fas fa-phone"></i>
                     <p>Telepon: +62 8999 587 888</p>
                 </div>
-                <a href="t.me/hocindo" class="cta-button"><i class="fas fa-paper-plane"></i> Hubungi Kami Sekarang</a>
+                <a href="https://t.me/hocindo" class="telegram-link" target="_blank" rel="noopener noreferrer"><i class="fab fa-telegram-plane"></i> Hubungi Kami di Telegram</a>
             </div>
         </div>
     </div>
@@ -615,8 +638,8 @@
                 return 'Saham tertutup adalah saham perusahaan yang belum diperdagangkan di bursa publik. Hocindo menyediakan akses eksklusif untuk berinvestasi di perusahaan rintisan berpotensi tinggi.';
             } else if (msg.includes('keuntungan') || msg.includes('manfaat')) {
                 return 'Berinvestasi bersama Hocindo memberikan wawasan mendalam, potensi keuntungan tinggi, akses eksklusif, dan pendidikan investasi. Ingin tahu lebih lanjut?';
-            } else if (msg.includes('kontak') || msg.includes('hubungi')) {
-                return 'Anda dapat menghubungi kami di info@hocindo.com atau +62 8999 587 888. Ingin saya bantu hubungkan?';
+            } else if (msg.includes('kontak') || msg.includes('hubungi') || msg.includes('telegram')) {
+                return 'Anda dapat menghubungi kami melalui Telegram di https://t.me/hocindo, email info@hocindo.com, atau telepon +62 8999 587 888. Ingin saya bantu hubungkan?';
             } else {
                 return 'Maaf, saya belum memahami pertanyaan Anda. Coba tanyakan tentang saham tertutup, keuntungan, atau kontak!';
             }
