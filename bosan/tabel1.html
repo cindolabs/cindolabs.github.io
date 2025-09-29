@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GitBlob</title>
+    <link rel="icon" type="image/svg+xml" href="/gitblob.svg" />
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="logo-container">
+    <!-- SVG logo akan ditampilkan di sini -->
+    <svg viewBox="0 0 64 64" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" width="32" height="32">
+        <!-- Definisi gradien -->
+        <defs>
+            <linearGradient id="gradient1" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#41D1FF"></stop>
+                <stop offset="100%" stop-color="#BD34FE"></stop>
+            </linearGradient>
+            <linearGradient id="gradient2" x1="43.376%" x2="50.316%" y1="2.242%" y2="89.03%">
+                <stop offset="0%" stop-color="#FFEA83"></stop>
+                <stop offset="8.333%" stop-color="#FFDD35"></stop>
+                <stop offset="100%" stop-color="#FFA800"></stop>
+            </linearGradient>
+        </defs>
+        
+        <g transform="translate(0.00630876,-0.00301984)">
+            <!-- Menggunakan gradien untuk isi path -->
+            <path fill="url(#gradient1)" d="m63.033,39.744c-4.274,17.143-21.637,27.576-38.782,23.301-17.138-4.274-27.571-21.638-23.295-38.78,4.272-17.145,21.635-27.579,38.775-23.305,17.144,4.274,27.576,21.64,23.302,38.784z"></path>
+            <!-- Menggunakan gradien untuk isi path -->
+            <path fill="url(#gradient2)" d="m46.103,27.444c0.637-4.258-2.605-6.547-7.038-8.074l1.438-5.768-3.511-0.875-1.4,5.616c-0.923-0.23-1.871-0.447-2.813-0.662l1.41-5.653-3.509-0.875-1.439,5.766c-0.764-0.174-1.514-0.346-2.242-0.527l0.004-0.018-4.842-1.209-0.934,3.75s2.605,0.597,2.55,0.634c1.422,0.355,1.679,1.296,1.636,2.042l-1.638,6.571c0.098,0.025,0.225,0.061,0.365,0.117-0.117-0.029-0.242-0.061-0.371-0.092l-2.296,9.205c-0.174,0.432-0.615,1.08-1.609,0.834,0.035,0.051-2.552-0.637-2.552-0.637l-1.743,4.019,4.569,1.139c0.85,0.213,1.683,0.436,2.503,0.646l-1.453,5.834,3.507,0.875,1.439-5.772c0.958,0.26,1.888,0.5,2.798,0.726l-1.434,5.745,3.511,0.875,1.453-5.823c5.987,1.133,10.489,0.676,12.384-4.739,1.527-4.36-0.076-6.875-3.226-8.515,2.294-0.529,4.022-2.038,4.483-5.155zm-8.022,11.249c-1.085,4.36-8.426,2.003-10.806,1.412l1.928-7.729c2.38,0.594,10.012,1.77,8.878,6.317zm1.086-11.312c-0.99,3.966-7.1,1.951-9.082,1.457l1.748-7.01c1.982,0.494,8.365,1.416,7.334,5.553z"></path>
+        </g>
+    </svg>
+
+    <!-- SVG logo tambahan di pojok kanan atas -->
+    <svg viewBox="0 0 64 64" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" width="32" height="32" id="additional-logo" style="position: absolute; top: 0; right: 0;">
+        <!-- Definisi gradien untuk logo tambahan -->
+        <defs>
+            <linearGradient id="gradient3" x1="0%" x2="100%" y1="0%" y2="100%">
+                <stop offset="0%" stop-color="#FFEA83"></stop>
+                <stop offset="8.333%" stop-color="#FFDD35"></stop>
+                <stop offset="100%" stop-color="#FFA800"></stop>
+            </linearGradient>
+        </defs>
+        
+        <!-- Isi path untuk logo tambahan -->
+        <path fill="url(#gradient3)" d="M12,12h40v40h-40v-40z"></path>
+    </svg>
+</div>
+
+    <!-- Gaya CSS untuk tabel -->
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 80%; /* Lebar tabel diatur menjadi 80% */
+            margin: 0 auto; /* Tabel ditempatkan di tengah halaman */
+        }
+       body {
+            font-family: Helvetica, Roboto; /* Contoh font family Arial */
+        }
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: center; /* Teks diatur menjadi tengah */
+            padding: 15px; /* Padding diatur menjadi 15px */
+        }
+        th {
+            background-color: #030128; /* Warna hitam paling atas */
+            color: white;
+            font-weight: bold; /* Teks pada header diperbold */
+        }
+        tr:last-child td {
+            background-color: #506888; /* Warna biru muda paling bawah */
+        }
+        caption {
+            font-size: 24px; /* Ukuran teks judul diperbesar */
+            font-weight: bold; /* Teks judul diperbold */
+            text-align: center; /* Teks judul diatur menjadi tengah */
+            margin-bottom: 10px; /* Jarak bawah judul dari tabel */
+        }
+        #image-container {
+            text-align: center; /* Teks diatur menjadi tengah */
+            margin-top: 20px; /* Jarak atas gambar dari tabel */
+    }
+        /* Style untuk tombol */
+.button {
+  background-color: #1a1a1a; /* Warna latar belakang */
+  border: none; /* Tanpa border */
+  color: white; /* Warna teks */
+  padding: 15px 32px; /* Padding di dalam tombol */
+  text-align: center; /* Teks tengah */
+  text-decoration: none; /* Tanpa dekorasi teks */
+  display: inline-block; /* Tampilan inline */
+  font-size: 16px; /* Ukuran teks */
+  margin: 4px 2px; /* Margin */
+  cursor: pointer; /* Kursor pointer */
+  border-radius: 8px; /* Sudut */
+}
+
+/* Hover efek */
+.button:hover {
+  background-color: #030128; /* Warna latar belakang saat hover */
+}
+body {
+    background-color: black;
+    color: white; /* Optional: Mengubah warna teks menjadi putih untuk kontras yang lebih baik */
+}
+ /* Keterangan kode */
+button {
+  /* Mengatur sudut lengkungan border tombol */
+  border-radius: 8px;
+  /* Mengatur border dengan ketebalan 1px dan transparan */
+  border: 1px solid transparent;
+  /* Padding di sekitar isi tombol */
+  padding: 0.6em 1.2em;
+  /* Ukuran font tombol */
+  font-size: 1em;
+  /* Ketebalan font tombol */
+  font-weight: 500;
+  /* Font family mengikuti font yang diwariskan */
+  font-family: inherit;
+  /* Warna latar belakang tombol */
+  background-color: #1a1a1a;
+  /* Menjadikan kursor berubah menjadi pointer saat mengarahkan ke tombol */
+  cursor: pointer;
+  /* Efek transisi pada border color saat tombol berubah keadaan */
+  transition: border-color 0.25s;
+  /* Warna teks tombol */
+  color: #ffffff; /* Mengubah warna teks menjadi putih */
+}
+
+/* Efek hover pada tombol */
+button:hover {
+  border-color: #646cff;
+}
+
+/* Efek focus pada tombol */
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Pengaturan warna saat tema terang aktif */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  /* Efek hover pada tautan saat tema terang aktif */
+  a:hover {
+    color: #747bff;
+  }
+  /* Pengaturan tombol saat tema terang aktif */
+  button {
+    background-color: #661851;
+  }
+}
+
+/* Mengubah warna teks menjadi hijau */
+.copy-btn {
+  color: #00ff00; /* Warna hijau */
+}
+
+.harga-lime {
+  color: lime; /* Warna lime */
+}
+
+.harga-merah {
+  color: red; /* Warna lime */
+}
+
+h2 {
+      text-align: center;
+    }
+
+    /* Untuk membuat caption di tengah dan sesuai lebar tabel */
+    table {
+      margin: 0 auto; /* Menengahkan tabel */
+      width: 80%; /* Atur lebar tabel, disesuaikan dengan kebutuhan */
+    }
+    caption {
+      text-align: center; /* Membuat teks caption menjadi rata tengah */
+      caption-side: top; /* Menempatkan caption di atas tabel */
+    }
+        .custom-td {
+  position: relative;
+}
+
+.tanggal {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.harga-lime {
+  margin-top: 20px; /* Sesuaikan sesuai kebutuhan */
+}
+
+.percentage {
+  font-size: 0.8em;
+}
+
+
+</style>
+</head>
+<body>
+
+<div class="center">
+  <h2 style="color: lime;">Great Investment Tactics Bring Lucrative Opportunities Bitcoiners</h2>
+</div>
+
+<table>
+  <thead>
+    <tr>
+      <th>Tanggal</th>
+      <th>Mei 2024</th>
+      <th>Juni 2024</th>
+      <th>Juli 2024</th>
+      <th>Agustus 2024</th>
+      <th>September 2024</th>
+      <th>Oktober 2024</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>31</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Jumat</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L19</div>
+  <div class="harga-merah" style="align-self: center; margin: 18px;">-35.9%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$68.60</div>
+  <div class="harga-merah" style="position: absolute; bottom: 0; right: 0; margin: 5px;">-$24.85</div>
+</td>
+      <td></td>
+      <td>Rabu</td>
+     <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Kamis</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L?</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+?%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$?</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$?</div>
+</td>
+    </tr>
+    <tr>
+      <td>30</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Kamis</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L17</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+11.1%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$62.24</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$6.92</div>
+</td>
+      <td>Minggu</td>
+      <td>Selasa</td>
+      <td>Rabu</td>
+    </tr>
+    <tr>
+      <td>29</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Rabu</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L16</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+10.4%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$56.40</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$5.84</div>
+</td>
+      <td>Sabtu</td>
+      <td>Senin</td>
+      <td>Selasa</td>
+    </tr>
+    <tr>
+      <td>28</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Selasa</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L15</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+10.6%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$51.00</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$5.40</div>
+</td>
+      <td>Jumat</td>
+      <td>Minggu</td>
+      <td>Senin</td>
+    </tr>
+    <tr>
+      <td>27</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Senin</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L13</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+14.8%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$44.41</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$6.59</div>
+</td>
+      <td>Kamis</td>
+      <td>Sabtu</td>
+      <td>Minggu</td>
+    </tr>
+    <tr>
+      <td>26</td>
+      <td>Minggu</td>
+      <td>Rabu</td>
+      <td>Jumat</td>
+    </tr>
+    <tr>
+      <td>25</td>
+      <td>Sabtu</td>
+      <td>Selasa</td>
+      <td>Kamis</td>
+    </tr>
+    <tr>
+      <td>24</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Jumat</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L14</div>
+  <div class="harga-merah" style="align-self: center; margin: 18px;">-$9.1%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$48.88</div>
+  <div class="harga-merah" style="position: absolute; bottom: 0; right: 0; margin: 5px;">$44.41</div>
+</td>
+      <td>Senin</td>
+      <td>Rabu</td>
+    </tr>
+    <tr>
+      <td>23</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Kamis</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L12</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+18.5%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$41.24</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$7.64</div>
+</td>
+      <td>Minggu</td>
+      <td>Selasa</td>
+    </tr>
+    <tr>
+      <td>22</td>
+      <td style="text-align: center;">
+        <div class="" style="margin-bottom: 5px;">Rabu</div>
+        <div class="harga-lime" style="margin-bottom: 5px;">+$2.74</div>
+        <div class="harga-lime" style="font-size: 0.8em;">+7.1%</div>
+        <div class="" style="margin-bottom: 5px;">$38.50</div>
+      </td>
+      <td>Sabtu</td>
+      <td>Senin</td>
+    </tr>
+    <tr>
+      <td>21</td>
+      <td style="text-align: center;">
+        <div class="" style="margin-bottom: 5px;">Selasa</div>
+        <div class="harga-lime" style="margin-bottom: 5px;">+$2.39</div>
+        <div class="harga-lime" style="font-size: 0.8em;">+6.6%</div>
+        <div class="" style="margin-bottom: 5px;">$36.11</div>
+      </td>
+      <td>Jumat</td>
+      <td>Minggu</td>
+    </tr>
+    <tr>
+      <td>20</td>
+      <td style="text-align: center;">
+        <div class="" style="margin-bottom: 5px;">Senin</div>
+        <div class="harga-lime" style="margin-bottom: 5px;">+$3.09</div>
+        <div class="harga-lime" style="font-size: 0.8em;">+9.4%</div>
+        <div class="" style="margin-bottom: 5px;">$33.02</div>
+      </td>
+      <td>Kamis</td>
+      <td>Sabtu</td>
+    </tr>
+    <tr>
+      <td>19</td>
+      <td>Minggu</td>
+      <td>Rabu</td>
+      <td>Jumat</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td>Sabtu</td>
+      <td>Selasa</td>
+      <td>Kamis</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td style="text-align: center;">
+        <div class="" style="margin-bottom: 5px;">Jumat</div>
+        <div class="harga-lime" style="margin-bottom: 5px;">+$1.92</div>
+        <div class="harga-lime" style="font-size: 0.8em;">+6.2%</div>
+      </td>
+      <td>Senin</td>
+      <td>Rabu</td>
+    </tr>
+    <tr>
+      <td>16</td>
+      <td>Kamis $0.90</td>
+      <td>Minggu</td>
+      <td>Selasa</td>
+    </tr>
+    <tr>
+      <td>15</td>
+      <td>Rabu $2.42</td>
+      <td>Sabtu</td>
+      <td>Senin</td>
+    </tr>
+    <tr>
+      <td>14</td>
+      <td>Selasa</td>
+      <td>Jumat</td>
+      <td>Minggu</td>
+    </tr>
+    <tr>
+      <td>13</td>
+      <td>Senin</td>
+      <td>Kamis</td>
+      <td>Sabtu</td>
+    </tr>
+    <tr>
+      <td>12</td>
+      <td>Minggu</td>
+      <td>Rabu</td>
+      <td>Jumat</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td>Sabtu</td>
+      <td>Selasa</td>
+      <td>Kamis</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td>Jumat</td>
+      <td>Senin</td>
+      <td>Rabu</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td>Kamis</td>
+      <td>Minggu</td>
+      <td>Selasa</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td>Rabu</td>
+      <td>Sabtu</td>
+      <td>Senin</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td>Selasa</td>
+      <td>Jumat</td>
+      <td>Minggu</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td>Senin</td>
+      <td>Kamis</td>
+      <td>Sabtu</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td>Minggu</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Rabu</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L17</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+9.5%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$59.76</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$5.70</div>
+</td>
+      <td>Jumat</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>Sabtu</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Selasa</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L15</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+12.6%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$44.31</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$6.67</div>
+</td>
+      <td>Kamis</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>Jumat</td>
+      <td class="custom-td" style="position: relative;">
+  <div style="position: absolute; top: 0; left: 0; margin: 5px;">Senin</div>
+  <div style="position: absolute; top: 0; right: 0; margin: 5px;">L13</div>
+  <div class="harga-lime" style="align-self: center; margin: 18px;">+19.8%</div>
+  <div style="position: absolute; bottom: 0; left: 0; margin: 5px;">$44.31</div>
+  <div class="harga-lime" style="position: absolute; bottom: 0; right: 0; margin: 5px;">+$8.78</div>
+</td>
+      <td>Rabu</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Kamis</td>
+      <td>Minggu</td>
+      <td>Selasa</td>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Rabu</td>
+      <td>Sabtu</td>
+      <td>Senin</td>
+    </tr>
+    <!-- Anda dapat menambahkan lebih banyak baris di sini -->
+  </tbody>
+</table>
+</body>
+</html>
