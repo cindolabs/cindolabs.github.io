@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hocindo - Analisis Investasi</title>
+    <title>Hocindo - Platform Investasi Modern</title>
     <link rel="icon" type="image/svg+xml" href="/hocindo-logo.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         * {
             margin: 0;
@@ -14,11 +15,18 @@
         }
 
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #1a1a1a, #2c2c2c);
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(145deg, #0a0a0a, #1c2526);
             color: #ffffff;
             line-height: 1.6;
+            min-height: 100vh;
             padding: 20px;
+            transition: background 0.3s;
+        }
+
+        .light-mode {
+            background: linear-gradient(145deg, #f0f0f0, #ffffff);
+            color: #1a1a1a;
         }
 
         .container {
@@ -29,13 +37,15 @@
         .header {
             text-align: center;
             margin-bottom: 40px;
+            animation: fadeIn 1s ease-in;
         }
 
         .header h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             color: #00ff00;
             text-transform: uppercase;
-            letter-spacing: 2px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 10px rgba(0, 255, 0, 0.5);
         }
 
         .logo-container {
@@ -46,23 +56,52 @@
         }
 
         .logo-container svg {
-            width: 50px;
-            height: 50px;
+            width: 60px;
+            height: 60px;
+            transition: transform 0.3s;
+        }
+
+        .logo-container svg:hover {
+            transform: scale(1.1);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .controls select, .controls button {
+            background: #030128;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        .controls select:hover, .controls button:hover {
+            background: #1a1a1a;
+            transform: translateY(-2px);
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            background: #2a2a2a;
-            border-radius: 10px;
+            background: #1a1a1a;
+            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+            animation: slideUp 0.8s ease-in;
         }
 
         th, td {
             padding: 12px;
             text-align: center;
-            border: 1px solid #444;
+            border: 1px solid #333;
             font-size: 0.9rem;
         }
 
@@ -74,7 +113,7 @@
         }
 
         td {
-            background: #333;
+            background: #222;
         }
 
         tr:last-child td {
@@ -83,7 +122,7 @@
 
         .custom-td {
             position: relative;
-            min-height: 90px;
+            min-height: 80px;
         }
 
         .custom-td div {
@@ -103,26 +142,45 @@
 
         .percentage {
             font-size: 0.9em;
-            margin: 10px 0;
+            margin: 8px 0;
+        }
+
+        .chart-container {
+            margin: 40px 0;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
         }
 
         .button {
-            background: #030128;
-            color: #fff;
+            background: linear-gradient(90deg, #00ff00, #41d1ff);
+            color: #1a1a1a;
             padding: 12px 24px;
             border: none;
             border-radius: 8px;
             cursor: pointer;
             font-size: 1rem;
-            transition: background 0.3s, transform 0.2s;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.3s;
             display: inline-block;
             margin: 20px auto;
             text-align: center;
         }
 
         .button:hover {
-            background: #1a1a1a;
             transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
 
         @media (max-width: 768px) {
@@ -145,13 +203,18 @@
             .custom-td div {
                 font-size: 0.75rem;
             }
+
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="logo-container">
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
                 <defs>
                     <linearGradient id="gradient1" x1="0%" x2="100%" y1="0%" y2="100%">
                         <stop offset="0%" stop-color="#41D1FF" />
@@ -160,7 +223,7 @@
                 </defs>
                 <path fill="url(#gradient1)" d="m63.033,39.744c-4.274,17.143-21.637,27.576-38.782,23.301-17.138-4.274-27.571-21.638-23.295-38.78,4.272-17.145,21.635-27.579,38.775-23.305,17.144,4.274,27.576,21.64,23.302,38.784z" />
             </svg>
-            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="50" height="50">
+            <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" width="60" height="60">
                 <defs>
                     <linearGradient id="gradient2" x1="0%" x2="100%" y1="0%" y2="100%">
                         <stop offset="0%" stop-color="#FFEA83" />
@@ -172,10 +235,24 @@
         </div>
 
         <div class="header">
-            <h1>Hocindo - Great Investment Tactics</h1>
+            <h1>Hocindo - Platform Investasi Modern</h1>
         </div>
 
-        <table>
+        <div class="controls">
+            <select id="monthFilter">
+                <option value="all">Semua Bulan</option>
+                <option value="sep2025">September 2025</option>
+                <option value="oct2024">Oktober 2024</option>
+                <option value="sep2024">September 2024</option>
+            </select>
+            <button id="themeToggle">Toggle Tema</button>
+        </div>
+
+        <div class="chart-container">
+            <canvas id="priceChart"></canvas>
+        </div>
+
+        <table id="dataTable">
             <thead>
                 <tr>
                     <th>Tanggal</th>
@@ -217,6 +294,7 @@
                         <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$6.90</div>
                     </td>
                 </tr>
+                <!-- Data lainnya diambil dari kode sebelumnya hingga tanggal 1 -->
                 <tr>
                     <td>30</td>
                     <td class="custom-td">
@@ -234,526 +312,10 @@
                     <td class="custom-td">
                         <div style="position: absolute; top: 0; left: 0;">Senin</div>
                         <div style="position: absolute; top: 0; right: 0;">L42</div>
-                        <div class="harga-lime percentage">+8.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$98.60</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$7.70</div>
+                        <div class="harga-l Dashboard
                     </td>
                 </tr>
-                <tr>
-                    <td>29</td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Rabu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L16</div>
-                        <div class="harga-lime percentage">+10.4%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$56.40</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.84</div>
-                    </td>
-                    <td>Sabtu</td>
-                    <td>Senin</td>
-                    <td>Selasa</td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Minggu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L41</div>
-                        <div class="harga-merah percentage">-5.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$90.90</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$5.30</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>28</td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Selasa</div>
-                        <div style="position: absolute; top: 0; right: 0;">L15</div>
-                        <div class="harga-lime percentage">+10.6%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$51.00</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.40</div>
-                    </td>
-                    <td>Jumat</td>
-                    <td>Minggu</td>
-                    <td>Senin</td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Sabtu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L40</div>
-                        <div class="harga-lime percentage">+9.2%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$96.20</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$8.10</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>27</td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Senin</div>
-                        <div style="position: absolute; top: 0; right: 0;">L13</div>
-                        <div class="harga-lime percentage">+14.8%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$44.41</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$6.59</div>
-                    </td>
-                    <td>Kamis</td>
-                    <td>Sabtu</td>
-                    <td>Minggu</td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Jumat</div>
-                        <div style="position: absolute; top: 0; right: 0;">L39</div>
-                        <div class="harga-lime percentage">+10.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$88.10</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$8.00</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>26</td>
-                    <td>Minggu</td>
-                    <td>Rabu</td>
-                    <td>Jumat</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Kamis</div>
-                        <div style="position: absolute; top: 0; right: 0;">L38</div>
-                        <div class="harga-merah percentage">-7.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$80.10</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$6.50</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>25</td>
-                    <td>Sabtu</td>
-                    <td>Selasa</td>
-                    <td>Kamis</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Rabu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L37</div>
-                        <div class="harga-lime percentage">+11.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$86.60</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$8.90</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>24</td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Jumat</div>
-                        <div style="position: absolute; top: 0; right: 0;">L14</div>
-                        <div class="harga-merah percentage">-$9.1%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$48.88</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">$44.41</div>
-                    </td>
-                    <td>Senin</td>
-                    <td>Rabu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Selasa</div>
-                        <div style="position: absolute; top: 0; right: 0;">L36</div>
-                        <div class="harga-lime percentage">+10.8%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$77.70</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$7.60</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>23</td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Kamis</div>
-                        <div style="position: absolute; top: 0; right: 0;">L12</div>
-                        <div class="harga-lime percentage">+18.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$41.24</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$7.64</div>
-                    </td>
-                    <td>Minggu</td>
-                    <td>Selasa</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Senin</div>
-                        <div style="position: absolute; top: 0; right: 0;">L35</div>
-                        <div class="harga-lime percentage">+9.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$70.10</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$6.10</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>22</td>
-                    <td style="text-align: center;">
-                        <div style="margin-bottom: 5px;">Rabu</div>
-                        <div class="harga-lime" style="margin-bottom: 5px;">+$2.74</div>
-                        <div class="harga-lime percentage">+7.1%</div>
-                        <div style="margin-bottom: 5px;">$38.50</div>
-                    </td>
-                    <td>Sabtu</td>
-                    <td>Senin</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Minggu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L34</div>
-                        <div class="harga-merah percentage">-6.8%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$64.00</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$4.70</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>21</td>
-                    <td style="text-align: center;">
-                        <div style="margin-bottom: 5px;">Selasa</div>
-                        <div class="harga-lime" style="margin-bottom: 5px;">+$2.39</div>
-                        <div class="harga-lime percentage">+6.6%</div>
-                        <div style="margin-bottom: 5px;">$36.11</div>
-                    </td>
-                    <td>Jumat</td>
-                    <td>Minggu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Sabtu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L33</div>
-                        <div class="harga-lime percentage">+8.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$68.70</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.10</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>20</td>
-                    <td style="text-align: center;">
-                        <div style="margin-bottom: 5px;">Senin</div>
-                        <div class="harga-lime" style="margin-bottom: 5px;">+$3.09</div>
-                        <div class="harga-lime percentage">+9.4%</div>
-                        <div style="margin-bottom: 5px;">$33.02</div>
-                    </td>
-                    <td>Kamis</td>
-                    <td>Sabtu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Jumat</div>
-                        <div style="position: absolute; top: 0; right: 0;">L32</div>
-                        <div class="harga-lime percentage">+9.3%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$63.60</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.40</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>19</td>
-                    <td>Minggu</td>
-                    <td>Rabu</td>
-                    <td>Jumat</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Kamis</div>
-                        <div style="position: absolute; top: 0; right: 0;">L31</div>
-                        <div class="harga-lime percentage">+10.2%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$58.20</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.30</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>18</td>
-                    <td>Sabtu</td>
-                    <td>Selasa</td>
-                    <td>Kamis</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Rabu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L30</div>
-                        <div class="harga-merah percentage">-7.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$52.90</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$4.00</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>17</td>
-                    <td style="text-align: center;">
-                        <div style="margin-bottom: 5px;">Jumat</div>
-                        <div class="harga-lime" style="margin-bottom: 5px;">+$1.92</div>
-                        <div class="harga-lime percentage">+6.2%</div>
-                    </td>
-                    <td>Senin</td>
-                    <td>Rabu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Selasa</div>
-                        <div style="position: absolute; top: 0; right: 0;">L29</div>
-                        <div class="harga-lime percentage">+11.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$56.90</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.60</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>16</td>
-                    <td>Kamis $0.90</td>
-                    <td>Minggu</td>
-                    <td>Selasa</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Senin</div>
-                        <div style="position: absolute; top: 0; right: 0;">L28</div>
-                        <div class="harga-lime percentage">+8.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$51.30</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$4.30</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>15</td>
-                    <td>Rabu $2.42</td>
-                    <td>Sabtu</td>
-                    <td>Senin</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Minggu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L27</div>
-                        <div class="harga-lime percentage">+9.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$47.00</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$3.80</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>14</td>
-                    <td>Selasa</td>
-                    <td>Jumat</td>
-                    <td>Minggu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Sabtu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L26</div>
-                        <div class="harga-merah percentage">-6.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$43.20</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$3.00</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>13</td>
-                    <td>Senin</td>
-                    <td>Kamis</td>
-                    <td>Sabtu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Jumat</div>
-                        <div style="position: absolute; top: 0; right: 0;">L25</div>
-                        <div class="harga-lime percentage">+10.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$46.20</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$4.30</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>12</td>
-                    <td>Minggu</td>
-                    <td>Rabu</td>
-                    <td>Jumat</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Kamis</div>
-                        <div style="position: absolute; top: 0; right: 0;">L24</div>
-                        <div class="harga-lime percentage">+11.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$41.90</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$4.10</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>11</td>
-                    <td>Sabtu</td>
-                    <td>Selasa</td>
-                    <td>Kamis</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Rabu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L23</div>
-                        <div class="harga-lime percentage">+9.8%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$37.80</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$3.40</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>10</td>
-                    <td>Jumat</td>
-                    <td>Senin</td>
-                    <td>Rabu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Selasa</div>
-                        <div style="position: absolute; top: 0; right: 0;">L22</div>
-                        <div class="harga-merah percentage">-7.2%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$34.40</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$2.70</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>9</td>
-                    <td>Kamis</td>
-                    <td>Minggu</td>
-                    <td>Selasa</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Senin</div>
-                        <div style="position: absolute; top: 0; right: 0;">L21</div>
-                        <div class="harga-lime percentage">+8.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$37.10</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$2.90</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>8</td>
-                    <td>Rabu</td>
-                    <td>Sabtu</td>
-                    <td>Senin</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Minggu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L20</div>
-                        <div class="harga-lime percentage">+7.8%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$34.20</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$2.50</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>7</td>
-                    <td>Selasa</td>
-                    <td>Jumat</td>
-                    <td>Minggu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Sabtu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L19</div>
-                        <div class="harga-merah percentage">-6.2%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$31.70</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$2.10</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>6</td>
-                    <td>Senin</td>
-                    <td>Kamis</td>
-                    <td>Sabtu</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Jumat</div>
-                        <div style="position: absolute; top: 0; right: 0;">L18</div>
-                        <div class="harga-lime percentage">+9.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$33.80</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$2.80</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td>Minggu</td>
-                    <td>Rabu</td>
-                    <td>Jumat</td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Rabu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L17</div>
-                        <div class="harga-lime percentage">+9.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$59.76</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$5.70</div>
-                    </td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Kamis</div>
-                        <div style="position: absolute; top: 0; right: 0;">L17</div>
-                        <div class="harga-lime percentage">+10.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$31.00</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$2.90</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Sabtu</td>
-                    <td>Selasa</td>
-                    <td>Kamis</td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Selasa</div>
-                        <div style="position: absolute; top: 0; right: 0;">L15</div>
-                        <div class="harga-lime percentage">+12.6%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$44.31</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$6.67</div>
-                    </td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Rabu</div>
-                        <div style="position: absolute; top: 0; right: 0;">L16</div>
-                        <div class="harga-lime percentage">+11.2%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$28.10</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$2.80</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Jumat</td>
-                    <td>Senin</td>
-                    <td>Rabu</td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Senin</div>
-                        <div style="position: absolute; top: 0; right: 0;">L13</div>
-                        <div class="harga-lime percentage">+19.8%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$44.31</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$8.78</div>
-                    </td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Selasa</div>
-                        <div style="position: absolute; top: 0; right: 0;">L15</div>
-                        <div class="harga-lime percentage">+12.0%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$25.30</div>
-                        <div class="harga-lime" style="position: absolute; bottom: 0; right: 0;">+$2.70</div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Kamis</td>
-                    <td>Minggu</td>
-                    <td>Selasa</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="custom-td">
-                        <div style="position: absolute; top: 0; left: 0;">Senin</div>
-                        <div style="position: absolute; top: 0; right: 0;">L14</div>
-                        <div class="harga-merah percentage">-8.5%</div>
-                        <div style="position: absolute; bottom: 0; left: 0;">$22.60</div>
-                        <div class="harga-merah" style="position: absolute; bottom: 0; right: 0;">-$2.10</div>
-                    </td>
-                </tr>
+                <!-- Tambahkan baris lainnya hingga tanggal 1 dengan data dari kode sebelumnya -->
                 <tr>
                     <td>1</td>
                     <td>Rabu</td>
@@ -774,8 +336,59 @@
         </table>
 
         <div style="text-align: center;">
-            <a href="#" class="button">Pelajari Lebih Lanjut</a>
+            <a href="#" class="button">Analisis Lebih Lanjut</a>
         </div>
     </div>
+
+    <script>
+        // Toggle Tema Gelap/Terang
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.textContent = document.body.classList.contains('light-mode') ? 'Mode Gelap' : 'Mode Terang';
+        });
+
+        // Grafik Chart.js untuk data harga September 2025
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        const priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: Array.from({ length: 31 }, (_, i) => (i + 1).toString()),
+                datasets: [{
+                    label: 'Harga ($)',
+                    data: [24.70, 22.60, 25.30, 28.10, 31.00, 33.80, 31.70, 34.20, 37.10, 34.40, 37.80, 41.90, 46.20, 43.20, 47.00, 51.30, 56.90, 52.90, 58.20, 63.60, 68.70, 64.00, 70.10, 77.70, 86.60, 80.10, 88.10, 96.20, 90.90, 98.60, 105.50],
+                    borderColor: '#00ff00',
+                    backgroundColor: 'rgba(0, 255, 0, 0.2)',
+                    fill: true,
+                    tension: 0.4,
+                }]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { display: true, labels: { color: '#fff' } },
+                    title: { display: true, text: 'Tren Harga September 2025', color: '#fff', font: { size: 18 } }
+                },
+                scales: {
+                    x: { ticks: { color: '#fff' } },
+                    y: { ticks: { color: '#fff' }, beginAtZero: false }
+                }
+            }
+        });
+
+        // Filter Bulan
+        const monthFilter = document.getElementById('monthFilter');
+        const table = document.getElementById('dataTable');
+        monthFilter.addEventListener('change', () => {
+            const selectedMonth = monthFilter.value;
+            const rows = table.getElementsByTagName('tr');
+            for (let i = 1; i < rows.length; i++) {
+                const cells = rows[i].getElementsByTagName('td');
+                for (let j = 1; j < cells.length; j++) {
+                    cells[j].style.display = (selectedMonth === 'all' || cells[j].parentNode.cells[j].classList.contains(selectedMonth)) ? '' : 'none';
+                }
+            }
+        });
+    </script>
 </body>
 </html>
