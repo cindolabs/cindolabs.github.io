@@ -1,163 +1,315 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Hocindo Equity Growth Map - Interactive dashboard for equity growth analysis">
     <title>Hocindo Equity Growth Map</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.0.8/css/dataTables.tailwindcss.min.css">
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
-            margin: 20px;
-            background-color: #f4f4f9;
+            @apply bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100;
         }
-
-        h1 {
-            text-align: center;
-            color: #333;
+        .dataTable-container {
+            @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8;
         }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        .chart-container {
+            @apply max-w-4xl mx-auto mt-8 p-4 bg-white dark:bg-gray-800 rounded-lg shadow-lg;
         }
-
-        th, td {
-            padding: 12px;
-            text-align: right;
-            border: 1px solid #ddd;
+        .filter-container {
+            @apply flex flex-col sm:flex-row gap-4 mb-6;
         }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-            cursor: pointer;
+        .export-btn {
+            @apply inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition;
         }
-
-        th:hover {
-            background-color: #45a049;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-
-        tr:hover {
-            background-color: #f1f1f1;
-        }
-
-        td:first-child, th:first-child {
-            text-align: center;
+        .mode-toggle {
+            @apply fixed top-4 right-4 p-2 bg-gray-200 dark:bg-gray-700 rounded-full hover:bg-gray-300 dark:hover:bg-gray-600 transition;
         }
     </style>
 </head>
 <body>
-    <h1>Hocindo Equity Growth Map</h1>
-    <table id="equityTable">
-        <thead>
-            <tr>
-                <th onclick="sortTable(0)">Level</th>
-                <th onclick="sortTable(1)">Saldo</th>
-                <th onclick="sortTable(2)">Volume</th>
-                <th onclick="sortTable(3)">Laba / Rugi</th>
-                <th onclick="sortTable(4)">Equitas Laba</th>
-                <th onclick="sortTable(5)">Equitas Rugi</th>
-                <th onclick="sortTable(6)">Piper</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>1</td><td>$10.00</td><td>0.01</td><td>$1.00</td><td>$11.00</td><td>$9.00</td><td>100</td></tr>
-            <tr><td>2</td><td>$11.00</td><td>0.01</td><td>$1.10</td><td>$12.10</td><td>$9.10</td><td>110</td></tr>
-            <tr><td>3</td><td>$12.10</td><td>0.01</td><td>$1.21</td><td>$13.31</td><td>$10.89</td><td>121</td></tr>
-            <tr><td>4</td><td>$13.31</td><td>0.01</td><td>$1.33</td><td>$14.64</td><td>$11.98</td><td>133</td></tr>
-            <tr><td>5</td><td>$14.64</td><td>0.01</td><td>$1.46</td><td>$16.10</td><td>$13.18</td><td>146</td></tr>
-            <tr><td>6</td><td>$16.10</td><td>0.01</td><td>$1.61</td><td>$17.71</td><td>$14.49</td><td>161</td></tr>
-            <tr><td>7</td><td>$17.71</td><td>0.01</td><td>$1.77</td><td>$19.48</td><td>$15.94</td><td>177</td></tr>
-            <tr><td>8</td><td>$19.48</td><td>0.01</td><td>$1.95</td><td>$21.43</td><td>$17.53</td><td>195</td></tr>
-            <tr><td>9</td><td>$21.43</td><td>0.01</td><td>$2.14</td><td>$23.57</td><td>$19.29</td><td>214</td></tr>
-            <tr><td>10</td><td>$23.57</td><td>0.02</td><td>$2.35</td><td>$25.92</td><td>$21.22</td><td>118</td></tr>
-            <tr><td>11</td><td>$25.92</td><td>0.02</td><td>$2.59</td><td>$28.51</td><td>$23.33</td><td>130</td></tr>
-            <tr><td>12</td><td>$28.51</td><td>0.02</td><td>$2.85</td><td>$31.36</td><td>$25.66</td><td>143</td></tr>
-            <tr><td>13</td><td>$31.36</td><td>0.02</td><td>$3.13</td><td>$34.49</td><td>$28.23</td><td>157</td></tr>
-            <tr><td>14</td><td>$34.49</td><td>0.02</td><td>$3.44</td><td>$37.93</td><td>$31.05</td><td>172</td></tr>
-            <tr><td>15</td><td>$37.93</td><td>0.02</td><td>$3.79</td><td>$41.72</td><td>$34.14</td><td>190</td></tr>
-            <tr><td>16</td><td>$41.72</td><td>0.03</td><td>$4.17</td><td>$45.89</td><td>$37.55</td><td>139</td></tr>
-            <tr><td>17</td><td>$45.89</td><td>0.03</td><td>$4.58</td><td>$50.47</td><td>$41.31</td><td>153</td></tr>
-            <tr><td>18</td><td>$50.47</td><td>0.04</td><td>$5.04</td><td>$55.51</td><td>$45.43</td><td>126</td></tr>
-            <tr><td>19</td><td>$55.51</td><td>0.04</td><td>$5.55</td><td>$61.06</td><td>$49.96</td><td>139</td></tr>
-            <tr><td>20</td><td>$61.06</td><td>0.05</td><td>$6.10</td><td>$67.16</td><td>$54.96</td><td>122</td></tr>
-            <tr><td>21</td><td>$67.16</td><td>0.05</td><td>$6.71</td><td>$73.87</td><td>$60.45</td><td>135</td></tr>
-            <tr><td>22</td><td>$73.87</td><td>0.06</td><td>$7.38</td><td>$81.25</td><td>$66.49</td><td>123</td></tr>
-            <tr><td>23</td><td>$81.25</td><td>0.07</td><td>$8.12</td><td>$89.37</td><td>$73.13</td><td>116</td></tr>
-            <tr><td>24</td><td>$89.37</td><td>0.07</td><td>$8.93</td><td>$98.30</td><td>$80.44</td><td>128</td></tr>
-            <tr><td>25</td><td>$98.30</td><td>0.08</td><td>$9.83</td><td>$108.13</td><td>$88.47</td><td>123</td></tr>
-            <tr><td>26</td><td>$108.13</td><td>0.09</td><td>$10.81</td><td>$118.94</td><td>$97.32</td><td>121</td></tr>
-            <tr><td>27</td><td>$118.94</td><td>0.09</td><td>$11.89</td><td>$130.83</td><td>$107.05</td><td>133</td></tr>
-            <tr><td>28</td><td>$130.83</td><td>0.10</td><td>$13.08</td><td>$143.91</td><td>$117.75</td><td>131</td></tr>
-            <tr><td>29</td><td>$143.91</td><td>0.11</td><td>$14.39</td><td>$158.30</td><td>$129.52</td><td>131</td></tr>
-            <tr><td>30</td><td>$158.30</td><td>0.12</td><td>$15.83</td><td>$174.13</td><td>$142.47</td><td>132</td></tr>
-            <tr><td>31</td><td>$174.13</td><td>0.13</td><td>$17.41</td><td>$191.54</td><td>$156.72</td><td>134</td></tr>
-            <tr><td>32</td><td>$191.54</td><td>0.14</td><td>$19.15</td><td>$210.69</td><td>$172.39</td><td>137</td></tr>
-            <tr><td>33</td><td>$210.69</td><td>0.15</td><td>$21.06</td><td>$231.75</td><td>$189.63</td><td>141</td></tr>
-            <tr><td>34</td><td>$231.75</td><td>0.16</td><td>$23.17</td><td>$254.92</td><td>$208.58</td><td>145</td></tr>
-            <tr><td>35</td><td>$254.92</td><td>0.17</td><td>$25.49</td><td>$280.41</td><td>$229.43</td><td>150</td></tr>
-            <tr><td>36</td><td>$280.41</td><td>0.18</td><td>$28.04</td><td>$308.45</td><td>$252.37</td><td>156</td></tr>
-            <tr><td>37</td><td>$308.45</td><td>0.19</td><td>$30.84</td><td>$339.29</td><td>$277.61</td><td>163</td></tr>
-            <tr><td>38</td><td>$339.29</td><td>0.20</td><td>$33.92</td><td>$373.21</td><td>$305.37</td><td>170</td></tr>
-            <tr><td>39</td><td>$373.21</td><td>0.21</td><td>$37.32</td><td>$410.53</td><td>$335.89</td><td>178</td></tr>
-            <tr><td>40</td><td>$410.53</td><td>0.22</td><td>$41.05</td><td>$451.58</td><td>$369.48</td><td>187</td></tr>
-            <tr><td>41</td><td>$451.58</td><td>0.23</td><td>$45.15</td><td>$496.73</td><td>$406.43</td><td>197</td></tr>
-            <tr><td>42</td><td>$496.73</td><td>0.24</td><td>$49.67</td><td>$546.40</td><td>$447.06</td><td>207</td></tr>
-            <tr><td>43</td><td>$546.40</td><td>0.28</td><td>$54.64</td><td>$601.04</td><td>$491.76</td><td>196</td></tr>
-            <tr><td>44</td><td>$601.04</td><td>0.30</td><td>$60.10</td><td>$661.14</td><td>$540.94</td><td>201</td></tr>
-            <tr><td>45</td><td>$661.14</td><td>0.34</td><td>$66.11</td><td>$727.25</td><td>$595.03</td><td>195</td></tr>
-            <tr><td>46</td><td>$727.25</td><td>0.35</td><td>$72.72</td><td>$799.97</td><td>$654.53</td><td>208</td></tr>
-            <tr><td>47</td><td>$799.97</td><td>0.40</td><td>$79.99</td><td>$879.96</td><td>$719.98</td><td>200</td></tr>
-            <tr><td>48</td><td>$879.96</td><td>0.45</td><td>$87.99</td><td>$967.95</td><td>$791.97</td><td>196</td></tr>
-            <tr><td>49</td><td>$967.95</td><td>0.50</td><td>$96.79</td><td>$1,064.74</td><td>$871.16</td><td>194</td></tr>
-            <tr><td>50</td><td>$1,064.74</td><td>0.55</td><td>$106.47</td><td>$1,171.21</td><td>$958.27</td><td>194</td></tr>
-        </tbody>
-    </table>
+    <!-- Mode Toggle -->
+    <button id="modeToggle" class="mode-toggle" aria-label="Toggle dark mode">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Header -->
+    <header class="py-6 text-center" data-aos="fade-down">
+        <h1 class="text-4xl font-bold text-gray-900 dark:text-white">Hocindo Equity Growth Map</h1>
+        <p class="mt-2 text-lg text-gray-600 dark:text-gray-300">Interactive dashboard for equity growth analysis</p>
+    </header>
+
+    <!-- Filter and Export -->
+    <div class="filter-container" data-aos="fade-up">
+        <input type="text" id="searchInput" placeholder="Cari di tabel..." class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+        <select id="levelFilter" class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+            <option value="">Semua Level</option>
+        </select>
+        <button id="exportCsv" class="export-btn"><i class="fas fa-download mr-2"></i> Export CSV</button>
+        <button id="exportJson" class="export-btn"><i class="fas fa-download mr-2"></i> Export JSON</button>
+        <select id="languageSelect" class="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-gray-900 dark:text-white">
+            <option value="id">Bahasa Indonesia</option>
+            <option value="en">English</option>
+        </select>
+    </div>
+
+    <!-- Table -->
+    <div class="dataTable-container" data-aos="fade-up">
+        <table id="equityTable" class="w-full">
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Saldo</th>
+                    <th>Volume</th>
+                    <th>Laba / Rugi</th>
+                    <th>Equitas Laba</th>
+                    <th>Equitas Rugi</th>
+                    <th>Piper</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Data akan dimuat melalui JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Chart -->
+    <div class="chart-container" data-aos="fade-up">
+        <canvas id="equityChart"></canvas>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/2.0.8/js/dataTables.tailwindcss.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/i18next@23.10.1/dist/umd/i18next.min.js"></script>
     <script>
-        let sortDirection = Array(7).fill(true); // Track sort direction for each column
+        // Inisialisasi AOS
+        AOS.init();
 
-        function sortTable(columnIndex) {
-            const table = document.getElementById("equityTable");
-            const tbody = table.getElementsByTagName("tbody")[0];
-            const rows = Array.from(tbody.getElementsByTagName("tr"));
-            const isAscending = sortDirection[columnIndex];
+        // Data awal (bisa diganti dengan data dari API)
+        const initialData = [
+            { level: 1, saldo: 10.00, volume: 0.01, labaRugi: 1.00, equitasLaba: 11.00, equitasRugi: 9.00, piper: 100 },
+            { level: 2, saldo: 11.00, volume: 0.01, labaRugi: 1.10, equitasLaba: 12.10, equitasRugi: 9.10, piper: 110 },
+            // Tambahkan data lainnya seperti di HTML asli
+            { level: 50, saldo: 1064.74, volume: 0.55, labaRugi: 106.47, equitasLaba: 1171.21, equitasRugi: 958.27, piper: 194 }
+        ];
 
-            rows.sort((rowA, rowB) => {
-                let cellA = rowA.cells[columnIndex].innerText;
-                let cellB = rowB.cells[columnIndex].innerText;
-
-                // Handle different data types
-                if (columnIndex === 0 || columnIndex === 6) {
-                    // Level and Piper: Integer
-                    cellA = parseInt(cellA);
-                    cellB = parseInt(cellB);
-                } else if (columnIndex === 2) {
-                    // Volume: Float
-                    cellA = parseFloat(cellA);
-                    cellB = parseFloat(cellB);
-                } else {
-                    // Saldo, Laba/Rugi, Equitas Laba, Equitas Rugi: Currency
-                    cellA = parseFloat(cellA.replace('$', '').replace(',', ''));
-                    cellB = parseFloat(cellB.replace('$', '').replace(',', ''));
+        // Inisialisasi i18next untuk multibahasa
+        i18next.init({
+            lng: 'id',
+            resources: {
+                id: {
+                    translation: {
+                        "title": "Hocindo Equity Growth Map",
+                        "description": "Dasbor interaktif untuk analisis pertumbuhan ekuitas",
+                        "level": "Level",
+                        "saldo": "Saldo",
+                        "volume": "Volume",
+                        "labaRugi": "Laba / Rugi",
+                        "equitasLaba": "Equitas Laba",
+                        "equitasRugi": "Equitas Rugi",
+                        "piper": "Piper",
+                        "searchPlaceholder": "Cari di tabel...",
+                        "allLevels": "Semua Level",
+                        "exportCsv": "Export CSV",
+                        "exportJson": "Export JSON"
+                    }
+                },
+                en: {
+                    translation: {
+                        "title": "Hocindo Equity Growth Map",
+                        "description": "Interactive dashboard for equity growth analysis",
+                        "level": "Level",
+                        "saldo": "Balance",
+                        "volume": "Volume",
+                        "labaRugi": "Profit / Loss",
+                        "equitasLaba": "Profit Equity",
+                        "equitasRugi": "Loss Equity",
+                        "piper": "Piper",
+                        "searchPlaceholder": "Search in table...",
+                        "allLevels": "All Levels",
+                        "exportCsv": "Export CSV",
+                        "exportJson": "Export JSON"
+                    }
                 }
+            }
+        }, function(err, t) {
+            updateTranslations();
+        });
 
-                return isAscending ? cellA - cellB : cellB - cellA;
-            });
-
-            // Clear tbody and append sorted rows
-            tbody.innerHTML = '';
-            rows.forEach(row => tbody.appendChild(row));
-
-            // Toggle sort direction
-            sortDirection[columnIndex] = !isAscending;
+        // Fungsi untuk update terjemahan
+        function updateTranslations() {
+            document.querySelector('h1').textContent = i18next.t('title');
+            document.querySelector('header p').textContent = i18next.t('description');
+            document.getElementById('searchInput').placeholder = i18next.t('searchPlaceholder');
+            document.getElementById('levelFilter').options[0].text = i18next.t('allLevels');
+            document.getElementById('exportCsv').innerHTML = `<i class="fas fa-download mr-2"></i> ${i18next.t('exportCsv')}`;
+            document.getElementById('exportJson').innerHTML = `<i class="fas fa-download mr-2"></i> ${i18next.t('exportJson')}`;
+            const headers = document.querySelectorAll('#equityTable thead th');
+            headers[0].textContent = i18next.t('level');
+            headers[1].textContent = i18next.t('saldo');
+            headers[2].textContent = i18next.t('volume');
+            headers[3].textContent = i18next.t('labaRugi');
+            headers[4].textContent = i18next.t('equitasLaba');
+            headers[5].textContent = i18next.t('equitasRugi');
+            headers[6].textContent = i18next.t('piper');
         }
+
+        // Inisialisasi DataTable
+        const table = $('#equityTable').DataTable({
+            data: initialData,
+            columns: [
+                { data: 'level' },
+                { data: 'saldo', render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+                { data: 'volume', render: $.fn.dataTable.render.number(',', '.', 2) },
+                { data: 'labaRugi', render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+                { data: 'equitasLaba', render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+                { data: 'equitasRugi', render: $.fn.dataTable.render.number(',', '.', 2, '$') },
+                { data: 'piper' }
+            ],
+            pageLength: 10,
+            responsive: true,
+            language: {
+                search: '',
+                searchPlaceholder: i18next.t('searchPlaceholder')
+            }
+        });
+
+        // Load data dari GitHub (opsional)
+        async function loadDataFromGithub() {
+            try {
+                const response = await fetch('https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/financial_dashboard/equity_data.json');
+                const data = await response.json();
+                table.clear().rows.add(data).draw();
+            } catch (error) {
+                console.error('Error loading data from GitHub:', error);
+            }
+        }
+
+        // Filter level
+        const levelFilter = document.getElementById('levelFilter');
+        initialData.forEach(row => {
+            const option = document.createElement('option');
+            option.value = row.level;
+            option.text = `Level ${row.level}`;
+            levelFilter.appendChild(option);
+        });
+
+        levelFilter.addEventListener('change', function() {
+            const value = this.value;
+            table.column(0).search(value ? `^${value}$` : '', true, false).draw();
+        });
+
+        // Search input
+        document.getElementById('searchInput').addEventListener('input', function() {
+            table.search(this.value).draw();
+        });
+
+        // Export CSV
+        document.getElementById('exportCsv').addEventListener('click', function() {
+            const data = table.data().toArray();
+            const csv = Papa.unparse(data);
+            const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'hocindo_equity_map.csv';
+            link.click();
+        });
+
+        // Export JSON
+        document.getElementById('exportJson').addEventListener('click', function() {
+            const data = table.data().toArray();
+            const json = JSON.stringify(data, null, 2);
+            const blob = new Blob([json], { type: 'application/json;charset=utf-8;' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'hocindo_equity_map.json';
+            link.click();
+        });
+
+        // Dark mode toggle
+        document.getElementById('modeToggle').addEventListener('click', function() {
+            document.documentElement.classList.toggle('dark');
+            this.innerHTML = document.documentElement.classList.contains('dark') 
+                ? '<i class="fas fa-sun"></i>' 
+                : '<i class="fas fa-moon"></i>';
+        });
+
+        // Inisialisasi Chart.js
+        const ctx = document.getElementById('equityChart').getContext('2d');
+        const equityChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: initialData.map(row => `Level ${row.level}`),
+                datasets: [
+                    {
+                        label: 'Saldo',
+                        data: initialData.map(row => row.saldo),
+                        borderColor: '#4CAF50',
+                        fill: false
+                    },
+                    {
+                        label: 'Equitas Laba',
+                        data: initialData.map(row => row.equitasLaba),
+                        borderColor: '#2563eb',
+                        fill: false
+                    },
+                    {
+                        label: 'Equitas Rugi',
+                        data: initialData.map(row => row.equitasRugi),
+                        borderColor: '#dc2626',
+                        fill: false
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                plugins: {
+                    legend: { position: 'top' },
+                    title: { display: true, text: 'Equity Growth Trend' }
+                },
+                scales: {
+                    y: { beginAtZero: false, title: { display: true, text: 'Value ($)' } },
+                    x: { title: { display: true, text: 'Level' } }
+                }
+            }
+        });
+
+        // Update chart saat tabel di-filter
+        table.on('draw', function() {
+            const filteredData = table.rows({ filter: 'applied' }).data().toArray();
+            equityChart.data.labels = filteredData.map(row => `Level ${row.level}`);
+            equityChart.data.datasets[0].data = filteredData.map(row => row.saldo);
+            equityChart.data.datasets[1].data = filteredData.map(row => row.equitasLaba);
+            equityChart.data.datasets[2].data = filteredData.map(row => row.equitasRugi);
+            equityChart.update();
+        });
+
+        // Ganti bahasa
+        document.getElementById('languageSelect').addEventListener('change', function() {
+            i18next.changeLanguage(this.value, function(err, t) {
+                updateTranslations();
+                table.draw();
+            });
+        });
+
+        // Load data dari GitHub saat halaman dimuat
+        loadDataFromGithub();
     </script>
+    <!-- PapaParse for CSV export -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </body>
 </html>
