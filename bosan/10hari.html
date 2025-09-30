@@ -7,10 +7,11 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff, #f4f4f9);
             margin: 0;
-            padding: 20px;
+            padding: 30px;
+            color: #333;
         }
 
         .container {
@@ -20,31 +21,25 @@
         }
 
         h1 {
-            color: #333;
+            color: #1a3c34;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1a3c34;
+            font-size: 1.8em;
             margin-bottom: 20px;
-        }
-
-        .chart-container {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin: 20px 0;
-            max-width: 600px;
-            display: inline-block;
-        }
-
-        canvas {
-            max-width: 100%;
         }
 
         .table-container {
             background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
             padding: 20px;
             margin: 20px auto;
-            max-width: 800px;
+            max-width: 900px;
         }
 
         table {
@@ -55,21 +50,61 @@
 
         th, td {
             border: 1px solid #ddd;
-            padding: 8px;
+            padding: 12px;
             text-align: center;
+            font-size: 0.95em;
         }
 
         th {
-            background-color: #4CAF50;
+            background: linear-gradient(to bottom, #4CAF50, #388E3C);
             color: white;
+            font-weight: bold;
         }
 
         tr:nth-child(even) {
-            background-color: #f2f2f2;
+            background-color: #f9f9f9;
         }
 
         tr:hover {
-            background-color: #ddd;
+            background-color: #e8f5e9;
+            transition: background-color 0.3s ease;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px);
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            th, td {
+                padding: 8px;
+                font-size: 0.85em;
+            }
         }
     </style>
 </head>
@@ -130,10 +165,15 @@
                     datasets: [{
                         label: 'Nilai Akhir',
                         data: nilaiAkhir,
-                        borderColor: '#4CAF50',
-                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                        borderColor: '#2a9d8f',
+                        backgroundColor: 'rgba(42, 157, 143, 0.3)',
                         fill: true,
-                        tension: 0.1
+                        tension: 0.4,
+                        pointBackgroundColor: '#264653',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 8
                     }]
                 },
                 options: {
@@ -141,7 +181,21 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Tren Pertumbuhan Nilai Akhir (Compounding 50%)'
+                            text: 'Tren Pertumbuhan Nilai Akhir (Compounding 50%)',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#1a3c34'
+                        },
+                        tooltip: {
+                            backgroundColor: '#264653',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10
+                        },
+                        legend: {
+                            labels: {
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            }
                         }
                     },
                     scales: {
@@ -149,15 +203,27 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Nilai (Rp)'
-                            }
+                                text: 'Nilai (Rp)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
                         },
                         x: {
                             title: {
                                 display: true,
-                                text: 'Iterasi'
-                            }
+                                text: 'Iterasi',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { display: false },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
                         }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
                     }
                 }
             });
@@ -170,9 +236,11 @@
                     datasets: [{
                         label: 'Pertumbuhan 50%',
                         data: pertumbuhan,
-                        backgroundColor: '#2196F3',
+                        backgroundColor: 'rgba(33, 150, 243, 0.7)',
                         borderColor: '#1976D2',
-                        borderWidth: 1
+                        borderWidth: 2,
+                        hoverBackgroundColor: '#2196F3',
+                        hoverBorderColor: '#1565C0'
                     }]
                 },
                 options: {
@@ -180,7 +248,21 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Kontribusi Pertumbuhan 50% per Iterasi'
+                            text: 'Kontribusi Pertumbuhan 50% per Iterasi',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#1a3c34'
+                        },
+                        tooltip: {
+                            backgroundColor: '#264653',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10
+                        },
+                        legend: {
+                            labels: {
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            }
                         }
                     },
                     scales: {
@@ -188,15 +270,27 @@
                             beginAtZero: true,
                             title: {
                                 display: true,
-                                text: 'Nilai Pertumbuhan (Rp)'
-                            }
+                                text: 'Nilai Pertumbuhan (Rp)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
                         },
                         x: {
                             title: {
                                 display: true,
-                                text: 'Iterasi'
-                            }
+                                text: 'Iterasi',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { display: false },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
                         }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
                     }
                 }
             });
