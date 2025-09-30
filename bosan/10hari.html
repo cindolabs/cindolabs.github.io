@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Pertumbuhan Compounding</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 20px 0;
+            max-width: 600px;
+            display: inline-block;
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Dashboard Pertumbuhan Compounding 50%</h1>
+        <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Data untuk grafik
+            const labels = ['Iterasi 0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10'];
+            const nilaiAkhir = [22.50, 33.75, 50.63, 75.94, 113.91, 170.86, 256.29, 384.43, 576.65, 864.98, 1297.47];
+            const pertumbuhan = [7.50, 11.25, 16.88, 25.31, 37.97, 56.95, 85.43, 128.14, 192.22, 288.33, 432.49];
+
+            // Line Chart
+            new Chart(document.getElementById('lineChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nilai Akhir',
+                        data: nilaiAkhir,
+                        borderColor: '#4CAF50',
+                        backgroundColor: 'rgba(76, 175, 80, 0.2)',
+                        fill: true,
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Tren Pertumbuhan Nilai Akhir (Compounding 50%)'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nilai (Rp)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Iterasi'
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Bar Chart
+            new Chart(document.getElementById('barChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Pertumbuhan 50%',
+                        data: pertumbuhan,
+                        backgroundColor: '#2196F3',
+                        borderColor: '#1976D2',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Kontribusi Pertumbuhan 50% per Iterasi'
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nilai Pertumbuhan (Rp)'
+                            }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Iterasi'
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
