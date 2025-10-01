@@ -17,25 +17,25 @@
   </defs>
 
   <!-- Background Circle with Shine -->
-  <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#ffffff" stroke-width="12"/>
+  <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#ffffff" stroke-width="10"/>
   <circle cx="512" cy="512" r="480" fill="url(#shine)"/>
 
-  <!-- Abstract House (Golden Ratio proportions) -->
-  <g stroke="url(#accent)" stroke-width="20" fill="none">
-    <!-- Roof (Triangle) -->
-    <polygon points="312,312 512,112 712,312"/>
-    <!-- Base (Rectangle, 400x247 for golden ratio) -->
-    <rect x="312" y="312" width="400" height="247" rx="20"/>
-    <!-- Door (Simplified, centered) -->
-    <rect x="462" y="459" width="100" height="100" rx="15"/>
+  <!-- Abstract House (Larger, Golden Ratio proportions: 500x309) -->
+  <g stroke="url(#accent)" stroke-width="18" fill="none">
+    <!-- Roof (Triangle, scaled up) -->
+    <polygon points="262,262 512,62 762,262"/>
+    <!-- Base (Rectangle, centered and larger) -->
+    <rect x="262" y="262" width="500" height="309" rx="25"/>
+    <!-- Door (Proportional, centered) -->
+    <rect x="437" y="422" width="150" height="150" rx="20"/>
   </g>
 
-  <!-- Blockchain-inspired Hexagon Overlay -->
-  <g fill="none" stroke="#ffffff" stroke-width="8" opacity="0.5">
-    <path d="M512 250 l60 35 l0 70 l-60 35 l-60 -35 l0 -70 z"/>
-    <path d="M512 350 l40 23 l0 46 l-40 23 l-40 -23 l0 -46 z"/>
+  <!-- Blockchain-inspired Hexagon Overlay (Larger, centered) -->
+  <g fill="none" stroke="#ffffff" stroke-width="10" opacity="0.5">
+    <path d="M512 220 l80 46 l0 92 l-80 46 l-80 -46 l0 -92 z"/>
+    <path d="M512 300 l50 29 l0 58 l-50 29 l-50 -29 l0 -58 z"/>
   </g>
 
-  <!-- Central Glow (Futuristic touch) -->
-  <circle cx="512" cy="512" r="50" fill="url(#accent)" fill-opacity="0.3"/>
+  <!-- Central Glow (Subtle, proportional) -->
+  <circle cx="512" cy="512" r="60" fill="url(#accent)" fill-opacity="0.25"/>
 </svg>
