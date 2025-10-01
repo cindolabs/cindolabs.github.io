@@ -22,7 +22,7 @@
   <circle cx="512" cy="512" r="480" fill="url(#shine)"/>
 
   <!-- Stylized Letter H (Golden Ratio proportions: ~500x309) -->
-  <g stroke="url(#accent)" stroke-width="18" fill="none">
+  <g stroke="url(#accent)" stroke-width="30" fill="none">
     <!-- Left Vertical Bar -->
     <rect x="362" y="262" width="100" height="500" rx="15"/>
     <!-- Right Vertical Bar -->
