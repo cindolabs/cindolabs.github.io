@@ -1,47 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Hotel Logo for Meme Coin">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Modern Meme Coin Logo">
   <defs>
     <!-- Gradients -->
     <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0%" stop-color="#006847"/>
-      <stop offset="100%" stop-color="#00352f"/>
+      <stop offset="0%" stop-color="#1a2a44"/>
+      <stop offset="100%" stop-color="#0d1a2b"/>
     </linearGradient>
-    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0%" stop-color="#E6B800"/>
-      <stop offset="50%" stop-color="#D4AF37"/>
-      <stop offset="100%" stop-color="#b8860b"/>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#00c4b4"/>
+      <stop offset="50%" stop-color="#40c4ff"/>
+      <stop offset="100%" stop-color="#0288d1"/>
     </linearGradient>
     <radialGradient id="shine" cx="50%" cy="50%" r="50%">
-      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.3"/>
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.4"/>
       <stop offset="100%" stop-color="#ffffff" stop-opacity="0"/>
     </radialGradient>
   </defs>
 
-  <!-- Background Circle with subtle shine -->
-  <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#fff" stroke-width="14"/>
+  <!-- Background Circle with Shine -->
+  <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#ffffff" stroke-width="12"/>
   <circle cx="512" cy="512" r="480" fill="url(#shine)"/>
 
-  <!-- Hotel Base (Larger Golden Ratio box: 500×309) -->
-  <rect x="262" y="400" width="500" height="309" fill="#ffffff" stroke="url(#gold)" stroke-width="14" rx="35"/>
-
-  <!-- Windows (Larger and proportional) -->
-  <g fill="#00352f" opacity="0.85">
-    <!-- Row 1 -->
-    <rect x="312" y="420" width="90" height="90" rx="18"/>
-    <rect x="462" y="420" width="90" height="90" rx="18"/>
-    <rect x="612" y="420" width="90" height="90" rx="18"/>
-    <!-- Row 2 -->
-    <rect x="312" y="550" width="90" height="90" rx="18"/>
-    <rect x="462" y="550" width="90" height="90" rx="18"/>
-    <rect x="612" y="550" width="90" height="90" rx="18"/>
+  <!-- Abstract House (Golden Ratio proportions) -->
+  <g stroke="url(#accent)" stroke-width="20" fill="none">
+    <!-- Roof (Triangle) -->
+    <polygon points="312,312 512,112 712,312"/>
+    <!-- Base (Rectangle, 400x247 for golden ratio) -->
+    <rect x="312" y="312" width="400" height="247" rx="20"/>
+    <!-- Door (Simplified, centered) -->
+    <rect x="462" y="459" width="100" height="100" rx="15"/>
   </g>
 
-  <!-- Door (Larger and proportional) -->
-  <rect x="462" y="620" width="100" height="89" fill="url(#gold)" rx="18"/>
-  <rect x="487" y="635" width="50" height="59" fill="#ffffff" fill-opacity="0.2" rx="10"/>
+  <!-- Blockchain-inspired Hexagon Overlay -->
+  <g fill="none" stroke="#ffffff" stroke-width="8" opacity="0.5">
+    <path d="M512 250 l60 35 l0 70 l-60 35 l-60 -35 l0 -70 z"/>
+    <path d="M512 350 l40 23 l0 46 l-40 23 l-40 -23 l0 -46 z"/>
+  </g>
 
-  <!-- Roof (Larger and proportional) -->
-  <polygon points="242,400 512,150 782,400" fill="url(#gold)" stroke="#fff" stroke-width="12"/>
-
-  <!-- Subtle Icon (Star, slightly larger for balance) -->
-  <path d="M512 120l36 108h114l-92 67 35 108-92-67-92 67 35-108-92-67h114z" fill="#ffffff" fill-opacity="0.9"/>
+  <!-- Central Glow (Futuristic touch) -->
+  <circle cx="512" cy="512" r="50" fill="url(#accent)" fill-opacity="0.3"/>
 </svg>
