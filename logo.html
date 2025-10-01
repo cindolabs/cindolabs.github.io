@@ -20,22 +20,24 @@
   <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#ffffff" stroke-width="10"/>
   <circle cx="512" cy="512" r="480" fill="url(#shine)"/>
 
-  <!-- Abstract House (Larger, Golden Ratio proportions: 500x309) -->
+  <!-- Abstract House (Golden Ratio proportions: 500x309) -->
   <g stroke="url(#accent)" stroke-width="18" fill="none">
-    <!-- Roof (Triangle, scaled up) -->
+    <!-- Roof (Triangle) -->
     <polygon points="262,262 512,62 762,262"/>
-    <!-- Base (Rectangle, centered and larger) -->
+    <!-- Base (Rectangle) -->
     <rect x="262" y="262" width="500" height="309" rx="25"/>
-    <!-- Door (Proportional, centered) -->
+    <!-- Door (Centered) -->
     <rect x="437" y="422" width="150" height="150" rx="20"/>
+    <!-- Inverted Triangle (Below Base, mirroring roof) -->
+    <polygon points="262,762 512,962 762,762"/>
   </g>
 
-  <!-- Blockchain-inspired Hexagon Overlay (Larger, centered) -->
+  <!-- Blockchain-inspired Hexagon Overlay -->
   <g fill="none" stroke="#ffffff" stroke-width="10" opacity="0.5">
     <path d="M512 220 l80 46 l0 92 l-80 46 l-80 -46 l0 -92 z"/>
     <path d="M512 300 l50 29 l0 58 l-50 29 l-50 -29 l0 -58 z"/>
   </g>
 
-  <!-- Central Glow (Subtle, proportional) -->
+  <!-- Central Glow -->
   <circle cx="512" cy="512" r="60" fill="url(#accent)" fill-opacity="0.25"/>
 </svg>
