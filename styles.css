@@ -12,12 +12,12 @@
 /* Font Imports */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
-/* Updated Color Variables to Match SVG */
+/* Updated Color Variables to Match Coinbase Blue */
 :root {
-    --hocindo-green: #006847; /* Primary green from SVG */
-    --hocindo-green-dark: #004c3f; /* Darker green from SVG */
-    --hocindo-gold: #D4AF37; /* Light gold from SVG */
-    --hocindo-gold-dark: #b8860b; /* Darker gold from SVG */
+    --hocindo-blue: #0052FF; /* Replaced green with Coinbase blue */
+    --hocindo-blue-dark: #0033A0; /* Darker Coinbase blue for gradient */
+    --hocindo-gold: #D4AF37; /* Unchanged gold */
+    --hocindo-gold-dark: #b8860b; /* Unchanged darker gold */
     --white: #ffffff;
     --dark-gray: #333333;
     --light-gray: #f4f4f4;
@@ -31,15 +31,15 @@
     /* Dark Mode Colors */
     --bg-dark: #1a1a1a;
     --text-dark: #e0e0e0;
-    --hocindo-green-dark-mode: #00875a; /* Adjusted for dark mode */
-    --hocindo-gold-dark-mode: #e6b800; /* Adjusted for dark mode */
+    --hocindo-blue-dark-mode: #3366FF; /* Adjusted Coinbase blue for dark mode */
+    --hocindo-gold-dark-mode: #e6b800; /* Unchanged gold for dark mode */
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --white: var(--bg-dark);
         --dark-gray: var(--text-dark);
-        --hocindo-green: var(--hocindo-green-dark-mode);
+        --hocindo-blue: var(--hocindo-blue-dark-mode); /* Adjusted for dark mode */
         --hocindo-gold: var(--hocindo-gold-dark-mode);
         --light-gray: #2a2a2a;
     }
@@ -61,7 +61,7 @@
     position: absolute;
     top: -60px;
     left: 0;
-    background: var(--hocindo-green);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
     color: var(--white);
     padding: 12px 20px;
     z-index: 10000;
@@ -90,7 +90,7 @@
     position: sticky;
     top: 80px;
     width: 100%;
-    background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     z-index: 900;
     box-shadow: 0 4px 12px var(--shadow-color);
@@ -180,13 +180,13 @@
 
 .personalize-form input:focus {
     border-color: var(--hocindo-gold);
-    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3); /* Adjusted for gold */
+    box-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
     outline: none;
 }
 
 .personalize-form button {
-    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%); /* SVG-inspired gold gradient */
-    color: var(--hocindo-green);
+    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     border: none;
     padding: 10px 20px;
     border-radius: var(--border-radius);
@@ -228,7 +228,7 @@
 
 /* Navbar */
 .navbar {
-    background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     position: fixed;
     width: 100%;
@@ -299,6 +299,7 @@
     left: 0;
 }
 
+/* Hamburger menu styles unchanged */
 .hamburger {
     display: none;
     flex-direction: column;
@@ -332,7 +333,7 @@
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: linear-gradient(135deg, rgba(0, 104, 71, 0.6) 0%, rgba(0, 76, 63, 0.4) 100%), url('new-hero-bg.webp') no-repeat center center/cover;
+    background: linear-gradient(135deg, rgba(0, 82, 255, 0.6) 0%, rgba(0, 51, 160, 0.4) 100%), url('new-hero-bg.webp') no-repeat center center/cover; /* Changed to Coinbase blue gradient */
     background-attachment: fixed;
     color: var(--white);
     padding-top: 80px;
@@ -341,13 +342,13 @@
 }
 
 .hero-content {
-    background: rgba(0, 104, 71, 0.75);
-    padding: clamp(20px, 5vw, 40px); /* Reduced padding for smaller screens */
+    background: rgba(0, 82, 255, 0.75); /* Changed to Coinbase blue */
+    padding: clamp(20px, 5vw, 40px);
     border-radius: var(--border-radius);
     backdrop-filter: blur(5px);
-    max-width: clamp(300px, 80vw, 700px); /* Adjusted max-width for better scaling */
-    width: 100%; /* Ensure it takes full available width */
-    margin: 0 auto; /* Center horizontally */
+    max-width: clamp(300px, 80vw, 700px);
+    width: 100%;
+    margin: 0 auto;
     box-sizing: border-box;
 }
 
@@ -398,8 +399,8 @@
 }
 
 .cta-button {
-    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%); /* SVG-inspired gold gradient */
-    color: var(--hocindo-green);
+    background: linear-gradient(45deg, var(--hocindo-gold) 0%, var(--hocindo-gold-dark) 100%);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     padding: 16px 32px;
     border: none;
     border-radius: var(--border-radius);
@@ -427,7 +428,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     position: relative;
 }
 
@@ -475,7 +476,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
 }
 
 .services h2::after {
@@ -510,7 +511,7 @@
 
 .service-card i {
     font-size: 48px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     margin-bottom: 24px;
     transition: transform var(--transition-duration);
 }
@@ -522,7 +523,7 @@
 .service-card h3 {
     font-size: clamp(20px, 3vw, 24px);
     margin-bottom: 12px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
 }
 
 .service-card p {
@@ -537,7 +538,7 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--hocindo-green);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -557,7 +558,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
 }
 
 .testimonials h2::after {
@@ -598,7 +599,7 @@
 
 .testimonial-card h4 {
     font-size: clamp(16px, 2.5vw, 18px);
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     font-weight: 500;
 }
 
@@ -612,7 +613,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
 }
 
 .gallery h2::after {
@@ -654,7 +655,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background: rgba(0, 104, 71, 0.8);
+    background: rgba(0, 82, 255, 0.8); /* Changed to Coinbase blue */
     color: var(--white);
     display: flex;
     align-items: center;
@@ -671,7 +672,7 @@
 /* Investment Section */
 .investment {
     padding: clamp(60px, 10vw, 100px) 0;
-    background: linear-gradient(135deg, rgba(0, 104, 71, 0.6) 0%, rgba(0, 76, 63, 0.4) 100%), url('investment-bg.webp') no-repeat center center/cover;
+    background: linear-gradient(135deg, rgba(0, 82, 255, 0.6) 0%, rgba(0, 51, 160, 0.4) 100%), url('investment-bg.webp') no-repeat center center/cover; /* Changed to Coinbase blue gradient */
     background-attachment: fixed;
     color: var(--white);
 }
@@ -714,7 +715,7 @@
 
 .asset-display h3 {
     font-size: clamp(20px, 3vw, 24px);
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     text-align: center;
     margin-bottom: 24px;
     font-weight: 600;
@@ -737,7 +738,7 @@
 
 .asset-item:hover {
     transform: scale(1.08);
-    background: rgba(0, 104, 71, 0.15);
+    background: rgba(0, 82, 255, 0.15); /* Changed to Coinbase blue */
 }
 
 .asset-item[data-tooltip]:hover::after {
@@ -746,7 +747,7 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--hocindo-green);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -758,13 +759,13 @@
 
 .asset-item i {
     font-size: 32px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     margin-bottom: 12px;
 }
 
 .asset-item h4 {
     font-size: clamp(14px, 2.5vw, 16px);
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -784,7 +785,7 @@
     background: rgba(255, 255, 255, 0.95);
     border-radius: var(--border-radius);
     box-shadow: 0 4px 12px var(--shadow-color);
-    border: 1px solid rgba(0, 104, 71, 0.25);
+    border: 1px solid rgba(0, 82, 255, 0.25); /* Changed to Coinbase blue */
 }
 
 .stat-item {
@@ -798,7 +799,7 @@
 
 .stat-item:hover {
     transform: scale(1.08);
-    background: rgba(0, 104, 71, 0.15);
+    background: rgba(0, 82, 255, 0.15); /* Changed to Coinbase blue */
 }
 
 .stat-item[data-tooltip]:hover::after {
@@ -807,7 +808,7 @@
     bottom: calc(100% + 10px);
     left: 50%;
     transform: translateX(-50%);
-    background: var(--hocindo-green);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -819,13 +820,13 @@
 
 .stat-item i {
     font-size: 32px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     margin-bottom: 12px;
 }
 
 .stat-item h3 {
     font-size: clamp(14px, 2.5vw, 16px);
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
     margin-bottom: 10px;
     font-weight: 500;
 }
@@ -846,7 +847,7 @@
     text-align: center;
     font-size: var(--font-size-heading);
     margin-bottom: 48px;
-    color: var(--hocindo-green);
+    color: var(--hocindo-blue); /* Changed to Coinbase blue */
 }
 
 .contact h2::after {
@@ -869,7 +870,7 @@
 #contact-form input,
 #contact-form textarea {
     padding: 16px;
-    border: 1px solid var(--hocindo-green);
+    border: 1px solid var(--hocindo-blue); /* Changed to Coinbase blue */
     border-radius: var(--border-radius);
     font-size: clamp(15px, 2.5vw, 16px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
@@ -883,7 +884,7 @@
 }
 
 #contact-form button {
-    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     padding: 16px;
     border: none;
@@ -907,7 +908,7 @@
     position: fixed;
     bottom: 24px;
     right: 24px;
-    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     width: 60px;
     height: 60px;
@@ -933,7 +934,7 @@
     position: absolute;
     bottom: calc(100% + 10px);
     right: 0;
-    background: var(--hocindo-green);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
     color: var(--white);
     padding: 8px 16px;
     border-radius: 6px;
@@ -964,7 +965,7 @@
 }
 
 .chatbot-header {
-    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     padding: 12px 16px;
     border-radius: var(--border-radius) var(--border-radius) 0 0;
@@ -996,7 +997,7 @@
 }
 
 .user-message {
-    background: var(--hocindo-green);
+    background: var(--hocindo-blue); /* Changed to Coinbase blue */
     color: var(--white);
     text-align: right;
     box-shadow: 0 2px 8px var(--shadow-color);
@@ -1013,7 +1014,7 @@
 #chatbot-input {
     flex: 1;
     padding: 12px;
-    border: 1px solid var(--hocindo-green);
+    border: 1px solid var(--hocindo-blue); /* Changed to Coinbase blue */
     border-radius: var(--border-radius);
     font-size: clamp(14px, 2.5vw, 15px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
@@ -1026,7 +1027,7 @@
 }
 
 .chatbot-footer button {
-    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     border: none;
     padding: 12px 16px;
@@ -1047,7 +1048,7 @@
 
 /* Footer */
 footer {
-    background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     padding: clamp(40px, 8vw, 60px) 0;
 }
@@ -1159,7 +1160,7 @@ footer p {
 #investment-form input,
 #investment-form select {
     padding: 16px;
-    border: 1px solid var(--hocindo-green);
+    border: 1px solid var(--hocindo-blue); /* Changed to Coinbase blue */
     border-radius: var(--border-radius);
     font-size: clamp(15px, 2.5vw, 16px);
     transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
@@ -1173,7 +1174,7 @@ footer p {
 }
 
 #investment-form button {
-    background: linear-gradient(45deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+    background: linear-gradient(45deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
     color: var(--white);
     padding: 16px;
     border: none;
@@ -1257,7 +1258,7 @@ footer p {
         top: 80px;
         left: 0;
         width: 100%;
-        background: linear-gradient(180deg, var(--hocindo-green) 0%, var(--hocindo-green-dark) 100%); /* SVG-inspired gradient */
+        background: linear-gradient(180deg, var(--hocindo-blue) 0%, var(--hocindo-blue-dark) 100%); /* Changed to Coinbase blue gradient */
         transform: translateY(-20px);
         opacity: 0;
         transition: transform var(--transition-duration) ease, opacity var(--transition-duration) ease;
