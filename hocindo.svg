@@ -21,14 +21,14 @@
   <circle cx="512" cy="512" r="480" fill="url(#bg)" stroke="#ffffff" stroke-width="10"/>
   <circle cx="512" cy="512" r="480" fill="url(#shine)"/>
 
-  <!-- Stylized Letter H (Golden Ratio proportions: ~500x309) -->
-  <g stroke="url(#accent)" stroke-width="30" fill="none">
+  <!-- Stylized Letter H (Wider, Golden Ratio proportions: ~809x500) -->
+  <g stroke="url(#accent)" stroke-width="40" fill="none">
     <!-- Left Vertical Bar -->
-    <rect x="362" y="262" width="100" height="500" rx="15"/>
+    <rect x="262" y="262" width="150" height="500" rx="25"/>
     <!-- Right Vertical Bar -->
-    <rect x="562" y="262" width="100" height="500" rx="15"/>
+    <rect x="612" y="262" width="150" height="500" rx="25"/>
     <!-- Crossbar -->
-    <rect x="362" y="487" width="300" height="50" rx="10"/>
+    <rect x="262" y="487" width="500" height="50" rx="20"/>
   </g>
 
   <!-- Square Overlay (Centered in Central Glow, rotated 45 degrees) -->
