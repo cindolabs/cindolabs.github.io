@@ -1,0 +1,47 @@
+[
+    {
+        "tanggal": "2025-09-08",
+        "nama": "Mochamad Tabrani",
+        "rekening": "Blu BCA 0022 2858 8888",
+        "jenis": "Investasi",
+        "nominal": 50000,
+        "saham": 500,
+        "saldo": 50000
+    },
+    {
+        "tanggal": "2025-09-08",
+        "nama": "Pipit Puspita",
+        "rekening": "BCA 1234 **** ****",
+        "jenis": "Investasi",
+        "nominal": 50000,
+        "saham": 500,
+        "saldo": 100000
+    },
+    {
+        "tanggal": "2025-09-10",
+        "nama": "Sangaji",
+        "rekening": "BRI 5678 **** ****",
+        "jenis": "Investasi",
+        "nominal": 100000,
+        "saham": 1000,
+        "saldo": 200000
+    },
+    {
+        "tanggal": "2025-09-10",
+        "nama": "Asmini",
+        "rekening": "Mandiri 5678 **** ****",
+        "jenis": "Investasi",
+        "nominal": 135000,
+        "saham": 1350,
+        "saldo": 335000
+    },
+    {
+        "tanggal": "2025-09-10",
+        "nama": "Rasyid",
+        "rekening": "BNI 5678 **** ****",
+        "jenis": "Investasi",
+        "nominal": 50000,
+        "saham": 500,
+        "saldo": 385000
+    }
+]
