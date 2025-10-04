@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabel Pertumbuhan Berganda</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff, #f4f4f9);
+            margin: 0;
+            padding: 30px;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1a3c34;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1a3c34;
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: center;
+            font-size: 0.95em;
+        }
+
+        th {
+            background: linear-gradient(to bottom, #006847, #004c3f);
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #e8f5e9;
+            transition: background-color 0.3s ease;
+        }
+
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            transition: transform 0.3s ease;
+        }
+
+        .chart-container:hover {
+            transform: translateY(-5px);
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                max-width: 100%;
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            th, td {
+                padding: 8px;
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Peta Pertumbuhan Berganda Rp. 1.000 (100% per Hari)</h1>
+        
+        <!-- Tabel -->
+        <div class="table-container">
+            <h2>Data Pertumbuhan</h2>
+            <p>Pertumbuhan berganda 100% setiap hari selama 30 hari.</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Hari</th>
+                        <th>Nilai Awal (Rp.)</th>
+                        <th>Pertumbuhan (100%)</th>
+                        <th>Penjumlahan</th>
+                        <th>Nilai Akhir (Rp.)</th>
+                        <th>Kontribusi Pertumbuhan (%)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>0</td><td>1,000</td><td>1,000</td><td>1,000 + 1,000 = 2,000</td><td>2,000</td><td>100%</td></tr>
+                    <tr><td>1</td><td>2,000</td><td>2,000</td><td>2,000 + 2,000 = 4,000</td><td>4,000</td><td>100%</td></tr>
+                    <tr><td>2</td><td>4,000</td><td>4,000</td><td>4,000 + 4,000 = 8,000</td><td>8,000</td><td>100%</td></tr>
+                    <tr><td>3</td><td>8,000</td><td>8,000</td><td>8,000 + 8,000 = 16,000</td><td>16,000</td><td>100%</td></tr>
+                    <tr><td>4</td><td>16,000</td><td>16,000</td><td>16,000 + 16,000 = 32,000</td><td>32,000</td><td>100%</td></tr>
+                    <tr><td>5</td><td>32,000</td><td>32,000</td><td>32,000 + 32,000 = 64,000</td><td>64,000</td><td>100%</td></tr>
+                    <tr><td>6</td><td>64,000</td><td>64,000</td><td>64,000 + 64,000 = 128,000</td><td>128,000</td><td>100%</td></tr>
+                    <tr><td>7</td><td>128,000</td><td>128,000</td><td>128,000 + 128,000 = 256,000</td><td>256,000</td><td>100%</td></tr>
+                    <tr><td>8</td><td>256,000</td><td>256,000</td><td>256,000 + 256,000 = 512,000</td><td>512,000</td><td>100%</td></tr>
+                    <tr><td>9</td><td>512,000</td><td>512,000</td><td>512,000 + 512,000 = 1,024,000</td><td>1,024,000</td><td>100%</td></tr>
+                    <tr><td>10</td><td>1,024,000</td><td>1,024,000</td><td>1,024,000 + 1,024,000 = 2,048,000</td><td>2,048,000</td><td>100%</td></tr>
+                    <tr><td>11</td><td>2,048,000</td><td>2,048,000</td><td>2,048,000 + 2,048,000 = 4,096,000</td><td>4,096,000</td><td>100%</td></tr>
+                    <tr><td>12</td><td>4,096,000</td><td>4,096,000</td><td>4,096,000 + 4,096,000 = 8,192,000</td><td>8,192,000</td><td>100%</td></tr>
+                    <tr><td>13</td><td>8,192,000</td><td>8,192,000</td><td>8,192,000 + 8,192,000 = 16,384,000</td><td>16,384,000</td><td>100%</td></tr>
+                    <tr><td>14</td><td>16,384,000</td><td>16,384,000</td><td>16,384,000 + 16,384,000 = 32,768,000</td><td>32,768,000</td><td>100%</td></tr>
+                    <tr><td>15</td><td>32,768,000</td><td>32,768,000</td><td>32,768,000 + 32,768,000 = 65,536,000</td><td>65,536,000</td><td>100%</td></tr>
+                    <tr><td>16</td><td>65,536,000</td><td>65,536,000</td><td>65,536,000 + 65,536,000 = 131,072,000</td><td>131,072,000</td><td>100%</td></tr>
+                    <tr><td>17</td><td>131,072,000</td><td>131,072,000</td><td>131,072,000 + 131,072,000 = 262,144,000</td><td>262,144,000</td><td>100%</td></tr>
+                    <tr><td>18</td><td>262,144,000</td><td>262,144,000</td><td>262,144,000 + 262,144,000 = 524,288,000</td><td>524,288,000</td><td>100%</td></tr>
+                    <tr><td>19</td><td>524,288,000</td><td>524,288,000</td><td>524,288,000 + 524,288,000 = 1,048,576,000</td><td>1,048,576,000</td><td>100%</td></tr>
+                    <tr><td>20</td><td>1,048,576,000</td><td>1,048,576,000</td><td>1,048,576,000 + 1,048,576,000 = 2,097,152,000</td><td>2,097,152,000</td><td>100%</td></tr>
+                    <tr><td>21</td><td>2,097,152,000</td><td>2,097,152,000</td><td>2,097,152,000 + 2,097,152,000 = 4,194,304,000</td><td>4,194,304,000</td><td>100%</td></tr>
+                    <tr><td>22</td><td>4,194,304,000</td><td>4,194,304,000</td><td>4,194,304,000 + 4,194,304,000 = 8,388,608,000</td><td>8,388,608,000</td><td>100%</td></tr>
+                    <tr><td>23</td><td>8,388,608,000</td><td>8,388,608,000</td><td>8,388,608,000 + 8,388,608,000 = 16,777,216,000</td><td>16,777,216,000</td><td>100%</td></tr>
+                    <tr><td>24</td><td>16,777,216,000</td><td>16,777,216,000</td><td>16,777,216,000 + 16,777,216,000 = 33,554,432,000</td><td>33,554,432,000</td><td>100%</td></tr>
+                    <tr><td>25</td><td>33,554,432,000</td><td>33,554,432,000</td><td>33,554,432,000 + 33,554,432,000 = 67,108,864,000</td><td>67,108,864,000</td><td>100%</td></tr>
+                    <tr><td>26</td><td>67,108,864,000</td><td>67,108,864,000</td><td>67,108,864,000 + 67,108,864,000 = 134,217,728,000</td><td>134,217,728,000</td><td>100%</td></tr>
+                    <tr><td>27</td><td>134,217,728,000</td><td>134,217,728,000</td><td>134,217,728,000 + 134,217,728,000 = 268,435,456,000</td><td>268,435,456,000</td><td>100%</td></tr>
+                    <tr><td>28</td><td>268,435,456,000</td><td>268,435,456,000</td><td>268,435,456,000 + 268,435,456,000 = 536,870,912,000</td><td>536,870,912,000</td><td>100%</td></tr>
+                    <tr><td>29</td><td>536,870,912,000</td><td>536,870,912,000</td><td>536,870,912,000 + 536,870,912,000 = 1,073,741,824,000</td><td>1,073,741,824,000</td><td>100%</td></tr>
+                    <tr><td>30</td><td>1,073,741,824,000</td><td>1,073,741,824,000</td><td>1,073,741,824,000 + 1,073,741,824,000 = 2,147,483,648,000</td><td>2,147,483,648,000</td><td>100%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- Grafik -->
+        <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="barChart"></canvas>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Data untuk grafik
+            const labels = ['Hari 0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30'];
+            const nilaiAkhir = [2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000, 1024000, 2048000, 4096000, 8192000, 16384000, 32768000, 65536000, 131072000, 262144000, 524288000, 1048576000, 2097152000, 4194304000, 8388608000, 16777216000, 33554432000, 67108864000, 134217728000, 268435456000, 536870912000, 1073741824000, 2147483648000];
+            const pertumbuhan = [1000, 2000, 4000, 8000, 16000, 32000, 64000, 128000, 256000, 512000, 1024000, 2048000, 4096000, 8192000, 16384000, 32768000, 65536000, 131072000, 262144000, 524288000, 1048576000, 2097152000, 4194304000, 8388608000, 16777216000, 33554432000, 67108864000, 134217728000, 268435456000, 536870912000, 1073741824000];
+
+            // Line Chart
+            new Chart(document.getElementById('lineChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nilai Akhir',
+                        data: nilaiAkhir,
+                        borderColor: '#2a9d8f',
+                        backgroundColor: 'rgba(42, 157, 143, 0.3)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#264653',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Tren Pertumbuhan Nilai Akhir (Berganda 100%)',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#1a3c34'
+                        },
+                        tooltip: {
+                            backgroundColor: '#264653',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10
+                        },
+                        legend: {
+                            labels: {
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'logarithmic', // Skala logaritmik karena nilai sangat besar
+                            title: {
+                                display: true,
+                                text: 'Nilai (Rp)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Hari',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { display: false },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+
+            // Bar Chart
+            new Chart(document.getElementById('barChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Pertumbuhan 100%',
+                        data: pertumbuhan,
+                        backgroundColor: 'rgba(33, 150, 243, 0.7)',
+                        borderColor: '#1976D2',
+                        borderWidth: 2,
+                        hoverBackgroundColor: '#2196F3',
+                        hoverBorderColor: '#1565C0'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Kontribusi Pertumbuhan 100% per Hari',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#1a3c34'
+                        },
+                        tooltip: {
+                            backgroundColor: '#264653',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10
+                        },
+                        legend: {
+                            labels: {
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            type: 'logarithmic', // Skala logaritmik untuk menangani nilai besar
+                            title: {
+                                display: true,
+                                text: 'Nilai Pertumbuhan (Rp)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Hari',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { display: false },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
