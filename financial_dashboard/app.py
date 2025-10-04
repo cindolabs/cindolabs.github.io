@@ -26,12 +26,12 @@ st.set_page_config(
     page_title="Dashboard Keuangan HOCINDO",
     layout="wide",
     initial_sidebar_state="expanded",
-    page_icon="hocindo.svg"  # Path ke favicon di direktori proyek
+    page_icon="hocindo.svg"
 )
 
 # Harga saham per lembar dan dana kelolaan
 HARGA_SAHAM = 100
-DANA_KELOLAAN_BARU = 500000  # Dana kelolaan baru
+DANA_KELOLAAN_BARU = 500000
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/financial_dashboard/transaksi.json"
 GITHUB_API_URL = "https://api.github.com/repos/hocindo/hocindo.github.io/contents/financial_dashboard/transaksi.json"
 
@@ -218,34 +218,6 @@ def delete_transaction(df, index):
         st.error(f"Error deleting transaction: {e}")
         return df
 
-# Fungsi simulasi piramida (edukatif)
-def simulasi_piramida(level_max):
-    biaya_masuk = 1_000_000  # Rp 1 juta per orang
-    faktor_rekrut = 2  # Setiap anggota rekrut 2 orang
-    bonus_persen = 0.5  # 50% dari biaya masuk downline
-    data = []
-    total_anggota = 0
-    total_uang = 0
-    keuntungan_pendiri = 0
-    
-    for level in range(1, level_max + 1):
-        anggota_level = faktor_rekrut ** (level - 1)
-        uang_level = anggota_level * biaya_masuk
-        total_anggota += anggota_level
-        total_uang += uang_level
-        keuntungan_level = uang_level * bonus_persen
-        keuntungan_pendiri += keuntungan_level
-        data.append({
-            'Level': level,
-            'Jumlah Anggota': anggota_level,
-            'Uang Masuk Level (Rp)': f"{uang_level:,.0f}",
-            'Keuntungan Pendiri Kumulatif (Rp)': f"{keuntungan_pendiri:,.0f}",
-            'Total Anggota': total_anggota,
-            'Total Uang Masuk (Rp)': f"{total_uang:,.0f}"
-        })
-    
-    return pd.DataFrame(data)
-
 # Main App
 if check_login():
     st.title("📊 Dashboard Keuangan HOCINDO - September 2025")
@@ -253,7 +225,7 @@ if check_login():
 
     # Sidebar
     st.sidebar.header("Navigasi")
-    action = st.sidebar.radio("Pilih Aksi", ["Dashboard", "Tambah Transaksi", "Kalkulator ROI", "Simulasi Piramida"])
+    action = st.sidebar.radio("Pilih Aksi", ["Dashboard", "Tambah Transaksi", "Kalkulator ROI"])
 
     # Load data
     df = load_data_from_github(datetime.now().timestamp())
@@ -272,9 +244,8 @@ if check_login():
         if AGGRID_AVAILABLE:
             gb = GridOptionsBuilder.from_dataframe(df)
             gb.configure_default_column(editable=True)
-            # Atur lebar kolom saham dan saldo
-            gb.configure_column("saham", width=100)  # Lebar kolom saham
-            gb.configure_column("saldo", width=120)  # Lebar kolom saldo
+            gb.configure_column("saham", width=100)
+            gb.configure_column("saldo", width=120)
             gb.configure_selection("single")
             grid_response = AgGrid(df, gridOptions=gb.build(), update_mode=GridUpdateMode.MODEL_CHANGED, height=300)
             df = grid_response["data"]
@@ -286,7 +257,6 @@ if check_login():
                         st.cache_data.clear()
                         st.rerun()
         else:
-            # Format angka untuk tampilan lebih ringkas di st.dataframe
             df_display = df.copy()
             df_display["saham"] = df_display["saham"].apply(lambda x: f"{x:,.0f}")
             df_display["saldo"] = df_display["saldo"].apply(lambda x: f"{x/1000:.0f}K")
@@ -302,7 +272,6 @@ if check_login():
             fund_allocation_display["bagian_dana"] = fund_allocation_display["bagian_dana"].apply(lambda x: f"Rp {x:,.0f}")
             st.dataframe(fund_allocation_display, use_container_width=True)
             
-            # Bar chart for fund allocation
             fig_allocation = px.bar(
                 fund_allocation,
                 x="nama",
@@ -325,7 +294,7 @@ if check_login():
             elif chart_type == "Bar per Tanggal":
                 daily_sum = df.groupby("tanggal")["nominal"].sum().reset_index()
                 fig = px.bar(daily_sum, x="tanggal", y="nominal", title="Investasi per Tanggal")
-            else:  # Line Saldo
+            else:
                 fig = px.line(df, x="tanggal", y="saldo", title="Tren Saldo Kumulatif")
             st.plotly_chart(fig, use_container_width=True)
         except Exception as e:
@@ -368,7 +337,6 @@ if check_login():
                 keuntungan = (summary['total_investasi'] * roi_percent) / 100
                 st.success(f"Estimasi Keuntungan Total: **Rp {keuntungan:,.0f}**")
                 
-                # Perkiraan Pendapatan Investor
                 st.subheader("📈 Perkiraan Pendapatan per Investor")
                 investor_earnings = calculate_investor_earnings(df, roi_percent)
                 if not investor_earnings.empty:
@@ -378,7 +346,6 @@ if check_login():
                     investor_earnings_display["estimasi_pendapatan"] = investor_earnings_display["estimasi_pendapatan"].apply(lambda x: f"Rp {x:,.0f}")
                     st.dataframe(investor_earnings_display, use_container_width=True)
                     
-                    # Bar chart for earnings
                     fig_earnings = px.bar(
                         investor_earnings,
                         x="nama",
@@ -393,37 +360,6 @@ if check_login():
                 logger.error(f"Error calculating ROI: {str(e)}")
                 st.error(f"Error calculating ROI: {e}")
 
-    elif action == "Simulasi Piramida":
-        st.subheader("📈 Simulasi Skema Piramida (Hanya untuk Edukasi)")
-        st.markdown("""
-        **Peringatan**: Ini adalah simulasi edukatif untuk memahami bahaya skema piramida. 
-        Skema piramida adalah **ilegal** di Indonesia berdasarkan UU No. 7 Tahun 2014 tentang Perdagangan. 
-        Jangan gunakan untuk praktik nyata!
-        """)
-        
-        # Parameter simulasi
-        level_max = st.slider("Pilih Jumlah Level (Maksimum)", min_value=1, max_value=15, value=10)
-        
-        # Jalankan simulasi
-        df_piramida = simulasi_piramida(level_max)
-        
-        # Tampilkan tabel
-        st.subheader("Tabel Simulasi Piramida")
-        st.dataframe(df_piramida, use_container_width=True)
-        
-        # Peringatan
-        st.warning(f"Pada level {level_max}, total anggota: {df_piramida['Total Anggota'].iloc[-1]:,.0f}. "
-                   "Realitas: Skema ini runtuh karena tidak ada cukup orang untuk direkrut!")
-        
-        # Visualisasi grafik
-        st.subheader("Grafik Pertumbuhan")
-        fig = px.line(df_piramida, x='Level', y=['Jumlah Anggota', 'Total Uang Masuk (Rp)'],
-                      title="Pertumbuhan Jumlah Anggota dan Total Uang Masuk",
-                      labels={'value': 'Skala', 'variable': 'Metrik'},
-                      log_y=True)  # Skala logaritmik untuk menangani nilai besar
-        fig.update_layout(yaxis_title="Skala (Logaritmik)", xaxis_title="Level")
-        st.plotly_chart(fig, use_container_width=True)
-
     # Catatan
     st.subheader("📝 Catatan")
     st.info("""
@@ -431,9 +367,9 @@ if check_login():
     - Dana kelolaan saat ini: Rp 500,000, dibagi berdasarkan proporsi saham.
     - Data disimpan di GitHub via API (atau lokal jika token tidak tersedia).
     - Harga saham: Rp 100/lembar.
-    - Simulasi piramida hanya untuk edukasi tentang bahaya skema ilegal.
     - Dengan konstitusi baru Hocindo yang menjunjung tinggi privasi, data pembeli saham tertutup Hocindo dijaga kerahasiaannya.
     - Login: Username 'admin', Password 'hocindo2025'.
+    - Simulasi piramida tersedia di halaman terpisah untuk edukasi tentang bahaya skema ilegal.
     """)
 else:
     st.warning("Silakan login di sidebar untuk mengakses dashboard.")
