@@ -13,14 +13,14 @@ Jangan gunakan untuk praktik nyata!
 """)
 
 # Parameter simulasi
-biaya_masuk = 1_000_000  # Rp 1 juta per orang
+biaya_masuk = 10_000  # Rp 10.000 per orang
 faktor_rekrut = 2  # Setiap anggota rekrut 2 orang
 bonus_persen = 0.5  # 50% dari biaya masuk downline
-level_max = st.slider("Pilih Jumlah Level (Maksimum)", min_value=1, max_value=15, value=10)
+level_max = st.slider("Pilih Jumlah Level (Maksimum)", min_value=1, max_value=15, value=10, key="level_max")
 
 # Fungsi simulasi piramida
 @st.cache_data
-def simulasi_piramida(level_max):
+def simulasi_piramida(level_max, _cache_buster):
     data = []
     total_anggota = 0
     total_uang = 0
@@ -47,8 +47,14 @@ def simulasi_piramida(level_max):
     
     return pd.DataFrame(data)
 
-# Jalankan simulasi
-df = simulasi_piramida(level_max)
+# Tombol untuk clear cache
+if st.button("🔄 Clear Cache dan Refresh"):
+    st.cache_data.clear()
+    st.rerun()
+
+# Jalankan simulasi dengan cache buster
+cache_buster = str(datetime.now().timestamp())  # Untuk memaksa cache refresh
+df = simulasi_piramida(level_max, cache_buster)
 
 # Tampilkan tabel
 st.subheader("Tabel Simulasi Piramida")
