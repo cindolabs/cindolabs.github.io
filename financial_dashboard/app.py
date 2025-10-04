@@ -35,23 +35,6 @@ DANA_KELOLAAN_BARU = 500000
 GITHUB_RAW_URL = "https://raw.githubusercontent.com/hocindo/hocindo.github.io/main/financial_dashboard/transaksi.json"
 GITHUB_API_URL = "https://api.github.com/repos/hocindo/hocindo.github.io/contents/financial_dashboard/transaksi.json"
 
-# Autentikasi sederhana
-def check_login():
-    if "logged_in" not in st.session_state:
-        st.session_state.logged_in = False
-    if not st.session_state.logged_in:
-        st.sidebar.header("Login")
-        username = st.sidebar.text_input("Username")
-        password = st.sidebar.text_input("Password", type="password")
-        if st.sidebar.button("Login"):
-            if username == "admin" and password == "hocindo2025":
-                st.session_state.logged_in = True
-                st.rerun()
-            else:
-                st.sidebar.error("Username atau password salah!")
-        return False
-    return True
-
 # Load data dari GitHub
 @st.cache_data
 def load_data_from_github(_timestamp):
@@ -219,157 +202,153 @@ def delete_transaction(df, index):
         return df
 
 # Main App
-if check_login():
-    st.title("📊 Dashboard Keuangan HOCINDO - September 2025")
-    st.markdown(f"Harga per Lembar Saham: **Rp {HARGA_SAHAM}**")
+st.title("📊 Dashboard Keuangan HOCINDO - September 2025")
+st.markdown(f"Harga per Lembar Saham: **Rp {HARGA_SAHAM}**")
 
-    # Sidebar
-    st.sidebar.header("Navigasi")
-    action = st.sidebar.radio("Pilih Aksi", ["Dashboard", "Tambah Transaksi", "Kalkulator ROI"])
+# Sidebar
+st.sidebar.header("Navigasi")
+action = st.sidebar.radio("Pilih Aksi", ["Dashboard", "Tambah Transaksi", "Kalkulator ROI"])
 
-    # Load data
-    df = load_data_from_github(datetime.now().timestamp())
-    summary = calculate_summary(df)
+# Load data
+df = load_data_from_github(datetime.now().timestamp())
+summary = calculate_summary(df)
 
-    if action == "Dashboard":
-        # Summary
-        col1, col2, col3, col4 = st.columns(4)
-        col1.metric("Total Investasi", f"Rp {summary['total_investasi']:,.0f}")
-        col2.metric("Total Lembar Saham", f"{summary['total_saham']:,.0f}")
-        col3.metric("Jumlah Investor", summary['jumlah_investor'])
-        col4.metric("Dana Kelolaan", f"Rp {summary['dana_kelolaan']:,.0f}")
+if action == "Dashboard":
+    # Summary
+    col1, col2, col3, col4 = st.columns(4)
+    col1.metric("Total Investasi", f"Rp {summary['total_investasi']:,.0f}")
+    col2.metric("Total Lembar Saham", f"{summary['total_saham']:,.0f}")
+    col3.metric("Jumlah Investor", summary['jumlah_investor'])
+    col4.metric("Dana Kelolaan", f"Rp {summary['dana_kelolaan']:,.0f}")
 
-        # Tabel Interaktif
-        st.subheader("📋 Daftar Transaksi")
-        if AGGRID_AVAILABLE:
-            gb = GridOptionsBuilder.from_dataframe(df)
-            gb.configure_default_column(editable=True)
-            gb.configure_column("saham", width=100)
-            gb.configure_column("saldo", width=120)
-            gb.configure_selection("single")
-            grid_response = AgGrid(df, gridOptions=gb.build(), update_mode=GridUpdateMode.MODEL_CHANGED, height=300)
-            df = grid_response["data"]
-            if grid_response["selected_rows"]:
-                if st.button("🗑️ Hapus Transaksi Terpilih"):
-                    selected_index = grid_response["selected_rows"][0]["_selectedRowNodeId"]
-                    df = delete_transaction(df, selected_index)
-                    if save_to_github(df):
-                        st.cache_data.clear()
-                        st.rerun()
+    # Tabel Interaktif
+    st.subheader("📋 Daftar Transaksi")
+    if AGGRID_AVAILABLE:
+        gb = GridOptionsBuilder.from_dataframe(df)
+        gb.configure_default_column(editable=True)
+        gb.configure_column("saham", width=100)
+        gb.configure_column("saldo", width=120)
+        gb.configure_selection("single")
+        grid_response = AgGrid(df, gridOptions=gb.build(), update_mode=GridUpdateMode.MODEL_CHANGED, height=300)
+        df = grid_response["data"]
+        if grid_response["selected_rows"]:
+            if st.button("🗑️ Hapus Transaksi Terpilih"):
+                selected_index = grid_response["selected_rows"][0]["_selectedRowNodeId"]
+                df = delete_transaction(df, selected_index)
+                if save_to_github(df):
+                    st.cache_data.clear()
+                    st.rerun()
+    else:
+        df_display = df.copy()
+        df_display["saham"] = df_display["saham"].apply(lambda x: f"{x:,.0f}")
+        df_display["saldo"] = df_display["saldo"].apply(lambda x: f"{x/1000:.0f}K")
+        st.dataframe(df_display, use_container_width=True)
+
+    # Pembagian Dana Kelolaan
+    st.subheader("📊 Pembagian Dana Kelolaan per Investor")
+    fund_allocation = calculate_fund_allocation(df)
+    if not fund_allocation.empty:
+        fund_allocation_display = fund_allocation.copy()
+        fund_allocation_display["saham"] = fund_allocation_display["saham"].apply(lambda x: f"{x:,.0f}")
+        fund_allocation_display["proporsi_saham"] = fund_allocation_display["proporsi_saham"].apply(lambda x: f"{x:.2%}")
+        fund_allocation_display["bagian_dana"] = fund_allocation_display["bagian_dana"].apply(lambda x: f"Rp {x:,.0f}")
+        st.dataframe(fund_allocation_display, use_container_width=True)
+        
+        fig_allocation = px.bar(
+            fund_allocation,
+            x="nama",
+            y="bagian_dana",
+            title="Pembagian Dana Kelolaan per Investor",
+            labels={"bagian_dana": "Bagian Dana (Rp)", "nama": "Nama Investor"}
+        )
+        st.plotly_chart(fig_allocation, use_container_width=True)
+    else:
+        st.warning("Tidak ada data investor untuk pembagian dana.")
+
+    # Chart
+    st.subheader("📊 Visualisasi Investasi")
+    chart_type = st.selectbox("Pilih Jenis Chart", ["Pie Investasi", "Pie Saham", "Bar per Tanggal", "Line Saldo"])
+    try:
+        if chart_type == "Pie Investasi":
+            fig = px.pie(df, values="nominal", names="nama", title="Proporsi Investasi per Investor")
+        elif chart_type == "Pie Saham":
+            fig = px.pie(df, values="saham", names="nama", title="Proporsi Lembar Saham per Investor")
+        elif chart_type == "Bar per Tanggal":
+            daily_sum = df.groupby("tanggal")["nominal"].sum().reset_index()
+            fig = px.bar(daily_sum, x="tanggal", y="nominal", title="Investasi per Tanggal")
         else:
-            df_display = df.copy()
-            df_display["saham"] = df_display["saham"].apply(lambda x: f"{x:,.0f}")
-            df_display["saldo"] = df_display["saldo"].apply(lambda x: f"{x/1000:.0f}K")
-            st.dataframe(df_display, use_container_width=True)
+            fig = px.line(df, x="tanggal", y="saldo", title="Tren Saldo Kumulatif")
+        st.plotly_chart(fig, use_container_width=True)
+    except Exception as e:
+        logger.error(f"Error rendering chart: {str(e)}")
+        st.error(f"Error rendering chart: {e}")
 
-        # Pembagian Dana Kelolaan
-        st.subheader("📊 Pembagian Dana Kelolaan per Investor")
-        fund_allocation = calculate_fund_allocation(df)
-        if not fund_allocation.empty:
-            fund_allocation_display = fund_allocation.copy()
-            fund_allocation_display["saham"] = fund_allocation_display["saham"].apply(lambda x: f"{x:,.0f}")
-            fund_allocation_display["proporsi_saham"] = fund_allocation_display["proporsi_saham"].apply(lambda x: f"{x:.2%}")
-            fund_allocation_display["bagian_dana"] = fund_allocation_display["bagian_dana"].apply(lambda x: f"Rp {x:,.0f}")
-            st.dataframe(fund_allocation_display, use_container_width=True)
-            
-            fig_allocation = px.bar(
-                fund_allocation,
-                x="nama",
-                y="bagian_dana",
-                title="Pembagian Dana Kelolaan per Investor",
-                labels={"bagian_dana": "Bagian Dana (Rp)", "nama": "Nama Investor"}
-            )
-            st.plotly_chart(fig_allocation, use_container_width=True)
-        else:
-            st.warning("Tidak ada data investor untuk pembagian dana.")
+    # Export
+    col_export1, col_export2 = st.columns(2)
+    with col_export1:
+        csv = df.to_csv(index=False).encode('utf-8')
+        st.download_button("📥 Export CSV", csv, "hocindo-transaksi.csv", "text/csv")
+    with col_export2:
+        if st.button("🔄 Refresh dari GitHub"):
+            st.cache_data.clear()
+            st.rerun()
 
-        # Chart
-        st.subheader("📊 Visualisasi Investasi")
-        chart_type = st.selectbox("Pilih Jenis Chart", ["Pie Investasi", "Pie Saham", "Bar per Tanggal", "Line Saldo"])
-        try:
-            if chart_type == "Pie Investasi":
-                fig = px.pie(df, values="nominal", names="nama", title="Proporsi Investasi per Investor")
-            elif chart_type == "Pie Saham":
-                fig = px.pie(df, values="saham", names="nama", title="Proporsi Lembar Saham per Investor")
-            elif chart_type == "Bar per Tanggal":
-                daily_sum = df.groupby("tanggal")["nominal"].sum().reset_index()
-                fig = px.bar(daily_sum, x="tanggal", y="nominal", title="Investasi per Tanggal")
+elif action == "Tambah Transaksi":
+    st.subheader("➕ Tambah Transaksi")
+    with st.form("add_transaction"):
+        tanggal = st.date_input("Tanggal", value=datetime.now())
+        nama = st.text_input("Nama Investor")
+        rekening = st.text_input("No. Rekening")
+        nominal = st.number_input("Nominal (Rp)", min_value=100, step=100)
+        submitted = st.form_submit_button("Tambah")
+        if submitted:
+            if nama and rekening:
+                new_data = {"tanggal": tanggal.strftime("%Y-%m-%d"), "nama": nama, "rekening": rekening, "nominal": nominal}
+                df = add_transaction(df, new_data)
+                if save_to_github(df):
+                    st.cache_data.clear()
+                    st.rerun()
             else:
-                fig = px.line(df, x="tanggal", y="saldo", title="Tren Saldo Kumulatif")
-            st.plotly_chart(fig, use_container_width=True)
-        except Exception as e:
-            logger.error(f"Error rendering chart: {str(e)}")
-            st.error(f"Error rendering chart: {e}")
+                st.error("Isi semua kolom!")
 
-        # Export
-        col_export1, col_export2 = st.columns(2)
-        with col_export1:
-            csv = df.to_csv(index=False).encode('utf-8')
-            st.download_button("📥 Export CSV", csv, "hocindo-transaksi.csv", "text/csv")
-        with col_export2:
-            if st.button("🔄 Refresh dari GitHub"):
-                st.cache_data.clear()
-                st.rerun()
-
-    elif action == "Tambah Transaksi":
-        st.subheader("➕ Tambah Transaksi")
-        with st.form("add_transaction"):
-            tanggal = st.date_input("Tanggal", value=datetime.now())
-            nama = st.text_input("Nama Investor")
-            rekening = st.text_input("No. Rekening")
-            nominal = st.number_input("Nominal (Rp)", min_value=100, step=100)
-            submitted = st.form_submit_button("Tambah")
-            if submitted:
-                if nama and rekening:
-                    new_data = {"tanggal": tanggal.strftime("%Y-%m-%d"), "nama": nama, "rekening": rekening, "nominal": nominal}
-                    df = add_transaction(df, new_data)
-                    if save_to_github(df):
-                        st.cache_data.clear()
-                        st.rerun()
-                else:
-                    st.error("Isi semua kolom!")
-
-    elif action == "Kalkulator ROI":
-        st.subheader("💰 Kalkulator ROI")
-        roi_percent = st.number_input("ROI per bulan (%)", min_value=0.0, step=0.1)
-        if roi_percent > 0:
-            try:
-                keuntungan = (summary['total_investasi'] * roi_percent) / 100
-                st.success(f"Estimasi Keuntungan Total: **Rp {keuntungan:,.0f}**")
+elif action == "Kalkulator ROI":
+    st.subheader("💰 Kalkulator ROI")
+    roi_percent = st.number_input("ROI per bulan (%)", min_value=0.0, step=0.1)
+    if roi_percent > 0:
+        try:
+            keuntungan = (summary['total_investasi'] * roi_percent) / 100
+            st.success(f"Estimasi Keuntungan Total: **Rp {keuntungan:,.0f}**")
+            
+            st.subheader("📈 Perkiraan Pendapatan per Investor")
+            investor_earnings = calculate_investor_earnings(df, roi_percent)
+            if not investor_earnings.empty:
+                investor_earnings_display = investor_earnings.copy()
+                investor_earnings_display["total_investasi"] = investor_earnings_display["total_investasi"].apply(lambda x: f"Rp {x:,.0f}")
+                investor_earnings_display["total_saham"] = investor_earnings_display["total_saham"].apply(lambda x: f"{x:,.0f}")
+                investor_earnings_display["estimasi_pendapatan"] = investor_earnings_display["estimasi_pendapatan"].apply(lambda x: f"Rp {x:,.0f}")
+                st.dataframe(investor_earnings_display, use_container_width=True)
                 
-                st.subheader("📈 Perkiraan Pendapatan per Investor")
-                investor_earnings = calculate_investor_earnings(df, roi_percent)
-                if not investor_earnings.empty:
-                    investor_earnings_display = investor_earnings.copy()
-                    investor_earnings_display["total_investasi"] = investor_earnings_display["total_investasi"].apply(lambda x: f"Rp {x:,.0f}")
-                    investor_earnings_display["total_saham"] = investor_earnings_display["total_saham"].apply(lambda x: f"{x:,.0f}")
-                    investor_earnings_display["estimasi_pendapatan"] = investor_earnings_display["estimasi_pendapatan"].apply(lambda x: f"Rp {x:,.0f}")
-                    st.dataframe(investor_earnings_display, use_container_width=True)
-                    
-                    fig_earnings = px.bar(
-                        investor_earnings,
-                        x="nama",
-                        y="estimasi_pendapatan",
-                        title="Perkiraan Pendapatan per Investor",
-                        labels={"estimasi_pendapatan": "Estimasi Pendapatan (Rp)", "nama": "Nama Investor"}
-                    )
-                    st.plotly_chart(fig_earnings, use_container_width=True)
-                else:
-                    st.warning("Tidak ada data investor untuk menghitung pendapatan.")
-            except Exception as e:
-                logger.error(f"Error calculating ROI: {str(e)}")
-                st.error(f"Error calculating ROI: {e}")
+                fig_earnings = px.bar(
+                    investor_earnings,
+                    x="nama",
+                    y="estimasi_pendapatan",
+                    title="Perkiraan Pendapatan per Investor",
+                    labels={"estimasi_pendapatan": "Estimasi Pendapatan (Rp)", "nama": "Nama Investor"}
+                )
+                st.plotly_chart(fig_earnings, use_container_width=True)
+            else:
+                st.warning("Tidak ada data investor untuk menghitung pendapatan.")
+        except Exception as e:
+            logger.error(f"Error calculating ROI: {str(e)}")
+            st.error(f"Error calculating ROI: {e}")
 
-    # Catatan
-    st.subheader("📝 Catatan")
-    st.info("""
-    - Transaksi awal untuk UMKM dan saham hotel.
-    - Dana kelolaan saat ini: Rp 500,000, dibagi berdasarkan proporsi saham.
-    - Data disimpan di GitHub via API (atau lokal jika token tidak tersedia).
-    - Harga saham: Rp 100/lembar.
-    - Dengan konstitusi baru Hocindo yang menjunjung tinggi privasi, data pembeli saham tertutup Hocindo dijaga kerahasiaannya.
-    - Login: Username 'admin', Password 'hocindo2025'.
-    - Simulasi piramida tersedia di halaman terpisah untuk edukasi tentang bahaya skema ilegal.
-    """)
-else:
-    st.warning("Silakan login di sidebar untuk mengakses dashboard.")
+# Catatan
+st.subheader("📝 Catatan")
+st.info("""
+- Transaksi awal untuk UMKM dan saham hotel.
+- Dana kelolaan saat ini: Rp 500,000, dibagi berdasarkan proporsi saham.
+- Data disimpan di GitHub via API (atau lokal jika token tidak tersedia).
+- Harga saham: Rp 100/lembar.
+- Dengan konstitusi baru Hocindo yang menjunjung tinggi privasi, data pembeli saham tertutup Hocindo dijaga kerahasiaannya.
+- Simulasi piramida tersedia di halaman terpisah untuk edukasi tentang bahaya skema ilegal.
+""")
