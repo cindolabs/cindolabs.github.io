@@ -1,30 +1,74 @@
 <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
-  <!-- Rhombus shape centered with rose palette -->
+  <!-- Background to resemble space -->
+
+  <!-- Rhombus (diamond) with rose palette and floating animation -->
   <path
     d="M200 80 L320 200 L200 320 L80 200 Z"
     fill="#ff9999"
     stroke="#ffffff"
     stroke-width="3"
-    opacity="0.9"
-  />
+    opacity="0.85"
+  >
+    <animate
+      attributeName="transform"
+      type="translate"
+      values="0 0; 0 10; 0 -10; 0 0"
+      dur="6s"
+      repeatCount="indefinite"
+    />
+    <animate
+      attributeName="opacity"
+      values="0.85; 0.95; 0.85"
+      dur="3s"
+      repeatCount="indefinite"
+    />
+  </path>
 
-  <!-- Two stars (smaller and more stylized) -->
+  <!-- Two stars to resemble space -->
   <path
-    d="M120 120 L125 105 L130 120 L145 125 L130 130 L125 145 L120 130 L105 125 Z"
+    d="M100 100 L105 85 L110 100 L125 105 L110 110 L105 125 L100 110 L85 105 Z"
     fill="#ffffcc"
     stroke="#ffffff"
     stroke-width="1"
-  />
+  >
+    <animate
+      attributeName="opacity"
+      values="1; 0.5; 1"
+      dur="2s"
+      repeatCount="indefinite"
+    />
+  </path>
   <path
-    d="M280 280 L285 265 L290 280 L305 285 L290 290 L285 305 L280 290 L265 285 Z"
+    d="M300 300 L305 285 L310 300 L325 305 L310 310 L305 325 L300 310 L285 305 Z"
     fill="#ffffcc"
     stroke="#ffffff"
     stroke-width="1"
-  />
+  >
+    <animate
+      attributeName="opacity"
+      values="1; 0.5; 1"
+      dur="2.5s"
+      repeatCount="indefinite"
+    />
+  </path>
 
-  <!-- Sparks as small glowing dots -->
-  <circle cx="160" cy="160" r="4" fill="#ffffff" opacity="0.7" />
-  <circle cx="240" cy="240" r="4" fill="#ffffff" opacity="0.7" />
+  <!-- Sparks as glowing effects around the diamond -->
+  <circle cx="160" cy="160" r="4" fill="#ffffff" opacity="0.7">
+    <animate
+      attributeName="opacity"
+      values="0.7; 1; 0.7"
+      dur="1.5s"
+      repeatCount="indefinite"
+    />
+  </circle>
+  <circle cx="240" cy="240" r="4" fill="#ffffff" opacity="0.7">
+    <animate
+      attributeName="opacity"
+      values="0.7; 1; 0.7"
+      dur="1.8s"
+      repeatCount="indefinite"
+    />
+  </circle>
 
   <!-- Metadata comment -->
   <!--
