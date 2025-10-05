@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; img-src data:; style-src 'unsafe-inline'; script-src 'unsafe-inline'"
+    />
+    <title>SparkStone — procedural v4</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      html,
+      body {
+        height: 100%;
+        margin: 0;
+        background: #0e0f11;
+      }
+      .wrap {
+        position: relative;
+        max-width: 100vmin;
+        max-height: 100vmin;
+        margin: auto;
+        aspect-ratio: 1/1;
+      }
+      canvas,
+      svg {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+      #poster {
+        background: #0e0f11;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrap">
+      <svg
+        id="poster"
+        viewBox="0 0 1024 1024"
+        xmlns="http://www.w3.org/2000/svg"
+        role="img"
+        aria-label="SparkStone preview"
+      >
+        <defs>
+          <radialGradient id="g" cx="50%" cy="55%" r="70%">
+            <stop offset="0%" stop-color="#0f1318" />
+            <stop offset="100%" stop-color="#07090b" />
+          </radialGradient>
+        </defs>
+        <rect width="1024" height="1024" fill="url(#g)" />
+        <g opacity="0.9" transform="translate(512 560)">
+          <polygon fill="#3a3f45" points="0,-360 240,-190 0,-40 -240,-190" />
+          <polygon fill="#202327" points="-240,-190 0,-40 0,300 -250,120" />
+          <polygon fill="#121518" points="240,-190 0,-40 0,300 250,120" />
+        </g>
+        <g fill="#d8e6ff" transform="translate(512 480)">
+          <rect x="-22" y="-160" width="44" height="320" rx="18" />
+          <g transform="rotate(60)">
+            <rect x="-22" y="-160" width="44" height="320" rx="18" />
+          </g>
+          <g transform="rotate(120)">
+            <rect x="-22" y="-160" width="44" height="320" rx="18" />
+          </g>
+        </g>
+      </svg>
+
+      <canvas id="c" width="1024" height="1024"></canvas>
+    </div>
+
+    <script>
+      function Q() {
+        const q = new URLSearchParams((location.hash || "").slice(1));
+        const g = (k, d) => q.get(k) ?? d;
+        return {
+          seed: g("seed", "demo_seed"),
+          type: g("type", "simple"),
+          palette: g("palette", "random"),
+          shape: g("shape", "tetra"),
+          size: Math.max(0.6, Math.min(1.3, +g("size", "0.8"))),
+          rot: Math.max(0, Math.min(0, +g("rot", "0"))),
+          w: +g("w", "3"),
+          glt: +g("g", "-1"),
+          stars: Math.max(0, Math.min(50, +g("stars", "150"))),
+        };
+      }
+      function h32(s) {
+        let h = 2166136261 >>> 0;
+        for (let i = 0; i < s.length; i++) {
+          h ^= s.charCodeAt(i);
+          h = Math.imul(h, 16777619);
+        }
+        return h >>> 0;
+      }
+      function mul(a) {
+        return function () {
+          let t = (a += 0x6d2b79f5);
+          t = Math.imul(t ^ (t >>> 15), t | 1);
+          t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
+          return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      function rnd(r, min, max) {
+        return min + (max - min) * r();
+      }
+      function pal(n) {
+        const palettes = {
+          obsidian: {
+            base: "#202327",
+            hi: "#3a3f45",
+            lo: "#121518",
+            cr: "#ffa24d",
+          },
+          basalt: {
+            base: "#3b3f45",
+            hi: "#575e67",
+            lo: "#262a2f",
+            cr: "#ffc979",
+          },
+          graphite: {
+            base: "#2c2f33",
+            hi: "#42464b",
+            lo: "#1b1e22",
+            cr: "#9ad0ff",
+          },
+          rose: {
+            base: "#32232e",
+            hi: "#5a3c57",
+            lo: "#1e1520",
+            cr: "#ff6ec7",
+          },
+          violet: {
+            base: "#2b2640",
+            hi: "#544d7a",
+            lo: "#1c182d",
+            cr: "#c77dff",
+          },
+          aqua: {
+            base: "#16323f",
+            hi: "#2c6073",
+            lo: "#0d1f28",
+            cr: "#4dd0e1",
+          },
+          orange: {
+            base: "#332820",
+            hi: "#5c4332",
+            lo: "#1e1712",
+            cr: "#ff9e42",
+          },
+          emerald: {
+            base: "#20332c",
+            hi: "#3d5c4f",
+            lo: "#14201b",
+            cr: "#4dff88",
+          },
+          neonblue: {
+            base: "#1a2233",
+            hi: "#324166",
+            lo: "#101624",
+            cr: "#42aaff",
+          },
+          darkred: {
+            base: "#2a1212",
+            hi: "#4a1f1f",
+            lo: "#170909",
+            cr: "#ff3b3b",
+          },
+          darkblue: {
+            base: "#121a2a",
+            hi: "#22334a",
+            lo: "#0a0f17",
+            cr: "#3b8bff",
+          },
+          darkgreen: {
+            base: "#122a1a",
+            hi: "#224a33",
+            lo: "#0a170f",
+            cr: "#3bff8b",
+          },
+          darkviolet: {
+            base: "#1e122a",
+            hi: "#3a224a",
+            lo: "#0f0a17",
+            cr: "#b13bff",
+          },
+          darkgold: {
+            base: "#2a2612",
+            hi: "#4a4422",
+            lo: "#17140a",
+            cr: "#ffcf3b",
+          },
+        };
+
+        if (n === "random") {
+          const keys = Object.keys(palettes);
+          const idx = Math.floor(Math.random() * keys.length);
+          return palettes[keys[idx]];
+        }
+
+        return palettes[n] || palettes["obsidian"];
+      }
+
+      function logoColor(t, a) {
+        if (t === "op_return") return `rgba(255,255,255,${a})`;
+        if (t === "multi") return `rgba(180,210,255,${a})`;
+        return `rgba(210,240,255,${a})`;
+      }
+
+      function star(ctx, cx, cy, r, w = 0.22, fill = "white", rot = 0) {
+        ctx.save();
+        ctx.translate(cx, cy);
+        ctx.rotate(rot);
+        ctx.fillStyle = fill;
+        const th = r * w;
+        for (let i = 0; i < 3; i++) {
+          ctx.beginPath();
+          ctx.rect(-th / 2, -r, th, r * 2);
+          ctx.fill();
+          ctx.rotate(Math.PI / 3);
+        }
+        ctx.restore();
+      }
+
+      const Shapes = {
+        cube(ctx, x, y, S, col) {
+          const hw = S * 0.5,
+            hv = S * 0.58;
+          ctx.beginPath();
+          ctx.moveTo(x, y - hv);
+          ctx.lineTo(x + hw, y - hv * 0.5);
+          ctx.lineTo(x, y);
+          ctx.lineTo(x - hw, y - hv * 0.5);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - hw, y - hv * 0.5);
+          ctx.lineTo(x, y);
+          ctx.lineTo(x, y + hv);
+          ctx.lineTo(x - hw, y + hv * 0.5);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + hw, y - hv * 0.5);
+          ctx.lineTo(x, y);
+          ctx.lineTo(x, y + hv);
+          ctx.lineTo(x + hw, y + hv * 0.5);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+        rhombus(ctx, x, y, S, col) {
+          const w = S * 0.86,
+            h = S * 0.96;
+          ctx.save();
+          ctx.translate(x, y - 10);
+          ctx.beginPath();
+          ctx.moveTo(0, -h / 2);
+          ctx.lineTo(w / 2, 0);
+          ctx.lineTo(0, h / 8);
+          ctx.lineTo(-w / 2, 0);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(0, h / 8);
+          ctx.lineTo(w / 2, 0);
+          ctx.lineTo(0, h / 2);
+          ctx.lineTo(-w / 2, 0);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.restore();
+        },
+        octa(ctx, x, y, S, col) {
+          const h = S * 0.68,
+            w = S * 0.54;
+          ctx.beginPath();
+          ctx.moveTo(x, y - h);
+          ctx.lineTo(x + w, y);
+          ctx.lineTo(x, y - h * 0.12);
+          ctx.lineTo(x - w, y);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - w, y);
+          ctx.lineTo(x, y + h * 0.78);
+          ctx.lineTo(x, y - h * 0.12);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + w, y);
+          ctx.lineTo(x, y + h * 0.78);
+          ctx.lineTo(x, y - h * 0.12);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+        diamond(ctx, x, y, S, col) {
+          const h = S * 0.86,
+            w = S * 0.52;
+          ctx.beginPath();
+          ctx.moveTo(x, y - h * 0.62);
+          ctx.lineTo(x + w, y - h * 0.14);
+          ctx.lineTo(x, y);
+          ctx.lineTo(x - w, y - h * 0.14);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - w, y - h * 0.14);
+          ctx.lineTo(x, y);
+          ctx.lineTo(x, y + h * 0.56);
+          ctx.lineTo(x - w, y + h * 0.3);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + w, y - h * 0.14);
+          ctx.lineTo(x, y);
+          ctx.lineTo(x, y + h * 0.56);
+          ctx.lineTo(x + w, y + h * 0.3);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+        truncated(ctx, x, y, S, col) {
+          const hw = S * 0.48,
+            hv = S * 0.58,
+            cut = S * 0.15;
+          ctx.beginPath();
+          ctx.moveTo(x, y - hv);
+          ctx.lineTo(x + hw - cut * 0.45, y - hv * 0.5 - cut * 0.2);
+          ctx.lineTo(x + hw - cut * 0.15, y - hv * 0.5 + cut * 0.6);
+          ctx.lineTo(x, y + cut * 0.35);
+          ctx.lineTo(x - hw + cut * 0.15, y - hv * 0.5 + cut * 0.6);
+          ctx.lineTo(x - hw + cut * 0.45, y - hv * 0.5 - cut * 0.2);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - hw + cut * 0.45, y - hv * 0.5 - cut * 0.2);
+          ctx.lineTo(x, y + cut * 0.35);
+          ctx.lineTo(x, y + hv - cut * 0.6);
+          ctx.lineTo(x - hw + cut * 0.85, y + hv * 0.5 - cut * 0.1);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + hw - cut * 0.45, y - hv * 0.5 - cut * 0.2);
+          ctx.lineTo(x, y + cut * 0.35);
+          ctx.lineTo(x, y + hv - cut * 0.6);
+          ctx.lineTo(x + hw - cut * 0.85, y + hv * 0.5 - cut * 0.1);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+        wedge(ctx, x, y, S, col) {
+          const w = S * 0.82,
+            h = S * 0.64;
+          ctx.beginPath();
+          ctx.moveTo(x - w * 0.1, y - h * 0.92);
+          ctx.lineTo(x + w * 0.6, y - h * 0.42);
+          ctx.lineTo(x - w * 0.05, y - h * 0.15);
+          ctx.lineTo(x - w * 0.65, y - h * 0.5);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - w * 0.65, y - h * 0.5);
+          ctx.lineTo(x - w * 0.05, y - h * 0.15);
+          ctx.lineTo(x - w * 0.05, y + h * 0.55);
+          ctx.lineTo(x - w * 0.7, y + h * 0.25);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + w * 0.6, y - h * 0.42);
+          ctx.lineTo(x - w * 0.05, y - h * 0.15);
+          ctx.lineTo(x - w * 0.05, y + h * 0.55);
+          ctx.lineTo(x + w * 0.55, y + h * 0.15);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+        slab(ctx, x, y, S, col) {
+          const w = S * 0.95,
+            h = S * 0.55;
+          ctx.beginPath();
+          ctx.moveTo(x, y - h);
+          ctx.lineTo(x + w * 0.55, y - h * 0.45);
+          ctx.lineTo(x, y - h * 0.1);
+          ctx.lineTo(x - w * 0.55, y - h * 0.45);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - w * 0.55, y - h * 0.45);
+          ctx.lineTo(x, y - h * 0.1);
+          ctx.lineTo(x, y + h * 0.65);
+          ctx.lineTo(x - w * 0.5, y + h * 0.25);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + w * 0.55, y - h * 0.45);
+          ctx.lineTo(x, y - h * 0.1);
+          ctx.lineTo(x, y + h * 0.65);
+          ctx.lineTo(x + w * 0.5, y + h * 0.25);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+        tetra(ctx, x, y, S, col) {
+          const h = S * 0.78,
+            w = S * 0.78;
+          ctx.beginPath();
+          ctx.moveTo(x, y - h);
+          ctx.lineTo(x - w * 0.55, y + h * 0.45);
+          ctx.lineTo(x, y - h * 0.15);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x, y - h);
+          ctx.lineTo(x + w * 0.55, y + h * 0.45);
+          ctx.lineTo(x, y - h * 0.15);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - w * 0.55, y + h * 0.45);
+          ctx.lineTo(x + w * 0.55, y + h * 0.45);
+          ctx.lineTo(x, y - h * 0.15);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+        },
+
+        sparkstone(ctx, x, y, S, col) {
+          const hv = S * 0.68,
+            hw = S * 0.48;
+          ctx.beginPath();
+          ctx.moveTo(x, y - hv * 0.95);
+          ctx.lineTo(x + hw * 0.68, y - hv * 0.48);
+          ctx.lineTo(x, y - hv * 0.12);
+          ctx.lineTo(x - hw * 0.68, y - hv * 0.48);
+          ctx.closePath();
+          ctx.fillStyle = col.hi;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x - hw * 0.68, y - hv * 0.48);
+          ctx.lineTo(x, y - hv * 0.12);
+          ctx.lineTo(x, y + hv * 0.95);
+          ctx.lineTo(x - hw * 0.72, y + hv * 0.4);
+          ctx.closePath();
+          ctx.fillStyle = col.base;
+          ctx.fill();
+          ctx.beginPath();
+          ctx.moveTo(x + hw * 0.68, y - hv * 0.48);
+          ctx.lineTo(x, y - hv * 0.12);
+          ctx.lineTo(x, y + hv * 0.95);
+          ctx.lineTo(x + hw * 0.72, y + hv * 0.4);
+          ctx.closePath();
+          ctx.fillStyle = col.lo;
+          ctx.fill();
+        },
+      };
+
+      function cracks(ctx, rng, cx, cy, R, N, col, glow = 1.0, t = 0) {
+        ctx.save();
+        ctx.strokeStyle = col;
+        ctx.globalCompositeOperation = "screen";
+        const speed = 1.0;
+        for (let i = 0; i < N; i++) {
+          const a = rng() * Math.PI * 2,
+            L = rnd(rng, R * 0.35, R * 0.9);
+          const phase = rng() * Math.PI * 2;
+          const seg = 6 + ((rng() * 4) | 0);
+          const fade = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(t * speed + phase));
+          ctx.strokeStyle = col;
+          ctx.shadowColor = col;
+          ctx.lineWidth = rnd(rng, 1.2, 2.6);
+          ctx.shadowBlur = 12 + glow * 28;
+          ctx.globalAlpha = fade;
+          ctx.beginPath();
+          ctx.moveTo(cx, cy);
+          for (let s = 0; s < seg; s++) {
+            const tt = (s + 1) / seg;
+            const j = (rng() - 0.5) * R * 0.05;
+            ctx.lineTo(
+              cx + Math.cos(a) * L * tt + j,
+              cy + Math.sin(a) * L * tt + j
+            );
+          }
+          ctx.stroke();
+        }
+        ctx.restore();
+      }
+      function glitch(ctx, rng, str) {
+        if (str <= 0) return;
+        const { width: w, height: h } = ctx.canvas;
+        const b = Math.max(1, Math.floor(str * 10));
+        for (let i = 0; i < b; i++) {
+          const y = ((h * (i + 1)) / (b + 1)) | 0,
+            dx = ((rng() - 0.5) * str * 40) | 0;
+          ctx.drawImage(ctx.canvas, 0, y, w, 2, dx, y, w, 2);
+        }
+      }
+      function drawBG(ctx, stars, t) {
+        const w = ctx.canvas.width,
+          h = ctx.canvas.height;
+        const G = ctx.createRadialGradient(
+          w * 0.5,
+          h * 0.45,
+          100,
+          w * 0.5,
+          h * 0.6,
+          700
+        );
+        G.addColorStop(0, "#0f1318");
+        G.addColorStop(1, "#07090b");
+        ctx.fillStyle = G;
+        ctx.fillRect(0, 0, w, h);
+        const V = ctx.createRadialGradient(
+          w / 2,
+          h / 2,
+          350,
+          w / 2,
+          h / 2,
+          800
+        );
+        V.addColorStop(0, "rgba(0,0,0,0)");
+        V.addColorStop(1, "rgba(0,0,0,0.55)");
+        ctx.globalCompositeOperation = "multiply";
+        ctx.fillStyle = V;
+        ctx.fillRect(0, 0, w, h);
+        ctx.globalCompositeOperation = "source-over";
+        stars.forEach((s) => {
+          const a = 0.18 + 0.08 * Math.sin(t * s.spd + s.r);
+          ctx.save();
+          ctx.translate(s.x, s.y);
+          ctx.rotate(s.r);
+          ctx.globalAlpha = a;
+
+          const th = s.s * 0.22;
+          ctx.fillStyle = "rgba(200,220,255,0.25)";
+          for (let i = 0; i < 3; i++) {
+            ctx.beginPath();
+            ctx.rect(-th / 2, -s.s, th, s.s * 2);
+            ctx.fill();
+            ctx.rotate(Math.PI / 3);
+          }
+          ctx.restore();
+        });
+      }
+
+      const p = Q(),
+        c = document.getElementById("c"),
+        ctx = c.getContext("2d"),
+        col = pal(p.palette);
+      const rng0 = mul(h32(p.seed)),
+        stars = [...Array(p.stars | 0)].map(() => ({
+          x: rng0() * c.width,
+          y: rng0() * c.height,
+          s: rnd(rng0, 10, 22),
+          r: rng0() * Math.PI,
+          spd: rng0() * 0.2 + 0.05,
+        }));
+      const centerX = 512,
+        baseCY = 580,
+        baseSize = 780 * p.size;
+      const cracksN = Math.round(8 + p.w * 22);
+
+      function drawFrame(ms) {
+        const t = ms / 1000;
+        ctx.clearRect(0, 0, c.width, c.height);
+        drawBG(ctx, stars, t);
+
+        const bob = Math.sin(t * 1.3) * 8,
+          cy = baseCY + bob;
+        ctx.save();
+        ctx.globalAlpha = 0.85;
+        ctx.fillStyle = "rgba(0,0,0,0.8)";
+        ctx.beginPath();
+        ctx.ellipse(
+          centerX,
+          935,
+          340 * (1 + bob * 0.0015),
+          80 * (1 + bob * 0.0015),
+          0,
+          0,
+          Math.PI * 2
+        );
+        ctx.fill();
+        ctx.filter = "blur(8px)";
+        ctx.restore();
+        ctx.filter = "none";
+
+        ctx.save();
+        ctx.translate(centerX, cy - 40);
+        ctx.rotate(p.rot + (h32(p.seed) & 1 ? 0.0 : 0.02));
+        const draw = Shapes[p.shape] || Shapes.sparkstone;
+        draw(ctx, 0, 0, baseSize, col);
+        ctx.restore();
+
+        const rng = mul(h32(p.seed) + 12345);
+        const glow = 1.0;
+        cracks(ctx, rng, 512, 490, 360 * p.size, cracksN, col.cr, glow, t);
+
+        const amp = 0.82 + 0.18 * Math.sin(t * 2.2),
+          spin = Math.sin(t * 0.35) * 0.02;
+        ctx.globalCompositeOperation = "screen";
+        ctx.fillStyle = logoColor(p.type, amp);
+        star(
+          ctx,
+          512,
+          490 + bob * 0.2,
+          200 * p.size,
+          0.22,
+          ctx.fillStyle,
+          spin
+        );
+        ctx.globalCompositeOperation = "source-over";
+
+        if (p.glt > 0) {
+          const beat = Math.max(0, Math.sin(t * 1.5));
+          glitch(
+            ctx,
+            mul(h32(p.seed) + 777),
+            p.glt * (beat > 0.95 ? 1.0 : 0.25 * beat)
+          );
+        }
+      }
+
+      try {
+        drawFrame(0);
+        document.getElementById("poster")?.remove();
+      } catch (e) {}
+      (function loop(ts) {
+        drawFrame(ts);
+        requestAnimationFrame(loop);
+      })(0);
+    </script>
+  </body>
+</html>
