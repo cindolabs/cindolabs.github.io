@@ -1,33 +1,32 @@
 <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
-  <!-- Background color from HTML (#0e0f11) -->
-
-  <!-- Rhombus shape with rose palette (using a soft pink shade for rose) -->
+  <!-- Rhombus shape centered with rose palette -->
   <path
-    d="M200 50 L350 200 L200 350 L50 200 Z"
+    d="M200 80 L320 200 L200 320 L80 200 Z"
     fill="#ff9999"
     stroke="#ffffff"
-    stroke-width="2"
+    stroke-width="3"
+    opacity="0.9"
   />
 
-  <!-- Two stars as per metadata (stars=2) -->
+  <!-- Two stars (smaller and more stylized) -->
   <path
-    d="M100 100 L110 80 L120 100 L140 110 L120 120 L110 140 L100 120 L80 110 Z"
-    fill="#ffff99"
+    d="M120 120 L125 105 L130 120 L145 125 L130 130 L125 145 L120 130 L105 125 Z"
+    fill="#ffffcc"
     stroke="#ffffff"
     stroke-width="1"
   />
   <path
-    d="M300 300 L310 280 L320 300 L340 310 L320 320 L310 340 L300 320 L280 310 Z"
-    fill="#ffff99"
+    d="M280 280 L285 265 L290 280 L305 285 L290 290 L285 305 L280 290 L265 285 Z"
+    fill="#ffffcc"
     stroke="#ffffff"
     stroke-width="1"
   />
 
-  <!-- Optional spark-like effect (small circles to represent sparks) -->
-  <circle cx="150" cy="150" r="5" fill="#ffffff" opacity="0.8" />
-  <circle cx="250" cy="250" r="5" fill="#ffffff" opacity="0.8" />
+  <!-- Sparks as small glowing dots -->
+  <circle cx="160" cy="160" r="4" fill="#ffffff" opacity="0.7" />
+  <circle cx="240" cy="240" r="4" fill="#ffffff" opacity="0.7" />
 
-  <!-- Metadata as SVG comment for reference -->
+  <!-- Metadata comment -->
   <!--
     Seed: c37c292f6375137112763b9bd37b1d74a47f0aa385acedb2a12dbe8a15e0e396
     TX type: simple
