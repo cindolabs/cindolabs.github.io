@@ -1,7 +1,7 @@
 <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
   <!-- Background resembling space -->
 
-  <!-- Two small stars with rose palette accent -->
+  <!-- One small star with rose palette accent -->
   <path
     d="M100 80 L102 72 L104 80 L112 82 L104 84 L102 92 L100 84 L92 82 Z"
     fill="#ffffcc"
@@ -12,19 +12,6 @@
       attributeName="opacity"
       values="1; 0.4; 1"
       dur="2s"
-      repeatCount="indefinite"
-    />
-  </path>
-  <path
-    d="M300 320 L302 312 L304 320 L312 322 L304 324 L302 332 L300 324 L292 322 Z"
-    fill="#ffffcc"
-    stroke="#ff9999"
-    stroke-width="1"
-  >
-    <animate
-      attributeName="opacity"
-      values="1; 0.4; 1"
-      dur="2.3s"
       repeatCount="indefinite"
     />
   </path>
