@@ -1,17 +1,65 @@
 <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
   <!-- Background resembling space -->
 
-  <!-- One larger star centered with rose palette accent -->
+  <!-- First star (bright red, centered at 200,200, 0° rotation, stays as reference) -->
   <path
-    d="M200 170 L210 140 L220 170 L250 180 L220 190 L210 220 L200 190 L170 180 Z"
-    fill="#ffffcc"
-    stroke="#ff9999"
+    d="M200 155 L215 110 L230 155 L275 170 L230 185 L215 230 L200 185 L155 170 Z"
+    fill="#ff3333"
+    stroke="#cc0000"
     stroke-width="2"
   >
     <animate
       attributeName="opacity"
       values="1; 0.4; 1"
       dur="2s"
+      repeatCount="indefinite"
+    />
+  </path>
+
+  <!-- Second star (neon blue, centered at 190,180, rotated 45°) -->
+  <path
+    d="M190 135 L205 90 L220 135 L265 150 L220 165 L205 210 L190 165 L145 150 Z"
+    fill="#33ccff"
+    stroke="#0099cc"
+    stroke-width="2"
+    transform="rotate(45 190 180)"
+  >
+    <animate
+      attributeName="opacity"
+      values="1; 0.4; 1"
+      dur="2.3s"
+      repeatCount="indefinite"
+    />
+  </path>
+
+  <!-- Third star (emerald green, centered at 190,160, rotated 90°) -->
+  <path
+    d="M190 115 L205 70 L220 115 L265 130 L220 145 L205 190 L190 145 L145 130 Z"
+    fill="#33cc99"
+    stroke="#009966"
+    stroke-width="2"
+    transform="rotate(90 190 160)"
+  >
+    <animate
+      attributeName="opacity"
+      values="1; 0.4; 1"
+      dur="2.5s"
+      repeatCount="indefinite"
+    />
+  </path>
+
+  <!-- Fourth star (golden yellow, shifted to 210,140, rotated 135°) -->
+  <path
+    d="M210 95 L225 50 L240 95 L285 110 L240 125 L225 170 L210 125 L165 110 Z"
+    fill="#ffcc33"
+    stroke="#cc9900"
+    stroke-width="2"
+    transform="rotate(135 210 140)"
+  >
+    <animate
+      attributeName="opacity"
+      values="1; 0.4; 1"
+      dur="2.7s"
       repeatCount="indefinite"
     />
   </path>
