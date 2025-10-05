@@ -1,12 +1,12 @@
 <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
   <!-- Background resembling space -->
 
-  <!-- One small star with rose palette accent -->
+  <!-- One larger star centered with rose palette accent -->
   <path
-    d="M100 80 L102 72 L104 80 L112 82 L104 84 L102 92 L100 84 L92 82 Z"
+    d="M200 170 L210 140 L220 170 L250 180 L220 190 L210 220 L200 190 L170 180 Z"
     fill="#ffffcc"
     stroke="#ff9999"
-    stroke-width="1"
+    stroke-width="2"
   >
     <animate
       attributeName="opacity"
