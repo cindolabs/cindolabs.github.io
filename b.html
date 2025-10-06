@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tabel A Hocindo - Pertumbuhan 100%</title>
     <link rel="icon" type="image/svg+xml" href="/hocindo.svg" />
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Verdana&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Inter', Arial, sans-serif;
@@ -105,6 +105,16 @@
             background-color: #e8f5e9;
         }
 
+        .badge {
+            display: inline-block;
+            background-color: #3422E2;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
         @media (max-width: 768px) {
             h1 {
                 font-size: 2em;
@@ -121,6 +131,11 @@
 
             .filter-container input {
                 width: 100%;
+            }
+
+            .badge {
+                font-size: 0.8em;
+                padding: 3px 6px;
             }
         }
     </style>
@@ -208,10 +223,10 @@
                     tr.innerHTML = `
                         <td>${reversedMonths[index]}</td>
                         <td>${row.iterasi}</td>
-                        <td>$${row.nilaiAwal.toFixed(2)}</td>
-                        <td>$${row.pertumbuhan.toFixed(2)}</td>
-                        <td>${row.penjumlahan}</td>
-                        <td>$${row.nilaiAkhir.toFixed(2)}</td>
+                        <td><span class="badge">$${row.nilaiAwal.toFixed(2)}</span></td>
+                        <td><span class="badge">$${row.pertumbuhan.toFixed(2)}</span></td>
+                        <td><span class="badge">${row.penjumlahan}</span></td>
+                        <td><span class="badge">$${row.nilaiAkhir.toFixed(2)}</span></td>
                         <td>${row.kontribusi}</td>
                     `;
                     tbody.appendChild(tr);
