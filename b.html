@@ -1,128 +1,349 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penggandaan Modal Trading (Compounding)</title>
+    <title>Tabel A Hocindo - Pertumbuhan 100%</title>
+    <link rel="icon" type="image/svg+xml" href="/hocindo.svg" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #0e0f11;
-            color: #fff;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: linear-gradient(135deg, #e0e7ff, #f4f4f9);
             margin: 0;
-            padding: 20px;
+            padding: 30px;
+            color: #333;
         }
 
         .container {
-            max-width: 600px;
-            background-color: #1c2526;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
         }
 
         h1 {
-            text-align: center;
-            font-size: 24px;
+            color: #1a3c34;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #1a3c34;
+            font-size: 1.8em;
             margin-bottom: 20px;
+        }
+
+        .table-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 900px;
         }
 
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         th, td {
+            border: 1px solid #ddd;
             padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #444;
+            text-align: center;
+            font-size: 0.95em;
         }
 
         th {
-            background-color: #2a3439;
+            background: linear-gradient(to bottom, #006847, #004c3f);
+            color: white;
             font-weight: bold;
         }
 
-        td {
-            background-color: #1c2526;
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
 
-        tr:nth-child(even) td {
-            background-color: #242c2e;
+        tr:hover {
+            background-color: #e8f5e9;
+            transition: background-color 0.3s ease;
         }
 
-        .note {
-            font-size: 14px;
-            color: #bbb;
-            text-align: center;
+        .chart-container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 600px;
+            transition: transform 0.3s ease;
         }
 
-        @media (max-width: 600px) {
-            .container {
-                padding: 15px;
+        .chart-container:hover {
+            transform: translateY(-5px);
+        }
+
+        canvas {
+            max-width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .chart-container {
+                max-width: 100%;
             }
 
             h1 {
-                font-size: 20px;
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
             }
 
             th, td {
                 padding: 8px;
-                font-size: 14px;
+                font-size: 0.85em;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Penggandaan Modal Trading (Forex, Gold, Bitcoin)</h1>
-        <table id="tradingTable">
-            <thead>
-                <tr>
-                    <th>Bulan</th>
-                    <th>Modal Akhir ($)</th>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-        <p class="note">Catatan: Simulasi ini mengasumsikan pertumbuhan majemuk 100% per bulan dengan tambahan $20 setiap bulan, dimulai dari Oktober 2025. Tabel diurutkan dari bulan terakhir (atas) ke bulan pertama (bawah). Ini adalah ilustrasi hipotetis dan tidak realistis untuk trading nyata.</p>
+        <h1>Peta Pertumbuhan 100% Hocindo</h1>
+        
+        <!-- Tabel -->
+        <div class="table-container">
+            <h2>Data Pertumbuhan</h2>
+            <p>Fokus pada proses, bukan pada hasil. Fokus pada saat ini, bukan pada masa depan...</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Bulan</th>
+                        <th>Iterasi</th>
+                        <th>Nilai Awal</th>
+                        <th>Pertumbuhan 100%</th>
+                        <th>Penjumlahan</th>
+                        <th>Nilai Akhir</th>
+                        <th>Kontribusi Pertumbuhan (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="tradingTable"></tbody>
+            </table>
+        </div>
+        
+        <!-- Grafik -->
+        <div class="chart-container">
+            <canvas id="lineChart"></canvas>
+        </div>
+        <div class="chart-container">
+            <canvas id="barChart"></canvas>
+        </div>
     </div>
 
     <script>
-        // Data simulasi
-        const months = [
-            '2026-09', '2026-08', '2026-07', '2026-06', '2026-05', '2026-04',
-            '2026-03', '2026-02', '2026-01', '2025-12', '2025-11', '2025-10'
-        ];
-        let modal = 20; // Modal awal Oktober 2025
-        const monthlyAddition = 20; // Tambahan modal per bulan
-        const growthRate = 2; // 100% pertumbuhan (berlipat ganda)
+        document.addEventListener('DOMContentLoaded', () => {
+            // Data simulasi
+            const months = [
+                '2026-09', '2026-08', '2026-07', '2026-06', '2026-05', '2026-04',
+                '2026-03', '2026-02', '2026-01', '2025-12', '2025-11', '2025-10'
+            ];
+            let modal = 20; // Modal awal Oktober 2025
+            const monthlyAddition = 20; // Tambahan modal per bulan
+            const growthRate = 1; // 100% pertumbuhan (modal awal + tambahan menjadi 2x)
 
-        // Array untuk menyimpan modal akhir setiap bulan
-        const modalValues = [modal];
-        for (let i = 1; i < months.length; i++) {
-            modal = (modal + monthlyAddition) * growthRate;
-            modalValues.push(modal.toFixed(2));
-        }
+            // Array untuk menyimpan data tabel
+            const data = [
+                {
+                    iterasi: 0,
+                    nilaiAwal: modal,
+                    pertumbuhan: modal,
+                    penjumlahan: `${modal.toFixed(2)} + ${modal.toFixed(2)} = ${(modal * 2).toFixed(2)}`,
+                    nilaiAkhir: modal * 2,
+                    kontribusi: '50.00%'
+                }
+            ];
 
-        // Balik urutan untuk menampilkan dari bulan terakhir ke pertama
-        const reversedMonths = months.reverse();
-        const reversedModalValues = modalValues.reverse();
+            modal = modal * 2; // Update modal setelah iterasi 0
+            for (let i = 1; i < months.length; i++) {
+                const nilaiAwal = modal + monthlyAddition;
+                const pertumbuhan = nilaiAwal;
+                const nilaiAkhir = nilaiAwal * 2;
+                data.push({
+                    iterasi: i,
+                    nilaiAwal: nilaiAwal,
+                    pertumbuhan: pertumbuhan,
+                    penjumlahan: `${nilaiAwal.toFixed(2)} + ${pertumbuhan.toFixed(2)} = ${nilaiAkhir.toFixed(2)}`,
+                    nilaiAkhir: nilaiAkhir,
+                    kontribusi: '50.00%'
+                });
+                modal = nilaiAkhir;
+            }
 
-        // Isi tabel dengan data
-        const tbody = document.querySelector('#tradingTable tbody');
-        reversedMonths.forEach((month, index) => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${month}</td>
-                <td>$${reversedModalValues[index]}</td>
-            `;
-            tbody.appendChild(row);
+            // Balik urutan untuk menampilkan dari bulan terakhir ke pertama
+            const reversedData = data.reverse();
+            const reversedMonths = months.reverse();
+
+            // Isi tabel dengan data
+            const tbody = document.getElementById('tradingTable');
+            reversedData.forEach((row, index) => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${reversedMonths[index]}</td>
+                    <td>${row.iterasi}</td>
+                    <td>$${row.nilaiAwal.toFixed(2)}</td>
+                    <td>$${row.pertumbuhan.toFixed(2)}</td>
+                    <td>$${row.penjumlahan}</td>
+                    <td>$${row.nilaiAkhir.toFixed(2)}</td>
+                    <td>${row.kontribusi}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            // Data untuk grafik
+            const labels = reversedData.map((row, index) => `Iterasi ${row.iterasi} (${reversedMonths[index]})`);
+            const nilaiAkhir = reversedData.map(row => row.nilaiAkhir);
+            const pertumbuhan = reversedData.map(row => row.pertumbuhan);
+
+            // Line Chart
+            new Chart(document.getElementById('lineChart'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Nilai Akhir',
+                        data: nilaiAkhir,
+                        borderColor: '#2a9d8f',
+                        backgroundColor: 'rgba(42, 157, 143, 0.3)',
+                        fill: true,
+                        tension: 0.4,
+                        pointBackgroundColor: '#264653',
+                        pointBorderColor: '#ffffff',
+                        pointBorderWidth: 2,
+                        pointRadius: 5,
+                        pointHoverRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Tren Pertumbuhan Nilai Akhir (Compounding 100%)',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#1a3c34'
+                        },
+                        tooltip: {
+                            backgroundColor: '#264653',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10
+                        },
+                        legend: {
+                            labels: {
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nilai ($)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Iterasi (Bulan)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { display: false },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
+
+            // Bar Chart
+            new Chart(document.getElementById('barChart'), {
+                type: 'bar',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Pertumbuhan 100%',
+                        data: pertumbuhan,
+                        backgroundColor: 'rgba(33, 150, 243, 0.7)',
+                        borderColor: '#1976D2',
+                        borderWidth: 2,
+                        hoverBackgroundColor: '#2196F3',
+                        hoverBorderColor: '#1565C0'
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Kontribusi Pertumbuhan 100% per Iterasi',
+                            font: { size: 18, weight: 'bold' },
+                            color: '#1a3c34'
+                        },
+                        tooltip: {
+                            backgroundColor: '#264653',
+                            titleFont: { size: 14 },
+                            bodyFont: { size: 12 },
+                            padding: 10
+                        },
+                        legend: {
+                            labels: {
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: true,
+                                text: 'Nilai Pertumbuhan ($)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { color: 'rgba(0, 0, 0, 0.1)' },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        },
+                        x: {
+                            title: {
+                                display: true,
+                                text: 'Iterasi (Bulan)',
+                                font: { size: 14 },
+                                color: '#1a3c34'
+                            },
+                            grid: { display: false },
+                            ticks: { color: '#1a3c34', font: { size: 12 } }
+                        }
+                    },
+                    animation: {
+                        duration: 1500,
+                        easing: 'easeInOutQuart'
+                    }
+                }
+            });
         });
     </script>
 </body>
