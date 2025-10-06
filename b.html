@@ -105,9 +105,69 @@
             background-color: #e8f5e9;
         }
 
-        .badge {
+        .badge-bulan {
             display: inline-block;
-            background-color: #3422E2;
+            background-color: #2A9D8F;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .badge-iterasi {
+            display: inline-block;
+            background-color: #4A90E2;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .badge-nilaiAwal {
+            display: inline-block;
+            background-color: #9B59B6;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .badge-pertumbuhan {
+            display: inline-block;
+            background-color: #E91E63;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .badge-penjumlahan {
+            display: inline-block;
+            background-color: #F39C12;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .badge-nilaiAkhir {
+            display: inline-block;
+            background-color: #16A085;
+            color: white;
+            font-family: 'Verdana', monospace;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.9em;
+        }
+
+        .badge-kontribusi {
+            display: inline-block;
+            background-color: #7F8C8D;
             color: white;
             font-family: 'Verdana', monospace;
             padding: 4px 8px;
@@ -133,7 +193,8 @@
                 width: 100%;
             }
 
-            .badge {
+            .badge-bulan, .badge-iterasi, .badge-nilaiAwal, .badge-pertumbuhan,
+            .badge-penjumlahan, .badge-nilaiAkhir, .badge-kontribusi {
                 font-size: 0.8em;
                 padding: 3px 6px;
             }
@@ -221,13 +282,13 @@
                 dataToRender.forEach((row, index) => {
                     const tr = document.createElement('tr');
                     tr.innerHTML = `
-                        <td>${reversedMonths[index]}</td>
-                        <td>${row.iterasi}</td>
-                        <td><span class="badge">$${row.nilaiAwal.toFixed(0)}</span></td>
-                        <td><span class="badge">$${row.pertumbuhan.toFixed(0)}</span></td>
-                        <td><span class="badge">${row.penjumlahan}</span></td>
-                        <td><span class="badge">$${row.nilaiAkhir.toFixed(0)}</span></td>
-                        <td>${row.kontribusi}</td>
+                        <td><span class="badge-bulan">${reversedMonths[index]}</span></td>
+                        <td><span class="badge-iterasi">${row.iterasi}</span></td>
+                        <td><span class="badge-nilaiAwal">$${row.nilaiAwal.toFixed(0)}</span></td>
+                        <td><span class="badge-pertumbuhan">$${row.pertumbuhan.toFixed(0)}</span></td>
+                        <td><span class="badge-penjumlahan">${row.penjumlahan}</span></td>
+                        <td><span class="badge-nilaiAkhir">$${row.nilaiAkhir.toFixed(0)}</span></td>
+                        <td><span class="badge-kontribusi">${row.kontribusi}</span></td>
                     `;
                     tbody.appendChild(tr);
                 });
