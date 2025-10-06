@@ -1,0 +1,59 @@
+<svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Latar belakang putih -->
+  <rect x="0" y="0" width="400" height="400" fill="#fff"/>
+  
+  <!-- Grup bintang dengan stroke hitam -->
+  <g stroke="#000" stroke-width="2">
+    <!-- Bintang 1 (Merah, rotasi penuh dalam 10 detik) -->
+    <polygon
+      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      fill="#ff0000">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 200 200"
+        to="360 200 200"
+        dur="10s"
+        repeatCount="indefinite"/>
+    </polygon>
+    <!-- Bintang 2 (Biru, rotasi penuh dalam 12 detik) -->
+    <polygon
+      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      fill="#0000ff"
+      transform="rotate(22.5 200 200)">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="22.5 200 200"
+        to="382.5 200 200"
+        dur="12s"
+        repeatCount="indefinite"/>
+    </polygon>
+    <!-- Bintang 3 (Hijau, rotasi penuh dalam 14 detik) -->
+    <polygon
+      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      fill="#00ff00"
+      transform="rotate(45 200 200)">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="45 200 200"
+        to="405 200 200"
+        dur="14s"
+        repeatCount="indefinite"/>
+    </polygon>
+    <!-- Bintang 4 (Kuning, rotasi penuh dalam 16 detik) -->
+    <polygon
+      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      fill="#ffff00"
+      transform="rotate(67.5 200 200)">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="67.5 200 200"
+        to="427.5 200 200"
+        dur="16s"
+        repeatCount="indefinite"/>
+    </polygon>
+  </g>
+</svg>
