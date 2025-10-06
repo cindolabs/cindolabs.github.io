@@ -3,10 +3,10 @@
   <rect x="0" y="0" width="1024" height="1024" fill="#fff"/>
   
   <!-- Grup bintang dengan stroke hitam -->
-  <g stroke="#000" stroke-width="5.12">
+  <g stroke="#000" stroke-width="10.24">
     <!-- Bintang 1 (Merah, rotasi penuh dalam 10 detik) -->
     <polygon
-      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
       fill="#ff0000">
       <animateTransform
         attributeName="transform"
@@ -18,7 +18,7 @@
     </polygon>
     <!-- Bintang 2 (Biru, rotasi penuh dalam 12 detik) -->
     <polygon
-      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
       fill="#0000ff"
       transform="rotate(22.5 512 512)">
       <animateTransform
@@ -31,7 +31,7 @@
     </polygon>
     <!-- Bintang 3 (Hijau, rotasi penuh dalam 14 detik) -->
     <polygon
-      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
       fill="#00ff00"
       transform="rotate(45 512 512)">
       <animateTransform
@@ -44,7 +44,7 @@
     </polygon>
     <!-- Bintang 4 (Kuning, rotasi penuh dalam 16 detik) -->
     <polygon
-      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
       fill="#ffff00"
       transform="rotate(67.5 512 512)">
       <animateTransform
