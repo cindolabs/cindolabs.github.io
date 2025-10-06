@@ -1,78 +1,59 @@
-<svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
-  <!-- Background resembling space -->
-
-  <!-- First star (bright red, centered at 200,200, 0° rotation, stays as reference) -->
-  <path
-    d="M200 155 L215 110 L230 155 L275 170 L230 185 L215 230 L200 185 L155 170 Z"
-    fill="#ff3333"
-    stroke="#cc0000"
-    stroke-width="2"
-  >
-    <animate
-      attributeName="opacity"
-      values="1; 0.4; 1"
-      dur="2s"
-      repeatCount="indefinite"
-    />
-  </path>
-
-  <!-- Second star (neon blue, centered at 190,180, rotated 45°) -->
-  <path
-    d="M190 135 L205 90 L220 135 L265 150 L220 165 L205 210 L190 165 L145 150 Z"
-    fill="#33ccff"
-    stroke="#0099cc"
-    stroke-width="2"
-    transform="rotate(45 190 180)"
-  >
-    <animate
-      attributeName="opacity"
-      values="1; 0.4; 1"
-      dur="2.3s"
-      repeatCount="indefinite"
-    />
-  </path>
-
-  <!-- Third star (emerald green, centered at 190,160, rotated 90°) -->
-  <path
-    d="M190 115 L205 70 L220 115 L265 130 L220 145 L205 190 L190 145 L145 130 Z"
-    fill="#33cc99"
-    stroke="#009966"
-    stroke-width="2"
-    transform="rotate(90 190 160)"
-  >
-    <animate
-      attributeName="opacity"
-      values="1; 0.4; 1"
-      dur="2.5s"
-      repeatCount="indefinite"
-    />
-  </path>
-
-  <!-- Fourth star (golden yellow, shifted to 210,140, rotated 135°) -->
-  <path
-    d="M210 95 L225 50 L240 95 L285 110 L240 125 L225 170 L210 125 L165 110 Z"
-    fill="#ffcc33"
-    stroke="#cc9900"
-    stroke-width="2"
-    transform="rotate(135 210 140)"
-  >
-    <animate
-      attributeName="opacity"
-      values="1; 0.4; 1"
-      dur="2.7s"
-      repeatCount="indefinite"
-    />
-  </path>
-
-  <!-- Metadata comment -->
-  <!--
-    Seed: c37c292f6375137112763b9bd37b1d74a47f0aa385acedb2a12dbe8a15e0e396
-    TX type: simple
-    Gamma: rose
-    Stone: rhombus
-    Lightnings: -1.0
-    Glitch: -1.0
-    Sparks: 2
-    Spark Address: sp1pgss8legl06vrs7dmxcre8nkck65y782ke9qt8j0tejcvcd8h5nl92h47mn6g7
-  -->
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rotating Stars">
+  <!-- Latar belakang putih -->
+  <rect x="0" y="0" width="1024" height="1024" fill="#fff"/>
+  
+  <!-- Grup bintang dengan stroke hitam -->
+  <g stroke="#000" stroke-width="5.12">
+    <!-- Bintang 1 (Merah, rotasi penuh dalam 10 detik) -->
+    <polygon
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      fill="#ff0000">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="0 512 512"
+        to="360 512 512"
+        dur="10s"
+        repeatCount="indefinite"/>
+    </polygon>
+    <!-- Bintang 2 (Biru, rotasi penuh dalam 12 detik) -->
+    <polygon
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      fill="#0000ff"
+      transform="rotate(22.5 512 512)">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="22.5 512 512"
+        to="382.5 512 512"
+        dur="12s"
+        repeatCount="indefinite"/>
+    </polygon>
+    <!-- Bintang 3 (Hijau, rotasi penuh dalam 14 detik) -->
+    <polygon
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      fill="#00ff00"
+      transform="rotate(45 512 512)">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="45 512 512"
+        to="405 512 512"
+        dur="14s"
+        repeatCount="indefinite"/>
+    </polygon>
+    <!-- Bintang 4 (Kuning, rotasi penuh dalam 16 detik) -->
+    <polygon
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
+      fill="#ffff00"
+      transform="rotate(67.5 512 512)">
+      <animateTransform
+        attributeName="transform"
+        type="rotate"
+        from="67.5 512 512"
+        to="427.5 512 512"
+        dur="16s"
+        repeatCount="indefinite"/>
+    </polygon>
+  </g>
 </svg>
