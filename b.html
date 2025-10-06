@@ -147,8 +147,8 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Data simulasi
             const months = [
-                'Oktober 2025', 'November 2025', 'Desember 2025', 'Januari 2026', 'Februari 2026', 'Maret 2026',
-                'April 2026', 'Mei 2026', 'Juni 2026', 'Juli 2026', 'Agustus 2026', 'September 2026'
+                'September 2026', 'Agustus 2026', 'Juli 2026', 'Juni 2026', 'Mei 2026', 'April 2026',
+                'Maret 2026', 'Februari 2026', 'Januari 2026', 'Desember 2025', 'November 2025', 'Oktober 2025'
             ];
             let modal = 20; // Modal awal Oktober 2025
 
@@ -180,12 +180,16 @@
                 modal = nilaiAkhir;
             }
 
-            // Isi tabel dengan data (urutan normal: Oktober 2025 di atas)
+            // Balik urutan untuk menampilkan September 2026 di atas, Oktober 2025 di bawah
+            const reversedData = data.reverse();
+            const reversedMonths = months;
+
+            // Isi tabel dengan data
             const tbody = document.getElementById('tradingTable');
-            data.forEach((row, index) => {
+            reversedData.forEach((row, index) => {
                 const tr = document.createElement('tr');
                 tr.innerHTML = `
-                    <td>${months[index]}</td>
+                    <td>${reversedMonths[index]}</td>
                     <td>${row.iterasi}</td>
                     <td>$${row.nilaiAwal.toFixed(2)}</td>
                     <td>$${row.pertumbuhan.toFixed(2)}</td>
@@ -197,9 +201,9 @@
             });
 
             // Data untuk grafik
-            const labels = data.map((row, index) => `Iterasi ${row.iterasi} (${months[index]})`);
-            const nilaiAkhir = data.map(row => row.nilaiAkhir);
-            const pertumbuhan = data.map(row => row.pertumbuhan);
+            const labels = reversedData.map((row, index) => `Iterasi ${row.iterasi} (${reversedMonths[index]})`);
+            const nilaiAkhir = reversedData.map(row => row.nilaiAkhir);
+            const pertumbuhan = reversedData.map(row => row.pertumbuhan);
 
             // Line Chart
             new Chart(document.getElementById('lineChart'), {
