@@ -1,57 +1,57 @@
-<svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rotating Stars">
   <!-- Latar belakang putih -->
-  <rect x="0" y="0" width="400" height="400" fill="#fff"/>
+  <rect x="0" y="0" width="1024" height="1024" fill="#fff"/>
   
   <!-- Grup bintang dengan stroke hitam -->
-  <g stroke="#000" stroke-width="2">
+  <g stroke="#000" stroke-width="5.12">
     <!-- Bintang 1 (Merah, rotasi penuh dalam 10 detik) -->
     <polygon
-      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
       fill="#ff0000">
       <animateTransform
         attributeName="transform"
         type="rotate"
-        from="0 200 200"
-        to="360 200 200"
+        from="0 512 512"
+        to="360 512 512"
         dur="10s"
         repeatCount="indefinite"/>
     </polygon>
     <!-- Bintang 2 (Biru, rotasi penuh dalam 12 detik) -->
     <polygon
-      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
       fill="#0000ff"
-      transform="rotate(22.5 200 200)">
+      transform="rotate(22.5 512 512)">
       <animateTransform
         attributeName="transform"
         type="rotate"
-        from="22.5 200 200"
-        to="382.5 200 200"
+        from="22.5 512 512"
+        to="382.5 512 512"
         dur="12s"
         repeatCount="indefinite"/>
     </polygon>
     <!-- Bintang 3 (Hijau, rotasi penuh dalam 14 detik) -->
     <polygon
-      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
       fill="#00ff00"
-      transform="rotate(45 200 200)">
+      transform="rotate(45 512 512)">
       <animateTransform
         attributeName="transform"
         type="rotate"
-        from="45 200 200"
-        to="405 200 200"
+        from="45 512 512"
+        to="405 512 512"
         dur="14s"
         repeatCount="indefinite"/>
     </polygon>
     <!-- Bintang 4 (Kuning, rotasi penuh dalam 16 detik) -->
     <polygon
-      points="200,100 224.85,175.15 300,200 224.85,224.85 200,300 175.15,224.85 100,200 175.15,175.15"
+      points="512,256 577.216,448.384 768,512 577.216,575.616 512,768 446.784,575.616 256,512 446.784,448.384"
       fill="#ffff00"
-      transform="rotate(67.5 200 200)">
+      transform="rotate(67.5 512 512)">
       <animateTransform
         attributeName="transform"
         type="rotate"
-        from="67.5 200 200"
-        to="427.5 200 200"
+        from="67.5 512 512"
+        to="427.5 512 512"
         dur="16s"
         repeatCount="indefinite"/>
     </polygon>
