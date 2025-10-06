@@ -1,0 +1,38 @@
+<svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
+  <!-- Fungsi JS untuk menghitung titik bintang dihilangkan agar SVG statis dan langsung bisa dipakai -->
+  <!-- Bintang 1 (Merah, tanpa rotasi) -->
+  <polygon
+    points="200,120 215,165 265,135 230,180 280,200 230,220 265,265 215,235 200,280 185,235 135,265 170,220 120,200 170,180 135,135 185,165"
+    fill="#ff3333"
+    stroke="#cc0000"
+    stroke-width="2">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2s" repeatCount="indefinite"/>
+  </polygon>
+  <!-- Bintang 2 (Biru, rotasi 22.5°) -->
+  <polygon
+    points="200,120 215,165 265,135 230,180 280,200 230,220 265,265 215,235 200,280 185,235 135,265 170,220 120,200 170,180 135,135 185,165"
+    fill="#33ccff"
+    stroke="#0099cc"
+    stroke-width="2"
+    transform="rotate(22.5 200 200)">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2.3s" repeatCount="indefinite"/>
+  </polygon>
+  <!-- Bintang 3 (Hijau, rotasi 45°) -->
+  <polygon
+    points="200,120 215,165 265,135 230,180 280,200 230,220 265,265 215,235 200,280 185,235 135,265 170,220 120,200 170,180 135,135 185,165"
+    fill="#33cc99"
+    stroke="#009966"
+    stroke-width="2"
+    transform="rotate(45 200 200)">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2.5s" repeatCount="indefinite"/>
+  </polygon>
+  <!-- Bintang 4 (Kuning, rotasi 67.5°) -->
+  <polygon
+    points="200,120 215,165 265,135 230,180 280,200 230,220 265,265 215,235 200,280 185,235 135,265 170,220 120,200 170,180 135,135 185,165"
+    fill="#ffcc33"
+    stroke="#cc9900"
+    stroke-width="2"
+    transform="rotate(67.5 200 200)">
+    <animate attributeName="opacity" values="1;0.4;1" dur="2.7s" repeatCount="indefinite"/>
+  </polygon>
+</svg>
