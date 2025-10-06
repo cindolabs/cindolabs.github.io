@@ -188,9 +188,9 @@
                     iterasi: 0,
                     nilaiAwal: modal,
                     pertumbuhan: modal,
-                    penjumlahan: `$${modal.toFixed(2)} + $${modal.toFixed(2)} = $${(modal * 2).toFixed(2)}`,
+                    penjumlahan: `$${modal.toFixed(0)} + $${modal.toFixed(0)} = $${(modal * 2).toFixed(0)}`,
                     nilaiAkhir: modal * 2,
-                    kontribusi: '50.00%'
+                    kontribusi: '50%'
                 }
             ];
 
@@ -204,9 +204,9 @@
                     iterasi: i,
                     nilaiAwal: nilaiAwal,
                     pertumbuhan: pertumbuhan,
-                    penjumlahan: `$${nilaiAwal.toFixed(2)} + $${pertumbuhan.toFixed(2)} = $${nilaiAkhir.toFixed(2)}`,
+                    penjumlahan: `$${nilaiAwal.toFixed(0)} + $${pertumbuhan.toFixed(0)} = $${nilaiAkhir.toFixed(0)}`,
                     nilaiAkhir: nilaiAkhir,
-                    kontribusi: '50.00%'
+                    kontribusi: '50%'
                 });
                 modal = nilaiAkhir;
             }
@@ -223,10 +223,10 @@
                     tr.innerHTML = `
                         <td>${reversedMonths[index]}</td>
                         <td>${row.iterasi}</td>
-                        <td><span class="badge">$${row.nilaiAwal.toFixed(2)}</span></td>
-                        <td><span class="badge">$${row.pertumbuhan.toFixed(2)}</span></td>
+                        <td><span class="badge">$${row.nilaiAwal.toFixed(0)}</span></td>
+                        <td><span class="badge">$${row.pertumbuhan.toFixed(0)}</span></td>
                         <td><span class="badge">${row.penjumlahan}</span></td>
-                        <td><span class="badge">$${row.nilaiAkhir.toFixed(2)}</span></td>
+                        <td><span class="badge">$${row.nilaiAkhir.toFixed(0)}</span></td>
                         <td>${row.kontribusi}</td>
                     `;
                     tbody.appendChild(tr);
