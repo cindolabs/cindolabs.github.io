@@ -21,10 +21,15 @@
             text-align: center;
         }
 
+        .svg-container {
+            max-width: 400px;
+            margin: 20px auto;
+        }
+
         h1 {
             color: #1a3c34;
             font-size: 2.5em;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
         }
 
@@ -198,12 +203,96 @@
                 font-size: 0.8em;
                 padding: 3px 6px;
             }
+
+            .svg-container {
+                max-width: 300px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Peta Pertumbuhan 100% Hocindo</h1>
+        
+        <!-- SVG Bintang -->
+        <div class="svg-container">
+            <svg width="100%" height="100%" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" style="background: #0e0f11;">
+                <!-- First star (bright red, centered at 180,250, 0° rotation, unchanged) -->
+                <path
+                    d="M180 160 L210 70 L240 160 L330 190 L240 220 L210 310 L180 220 L90 190 Z"
+                    fill="#ff3333"
+                    stroke="#cc0000"
+                    stroke-width="4.5"
+                >
+                    <animate
+                        attributeName="opacity"
+                        values="1; 0.4; 1"
+                        dur="2s"
+                        repeatCount="indefinite"
+                    />
+                </path>
+
+                <!-- Second star (neon blue, centered at 150,210, rotated 45°, shifted up 10 units) -->
+                <path
+                    d="M150 120 L180 30 L210 120 L300 150 L210 180 L180 270 L150 180 L60 150 Z"
+                    fill="#33ccff"
+                    stroke="#0099cc"
+                    stroke-width="4.5"
+                    transform="rotate(45 150 210)"
+                >
+                    <animate
+                        attributeName="opacity"
+                        values="1; 0.4; 1"
+                        dur="2.3s"
+                        repeatCount="indefinite"
+                    />
+                </path>
+
+                <!-- Third star (emerald green, centered at 150,160, rotated 90°, unchanged) -->
+                <path
+                    d="M150 70 L180 -20 L210 70 L300 100 L210 130 L180 220 L150 130 L60 100 Z"
+                    fill="#33cc99"
+                    stroke="#009966"
+                    stroke-width="4.5"
+                    transform="rotate(90 150 160)"
+                >
+                    <animate
+                        attributeName="opacity"
+                        values="1; 0.4; 1"
+                        dur="2.5s"
+                        repeatCount="indefinite"
+                    />
+                </path>
+
+                <!-- Fourth star (golden yellow, centered at 190,125, rotated 135°, shifted up 10 units) -->
+                <path
+                    d="M190 35 L220 -55 L250 35 L340 65 L250 95 L220 185 L190 95 L100 65 Z"
+                    fill="#ffcc33"
+                    stroke="#cc9900"
+                    stroke-width="4.5"
+                    transform="rotate(135 190 125)"
+                >
+                    <animate
+                        attributeName="opacity"
+                        values="1; 0.4; 1"
+                        dur="2.7s"
+                        repeatCount="indefinite"
+                    />
+                </path>
+
+                <!-- Metadata comment -->
+                <!--
+                    Seed: c37c292f6375137112763b9bd37b1d74a47f0aa385acedb2a12dbe8a15e0e396
+                    TX type: simple
+                    Gamma: rose
+                    Stone: rhombus
+                    Lightnings: -1.0
+                    Glitch: -1.0
+                    Sparks: 2
+                    Spark Address: sp1pgss8legl06vrs7dmxcre8nkck65y782ke9qt8j0tejcvcd8h5nl92h47mn6g7
+                -->
+            </svg>
+        </div>
         
         <!-- Tabel -->
         <div class="table-container">
