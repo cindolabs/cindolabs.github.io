@@ -147,6 +147,10 @@
         document.addEventListener('DOMContentLoaded', () => {
             // Data simulasi
             const months = [
+                'Oktober 2025', 'November 2025', 'Desember 2025', 'Januari 2026', 'Februari 2026', 'Maret 2026',
+                'April 2026', 'Mei 2026', 'Juni 2026', 'Juli 2026', 'Agustus 2026', 'September 2026'
+            ];
+            const reversedMonths = [
                 'September 2026', 'Agustus 2026', 'Juli 2026', 'Juni 2026', 'Mei 2026', 'April 2026',
                 'Maret 2026', 'Februari 2026', 'Januari 2026', 'Desember 2025', 'November 2025', 'Oktober 2025'
             ];
@@ -180,11 +184,10 @@
                 modal = nilaiAkhir;
             }
 
-            // Balik urutan untuk menampilkan September 2026 di atas, Oktober 2025 di bawah
+            // Balik urutan data hanya untuk tabel
             const reversedData = data.reverse();
-            const reversedMonths = months;
 
-            // Isi tabel dengan data
+            // Isi tabel dengan data (urutan terbalik: September 2026 di atas)
             const tbody = document.getElementById('tradingTable');
             reversedData.forEach((row, index) => {
                 const tr = document.createElement('tr');
@@ -200,10 +203,10 @@
                 tbody.appendChild(tr);
             });
 
-            // Data untuk grafik
-            const labels = reversedData.map((row, index) => `Iterasi ${row.iterasi} (${reversedMonths[index]})`);
-            const nilaiAkhir = reversedData.map(row => row.nilaiAkhir);
-            const pertumbuhan = reversedData.map(row => row.pertumbuhan);
+            // Data untuk grafik (urutan normal: Oktober 2025 di kiri)
+            const labels = data.map((row, index) => `Iterasi ${row.iterasi} (${months[index]})`);
+            const nilaiAkhir = data.map(row => row.nilaiAkhir);
+            const pertumbuhan = data.map(row => row.pertumbuhan);
 
             // Line Chart
             new Chart(document.getElementById('lineChart'), {
