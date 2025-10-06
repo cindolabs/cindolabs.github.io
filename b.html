@@ -42,7 +42,6 @@
             margin: 20px auto;
             max-width: 1000px;
             overflow-x: auto;
-            animation: fadeIn 1s ease-in-out;
         }
 
         .filter-container {
@@ -56,7 +55,6 @@
             border-radius: 8px;
             font-size: 1em;
             outline: none;
-            transition: border-color 0.3s ease;
         }
 
         .filter-container input:focus {
@@ -82,7 +80,6 @@
             color: white;
             font-weight: 600;
             cursor: pointer;
-            transition: background 0.3s ease;
             position: sticky;
             top: 0;
             z-index: 1;
@@ -106,17 +103,6 @@
 
         tr:hover {
             background-color: #e8f5e9;
-            transform: scale(1.01);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        td {
-            transition: all 0.3s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         @media (max-width: 768px) {
@@ -187,7 +173,7 @@
                     iterasi: 0,
                     nilaiAwal: modal,
                     pertumbuhan: modal,
-                    penjumlahan: `${modal.toFixed(2)} + ${modal.toFixed(2)} = ${(modal * 2).toFixed(2)}`,
+                    penjumlahan: `$${modal.toFixed(2)} + $${modal.toFixed(2)} = $${(modal * 2).toFixed(2)}`,
                     nilaiAkhir: modal * 2,
                     kontribusi: '50.00%'
                 }
@@ -203,7 +189,7 @@
                     iterasi: i,
                     nilaiAwal: nilaiAwal,
                     pertumbuhan: pertumbuhan,
-                    penjumlahan: `${nilaiAwal.toFixed(2)} + ${pertumbuhan.toFixed(2)} = ${nilaiAkhir.toFixed(2)}`,
+                    penjumlahan: `$${nilaiAwal.toFixed(2)} + $${pertumbuhan.toFixed(2)} = $${nilaiAkhir.toFixed(2)}`,
                     nilaiAkhir: nilaiAkhir,
                     kontribusi: '50.00%'
                 });
@@ -222,10 +208,10 @@
                     tr.innerHTML = `
                         <td>${reversedMonths[index]}</td>
                         <td>${row.iterasi}</td>
-                        <td>${row.nilaiAwal.toFixed(2)} $</td>
-                        <td>${row.pertumbuhan.toFixed(2)} $</td>
-                        <td>${row.penjumlahan} $</td>
-                        <td>${row.nilaiAkhir.toFixed(2)} $</td>
+                        <td>$${row.nilaiAwal.toFixed(2)}</td>
+                        <td>$${row.pertumbuhan.toFixed(2)}</td>
+                        <td>${row.penjumlahan}</td>
+                        <td>$${row.nilaiAkhir.toFixed(2)}</td>
                         <td>${row.kontribusi}</td>
                     `;
                     tbody.appendChild(tr);
