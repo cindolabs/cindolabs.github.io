@@ -151,8 +151,6 @@
                 '2026-04', '2026-05', '2026-06', '2026-07', '2026-08', '2026-09'
             ];
             let modal = 20; // Modal awal Oktober 2025
-            const monthlyAddition = 20; // Tambahan modal per bulan
-            const growthRate = 1; // 100% pertumbuhan (modal awal + tambahan menjadi 2x)
 
             // Array untuk menyimpan data tabel
             const data = [
@@ -168,7 +166,7 @@
 
             modal = modal * 2; // Update modal setelah iterasi 0
             for (let i = 1; i < months.length; i++) {
-                const nilaiAwal = modal + monthlyAddition;
+                const nilaiAwal = modal;
                 const pertumbuhan = nilaiAwal;
                 const nilaiAkhir = nilaiAwal * 2;
                 data.push({
