@@ -95,14 +95,15 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.min.js"></script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="https://unpkg.com/i18next@23.10.1/dist/umd/i18next.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
     <script>
         // Inisialisasi AOS
         AOS.init();
 
-        // Data lengkap untuk 50 level
+        // Data lengkap untuk 100 level
         const initialData = [
             { level: 1, saldo: 10.00, volume: 0.01, labaRugi: 1.00, equitasLaba: 11.00, equitasRugi: 9.00, piper: 100 },
-            { level: 2, saldo: 11.00, volume: 0.01, labaRugi: 1.10, equitasLaba: 12.10, equitasRugi: 9.10, piper: 110 },
+            { level: 2, saldo: 11.00, volume: 0.01, labaRugi: 1.10, equitasLaba: 12.10, equitasRugi: 9.90, piper: 110 },
             { level: 3, saldo: 12.10, volume: 0.01, labaRugi: 1.21, equitasLaba: 13.31, equitasRugi: 10.89, piper: 121 },
             { level: 4, saldo: 13.31, volume: 0.01, labaRugi: 1.33, equitasLaba: 14.64, equitasRugi: 11.98, piper: 133 },
             { level: 5, saldo: 14.64, volume: 0.01, labaRugi: 1.46, equitasLaba: 16.10, equitasRugi: 13.18, piper: 146 },
@@ -150,7 +151,57 @@
             { level: 47, saldo: 799.97, volume: 0.40, labaRugi: 79.99, equitasLaba: 879.96, equitasRugi: 719.98, piper: 200 },
             { level: 48, saldo: 879.96, volume: 0.45, labaRugi: 87.99, equitasLaba: 967.95, equitasRugi: 791.97, piper: 196 },
             { level: 49, saldo: 967.95, volume: 0.50, labaRugi: 96.79, equitasLaba: 1064.74, equitasRugi: 871.16, piper: 194 },
-            { level: 50, saldo: 1064.74, volume: 0.55, labaRugi: 106.47, equitasLaba: 1171.21, equitasRugi: 958.27, piper: 194 }
+            { level: 50, saldo: 1064.74, volume: 0.55, labaRugi: 106.47, equitasLaba: 1171.21, equitasRugi: 958.27, piper: 194 },
+            { level: 51, saldo: 1171.21, volume: 0.60, labaRugi: 117.12, equitasLaba: 1288.33, equitasRugi: 1054.09, piper: 195 },
+            { level: 52, saldo: 1288.33, volume: 0.65, labaRugi: 128.83, equitasLaba: 1417.16, equitasRugi: 1159.50, piper: 198 },
+            { level: 53, saldo: 1417.16, volume: 0.70, labaRugi: 141.72, equitasLaba: 1558.88, equitasRugi: 1275.44, piper: 202 },
+            { level: 54, saldo: 1558.88, volume: 0.75, labaRugi: 155.89, equitasLaba: 1714.77, equitasRugi: 1402.99, piper: 208 },
+            { level: 55, saldo: 1714.77, volume: 0.80, labaRugi: 171.48, equitasLaba: 1886.25, equitasRugi: 1543.29, piper: 214 },
+            { level: 56, saldo: 1886.25, volume: 0.85, labaRugi: 188.63, equitasLaba: 2074.88, equitasRugi: 1697.62, piper: 222 },
+            { level: 57, saldo: 2074.88, volume: 0.90, labaRugi: 207.49, equitasLaba: 2282.37, equitasRugi: 1867.39, piper: 231 },
+            { level: 58, saldo: 2282.37, volume: 0.95, labaRugi: 228.24, equitasLaba: 2510.61, equitasRugi: 2054.13, piper: 240 },
+            { level: 59, saldo: 2510.61, volume: 1.00, labaRugi: 251.06, equitasLaba: 2761.67, equitasRugi: 2259.55, piper: 251 },
+            { level: 60, saldo: 2761.67, volume: 1.05, labaRugi: 276.17, equitasLaba: 3037.84, equitasRugi: 2485.50, piper: 263 },
+            { level: 61, saldo: 3037.84, volume: 1.10, labaRugi: 303.78, equitasLaba: 3341.62, equitasRugi: 2734.06, piper: 276 },
+            { level: 62, saldo: 3341.62, volume: 1.15, labaRugi: 334.16, equitasLaba: 3675.78, equitasRugi: 3007.46, piper: 291 },
+            { level: 63, saldo: 3675.78, volume: 1.20, labaRugi: 367.58, equitasLaba: 4043.36, equitasRugi: 3308.20, piper: 306 },
+            { level: 64, saldo: 4043.36, volume: 1.25, labaRugi: 404.34, equitasLaba: 4447.70, equitasRugi: 3639.02, piper: 323 },
+            { level: 65, saldo: 4447.70, volume: 1.30, labaRugi: 444.77, equitasLaba: 4892.47, equitasRugi: 4002.93, piper: 342 },
+            { level: 66, saldo: 4892.47, volume: 1.35, labaRugi: 489.25, equitasLaba: 5381.72, equitasRugi: 4403.22, piper: 362 },
+            { level: 67, saldo: 5381.72, volume: 1.40, labaRugi: 538.17, equitasLaba: 5919.89, equitasRugi: 4843.55, piper: 384 },
+            { level: 68, saldo: 5919.89, volume: 1.45, labaRugi: 591.99, equitasLaba: 6511.88, equitasRugi: 5327.90, piper: 408 },
+            { level: 69, saldo: 6511.88, volume: 1.50, labaRugi: 651.19, equitasLaba: 7163.07, equitasRugi: 5860.69, piper: 434 },
+            { level: 70, saldo: 7163.07, volume: 1.55, labaRugi: 716.31, equitasLaba: 7879.38, equitasRugi: 6446.76, piper: 462 },
+            { level: 71, saldo: 7879.38, volume: 1.60, labaRugi: 787.94, equitasLaba: 8667.32, equitasRugi: 7091.44, piper: 492 },
+            { level: 72, saldo: 8667.32, volume: 1.65, labaRugi: 866.73, equitasLaba: 9534.05, equitasRugi: 7800.59, piper: 525 },
+            { level: 73, saldo: 9534.05, volume: 1.70, labaRugi: 953.41, equitasLaba: 10487.46, equitasRugi: 8580.64, piper: 561 },
+            { level: 74, saldo: 10487.46, volume: 1.75, labaRugi: 1048.75, equitasLaba: 11536.21, equitasRugi: 9438.71, piper: 599 },
+            { level: 75, saldo: 11536.21, volume: 1.80, labaRugi: 1153.62, equitasLaba: 12689.83, equitasRugi: 10382.59, piper: 641 },
+            { level: 76, saldo: 12689.83, volume: 1.85, labaRugi: 1268.98, equitasLaba: 13958.81, equitasRugi: 11420.85, piper: 686 },
+            { level: 77, saldo: 13958.81, volume: 1.90, labaRugi: 1395.88, equitasLaba: 15354.69, equitasRugi: 12562.93, piper: 735 },
+            { level: 78, saldo: 15354.69, volume: 1.95, labaRugi: 1535.47, equitasLaba: 16890.16, equitasRugi: 13819.22, piper: 787 },
+            { level: 79, saldo: 16890.16, volume: 2.00, labaRugi: 1689.02, equitasLaba: 18579.18, equitasRugi: 15201.14, piper: 845 },
+            { level: 80, saldo: 18579.18, volume: 2.05, labaRugi: 1857.92, equitasLaba: 20437.10, equitasRugi: 16721.26, piper: 906 },
+            { level: 81, saldo: 20437.10, volume: 2.10, labaRugi: 2043.71, equitasLaba: 22480.81, equitasRugi: 18393.39, piper: 974 },
+            { level: 82, saldo: 22480.81, volume: 2.15, labaRugi: 2248.08, equitasLaba: 24728.89, equitasRugi: 20232.73, piper: 1046 },
+            { level: 83, saldo: 24728.89, volume: 2.20, labaRugi: 2472.89, equitasLaba: 27201.78, equitasRugi: 22256.00, piper: 1124 },
+            { level: 84, saldo: 27201.78, volume: 2.25, labaRugi: 2720.18, equitasLaba: 29921.96, equitasRugi: 24481.60, piper: 1209 },
+            { level: 85, saldo: 29921.96, volume: 2.30, labaRugi: 2992.20, equitasLaba: 32914.16, equitasRugi: 26929.76, piper: 1301 },
+            { level: 86, saldo: 32914.16, volume: 2.35, labaRugi: 3291.42, equitasLaba: 36205.58, equitasRugi: 29622.74, piper: 1401 },
+            { level: 87, saldo: 36205.58, volume: 2.40, labaRugi: 3620.56, equitasLaba: 39826.14, equitasRugi: 32585.02, piper: 1509 },
+            { level: 88, saldo: 39826.14, volume: 2.45, labaRugi: 3982.61, equitasLaba: 43808.75, equitasRugi: 35843.53, piper: 1626 },
+            { level: 89, saldo: 43808.75, volume: 2.50, labaRugi: 4380.88, equitasLaba: 48189.63, equitasRugi: 39427.87, piper: 1752 },
+            { level: 90, saldo: 48189.63, volume: 2.55, labaRugi: 4818.96, equitasLaba: 53008.59, equitasRugi: 43370.67, piper: 1890 },
+            { level: 91, saldo: 53008.59, volume: 2.60, labaRugi: 5300.86, equitasLaba: 58309.45, equitasRugi: 47707.73, piper: 2039 },
+            { level: 92, saldo: 58309.45, volume: 2.65, labaRugi: 5830.95, equitasLaba: 64140.40, equitasRugi: 52478.50, piper: 2200 },
+            { level: 93, saldo: 64140.40, volume: 2.70, labaRugi: 6414.04, equitasLaba: 70554.44, equitasRugi: 57726.36, piper: 2376 },
+            { level: 94, saldo: 70554.44, volume: 2.75, labaRugi: 7055.44, equitasLaba: 77609.88, equitasRugi: 63499.00, piper: 2566 },
+            { level: 95, saldo: 77609.88, volume: 2.80, labaRugi: 7760.99, equitasLaba: 85370.87, equitasRugi: 69848.89, piper: 2772 },
+            { level: 96, saldo: 85370.87, volume: 2.85, labaRugi: 8537.09, equitasLaba: 93907.96, equitasRugi: 76833.78, piper: 2995 },
+            { level: 97, saldo: 93907.96, volume: 2.90, labaRugi: 9390.80, equitasLaba: 103298.76, equitasRugi: 84517.16, piper: 3238 },
+            { level: 98, saldo: 103298.76, volume: 2.95, labaRugi: 10329.88, equitasLaba: 113628.64, equitasRugi: 92968.88, piper: 3502 },
+            { level: 99, saldo: 113628.64, volume: 3.00, labaRugi: 11362.86, equitasLaba: 124991.50, equitasRugi: 102265.78, piper: 3788 },
+            { level: 100, saldo: 124991.50, volume: 3.05, labaRugi: 12499.15, equitasLaba: 137490.65, equitasRugi: 112492.35, piper: 4098 }
         ];
 
         // Inisialisasi i18next untuk multibahasa
@@ -331,7 +382,12 @@
                 },
                 scales: {
                     y: { beginAtZero: false, title: { display: true, text: 'Value ($)' } },
-                    x: { title: { display: true, text: 'Level' } }
+                    x: { 
+                        title: { display: true, text: 'Level' },
+                        ticks: {
+                            maxTicksLimit: 20 // Limit x-axis labels to avoid clutter
+                        }
+                    }
                 }
             }
         });
@@ -357,7 +413,5 @@
         // Load data dari GitHub saat halaman dimuat
         loadDataFromGithub();
     </script>
-    <!-- PapaParse for CSV export -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
 </body>
 </html>
