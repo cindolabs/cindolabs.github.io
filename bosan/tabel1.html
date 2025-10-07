@@ -8,6 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
+        /* Gaya CSS tetap sama seperti kode asli Anda */
         * {
             margin: 0;
             padding: 0;
@@ -90,6 +91,48 @@
             transform: translateY(-2px);
         }
 
+        .input-container {
+            margin-bottom: 20px;
+            padding: 20px;
+            background: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .input-container label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: none;
+            border-radius: 8px;
+            background: #2a2a2a;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .input-container button {
+            background: linear-gradient(90deg, #00ff00, #41d1ff);
+            color: #1a1a1a;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        .input-container button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 15px rgba(0, 255, 0, 0.5);
+        }
+
         .table-container {
             overflow-x: auto;
             border-radius: 12px;
@@ -142,7 +185,6 @@
         tr:nth-child(2) { animation-delay: 0.2s; }
         tr:nth-child(3) { animation-delay: 0.3s; }
         tr:nth-child(4) { animation-delay: 0.4s; }
-        /* Tambahkan delay untuk baris lain jika diperlukan */
 
         tr:last-child td {
             border-bottom: none;
@@ -260,6 +302,16 @@
             <button id="themeToggle">Mode Terang</button>
         </div>
 
+        <div class="input-container">
+            <label for="inputDate">Tanggal:</label>
+            <input type="date" id="inputDate" required>
+            <label for="initialBalance">Modal Awal ($):</label>
+            <input type="number" id="initialBalance" step="0.01" min="0" required>
+            <label for="profitPercentage">Persentase Keuntungan (%):</label>
+            <input type="number" id="profitPercentage" step="0.01" min="0" required>
+            <button id="addBalance">Tambah Saldo</button>
+        </div>
+
         <div class="chart-container">
             <canvas id="priceChart"></canvas>
         </div>
@@ -277,772 +329,8 @@
                         <th>Persentase Proyeksi</th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr>
-                        <td>22 Des 2025</td>
-                        <td>Senin</td>
-                        <td>447.57</td>
-                        <td><span class="harga-lime">+35.81</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>483.38</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>21 Des 2025</td>
-                        <td>Minggu</td>
-                        <td>411.76</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>411.76</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>20 Des 2025</td>
-                        <td>Sabtu</td>
-                        <td>411.76</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>411.76</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>19 Des 2025</td>
-                        <td>Jumat</td>
-                        <td>411.76</td>
-                        <td><span class="harga-lime">+32.94</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>444.70</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>18 Des 2025</td>
-                        <td>Kamis</td>
-                        <td>378.82</td>
-                        <td><span class="harga-lime">+30.31</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>409.13</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>17 Des 2025</td>
-                        <td>Rabu</td>
-                        <td>348.51</td>
-                        <td><span class="harga-lime">+27.88</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>376.39</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>16 Des 2025</td>
-                        <td>Selasa</td>
-                        <td>320.63</td>
-                        <td><span class="harga-lime">+25.65</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>346.28</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>15 Des 2025</td>
-                        <td>Senin</td>
-                        <td>294.98</td>
-                        <td><span class="harga-lime">+23.60</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>318.58</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>14 Des 2025</td>
-                        <td>Minggu</td>
-                        <td>271.29</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>271.29</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>13 Des 2025</td>
-                        <td>Sabtu</td>
-                        <td>271.29</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>271.29</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>12 Des 2025</td>
-                        <td>Jumat</td>
-                        <td>271.29</td>
-                        <td><span class="harga-lime">+21.70</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>292.99</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>11 Des 2025</td>
-                        <td>Kamis</td>
-                        <td>249.59</td>
-                        <td><span class="harga-lime">+19.97</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>269.56</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>10 Des 2025</td>
-                        <td>Rabu</td>
-                        <td>229.62</td>
-                        <td><span class="harga-lime">+18.37</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>247.99</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>9 Des 2025</td>
-                        <td>Selasa</td>
-                        <td>211.25</td>
-                        <td><span class="harga-lime">+16.90</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>228.15</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>8 Des 2025</td>
-                        <td>Senin</td>
-                        <td>194.35</td>
-                        <td><span class="harga-lime">+15.55</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>209.90</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>7 Des 2025</td>
-                        <td>Minggu</td>
-                        <td>178.85</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>178.85</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>6 Des 2025</td>
-                        <td>Sabtu</td>
-                        <td>178.85</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>178.85</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>5 Des 2025</td>
-                        <td>Jumat</td>
-                        <td>178.85</td>
-                        <td><span class="harga-lime">+14.31</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>193.16</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>4 Des 2025</td>
-                        <td>Kamis</td>
-                        <td>164.54</td>
-                        <td><span class="harga-lime">+13.16</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>177.70</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>3 Des 2025</td>
-                        <td>Rabu</td>
-                        <td>151.38</td>
-                        <td><span class="harga-lime">+12.11</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>163.49</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>2 Des 2025</td>
-                        <td>Selasa</td>
-                        <td>139.27</td>
-                        <td><span class="harga-lime">+11.14</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>150.41</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>1 Des 2025</td>
-                        <td>Senin</td>
-                        <td>128.13</td>
-                        <td><span class="harga-lime">+10.25</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>138.38</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>30 Nov 2025</td>
-                        <td>Minggu</td>
-                        <td>117.88</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>117.88</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>29 Nov 2025</td>
-                        <td>Sabtu</td>
-                        <td>117.88</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>117.88</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>28 Nov 2025</td>
-                        <td>Jumat</td>
-                        <td>117.88</td>
-                        <td><span class="harga-lime">+9.43</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>127.31</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>27 Nov 2025</td>
-                        <td>Kamis</td>
-                        <td>108.45</td>
-                        <td><span class="harga-lime">+8.68</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>117.13</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>26 Nov 2025</td>
-                        <td>Rabu</td>
-                        <td>99.77</td>
-                        <td><span class="harga-lime">+7.98</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>107.75</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>25 Nov 2025</td>
-                        <td>Selasa</td>
-                        <td>91.79</td>
-                        <td><span class="harga-lime">+7.34</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>99.13</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>24 Nov 2025</td>
-                        <td>Senin</td>
-                        <td>84.45</td>
-                        <td><span class="harga-lime">+6.76</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>91.21</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>23 Nov 2025</td>
-                        <td>Minggu</td>
-                        <td>77.69</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>77.69</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>22 Nov 2025</td>
-                        <td>Sabtu</td>
-                        <td>77.69</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>77.69</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>21 Nov 2025</td>
-                        <td>Jumat</td>
-                        <td>77.69</td>
-                        <td><span class="harga-lime">+6.22</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>83.91</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>20 Nov 2025</td>
-                        <td>Kamis</td>
-                        <td>71.47</td>
-                        <td><span class="harga-lime">+5.72</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>77.19</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>19 Nov 2025</td>
-                        <td>Rabu</td>
-                        <td>65.75</td>
-                        <td><span class="harga-lime">+5.26</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>71.01</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>18 Nov 2025</td>
-                        <td>Selasa</td>
-                        <td>60.49</td>
-                        <td><span class="harga-lime">+4.84</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>65.33</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>17 Nov 2025</td>
-                        <td>Senin</td>
-                        <td>55.65</td>
-                        <td><span class="harga-lime">+4.45</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>60.10</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>16 Nov 2025</td>
-                        <td>Minggu</td>
-                        <td>51.20</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>51.20</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>15 Nov 2025</td>
-                        <td>Sabtu</td>
-                        <td>51.20</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>51.20</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>14 Nov 2025</td>
-                        <td>Jumat</td>
-                        <td>51.20</td>
-                        <td><span class="harga-lime">+4.10</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>55.30</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>13 Nov 2025</td>
-                        <td>Kamis</td>
-                        <td>47.10</td>
-                        <td><span class="harga-lime">+3.77</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>50.87</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>12 Nov 2025</td>
-                        <td>Rabu</td>
-                        <td>43.33</td>
-                        <td><span class="harga-lime">+3.47</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>46.80</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>11 Nov 2025</td>
-                        <td>Selasa</td>
-                        <td>39.86</td>
-                        <td><span class="harga-lime">+3.19</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>43.05</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>10 Nov 2025</td>
-                        <td>Senin</td>
-                        <td>36.67</td>
-                        <td><span class="harga-lime">+2.93</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>39.60</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>9 Nov 2025</td>
-                        <td>Minggu</td>
-                        <td>33.73</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>33.73</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>8 Nov 2025</td>
-                        <td>Sabtu</td>
-                        <td>33.73</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>33.73</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>7 Nov 2025</td>
-                        <td>Jumat</td>
-                        <td>33.73</td>
-                        <td><span class="harga-lime">+2.70</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>36.43</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>6 Nov 2025</td>
-                        <td>Kamis</td>
-                        <td>31.03</td>
-                        <td><span class="harga-lime">+2.48</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>33.51</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>5 Nov 2025</td>
-                        <td>Rabu</td>
-                        <td>28.55</td>
-                        <td><span class="harga-lime">+2.28</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>30.83</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>4 Nov 2025</td>
-                        <td>Selasa</td>
-                        <td>26.27</td>
-                        <td><span class="harga-lime">+2.10</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>28.37</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>3 Nov 2025</td>
-                        <td>Senin</td>
-                        <td>24.17</td>
-                        <td><span class="harga-lime">+1.93</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>26.10</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>2 Nov 2025</td>
-                        <td>Minggu</td>
-                        <td>22.24</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>22.24</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>1 Nov 2025</td>
-                        <td>Sabtu</td>
-                        <td>22.24</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>22.24</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>31 Okt 2025</td>
-                        <td>Jumat</td>
-                        <td>22.24</td>
-                        <td><span class="harga-lime">+1.78</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>24.02</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>30 Okt 2025</td>
-                        <td>Kamis</td>
-                        <td>20.46</td>
-                        <td><span class="harga-lime">+1.64</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>22.10</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>29 Okt 2025</td>
-                        <td>Rabu</td>
-                        <td>18.82</td>
-                        <td><span class="harga-lime">+1.51</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>20.33</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>28 Okt 2025</td>
-                        <td>Selasa</td>
-                        <td>17.31</td>
-                        <td><span class="harga-lime">+1.38</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>18.69</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>27 Okt 2025</td>
-                        <td>Senin</td>
-                        <td>15.93</td>
-                        <td><span class="harga-lime">+1.27</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>17.20</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>26 Okt 2025</td>
-                        <td>Minggu</td>
-                        <td>14.66</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>14.66</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>25 Okt 2025</td>
-                        <td>Sabtu</td>
-                        <td>14.66</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>14.66</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>24 Okt 2025</td>
-                        <td>Jumat</td>
-                        <td>14.66</td>
-                        <td><span class="harga-lime">+1.17</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>15.83</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>23 Okt 2025</td>
-                        <td>Kamis</td>
-                        <td>13.49</td>
-                        <td><span class="harga-lime">+1.08</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>14.57</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>22 Okt 2025</td>
-                        <td>Rabu</td>
-                        <td>12.41</td>
-                        <td><span class="harga-lime">+0.99</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>13.40</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>21 Okt 2025</td>
-                        <td>Selasa</td>
-                        <td>11.42</td>
-                        <td><span class="harga-lime">+0.91</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>12.33</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>20 Okt 2025</td>
-                        <td>Senin</td>
-                        <td>10.51</td>
-                        <td><span class="harga-lime">+0.84</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>11.35</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>19 Okt 2025</td>
-                        <td>Minggu</td>
-                        <td>9.67</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>9.67</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>18 Okt 2025</td>
-                        <td>Sabtu</td>
-                        <td>9.67</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>9.67</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>17 Okt 2025</td>
-                        <td>Jumat</td>
-                        <td>9.67</td>
-                        <td><span class="harga-lime">+0.77</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>10.44</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>16 Okt 2025</td>
-                        <td>Kamis</td>
-                        <td>8.90</td>
-                        <td><span class="harga-lime">+0.71</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>9.61</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>15 Okt 2025</td>
-                        <td>Rabu</td>
-                        <td>8.19</td>
-                        <td><span class="harga-lime">+0.66</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>8.85</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>14 Okt 2025</td>
-                        <td>Selasa</td>
-                        <td>7.54</td>
-                        <td><span class="harga-lime">+0.60</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>8.14</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>13 Okt 2025</td>
-                        <td>Senin</td>
-                        <td>6.93</td>
-                        <td><span class="harga-lime">+0.55</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>7.48</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>12 Okt 2025</td>
-                        <td>Minggu</td>
-                        <td>6.38</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>6.38</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>11 Okt 2025</td>
-                        <td>Sabtu</td>
-                        <td>6.38</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>6.38</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>10 Okt 2025</td>
-                        <td>Jumat</td>
-                        <td>6.38</td>
-                        <td><span class="harga-lime">+0.51</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>6.89</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>9 Okt 2025</td>
-                        <td>Kamis</td>
-                        <td>5.87</td>
-                        <td><span class="harga-lime">+0.47</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>6.34</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>8 Okt 2025</td>
-                        <td>Rabu</td>
-                        <td>5.40</td>
-                        <td><span class="harga-lime">+0.43</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>5.83</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>7 Okt 2025</td>
-                        <td>Selasa</td>
-                        <td>4.97</td>
-                        <td><span class="harga-lime">+0.40</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>5.37</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>6 Okt 2025</td>
-                        <td>Senin</td>
-                        <td>4.57</td>
-                        <td><span class="harga-lime">+0.37</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>4.94</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>5 Okt 2025</td>
-                        <td>Minggu</td>
-                        <td>4.21</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>4.21</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>4 Okt 2025</td>
-                        <td>Sabtu</td>
-                        <td>4.21</td>
-                        <td><span class="harga-lime zero-percentage">+0.00</span></td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                        <td>4.21</td>
-                        <td><span class="harga-lime zero-percentage">0.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>3 Okt 2025</td>
-                        <td>Jumat</td>
-                        <td>4.21</td>
-                        <td><span class="harga-lime">+0.34</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>4.55</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>2 Okt 2025</td>
-                        <td>Kamis</td>
-                        <td>3.87</td>
-                        <td><span class="harga-lime">+0.31</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>4.18</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>1 Okt 2025</td>
-                        <td>Rabu</td>
-                        <td>3.56</td>
-                        <td><span class="harga-lime">+0.28</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>3.84</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>30 Sep 2025</td>
-                        <td>Selasa</td>
-                        <td>3.28</td>
-                        <td><span class="harga-lime">+0.26</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>3.54</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
-                    <tr>
-                        <td>29 Sep 2025</td>
-                        <td>Senin</td>
-                        <td>3.03</td>
-                        <td><span class="harga-lime">+0.24</span></td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                        <td>3.27</td>
-                        <td><span class="harga-lime percentage">8.0%</span></td>
-                    </tr>
+                <tbody id="tableBody">
+                    <!-- Data akan diisi secara dinamis oleh JavaScript -->
                 </tbody>
             </table>
         </div>
@@ -1053,40 +341,64 @@
     </div>
 
     <script>
-        // Toggle Tema Gelap/Terang
-        const themeToggle = document.getElementById('themeToggle');
-        themeToggle.addEventListener('click', () => {
-            document.body.classList.toggle('light-mode');
-            themeToggle.textContent = document.body.classList.contains('light-mode') ? 'Mode Gelap' : 'Mode Terang';
-        });
+        // Inisialisasi data awal
+        let investmentData = [
+            {
+                date: '2025-09-29',
+                day: 'Senin',
+                balance: 3.03,
+                change: 0.24,
+                percentage: 8.0,
+                projectedBalance: 3.27,
+                projectedPercentage: 8.0
+            }
+            // Tambahkan data lain seperti di tabel asli jika diperlukan
+        ];
 
-        // Grafik Chart.js untuk tren saldo
+        // Fungsi untuk mengambil nama hari dari tanggal
+        function getDayName(dateString) {
+            const date = new Date(dateString);
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            return days[date.getDay()];
+        }
+
+        // Fungsi untuk format tanggal ke DD MMM YYYY
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+            return `${date.getDate()} ${months[date.getMonth()]} ${date.getFullYear()}`;
+        }
+
+        // Fungsi untuk memperbarui tabel
+        function updateTable() {
+            const tableBody = document.getElementById('tableBody');
+            tableBody.innerHTML = '';
+            investmentData.sort((a, b) => new Date(b.date) - new Date(a.date)); // Urutkan dari terbaru
+            investmentData.forEach((data, index) => {
+                const row = document.createElement('tr');
+                row.style.animationDelay = `${index * 0.1}s`;
+                row.innerHTML = `
+                    <td>${formatDate(data.date)}</td>
+                    <td>${data.day}</td>
+                    <td>${data.balance.toFixed(2)}</td>
+                    <td><span class="${data.change > 0 ? 'harga-lime' : 'harga-lime zero-percentage'}">+${data.change.toFixed(2)}</span></td>
+                    <td><span class="${data.percentage > 0 ? 'harga-lime percentage' : 'harga-lime zero-percentage'}">${data.percentage.toFixed(1)}%</span></td>
+                    <td>${data.projectedBalance.toFixed(2)}</td>
+                    <td><span class="${data.projectedPercentage > 0 ? 'harga-lime percentage' : 'harga-lime zero-percentage'}">${data.projectedPercentage.toFixed(1)}%</span></td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // Inisialisasi grafik
         const ctx = document.getElementById('priceChart').getContext('2d');
-        const priceChart = new Chart(ctx, {
+        let priceChart = new Chart(ctx, {
             type: 'line',
             data: {
-                labels: [
-                    '29 Sep', '30 Sep', '1 Okt', '2 Okt', '3 Okt', '4 Okt', '5 Okt', '6 Okt', '7 Okt', '8 Okt',
-                    '9 Okt', '10 Okt', '11 Okt', '12 Okt', '13 Okt', '14 Okt', '15 Okt', '16 Okt', '17 Okt', '18 Okt',
-                    '19 Okt', '20 Okt', '21 Okt', '22 Okt', '23 Okt', '24 Okt', '25 Okt', '26 Okt', '27 Okt', '28 Okt',
-                    '29 Okt', '30 Okt', '31 Okt', '1 Nov', '2 Nov', '3 Nov', '4 Nov', '5 Nov', '6 Nov', '7 Nov',
-                    '8 Nov', '9 Nov', '10 Nov', '11 Nov', '12 Nov', '13 Nov', '14 Nov', '15 Nov', '16 Nov', '17 Nov',
-                    '18 Nov', '19 Nov', '20 Nov', '21 Nov', '22 Nov', '23 Nov', '24 Nov', '25 Nov', '26 Nov', '27 Nov',
-                    '28 Nov', '29 Nov', '30 Nov', '1 Des', '2 Des', '3 Des', '4 Des', '5 Des', '6 Des', '7 Des',
-                    '8 Des', '9 Des', '10 Des', '11 Des', '12 Des', '13 Des', '14 Des', '15 Des', '16 Des', '17 Des',
-                    '18 Des', '19 Des', '20 Des', '21 Des', '22 Des'
-                ],
+                labels: [],
                 datasets: [{
                     label: 'Saldo ($)',
-                    data: [
-                        3.03, 3.28, 3.56, 3.87, 4.21, 4.21, 4.21, 4.57, 4.97, 5.40, 5.87, 6.38, 6.38, 6.38, 6.93,
-                        7.54, 8.19, 8.90, 9.67, 9.67, 9.67, 10.51, 11.42, 12.41, 13.49, 14.66, 14.66, 14.66, 15.93,
-                        17.31, 18.82, 20.46, 22.24, 22.24, 22.24, 24.17, 26.27, 28.55, 31.03, 33.73, 33.73, 33.73,
-                        36.67, 39.86, 43.33, 47.10, 51.20, 51.20, 51.20, 55.65, 60.49, 65.75, 71.47, 77.69, 77.69,
-                        77.69, 84.45, 91.79, 99.77, 108.45, 117.88, 117.88, 117.88, 128.13, 139.27, 151.38, 164.54,
-                        178.85, 178.85, 178.85, 194.35, 211.25, 229.62, 249.59, 271.29, 271.29, 271.29, 294.98, 320.63,
-                        348.51, 378.82, 411.76, 411.76, 411.76, 447.57
-                    ],
+                    data: [],
                     borderColor: '#00ff00',
                     backgroundColor: 'rgba(0, 255, 0, 0.2)',
                     fill: true,
@@ -1097,7 +409,7 @@
                 responsive: true,
                 plugins: {
                     legend: { display: true, labels: { color: '#fff' } },
-                    title: { display: true, text: 'Tren Saldo 29 Sep - 22 Des 2025', color: '#fff', font: { size: 18 } }
+                    title: { display: true, text: 'Tren Saldo', color: '#fff', font: { size: 18 } }
                 },
                 scales: {
                     x: { ticks: { color: '#fff' } },
@@ -1105,6 +417,65 @@
                 }
             }
         });
+
+        // Fungsi untuk memperbarui grafik
+        function updateChart() {
+            const labels = investmentData.sort((a, b) => new Date(a.date) - new Date(b.date)).map(data => formatDate(data.date));
+            const balances = investmentData.sort((a, b) => new Date(a.date) - new Date(b.date)).map(data => data.balance);
+            priceChart.data.labels = labels;
+            priceChart.data.datasets[0].data = balances;
+            priceChart.options.plugins.title.text = `Tren Saldo ${labels[0]} - ${labels[labels.length - 1]}`;
+            priceChart.update();
+        }
+
+        // Event listener untuk tombol tambah saldo
+        document.getElementById('addBalance').addEventListener('click', () => {
+            const inputDate = document.getElementById('inputDate').value;
+            const initialBalance = parseFloat(document.getElementById('initialBalance').value);
+            const profitPercentage = parseFloat(document.getElementById('profitPercentage').value);
+
+            if (inputDate && !isNaN(initialBalance) && !isNaN(profitPercentage)) {
+                const profit = initialBalance * (profitPercentage / 100);
+                const totalBalance = initialBalance + profit;
+                const projectedBalance = totalBalance * (1 + profitPercentage / 100);
+
+                const newData = {
+                    date: inputDate,
+                    day: getDayName(inputDate),
+                    balance: totalBalance,
+                    change: profit,
+                    percentage: profitPercentage,
+                    projectedBalance: projectedBalance,
+                    projectedPercentage: profitPercentage
+                };
+
+                // Tambahkan data baru dan hapus data duplikat untuk tanggal yang sama
+                investmentData = investmentData.filter(data => data.date !== inputDate);
+                investmentData.push(newData);
+
+                // Perbarui tabel dan grafik
+                updateTable();
+                updateChart();
+
+                // Reset formulir
+                document.getElementById('inputDate').value = '';
+                document.getElementById('initialBalance').value = '';
+                document.getElementById('profitPercentage').value = '';
+            } else {
+                alert('Mohon isi semua kolom dengan benar!');
+            }
+        });
+
+        // Toggle Tema Gelap/Terang
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            themeToggle.textContent = document.body.classList.contains('light-mode') ? 'Mode Gelap' : 'Mode Terang';
+        });
+
+        // Inisialisasi tabel dan grafik saat halaman dimuat
+        updateTable();
+        updateChart();
     </script>
 </body>
 </html>
