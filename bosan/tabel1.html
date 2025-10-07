@@ -8,7 +8,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <style>
-        /* Gaya CSS tetap sama seperti kode asli Anda */
+        /* Gaya CSS tetap sama seperti sebelumnya */
         * {
             margin: 0;
             padding: 0;
@@ -307,8 +307,8 @@
             <input type="date" id="inputDate" required>
             <label for="initialBalance">Modal Awal ($):</label>
             <input type="number" id="initialBalance" step="0.01" min="0" required>
-            <label for="profitPercentage">Persentase Keuntungan (%):</label>
-            <input type="number" id="profitPercentage" step="0.01" min="0" required>
+            <label for="profit">Keuntungan ($):</label>
+            <input type="number" id="profit" step="0.01" min="0" required>
             <button id="addBalance">Tambah Saldo</button>
         </div>
 
@@ -322,6 +322,8 @@
                     <tr>
                         <th>Tanggal</th>
                         <th>Hari</th>
+                        <th>Modal Awal ($)</th>
+                        <th>Keuntungan ($)</th>
                         <th>Saldo ($)</th>
                         <th>Perubahan ($)</th>
                         <th>Persentase</th>
@@ -342,18 +344,7 @@
 
     <script>
         // Inisialisasi data awal
-        let investmentData = [
-            {
-                date: '2025-09-29',
-                day: 'Senin',
-                balance: 3.03,
-                change: 0.24,
-                percentage: 8.0,
-                projectedBalance: 3.27,
-                projectedPercentage: 8.0
-            }
-            // Tambahkan data lain seperti di tabel asli jika diperlukan
-        ];
+        let investmentData = [];
 
         // Fungsi untuk mengambil nama hari dari tanggal
         function getDayName(dateString) {
@@ -380,6 +371,8 @@
                 row.innerHTML = `
                     <td>${formatDate(data.date)}</td>
                     <td>${data.day}</td>
+                    <td>${data.initialBalance.toFixed(2)}</td>
+                    <td><span class="${data.profit > 0 ? 'harga-lime' : 'harga-lime zero-percentage'}">+${data.profit.toFixed(2)}</span></td>
                     <td>${data.balance.toFixed(2)}</td>
                     <td><span class="${data.change > 0 ? 'harga-lime' : 'harga-lime zero-percentage'}">+${data.change.toFixed(2)}</span></td>
                     <td><span class="${data.percentage > 0 ? 'harga-lime percentage' : 'harga-lime zero-percentage'}">${data.percentage.toFixed(1)}%</span></td>
@@ -424,7 +417,7 @@
             const balances = investmentData.sort((a, b) => new Date(a.date) - new Date(b.date)).map(data => data.balance);
             priceChart.data.labels = labels;
             priceChart.data.datasets[0].data = balances;
-            priceChart.options.plugins.title.text = `Tren Saldo ${labels[0]} - ${labels[labels.length - 1]}`;
+            priceChart.options.plugins.title.text = labels.length > 0 ? `Tren Saldo ${labels[0]} - ${labels[labels.length - 1]}` : 'Tren Saldo';
             priceChart.update();
         }
 
@@ -432,21 +425,24 @@
         document.getElementById('addBalance').addEventListener('click', () => {
             const inputDate = document.getElementById('inputDate').value;
             const initialBalance = parseFloat(document.getElementById('initialBalance').value);
-            const profitPercentage = parseFloat(document.getElementById('profitPercentage').value);
+            const profit = parseFloat(document.getElementById('profit').value);
 
-            if (inputDate && !isNaN(initialBalance) && !isNaN(profitPercentage)) {
-                const profit = initialBalance * (profitPercentage / 100);
+            if (inputDate && !isNaN(initialBalance) && !isNaN(profit)) {
+                const percentage = (profit / initialBalance) * 100; // Hitung persentase otomatis
                 const totalBalance = initialBalance + profit;
-                const projectedBalance = totalBalance * (1 + profitPercentage / 100);
+                const projectedBalance = totalBalance * (1 + percentage / 100);
+                const projectedPercentage = percentage;
 
                 const newData = {
                     date: inputDate,
                     day: getDayName(inputDate),
+                    initialBalance: initialBalance,
+                    profit: profit,
                     balance: totalBalance,
-                    change: profit,
-                    percentage: profitPercentage,
+                    change: profit, // Perubahan sama dengan keuntungan
+                    percentage: percentage,
                     projectedBalance: projectedBalance,
-                    projectedPercentage: profitPercentage
+                    projectedPercentage: projectedPercentage
                 };
 
                 // Tambahkan data baru dan hapus data duplikat untuk tanggal yang sama
@@ -460,7 +456,7 @@
                 // Reset formulir
                 document.getElementById('inputDate').value = '';
                 document.getElementById('initialBalance').value = '';
-                document.getElementById('profitPercentage').value = '';
+                document.getElementById('profit').value = '';
             } else {
                 alert('Mohon isi semua kolom dengan benar!');
             }
