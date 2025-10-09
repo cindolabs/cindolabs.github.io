@@ -1,59 +1,26 @@
-<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Rotating Stars">
-  <!-- Latar belakang putih -->
-  <rect x="0" y="0" width="1024" height="1024" fill="#fff"/>
-  
-  <!-- Grup bintang dengan stroke hitam -->
-  <g stroke="#000" stroke-width="10.24">
-    <!-- Bintang 1 (Merah, rotasi penuh dalam 10 detik) -->
-    <polygon
-      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
-      fill="#ff0000">
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="0 512 512"
-        to="360 512 512"
-        dur="180s"
-        repeatCount="indefinite"/>
-    </polygon>
-    <!-- Bintang 2 (Biru, rotasi penuh dalam 12 detik) -->
-    <polygon
-      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
-      fill="#0000ff"
-      transform="rotate(22.5 512 512)">
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="22.5 512 512"
-        to="382.5 512 512"
-        dur="120s"
-        repeatCount="indefinite"/>
-    </polygon>
-    <!-- Bintang 3 (Hijau, rotasi penuh dalam 14 detik) -->
-    <polygon
-      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
-      fill="#00ff00"
-      transform="rotate(45 512 512)">
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="45 512 512"
-        to="405 512 512"
-        dur="90s"
-        repeatCount="indefinite"/>
-    </polygon>
-    <!-- Bintang 4 (Kuning, rotasi penuh dalam 16 detik) -->
-    <polygon
-      points="512,0 615.766,422.102 1024,512 615.766,601.898 512,1024 408.234,601.898 0,512 408.234,422.102"
-      fill="#ffff00"
-      transform="rotate(67.5 512 512)">
-      <animateTransform
-        attributeName="transform"
-        type="rotate"
-        from="67.5 512 512"
-        to="427.5 512 512"
-        dur="60s"
-        repeatCount="indefinite"/>
-    </polygon>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Modern Meme Coin Logo">
+  <defs>
+    <!-- Hapus gradien yang tidak diperlukan, ganti dengan warna solid -->
+  </defs>
+
+  <!-- Background Circle -->
+  <circle cx="512" cy="512" r="480" fill="#0052FF" stroke="#FFFFFF" stroke-width="10"/>
+
+  <!-- Stylized Letter H (Wider, Golden Ratio proportions: ~809x500) -->
+  <g stroke="#FFFFFF" stroke-width="40" fill="none">
+    <!-- Left Vertical Bar -->
+    <rect x="262" y="262" width="150" height="500" rx="25"/>
+    <!-- Right Vertical Bar -->
+    <rect x="612" y="262" width="150" height="500" rx="25"/>
+    <!-- Crossbar (Larger) -->
+    <rect x="262" y="472" width="500" height="80" rx="25"/>
   </g>
+
+  <!-- Square Overlay (Larger, Centered, rotated 45 degrees) -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="15" opacity="0.5" transform="translate(512, 512) rotate(45) translate(-512, -512)">
+    <rect x="442" y="442" width="140" height="140" rx="15"/>
+  </g>
+
+  <!-- Central Glow (diubah ke putih dengan opacity rendah) -->
+  <circle cx="512" cy="512" r="60" fill="#FFFFFF" fill-opacity="0.25"/>
 </svg>
