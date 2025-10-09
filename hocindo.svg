@@ -13,7 +13,7 @@
         type="rotate"
         from="0 512 512"
         to="360 512 512"
-        dur="10s"
+        dur="180s"
         repeatCount="indefinite"/>
     </polygon>
     <!-- Bintang 2 (Biru, rotasi penuh dalam 12 detik) -->
@@ -26,7 +26,7 @@
         type="rotate"
         from="22.5 512 512"
         to="382.5 512 512"
-        dur="12s"
+        dur="120s"
         repeatCount="indefinite"/>
     </polygon>
     <!-- Bintang 3 (Hijau, rotasi penuh dalam 14 detik) -->
@@ -39,7 +39,7 @@
         type="rotate"
         from="45 512 512"
         to="405 512 512"
-        dur="14s"
+        dur="90s"
         repeatCount="indefinite"/>
     </polygon>
     <!-- Bintang 4 (Kuning, rotasi penuh dalam 16 detik) -->
@@ -52,7 +52,7 @@
         type="rotate"
         from="67.5 512 512"
         to="427.5 512 512"
-        dur="16s"
+        dur="60s"
         repeatCount="indefinite"/>
     </polygon>
   </g>
