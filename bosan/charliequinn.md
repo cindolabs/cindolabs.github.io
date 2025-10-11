@@ -18,7 +18,7 @@
 README ini menggabungkan kecerdasan **Charlie Munger**, ahli model mental, dengan energi transformasi **Harley Quinn**, antihero ikonik DC Comics. Filosofi mereka menginspirasi pendekatan unik dalam pengambilan keputusan, ketahanan, dan hidup berani.
 
 ### 🧠 Charlie Munger: Arsitek Model Mental
-Charlie Munger, wakil ketua Berkshire Hathaway, mengajarkan cara menavigasi kompleksitas hidup melalui **jaringan model mental**—kerangka berpikir dari psikologi, ekonomi, fisika, dan lainnya untuk keputusan yang lebih cerdas. Ia menekankan kejelasan, disiplin, dan menghindari kesalahan dengan pendekatan multidisiplin.
+Charlie Munger, wakil ketua Berkshire Hathaway, mengajarkan cara menavigasi kompleksitas hidup melalui **jaringan model mental**—kerangka berpikir dari psikologi, ekonomi, fisika, dan lainnya untuk keputusan yang lebih cerdas. Ia menekankan kejelasan, disiplin, dan menghindari kesalahan dengan pendekatan multidisiplin. Salah satu prinsip kuncinya adalah **inversi**: Selalu pikirkan masalah dari kebalikannya. Misalnya, alih-alih bertanya "Bagaimana saya sukses?", tanyakan "Bagaimana saya bisa gagal?" untuk menghindari jebakan.
 
 > **Kata Bijak Munger**: *"Untuk mendapatkan yang kamu inginkan, kamu harus layak mendapatkannya. Dunia belum cukup gila untuk memberi penghargaan pada banyak orang yang tidak layak."*
 
@@ -40,7 +40,9 @@ Menggabungkan disiplin Munger dan keberanian Harley menciptakan kerangka kuat un
 | **Batas Aman** | Sisakan ruang untuk kesalahan demi ketahanan. | Rencana kacau Harley selalu punya cadangan, seperti palu andalannya. |
 | **Aturan 80/20** | Prioritaskan 20% yang menghasilkan 80% hasil. | Harley fokus pada langkah berdampak, seperti bergabung dengan *Birds of Prey* untuk sukses maksimal. |
 
-### 🎯 Cara Menerapkan Perpaduan Ini
+---
+
+## 🎯 Cara Menerapkan Perpaduan Ini
 1. **Berpikir seperti Munger**: Gunakan model mental dari berbagai disiplin (psikologi, ekonomi, fisika). Contoh: Terapkan **pemikiran prinsip pertama** untuk memecah masalah hingga ke intinya.
 2. **Bertindak seperti Harley**: Rangkul keberanian dan adaptasi. Seperti Harley yang lepas dari Joker, ambil risiko untuk mendefinisikan jalanmu.
 3. **Gabungkan Keduanya**: Gunakan **inversi** Munger untuk hindari jebakan (misalnya, hubungan toksik) dan ketahanan Harley untuk bangkit lebih kuat.
@@ -51,11 +53,13 @@ Menggabungkan disiplin Munger dan keberanian Harley menciptakan kerangka kuat un
 ---
 
 ## 🛣️ Peta Jalan Menuju Kebijaksanaan dan Pemberontakan
+Berikut adalah langkah-langkah untuk mengadopsi perpaduan kebijaksanaan Munger dan pemberontakan Harley, diinspirasi oleh prinsip inti mereka:
+
 | Tahap | Fokus | Rencana Aksi |
 |-------|-------|-------------|
-| **Pelajari Dasar-Dasar** | Bangun Jaringan Mental | Baca *Poor Charlie’s Almanack* untuk model mental Munger dan pelajari evolusi Harley di *Batman: The Animated Series* atau *Birds of Prey*. |
-| **Terapkan dengan Keberanian** | Uji dan Adaptasi | Gunakan **inversi** Munger untuk hindari kesalahan dan salurkan keberanian Harley untuk ambil risiko terukur. |
-| **Kuasai Jalanmu** | Perbaiki dan Berontak | Gabungkan disiplin Munger dan pemberontakan Harley untuk hidup penuh tujuan, dampak, dan kebebasan. |
+| **Temukan Kebijaksanaan** | Kuasai model mental Munger | Pelajari **inversi** dari *Poor Charlie’s Almanack* untuk hindari kegagalan, seperti Harley menghindari jebakan Joker. |
+| **Bangun Keberanian** | Salurkan semangat Harley | Terapkan **lingkar kompetensi** untuk fokus pada kekuatanmu, seperti Harley menggunakan akrobatik untuk menang di *Birds of Prey*. |
+| **Wujudkan Transformasi** | Gabungkan disiplin dan pemberontakan | Gunakan **aturan 80/20** untuk prioritaskan langkah berdampak, seperti Harley yang memilih kebebasan dengan Poison Ivy. |
 
 ---
 
