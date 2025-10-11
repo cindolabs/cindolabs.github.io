@@ -65,7 +65,8 @@ Berikut adalah langkah-langkah untuk mengadopsi perpaduan kebijaksanaan Munger d
 
 ## 📬 Terhubung dengan Komunitas
 Bergabunglah di Telegram untuk berbagi perpaduan kebijaksanaan dan pemberontakanmu!  
-📱 Telegram: [@hocindo](https://t.me/hocindo)
+📱 Telegram: [@hocindo](https://t.me/hocindo)  
+🌐 Kunjungi: [Charlie Quinn](https://hocindo.github.io/bosan/charliequinn)
 
 > **Kebijaksanaan Terakhir**: *"Hal terbaik adalah menjaga mulutmu tetap tertutup dan matamu terbuka,"* kata Munger. Harley menambahkan, *"Dan saat waktunya bersinar, buat itu keras dan penuh warna!"*
 
