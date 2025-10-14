@@ -37,6 +37,9 @@ Grafik wayang ? Dalange adalah market maker, kita wayang yang di ombang ambing m
 Hari ini Rabu Legi 1 Oktober 2025 grayang di ganti dengan GIT (Grafik Tabrani)
 Grafik Tabrani (Gerakan roda angka fluktuaktif instrumen keuangan Tinggi atas bawah rendah awal nilai inti)
 
+Selasa 14 Oktober 2025
+Jika Anda ingin trading dengan gaya ngebom dan full margin, salah satu ilmu dasar yang harus di pahami adalah tentang teknik Fibonacci dan Metabrani
+
 
 
 
