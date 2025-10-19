@@ -1,0 +1,40 @@
+<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background (for visibility, optional) -->
+  <rect x="0" y="0" width="300" height="200" fill="none"/>
+
+  <!-- Definitions for gradient and shadow -->
+  <defs>
+    <linearGradient id="goldGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:1"/>
+      <stop offset="100%" style="stop-color:#DAA520;stop-opacity:1"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Infinity Coin Icon (Shifted slightly left) -->
+  <g transform="translate(80, 40) scale(0.8)" filter="url(#shadow)">
+    <!-- Infinity loop forming a coin -->
+    <path d="M60 60 A30 30 0 0 1 120 60 A30 30 0 0 1 60 60 M120 60 A30 30 0 0 1 60 60"
+          fill="none" stroke="url(#goldGradient)" stroke-width="12" stroke-linecap="round"/>
+    <!-- Central "C" inside the coin -->
+    <path d="M90 30 A30 30 0 0 1 90 90 A30 30 0 0 1 60 60" 
+          fill="none" stroke="#003366" stroke-width="8" stroke-linecap="round"/>
+    <!-- Blockchain nodes (small circles) -->
+    <circle cx="60" cy="60" r="5" fill="#A9A9A9"/>
+    <circle cx="120" cy="60" r="5" fill="#A9A9A9"/>
+    <circle cx="90" cy="30" r="5" fill="#A9A9A9"/>
+  </g>
+
+  <!-- Text: Cindo Labs -->
+  <text x="150" y="160" text-anchor="middle" font-family="Roboto, sans-serif" 
+        font-size="28" font-weight="700" fill="#003366">Cindo</text>
+  <text x="150" y="185" text-anchor="middle" font-family="Roboto, sans-serif" 
+        font-size="20" font-weight="400" fill="#003366">Labs</text>
+</svg>
