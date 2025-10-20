@@ -1,30 +1,32 @@
-<svg width="480" height="280" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Crypto Fintech Logo">
-  <!-- Transparent Background -->
-  <rect x="0" y="0" width="480" height="280" fill="none"/>
-
-  <!-- Definitions for shadow -->
+<svg width="360" height="220" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Fintech AI Logo">
   <defs>
-    <!-- Shadow Filter -->
-    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
-      <feOffset dx="2" dy="2" result="offsetblur"/>
-      <feComponentTransfer>
-        <feFuncA type="linear" slope="0.3"/>
-      </feComponentTransfer>
-      <feMerge>
-        <feMergeNode/>
-        <feMergeNode in="SourceGraphic"/>
-      </feMerge>
-    </filter>
+    <linearGradient id="neuralGrad" x1="0" y1="0" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#14FFEC"/>
+      <stop offset="100%" stop-color="#0D7377"/>
+    </linearGradient>
   </defs>
 
-  <!-- Teks utama -->
-  <text x="80" y="140" font-family="Inter, sans-serif" font-size="42" font-weight="700" fill="#00A3AD" filter="url(#shadow)">
+  <!-- Neural network lines -->
+  <g stroke="url(#neuralGrad)" stroke-width="1.5" opacity="0.8" fill="none">
+    <path d="M60 90 Q80 60, 110 90 T160 90" />
+    <path d="M60 130 Q80 160, 110 130 T160 130" />
+  </g>
+
+  <!-- Nodes -->
+  <circle cx="60" cy="90" r="5" fill="url(#neuralGrad)">
+    <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="160" cy="90" r="5" fill="url(#neuralGrad)"/>
+  <circle cx="110" cy="110" r="4" fill="url(#neuralGrad)">
+    <animate attributeName="r" values="4;6;4" dur="1.5s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Text -->
+  <text x="190" y="115" font-family="Poppins, Montserrat, sans-serif"
+        font-size="32" font-weight="700" fill="url(#neuralGrad)">
     Cindo Labs
   </text>
-
-  <!-- Subjudul -->
-  <text x="80" y="170" font-family="Inter, sans-serif" font-size="14" font-weight="400" fill="#00A3AD" opacity="0.9">
-    AI • Blockchain • Fintech Innovation
+  <text x="190" y="138" font-family="Poppins, sans-serif" font-size="13" fill="#14FFEC" opacity="0.8">
+    AI • Blockchain • Fintech
   </text>
 </svg>
