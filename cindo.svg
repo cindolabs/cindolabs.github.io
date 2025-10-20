@@ -41,8 +41,8 @@
     </filter>
   </defs>
 
-  <!-- Infinity Coin Icon -->
-  <g transform="translate(60, 30) scale(0.85)" filter="url(#glow)">
+  <!-- Infinity Coin Icon (Adjusted for Golden Ratio) -->
+  <g transform="translate(40, 30) scale(0.85)" filter="url(#glow)">
     <!-- Infinity Loop (Base Layer) -->
     <path d="M60 60 A30 30 0 0 1 120 60 A30 30 0 0 1 60 60 M120 60 A30 30 0 0 1 60 60"
           fill="none" stroke="url(#metallicGradient)" stroke-width="14" stroke-linecap="round" filter="url(#shadow)"/>
@@ -61,7 +61,7 @@
     <circle cx="90" cy="30" r="10" fill="none" stroke="url(#glowGradient)" stroke-width="4"/>
   </g>
 
-  <!-- Text: Cindo Labs (Aligned Horizontally, Adjusted to Avoid Overlap) -->
-  <text x="130" y="150" text-anchor="start" font-family="Montserrat, sans-serif" 
+  <!-- Text: Cindo Labs (Shifted Left, Aligned with Golden Ratio) -->
+  <text x="90" y="150" text-anchor="start" font-family="Montserrat, sans-serif" 
         font-size="32" font-weight="700" fill="#00A3AD">Cindo Labs</text>
 </svg>
