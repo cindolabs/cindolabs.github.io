@@ -61,9 +61,7 @@
     <circle cx="90" cy="30" r="10" fill="none" stroke="url(#glowGradient)" stroke-width="4"/>
   </g>
 
-  <!-- Text: Cindo Labs -->
-  <text x="220" y="140" text-anchor="middle" font-family="Montserrat, sans-serif" 
-        font-size="32" font-weight="700" fill="#00A3AD">Cindo</text>
-  <text x="220" y="170" text-anchor="middle" font-family="Montserrat, sans-serif" 
-        font-size="22" font-weight="400" fill="#333333">Labs</text>
+  <!-- Text: Cindo Labs (Aligned Horizontally, Adjusted to Avoid Overlap) -->
+  <text x="130" y="150" text-anchor="start" font-family="Montserrat, sans-serif" 
+        font-size="32" font-weight="700" fill="#00A3AD">Cindo Labs</text>
 </svg>
