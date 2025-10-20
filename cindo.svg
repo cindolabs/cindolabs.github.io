@@ -1,32 +1,41 @@
-<svg width="360" height="220" viewBox="0 0 360 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Fintech AI Logo">
+<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Fintech AI Logo Vertical Neural Lines - More Left">
   <defs>
-    <linearGradient id="neuralGrad" x1="0" y1="0" x2="100%" y2="100%">
+    <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#14FFEC"/>
       <stop offset="100%" stop-color="#0D7377"/>
     </linearGradient>
   </defs>
 
-  <!-- Neural network lines -->
-  <g stroke="url(#neuralGrad)" stroke-width="1.5" opacity="0.8" fill="none">
-    <path d="M60 90 Q80 60, 110 90 T160 90" />
-    <path d="M60 130 Q80 160, 110 130 T160 130" />
+  <!-- Neural network bergelombang vertikal -->
+  <g stroke="url(#neuralGrad)" stroke-width="1.6" opacity="0.8" fill="none" transform="translate(10, 20)">
+    <!-- Garis kiri -->
+    <path d="M110 40 Q80 70, 110 100 T110 160" />
+    <!-- Garis kanan -->
+    <path d="M150 40 Q180 70, 150 100 T150 160" />
   </g>
 
-  <!-- Nodes -->
-  <circle cx="60" cy="90" r="5" fill="url(#neuralGrad)">
-    <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
-  </circle>
-  <circle cx="160" cy="90" r="5" fill="url(#neuralGrad)"/>
-  <circle cx="110" cy="110" r="4" fill="url(#neuralGrad)">
-    <animate attributeName="r" values="4;6;4" dur="1.5s" repeatCount="indefinite"/>
-  </circle>
+  <!-- Node vertikal dengan animasi lembut -->
+  <g transform="translate(10, 20)">
+    <circle cx="110" cy="40" r="5" fill="url(#neuralGrad)">
+      <animate attributeName="r" values="5;7;5" dur="2s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="110" cy="160" r="5" fill="url(#neuralGrad)"/>
+    <circle cx="150" cy="40" r="5" fill="url(#neuralGrad)"/>
+    <circle cx="150" cy="160" r="5" fill="url(#neuralGrad)"/>
+    <circle cx="130" cy="100" r="4" fill="url(#neuralGrad)">
+      <animate attributeName="r" values="4;6;4" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
+  </g>
 
-  <!-- Text -->
-  <text x="190" y="115" font-family="Poppins, Montserrat, sans-serif"
-        font-size="32" font-weight="700" fill="url(#neuralGrad)">
+  <!-- Teks utama (digeser ke kiri) -->
+  <text x="160" y="125" font-family="Poppins, Montserrat, sans-serif"
+        font-size="40" font-weight="700" fill="url(#neuralGrad)">
     Cindo Labs
   </text>
-  <text x="190" y="138" font-family="Poppins, sans-serif" font-size="13" fill="#14FFEC" opacity="0.8">
+
+  <!-- Subjudul -->
+  <text x="160" y="152" font-family="Poppins, sans-serif"
+        font-size="14" fill="#14FFEC" opacity="0.85">
     AI • Blockchain • Fintech
   </text>
 </svg>
