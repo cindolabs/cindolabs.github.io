@@ -1,4 +1,4 @@
-<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Fintech AI Logo - Balanced Pulsating Dots">
+<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Fintech AI Logo - Minimal Version">
   <defs>
     <!-- Gradien futuristik -->
     <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -38,22 +38,16 @@
     Cindo Labs
   </text>
 
-  <!-- Subjudul dengan titik sejajar sempurna -->
-  <g font-family="Poppins, sans-serif" font-size="18" fill="#14FFEC" opacity="0.9" transform="translate(15, 0)">
-    <text x="140" y="156">AI</text>
-
-    <!-- Titik pertama (disejajarkan dengan baseline teks) -->
-    <circle cx="173" cy="152.5" r="3.5" fill="#14FFEC">
-      <animate attributeName="r" values="3.5;5.5;3.5" dur="1.5s" repeatCount="indefinite"/>
+  <!-- Hanya titik berdenyut di bawah teks -->
+  <g fill="#14FFEC" opacity="0.9" transform="translate(15, 0)">
+    <circle cx="180" cy="155" r="3">
+      <animate attributeName="r" values="3;5;3" dur="1.4s" repeatCount="indefinite"/>
     </circle>
-
-    <text x="187" y="156">Blockchain</text>
-
-    <!-- Titik kedua sejajar -->
-    <circle cx="285" cy="152.5" r="3.5" fill="#14FFEC">
-      <animate attributeName="r" values="3.5;5.5;3.5" dur="1.8s" repeatCount="indefinite"/>
+    <circle cx="200" cy="155" r="3">
+      <animate attributeName="r" values="3;5;3" dur="1.7s" repeatCount="indefinite"/>
     </circle>
-
-    <text x="298" y="156">Fintech</text>
+    <circle cx="220" cy="155" r="3">
+      <animate attributeName="r" values="3;5;3" dur="1.5s" repeatCount="indefinite"/>
+    </circle>
   </g>
 </svg>
