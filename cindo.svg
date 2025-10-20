@@ -40,18 +40,18 @@
     Cindo Labs
   </text>
 
-  <!-- Subjudul dengan titik berdenyut -->
-  <g font-family="Poppins, sans-serif" font-size="14" fill="#14FFEC" opacity="0.85">
-    <text x="140" y="152">AI</text>
+  <!-- Subjudul dengan titik berdenyut (font-size diperbesar) -->
+  <g font-family="Poppins, sans-serif" font-size="16" fill="#14FFEC" opacity="0.85">
+    <text x="145" y="152">AI</text>
     <!-- Titik pertama -->
-    <circle cx="165" cy="148" r="2.5" fill="#14FFEC">
+    <circle cx="172" cy="148" r="2.5" fill="#14FFEC">
       <animate attributeName="r" values="2.5;4;2.5" dur="1.5s" repeatCount="indefinite"/>
     </circle>
-    <text x="175" y="152">Blockchain</text>
+    <text x="182" y="152">Blockchain</text>
     <!-- Titik kedua -->
-    <circle cx="253" cy="148" r="2.5" fill="#14FFEC">
+    <circle cx="266" cy="148" r="2.5" fill="#14FFEC">
       <animate attributeName="r" values="2.5;4;2.5" dur="1.8s" repeatCount="indefinite"/>
     </circle>
-    <text x="263" y="152">Fintech</text>
+    <text x="276" y="152">Fintech</text>
   </g>
 </svg>
