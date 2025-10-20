@@ -1,4 +1,8 @@
 <svg width="480" height="280" viewBox="0 0 480 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Crypto Fintech Logo">
+  <!-- Transparent Background -->
+  <rect x="0" y="0" width="480" height="280" fill="none"/>
+
+  <!-- Definitions for gradient and glow -->
   <defs>
     <!-- Gradasi utama -->
     <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -6,7 +10,6 @@
       <stop offset="50%" stop-color="#00B3FF"/>
       <stop offset="100%" stop-color="#0070FF"/>
     </linearGradient>
-
     <!-- Efek cahaya lembut -->
     <filter id="glowBlur">
       <feGaussianBlur stdDeviation="8" result="blur"/>
@@ -15,53 +18,15 @@
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
-
-    <!-- Grid animasi -->
-    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M40 0 L0 0 0 40" fill="none" stroke="#0A1930" stroke-width="1"/>
-    </pattern>
   </defs>
 
-  <!-- Latar belakang dark mode -->
-  <rect width="480" height="280" fill="#020611"/>
-  <rect width="480" height="280" fill="url(#grid)" opacity="0.35"/>
-
-  <!-- Garis crypto data bergerak -->
-  <polyline id="pulse" points="60,180 100,160 130,200 160,140 200,190 240,160 280,180 320,150 360,190 400,170"
-    fill="none" stroke="url(#neonGrad)" stroke-width="2.5" filter="url(#glowBlur)">
-    <animate attributeName="points" dur="4s" repeatCount="indefinite"
-      values="
-      60,180 100,160 130,200 160,140 200,190 240,160 280,180 320,150 360,190 400,170;
-      60,170 100,190 130,160 160,180 200,150 240,200 280,170 320,190 360,160 400,180;
-      60,180 100,160 130,200 160,140 200,190 240,160 280,180 320,150 360,190 400,170"/>
-  </polyline>
-
-  <!-- Simbol koin digital -->
-  <circle cx="120" cy="110" r="45" fill="#081B2B" stroke="url(#neonGrad)" stroke-width="4" filter="url(#glowBlur)"/>
-  <text x="102" y="127" font-family="Orbitron, sans-serif" font-size="44" font-weight="700" fill="url(#neonGrad)">
-    ₿
-  </text>
-
   <!-- Teks utama -->
-  <text x="200" y="125" font-family="Poppins, Montserrat, sans-serif" font-size="40" font-weight="700" fill="url(#neonGrad)" filter="url(#glowBlur)">
+  <text x="90" y="140" font-family="Poppins, Montserrat, sans-serif" font-size="40" font-weight="700" fill="url(#neonGrad)" filter="url(#glowBlur)">
     Cindo Labs
   </text>
 
   <!-- Subjudul -->
-  <text x="200" y="155" font-family="Poppins, sans-serif" font-size="16" fill="#00FFF0" opacity="0.85">
+  <text x="90" y="170" font-family="Poppins, sans-serif" font-size="16" fill="#00FFF0" opacity="0.85">
     AI • Blockchain • Fintech Innovation
-  </text>
-
-  <!-- Efek kilau berjalan -->
-  <linearGradient id="shineGrad" x1="0" y1="0" x2="1" y2="0">
-    <stop offset="0%" stop-color="white" stop-opacity="0"/>
-    <stop offset="50%" stop-color="white" stop-opacity="0.5"/>
-    <stop offset="100%" stop-color="white" stop-opacity="0"/>
-    <animateTransform attributeName="gradientTransform"
-      type="translate" from="-1 0" to="1 0" dur="3.5s" repeatCount="indefinite"/>
-  </linearGradient>
-  <text x="200" y="125" font-family="Poppins, Montserrat, sans-serif"
-        font-size="40" font-weight="700" fill="url(#shineGrad)" opacity="0.8">
-    Cindo Labs
   </text>
 </svg>
