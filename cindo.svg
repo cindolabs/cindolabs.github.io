@@ -1,8 +1,23 @@
-<svg width="300" height="200" viewBox="0 0 300 200" xmlns="http://www.w3.org/2000/svg">
-  <!-- Transparent Background -->
-  <rect x="0" y="0" width="300" height="200" fill="none"/>
+<svg width="320" height="200" viewBox="0 0 320 200" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Logo">
+  <defs>
+    <linearGradient id="techGrad" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#14FFEC"/>
+      <stop offset="100%" stop-color="#0D7377"/>
+    </linearGradient>
+  </defs>
 
-  <!-- Text: Cindo Labs -->
-  <text x="90" y="150" text-anchor="start" font-family="Montserrat, sans-serif" 
-        font-size="32" font-weight="700" fill="#00A3AD">Cindo Labs</text>
+  <!-- Shapes (Network nodes) -->
+  <circle cx="80" cy="90" r="10" fill="url(#techGrad)">
+    <animate attributeName="r" values="10;14;10" dur="3s" repeatCount="indefinite"/>
+  </circle>
+  <circle cx="110" cy="120" r="6" fill="url(#techGrad)">
+    <animate attributeName="r" values="6;10;6" dur="2.5s" repeatCount="indefinite"/>
+  </circle>
+  <line x1="80" y1="90" x2="110" y2="120" stroke="url(#techGrad)" stroke-width="2"/>
+
+  <!-- Text -->
+  <text x="140" y="115" font-family="Rajdhani, Montserrat, sans-serif"
+        font-size="34" font-weight="700" fill="url(#techGrad)">
+    Cindo Labs
+  </text>
 </svg>
