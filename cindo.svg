@@ -2,31 +2,29 @@
   <!-- Transparent Background -->
   <rect x="0" y="0" width="480" height="280" fill="none"/>
 
-  <!-- Definitions for gradient and glow -->
+  <!-- Definitions for shadow -->
   <defs>
-    <!-- Gradasi utama -->
-    <linearGradient id="neonGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#00FFF0"/>
-      <stop offset="50%" stop-color="#00B3FF"/>
-      <stop offset="100%" stop-color="#0070FF"/>
-    </linearGradient>
-    <!-- Efek cahaya lembut -->
-    <filter id="glowBlur">
-      <feGaussianBlur stdDeviation="8" result="blur"/>
+    <!-- Shadow Filter -->
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dx="2" dy="2" result="offsetblur"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.3"/>
+      </feComponentTransfer>
       <feMerge>
-        <feMergeNode in="blur"/>
+        <feMergeNode/>
         <feMergeNode in="SourceGraphic"/>
       </feMerge>
     </filter>
   </defs>
 
   <!-- Teks utama -->
-  <text x="90" y="140" font-family="Poppins, Montserrat, sans-serif" font-size="40" font-weight="700" fill="url(#neonGrad)" filter="url(#glowBlur)">
+  <text x="80" y="140" font-family="Inter, sans-serif" font-size="42" font-weight="700" fill="#00A3AD" filter="url(#shadow)">
     Cindo Labs
   </text>
 
   <!-- Subjudul -->
-  <text x="90" y="170" font-family="Poppins, sans-serif" font-size="16" fill="#00FFF0" opacity="0.85">
+  <text x="80" y="170" font-family="Inter, sans-serif" font-size="14" font-weight="400" fill="#00A3AD" opacity="0.9">
     AI • Blockchain • Fintech Innovation
   </text>
 </svg>
