@@ -1,55 +1,20 @@
-<svg width="400" height="240" viewBox="0 0 400 240" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cindo Labs Fintech AI Logo - Pulsating Dots (Text Shifted Right)">
-  <defs>
-    <!-- Gradien futuristik -->
-    <linearGradient id="neuralGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#14FFEC"/>
-      <stop offset="100%" stop-color="#0D7377"/>
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Cindo Labs Logo">
+  <!-- Background Circle -->
+  <circle cx="512" cy="512" r="480" fill="#0052FF" stroke="#FFFFFF" stroke-width="10"/>
 
-  <!-- Garis neural vertikal -->
-  <g stroke="url(#neuralGrad)" stroke-width="1.6" opacity="0.8" fill="none" transform="translate(-20, 20)">
-    <path d="M90 40 Q60 70, 90 100 T90 160" />
-    <path d="M130 40 Q160 70, 130 100 T130 160" />
+  <!-- Stylized Leaf (Elongated and Elegant) -->
+  <g stroke="#FFFFFF" stroke-width="40" fill="none">
+    <!-- Leaf shape with elongated, narrow curves -->
+    <path d="M 512 262 C 612 262, 672 412, 612 512 C 672 612, 612 762, 512 762 C 412 762, 352 612, 412 512 C 352 412, 412 262, 512 262" stroke-linecap="round"/>
+    <!-- Single main vein -->
+    <path d="M 512 362 V 662" stroke-linecap="round"/>
   </g>
 
-  <!-- Node dengan animasi denyut -->
-  <g transform="translate(-20, 20)">
-    <circle cx="90" cy="40" r="5" fill="url(#neuralGrad)">
-      <animate attributeName="r" values="5;8;5" dur="2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="90" cy="160" r="5" fill="url(#neuralGrad)">
-      <animate attributeName="r" values="5;8;5" dur="2.2s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="130" cy="40" r="5" fill="url(#neuralGrad)">
-      <animate attributeName="r" values="5;8;5" dur="1.8s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="130" cy="160" r="5" fill="url(#neuralGrad)">
-      <animate attributeName="r" values="5;8;5" dur="2.4s" repeatCount="indefinite"/>
-    </circle>
-    <circle cx="110" cy="100" r="4.5" fill="url(#neuralGrad)">
-      <animate attributeName="r" values="4.5;7;4.5" dur="1.6s" repeatCount="indefinite"/>
-    </circle>
+  <!-- Square Overlay (Larger, Centered, rotated 45 degrees) -->
+  <g fill="none" stroke="#FFFFFF" stroke-width="15" opacity="0.5" transform="translate(512, 512) rotate(45) translate(-512, -512)">
+    <rect x="442" y="442" width="140" height="140" rx="15"/>
   </g>
 
-  <!-- Teks utama -->
-  <text x="140" y="125" font-family="Poppins, Montserrat, sans-serif"
-        font-size="40" font-weight="700" fill="url(#neuralGrad)">
-    Cindo Labs
-  </text>
-
-  <!-- Subjudul digeser ke kanan 15px -->
-  <g font-family="Poppins, sans-serif" font-size="14" fill="#14FFEC" opacity="0.85" transform="translate(15, 0)">
-    <text x="140" y="152">AI</text>
-    <!-- Titik pertama -->
-    <circle cx="165" cy="148" r="2.5" fill="#14FFEC">
-      <animate attributeName="r" values="2.5;4;2.5" dur="1.5s" repeatCount="indefinite"/>
-    </circle>
-    <text x="175" y="152">Blockchain</text>
-    <!-- Titik kedua -->
-    <circle cx="253" cy="148" r="2.5" fill="#14FFEC">
-      <animate attributeName="r" values="2.5;4;2.5" dur="1.8s" repeatCount="indefinite"/>
-    </circle>
-    <text x="263" y="152">Fintech</text>
-  </g>
+  <!-- Central Glow -->
+  <circle cx="512" cy="512" r="60" fill="#FFFFFF" fill-opacity="0.25"/>
 </svg>
