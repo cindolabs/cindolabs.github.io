@@ -2,14 +2,14 @@
   <!-- Background Circle -->
   <circle cx="512" cy="512" r="480" fill="#0052FF" stroke="#FFFFFF" stroke-width="10"/>
 
-  <!-- Stylized Leaf (Tropical and Full) -->
-  <g stroke="#FFFFFF" stroke-width="40" fill="none">
+  <!-- Stylized Leaf (Tropical and Full with Thicker Stroke) -->
+  <g stroke="#FFFFFF" stroke-width="60" fill="none">
     <!-- Leaf shape with wider, fuller curves -->
     <path d="M 512 262 C 682 262, 742 412, 682 512 C 742 612, 682 762, 512 762 C 342 762, 282 612, 342 512 C 282 412, 342 262, 512 262" stroke-linecap="round"/>
     <!-- Main vein -->
     <path d="M 512 412 V 612" stroke-linecap="round"/>
     <!-- Additional curved veins for tropical look -->
-    <path d="M 512 512 C 472 472, 452 432, 462 392 M 512 512 C 552 472, 572 432, 562 392" stroke-linecap="round" stroke-width="20"/>
+    <path d="M 512 512 C 472 472, 452 432, 462 392 M 512 512 C 552 472, 572 432, 562 392" stroke-linecap="round" stroke-width="30"/>
   </g>
 
   <!-- Square Overlay (Larger, Centered, rotated 45 degrees) -->
