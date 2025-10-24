@@ -1,0 +1,1762 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>plstart.me</title>
+	<link rel="icon" href="https://github.com/0xWhankFrite/0xWhankFrite/blob/main/pulsechainify%20(7)-modified.png?raw=true" type="image/x-icon">
+    <style>
+        body {
+            font-family: 'MS Sans Serif', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://github.com/0xWhankFrite/0xWhankFrite/raw/main/uGRFZEs.jpeg'); /* Updated background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #000000; /* Black text */
+            display: flex; /* Use flexbox for layout */
+            flex-direction: column; /* Stack children vertically */
+            min-height: 100vh; /* Ensure body takes at least full viewport height */
+        }
+
+        header {
+            color: #000000;
+            padding: 5px 0; /* Smaller padding */
+            text-align: center;
+            background: linear-gradient(to bottom, #4a86e8 0%, #3660a9 100%); /* Windows XP blue gradient */
+            border-bottom: 1px solid #1a3e6f;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            font-size: 1.5em; /* Slightly smaller title */
+            margin: 0;
+            text-shadow: 1px 1px #ffffff;
+        }
+
+        main {
+            padding: 0; /* Removed padding to allow full spread */
+            max-width: none; /* Allow main content to take full width */
+            margin: 0; /* Removed margin */
+            background-color: transparent; /* Ensure background image is visible */
+            border: none;
+            box-shadow: none;
+            flex-grow: 1; /* Allow main content to grow and fill space */
+        }
+
+        .columns-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Increased min-width to prevent cutoff */
+            gap: 10px; /* Smaller gap */
+            padding: 10px; /* Added padding to the container instead of main */
+            align-items: start; /* Align items to the start to prevent vertical stretching */
+            grid-auto-rows: auto; /* Ensure rows adjust to content height */
+            position: relative; /* Added to contain absolute positioned children */
+        }
+
+        .category-section {
+            margin-bottom: 10px; /* Less margin */
+            background-color: #e0e0e0; /* Lighter grey for XP */
+            border: 1px solid #a0a0a0;
+            border-radius: 4px;
+            padding: 8px; /* Less padding */
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            position: relative; /* Needed for absolute positioning of close button */
+            opacity: 0.75; /* Increased transparency */
+            transition: max-height 0.3s ease-out, z-index 0.3s ease-out; /* Add transition for smooth expansion/collapse and z-index */
+            z-index: 1; /* Default z-index */
+            overflow: hidden; /* Default overflow hidden for collapsed state */
+            max-height: none; /* Remove default max-height; handle in JS */
+            cursor: move; /* Show move cursor to indicate draggability */
+        }
+
+        .category-section.expanded {
+            z-index: 10; /* Higher z-index when expanded to float above others */
+            overflow: visible; /* Ensure content is not clipped when expanded */
+            position: absolute; /* Float over content */
+            background-color: rgba(224, 224, 224, 1); /* Fully opaque when expanded */
+            opacity: 1; /* Remove transparency when expanded */
+        }
+        
+        .category-section.expanded .website-link {
+            opacity: 1; /* Make links fully opaque when section is expanded */
+        }
+        
+        .category-section.expanded .show-more-btn {
+            opacity: 1; /* Make button fully opaque when section is expanded */
+        }
+
+        .category-section.collapsed {
+            max-height: 250px; /* Increased to fit more links without cutoff */
+            overflow: hidden; /* Hide content that exceeds max-height when collapsed */
+        }
+
+        .category-section h2 {
+            color: #ffffff;
+            margin-top: 0;
+            margin-bottom: 8px; /* Less margin */
+            border-bottom: 1px solid #1a3e6f;
+            padding-bottom: 5px; /* Less padding */
+            font-size: 1em; /* Smaller font size */
+            background: linear-gradient(to bottom, #4a86e8 0%, #3660a9 100%); /* Windows XP blue gradient */
+            border-radius: 3px 3px 0 0;
+            padding: 3px 5px;
+            margin: -8px -8px 8px -8px; /* Adjust to fill header */
+            text-shadow: 1px 1px #000000;
+        }
+
+        /* Style for the new close button */
+        .close-button {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background-color: #ff0000; /* Red background */
+            color: white; /* White 'X' */
+            width: 16px;
+            height: 16px;
+            border-radius: 2px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 10px;
+            font-weight: bold;
+            cursor: pointer;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+            z-index: 10; /* Ensure it's above other content */
+        }
+
+        .links-container {
+            display: flex;
+            flex-direction: column;
+            gap: 4px; /* Even smaller gap */
+        }
+
+        .website-link {
+            display: flex;
+            align-items: center;
+            background-color: #e0e0e0; /* Lighter grey for XP */
+            padding: 4px 6px; /* Even smaller padding */
+            border-radius: 3px;
+            text-decoration: none;
+            color: #000000;
+            font-weight: normal;
+            transition: background-color 0.1s ease, color 0.1s ease;
+            border: 1px solid #a0a0a0;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            opacity: 0.75; /* Increased transparency */
+            white-space: normal; /* Allow wrapping to prevent cutoff */
+            word-break: break-word;
+        }
+
+        .website-link:hover {
+            background: linear-gradient(to bottom, #a8d2ff 0%, #83b4ff 100%); /* XP hover blue */
+            color: #000000;
+            border-color: #3399ff;
+        }
+
+        .website-link img {
+            width: 14px; /* Even smaller favicon */
+            height: 14px;
+            margin-right: 6px; /* Smaller margin */
+            border-radius: 0; /* No border-radius */
+            flex-shrink: 0;
+        }
+
+        .website-link span {
+            font-size: 0.85em; /* Even smaller font size */
+            overflow: visible; /* Prevent ellipsis cutoff */
+            flex-grow: 1;
+        }
+
+        .category-section.collapsed .links-container .website-link:nth-child(n+6) {
+            display: none; /* Hide links beyond the initial display count when the section is collapsed */
+        }
+
+        .show-more-btn {
+            background: linear-gradient(to bottom, #e0e0e0 0%, #c0c0c0 100%); /* XP button gradient */
+            color: #000000;
+            border: 1px solid #808080;
+            border-radius: 3px;
+            padding: 6px 10px; /* Smaller padding */
+            cursor: pointer;
+            font-size: 0.8em; /* Smaller font size */
+            margin-top: 8px; /* Smaller margin */
+            width: 100%;
+            text-align: center;
+            transition: background-color 0.1s ease, color 0.1s ease;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            opacity: 0.75; /* Increased transparency */
+        }
+
+        .show-more-btn:hover {
+            background: linear-gradient(to bottom, #a8d2ff 0%, #83b4ff 100%); /* XP hover blue */
+            color: #000000;
+            border-color: #3399ff;
+        }
+
+        /* Windows 95 Taskbar and Start Button Styles */
+        #taskbar {
+            background: linear-gradient(to right, #77aaff 0%, #3399ff 100%); /* Lighter XP blue gradient */
+            height: 30px; /* Standard taskbar height */
+            display: flex;
+            align-items: center;
+            padding: 0 5px;
+            border-top: 1px solid #0077cc;
+            box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.15);
+            position: fixed; /* Fixed to bottom of viewport */
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 999; /* Below start menu but above content */
+        }
+
+        #start-button {
+            background: linear-gradient(to bottom, #a8d2ff 0%, #83b4ff 100%); /* Lighter XP start button blue gradient */
+            padding: 4px 10px;
+            border: 1px solid #3399ff;
+            border-radius: 3px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.9em;
+            margin-right: 5px; /* Space between start button and other taskbar items */
+            transition: background-color 0.1s ease, color 0.1s ease;
+            color: #000000;
+            text-shadow: none;
+            white-space: nowrap;
+        }
+
+        #start-button:hover {
+            background: linear-gradient(to bottom, #cce5ff 0%, #a8d2ff 100%); /* Lighter XP hover blue */
+            color: #000000;
+            border-color: #66b3ff;
+            text-shadow: none;
+        }
+
+        /* Add more styles for other taskbar elements if needed */
+
+        #datetime-display {
+            color: #ffffff; /* White text for visibility */
+            font-size: 0.8em;
+            margin-left: auto; /* Pushes to the right */
+            padding: 5px 10px;
+            background-color: rgba(0, 0, 0, 0.2); /* Slight background for readability */
+            border-radius: 3px;
+            text-shadow: 1px 1px #000000;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Responsive styles for mobile */
+        @media (max-width: 768px) {
+            #taskbar {
+                height: 40px; /* Taller for touch */
+                padding: 0 10px;
+            }
+            
+            #start-button {
+                font-size: 0.8em;
+                padding: 6px 12px;
+            }
+            
+            #datetime-display {
+                font-size: 0.7em;
+                padding: 4px 8px;
+            }
+            
+            #start-menu {
+                width: 90vw; /* Take most of screen width on mobile */
+                max-width: 300px;
+                left: 5px;
+                bottom: 45px;
+            }
+            
+            .start-menu-content {
+                grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
+                gap: 8px;
+            }
+            
+            body {
+                padding-bottom: 45px; /* Add padding to prevent content hiding under fixed taskbar */
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #datetime-display {
+                font-size: 0.6em;
+                padding: 3px 6px;
+            }
+            
+            #start-button {
+                font-size: 0.7em;
+                padding: 5px 10px;
+                margin-right: 3px;
+            }
+        }
+
+        #start-menu {
+            display: none; /* Hidden by default */
+            position: fixed; /* Changed to fixed for better positioning */
+            bottom: 35px; /* Positioned above the taskbar */
+            left: 5px;
+            width: 250px;
+            background-color: #f0f0f0; /* Even lighter grey for XP */
+            border: 1px solid #808080;
+            border-radius: 5px;
+            box-shadow: 0 3px 7px rgba(0, 0, 0, 0.25);
+            padding: 5px;
+            z-index: 1000; /* High z-index to float above everything */
+        }
+
+        #start-menu.show {
+            display: block; /* Show the menu */
+        }
+
+        .start-menu-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+            gap: 10px;
+        }
+
+        .start-menu-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-decoration: none;
+            color: #000000;
+            font-size: 0.8em;
+            text-align: center;
+            background-color: #f0f0f0; /* Even lighter grey for XP */
+            border: 1px solid #a0a0a0;
+            border-radius: 3px;
+            padding: 5px;
+            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .start-menu-link img {
+            width: 32px;
+            height: 32px;
+            margin-bottom: 5px;
+        }
+
+        .placeholder {
+            visibility: hidden; /* Hide but reserve space */
+        }
+
+    </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const startButton = document.getElementById('start-button');
+            const startMenu = document.getElementById('start-menu');
+            const datetimeDisplay = document.getElementById('datetime-display'); // Get the datetime display element
+
+            // Function to update the time and date
+            function updateDateTime() {
+                const now = new Date();
+                const options = {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    second: '2-digit',
+                    hour12: true // Use 12-hour format
+                };
+                datetimeDisplay.textContent = now.toLocaleString(undefined, options);
+            }
+
+            // Update the time every second
+            setInterval(updateDateTime, 1000);
+
+            // Initial call to set the time immediately
+            updateDateTime();
+
+            startButton.addEventListener('click', (event) => {
+                event.stopPropagation(); // Prevent the click from closing the menu immediately
+                startMenu.classList.toggle('show');
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!startMenu.contains(event.target) && event.target !== startButton) {
+                    startMenu.classList.remove('show');
+                }
+            });
+            
+            const categorySections = document.querySelectorAll('.category-section');
+
+            categorySections.forEach(section => {
+                // Store placeholder reference on the section
+                section.placeholder = null;
+
+                // Add close button
+                const closeButton = document.createElement('span');
+                closeButton.classList.add('close-button');
+                closeButton.textContent = 'X';
+                section.prepend(closeButton); // Add to the beginning of the section
+
+                // Add event listener for close button
+                closeButton.addEventListener('click', () => {
+                    section.style.display = 'none'; // Hide the section
+                });
+
+                const linksContainer = section.querySelector('.links-container');
+                const links = linksContainer.querySelectorAll('.website-link');
+                const initialDisplayCount = 5;
+
+                if (links.length > initialDisplayCount) {
+                    section.classList.add('collapsed'); // Collapse the section by default
+
+                    const showMoreBtn = document.createElement('button');
+                    showMoreBtn.classList.add('show-more-btn');
+                    showMoreBtn.textContent = 'Show More';
+                    section.appendChild(showMoreBtn);
+
+                    showMoreBtn.addEventListener('click', () => {
+                        const container = section.parentElement;
+                        const rect = section.getBoundingClientRect();
+                        const containerRect = container.getBoundingClientRect();
+
+                        if (section.classList.contains('collapsed')) {
+                            // Expanding
+                            // Create placeholder with original dimensions
+                            const placeholder = document.createElement('div');
+                            placeholder.classList.add('placeholder');
+                            placeholder.style.height = rect.height + 'px';
+                            placeholder.style.width = '100%'; // Full width of grid cell
+                            placeholder.style.minHeight = rect.height + 'px'; // Ensure it matches
+
+                            // Insert placeholder after the section (before next sibling)
+                            container.insertBefore(placeholder, section.nextSibling);
+
+                            // Store reference
+                            section.placeholder = placeholder;
+
+                            // Calculate relative position
+                            const relativeLeft = rect.left - containerRect.left + container.scrollLeft;
+                            const relativeTop = rect.top - containerRect.top + container.scrollTop;
+
+                            // Position section absolutely
+                            section.style.position = 'absolute';
+                            section.style.left = relativeLeft + 'px';
+                            section.style.top = relativeTop + 'px';
+                            section.style.width = rect.width + 'px';
+                            section.style.margin = '0';
+                            section.style.zIndex = '10';
+
+                            // Update classes
+                            section.classList.remove('collapsed');
+                            section.classList.add('expanded');
+                            showMoreBtn.textContent = 'Show Less';
+                        } else {
+                            // Collapsing
+                            if (section.placeholder) {
+                                section.placeholder.parentNode.removeChild(section.placeholder);
+                                section.placeholder = null;
+                            }
+
+                            // Reset section styles
+                            section.style.position = '';
+                            section.style.left = '';
+                            section.style.top = '';
+                            section.style.width = '';
+                            section.style.margin = '';
+                            section.style.zIndex = '';
+
+                            // Update classes
+                            section.classList.remove('expanded');
+                            section.classList.add('collapsed');
+                            showMoreBtn.textContent = 'Show More';
+                        }
+                    });
+                }
+                
+                // Make sections draggable
+                makeDraggable(section);
+            });
+            
+            // Draggable functionality
+            function makeDraggable(element) {
+                let isDragging = false;
+                let startX, startY, initialLeft, initialTop;
+                const header = element.querySelector('h2');
+                
+                if (!header) return;
+                
+                header.style.cursor = 'move';
+                
+                header.addEventListener('mousedown', startDrag);
+                header.addEventListener('touchstart', startDrag, { passive: false });
+                
+                function startDrag(e) {
+                    // Don't drag if clicking on close button
+                    if (e.target.classList.contains('close-button')) return;
+                    
+                    isDragging = true;
+                    element.style.cursor = 'grabbing';
+                    header.style.cursor = 'grabbing';
+                    
+                    // Get initial mouse/touch position
+                    const clientX = e.type === 'touchstart' ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.type === 'touchstart' ? e.touches[0].clientY : e.clientY;
+                    
+                    startX = clientX;
+                    startY = clientY;
+                    
+                    // Get current position
+                    const rect = element.getBoundingClientRect();
+                    const container = element.parentElement;
+                    const containerRect = container.getBoundingClientRect();
+                    
+                    // If not already absolutely positioned, convert it
+                    if (element.style.position !== 'absolute') {
+                        const relativeLeft = rect.left - containerRect.left + container.scrollLeft;
+                        const relativeTop = rect.top - containerRect.top + container.scrollTop;
+                        
+                        element.style.position = 'absolute';
+                        element.style.left = relativeLeft + 'px';
+                        element.style.top = relativeTop + 'px';
+                        element.style.width = rect.width + 'px';
+                        element.style.margin = '0';
+                        element.style.zIndex = '100';
+                    }
+                    
+                    initialLeft = parseInt(element.style.left) || 0;
+                    initialTop = parseInt(element.style.top) || 0;
+                    
+                    e.preventDefault();
+                }
+                
+                document.addEventListener('mousemove', drag);
+                document.addEventListener('touchmove', drag, { passive: false });
+                
+                function drag(e) {
+                    if (!isDragging) return;
+                    
+                    const clientX = e.type === 'touchmove' ? e.touches[0].clientX : e.clientX;
+                    const clientY = e.type === 'touchmove' ? e.touches[0].clientY : e.clientY;
+                    
+                    const deltaX = clientX - startX;
+                    const deltaY = clientY - startY;
+                    
+                    element.style.left = (initialLeft + deltaX) + 'px';
+                    element.style.top = (initialTop + deltaY) + 'px';
+                    
+                    e.preventDefault();
+                }
+                
+                document.addEventListener('mouseup', stopDrag);
+                document.addEventListener('touchend', stopDrag);
+                
+                function stopDrag() {
+                    if (isDragging) {
+                        isDragging = false;
+                        element.style.cursor = 'move';
+                        header.style.cursor = 'move';
+                    }
+                }
+            }
+
+        });
+    </script>
+</head>
+<body>
+    <header>
+        <h1>plstart.me</h1>
+    </header>
+    <main>
+        <div class="columns-container">
+            <section class="category-section">
+                <h2>General</h2>
+                <div class="links-container">
+                    <a href="https://pulsechain.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsechain.com" alt="PulseChain Favicon">
+                        <span>PulseChain.com</span>
+                    </a>
+                    <a href="https://x.com/WhankFrite" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=x.com" alt="x.com Favicon">
+                        <span>x.com</span>
+                    </a>
+                    <a href="https://github.com/0xWhankFrite" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=github.com" alt="GitHub Favicon">
+                        <span>GitHub</span>
+                    </a>
+                    <a href="https://t.me/plstartme" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Telegram Favicon">
+                        <span>Telegram</span>
+                    </a>
+                    <a href="https://www.publish0x.com?a=4QbY7yWnez" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=publish0x.com" alt="Publish0x Favicon">
+                        <span>Publish0x</span>
+                    </a>
+                    <a href="https://pump.tires/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pump.tires" alt="Pump.tires Favicon">
+                        <span>Pump.tires</span>
+                    </a>
+                    <a href="https://x.com/CrypMvs" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=x.com" alt="Weekly PulseChain Monster Thread Favicon">
+                        <span>Weekly PulseChain Monster Thread</span>
+                    </a>
+                    <a href="https://news.treeofalpha.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=news.treeofalpha.com" alt="Tree News Favicon">
+                        <span>Tree News</span>
+                    </a>
+                    <a href="https://www.coingecko.com/en" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=coingecko.com" alt="CoinGecko Favicon">
+                        <span>CoinGecko</span>
+                    </a>
+                    <a href="https://www.strategicethreserve.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=strategicethreserve.xyz" alt="Strategic ETH Reserve Favicon">
+                        <span>Strategic ETH Reserve</span>
+                    </a>
+                    <a href="https://venice.ai/chat?ref=4Nsi9K" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=venice.ai" alt="Venice AI Favicon">
+                        <span>Venice AI</span>
+                    </a>
+                    <a href="https://pulsicanstore.com/plstartme" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsicanstore.com" alt="The Pulsican Store Favicon">
+                        <span>The Pulsican Store</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Dexes</h2>
+                <div class="links-container">
+                    <a href="https://app.pulsex.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.pulsex.com" alt="PulseX Favicon">
+                        <span>PulseX</span>
+                    </a>
+                    <a href="https://phux.io/#/pulse/trade/0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE/0x2806F9d083BABbDbB9a92b0722F1b5D4E6FEF6cC" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=phux.io" alt="Phux ^ Favicon">
+                        <span>Phux ^</span>
+                    </a>
+                    <a href="https://beta.0xtide.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=beta.0xtide.com" alt="TIDE ^ Favicon">
+                        <span>TIDE ^</span>
+                    </a>
+                    <a href="https://dex.functionisland.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dex.functionisland.com" alt="FiDex Favicon">
+                        <span>FiDex</span>
+                    </a>
+                    <a href="https://dex.dextop.pro/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dex.dextop.pro" alt="Dextop * Favicon">
+                        <span>Dextop *</span>
+                    </a>
+                    <a href="https://dex.9mm.pro/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dex.9mm.pro" alt="9mm * Favicon">
+                        <span>9mm *</span>
+                    </a>
+                    <a href="https://app.9inch.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.9inch.io" alt="9inch *~ Favicon">
+                        <span>9inch *~</span>
+                    </a>
+                    <a href="https://pdex.vision/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pdex.vision" alt="Pdex.vision * Favicon">
+                        <span>Pdex.vision *</span>
+                    </a>
+                    <a href="https://pulsesend.io/otc" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsesend.io" alt="PulseSend (OTC/~) Favicon">
+                        <span>PulseSend (OTC/~)</span>
+                    </a>
+                    <a href="https://0xbistro.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=0xbistro.io" alt="0xBistro (OTC) Favicon">
+                        <span>0xBistro (OTC)</span>
+                    </a>
+                    <a href="https://swap.hedron.pro/#/swap" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=swap.hedron.pro" alt="Uniswap * (Hedron frontend) Favicon">
+                        <span>Uniswap * (Hedron frontend)</span>
+                    </a>
+                    <a href="https://plstart.win" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=plstart.win" alt="*=V3, ^=BAL, ~=limit Favicon">
+                        <span>*=V3, ^=BAL, ~=limit</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Bridge/Swap options</h2>
+                <div class="links-container">
+                    <a href="https://bridge.pulsechain.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=bridge.pulsechain.com" alt="PulseChain Bridge Favicon">
+                        <span>PulseChain Bridge</span>
+                    </a>
+                    <a href="https://nexus.hyperlane.xyz/?destination=pulsechain&token=0x32aB2fcCA30864027056a41B329e0195f2f7E250&origin=base" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nexus.hyperlane.xyz" alt="Hyperlane Favicon">
+                        <span>Hyperlane</span>
+                    </a>
+                    <a href="https://app.pulseln.com?ref=4k53P5OO445sNn31oQ4n41NP19153S724121Nr8193" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.pulseln.com" alt="PulseLN Favicon">
+                        <span>PulseLN</span>
+                    </a>
+                    <a href="https://libertyswap.finance/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=libertyswap.finance" alt="Liberty Swap Favicon">
+                        <span>Liberty Swap</span>
+                    </a>
+                    <a href="https://gibs.finance/#/onboard" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=gibs.finance" alt="Gibs.finance Favicon">
+                        <span>Gibs.finance</span>
+                    </a>
+                    <a href="https://tokensex.link/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=tokensex.link" alt="TokensEX Favicon">
+                        <span>TokensEX</span>
+                    </a>
+                    <a href="https://changenow.app.link/referral?link_id=98bfff15956173" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=changenow.app" alt="ChangeNow Favicon">
+                        <span>ChangeNow</span>
+                    </a>
+                    <a href="https://www.empseal.xyz/native-bridge" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=empseal.xyz" alt="Empseal Favicon">
+                        <span>Empseal</span>
+                    </a>
+                    <a href="https://nanswap.com/?r=33010407556" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nanswap.com" alt="Nanswap Favicon">
+                        <span>Nanswap</span>
+                    </a>
+                    <a href="https://houdiniswap.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=houdiniswap.com" alt="Houdiniswap Favicon">
+                        <span>Houdiniswap</span>
+                    </a>
+                    <a href="https://www.gas.zip/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=gas.zip" alt="Gas.zip Favicon">
+                        <span>Gas.zip</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>On/Off Ramps</h2>
+                <div class="links-container">
+                    <a href="https://0xcoast.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=0xcoast.com" alt="Coast Favicon">
+                        <span>Coast</span>
+                    </a>
+                    <a href="https://app.pulseln.com?ref=4k53P5OO445sNn31oQ4n41NP19153S724121Nr8193" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.pulseln.com" alt="PulseLN Favicon">
+                        <span>PulseLN</span>
+                    </a>
+                    <a href="https://gibs.finance/#/onboard" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=gibs.finance" alt="Gibs.finance Favicon">
+                        <span>Gibs.finance</span>
+                    </a>
+                    <a href="https://changenow.app.link/referral?link_id=98bfff15956173" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=changenow.app" alt="ChangeNow Favicon">
+                        <span>ChangeNow</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Shopping</h2>
+                <div class="links-container">
+                    <a href="https://pulsicanstore.com/plstartme" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsicanstore.com" alt="The Pulsican Store Favicon">
+                        <span>The Pulsican Store</span>
+                    </a>
+                    <a href="https://pulsesend.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsesend.io" alt="PulseSend Favicon">
+                        <span>PulseSend</span>
+                    </a>
+                    <a href="https://crypto-stickers.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=crypto-stickers.com" alt="Crypto-stickers.com Favicon">
+                        <span>Crypto-stickers.com</span>
+                    </a>
+                    <a href="https://minimeal.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=minimeal.com" alt="SUN Minimeal Favicon">
+                        <span>SUN Minimeal</span>
+                    </a>
+                    <a href="https://www.coinsbee.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=coinsbee.com" alt="CoinsBee Favicon">
+                        <span>CoinsBee</span>
+                    </a>
+                    <a href="https://nowpayments.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nowpayments.io" alt="NOWPayments Favicon">
+                        <span>NOWPayments</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Privacy</h2>
+                <div class="links-container">
+                    <a href="https://app.dextop.pro/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.dextop.pro" alt="zkzx (Dextop frontend) Favicon">
+                        <span>zkzx (Dextop frontend)</span>
+                    </a>
+                    <a href="https://zkpulse.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=zkpulse.app" alt="zkpulse.app Favicon">
+                        <span>zkpulse.app</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Aggregators</h2>
+                <div class="links-container">
+                    <a href="https://app.piteas.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.piteas.io" alt="Piteas Favicon">
+                        <span>Piteas</span>
+                    </a>
+                    <a href="https://switch.win/dapp" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=switch.win" alt="Switch.win Favicon">
+                        <span>Switch.win</span>
+                    </a>
+                    <a href="https://9x.9mm.pro/#/swap?chainId=369" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=9x.9mm.pro" alt="9mm 9x Favicon">
+                        <span>9mm 9x</span>
+                    </a>
+                    <a href="https://pulseswap.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulseswap.io" alt="PulseSwap Favicon">
+                        <span>PulseSwap</span>
+                    </a>
+                    <a href="https://www.empseal.xyz/swap" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=empseal.xyz" alt="Empseal Favicon">
+                        <span>Empseal</span>
+                    </a>
+                    <a href="https://portalxswap.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=portalxswap.io" alt="PortalX Favicon">
+                        <span>PortalX</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Swap/LP Tools</h2>
+                <div class="links-container">
+                    <a href="https://swap.win/plstart" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=swap.win" alt="Swap.win Favicon">
+                        <span>Swap.win</span>
+                    </a>
+                    <a href="https://vfat.io/pools?chains=369" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=vfat.io" alt="vfat Favicon">
+                        <span>vfat</span>
+                    </a>
+                    <a href="https://lpx.plusx.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=lpx.plusx.app" alt="LPX Favicon">
+                        <span>LPX</span>
+                    </a>
+                    <a href="https://tokentrader.win/sniper-swap" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=tokentrader.win" alt="Sniper Swap Favicon">
+                        <span>Sniper Swap</span>
+                    </a>
+                    <a href="https://multicall.exchange/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=multicall.exchange" alt="multicall.exchange Favicon">
+                        <span>multicall.exchange</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Dapps</h2>
+                <div class="links-container">
+                    <a href="https://functionisland.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=functionisland.com" alt="Function Island Favicon">
+                        <span>Function Island</span>
+                    </a>
+                    <a href="https://experiment0x.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=experiment0x.xyz" alt="Experiment0x Favicon">
+                        <span>Experiment0x</span>
+                    </a>
+                    <a href="https://degenprotocol.io/app" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=degenprotocol.io" alt="Degen Protocol Favicon">
+                        <span>Degen Protocol</span>
+                    </a>
+                    <a href="https://pls.basic-defi.xyz" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pls.basic-defi.xyz" alt="BasicDefi Favicon">
+                        <span>BasicDefi</span>
+                    </a>
+                    <a href="https://xtime-app.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=xtime-app.xyz" alt="xTIME Dapp Favicon">
+                        <span>xTIME Dapp</span>
+                    </a>
+                    <a href="https://powhr.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=powhr.xyz" alt="POWHR Favicon">
+                        <span>POWHR</span>
+                    </a>
+                    <a href="https://mineshafts.xyz" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=mineshafts.xyz" alt="Mineshafts Favicon">
+                        <span>Mineshafts</span>
+                    </a>
+                    <a href="https://nexionpulse.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nexionpulse.com" alt="Nexion Favicon">
+                        <span>Nexion</span>
+                    </a>
+                    <a href="https://pulsesend.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsesend.io" alt="PulseSend Favicon">
+                        <span>PulseSend</span>
+                    </a>
+                    <a href="https://dextop.pro/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dextop.pro" alt="Dextop.pro Favicon">
+                        <span>Dextop.pro</span>
+                    </a>
+                    <a href="https://app.hocuspocus.finance/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.hocuspocus.finance" alt="Hocus Pocus Favicon">
+                        <span>Hocus Pocus</span>
+                    </a>
+                    <a href="https://www.0xbuffet.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=0xbuffet.io" alt="MCR369 Favicon">
+                        <span>MCR369</span>
+                    </a>
+                    <a href="https://www.core.powercity.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=core.powercity.io" alt="Powercity Core Favicon">
+                        <span>Powercity Core</span>
+                    </a>
+                    <a href="https://pulselitecoin.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulselitecoin.app" alt="PulseLitecoin Favicon">
+                        <span>PulseLitecoin</span>
+                    </a>
+                    <a href="https://gladiatorgamescrypto.net/?ref=ab51ec7f-3687-49c4-a04a-4beb75c7456f" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=gladiatorgamescrypto.net" alt="Gladiator Games Favicon">
+                        <span>Gladiator Games</span>
+                    </a>
+                    <a href="https://robsidedstaking.netlify.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=robsidedstaking.netlify.app" alt="ROBsidedStaking Favicon">
+                        <span>ROBsidedStaking</span>
+                    </a>
+                    <a href="https://carpediempension.com/0x8c5bcbD7CBeCB92172D534e1AEA03F48b24FaBbf" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=carpediempension.com" alt="Carpe Diem Pension Favicon">
+                        <span>Carpe Diem Pension</span>
+                    </a>
+                    <a href="https://www.unity.win/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=unity.win" alt="Unity.win Favicon">
+                        <span>Unity.win</span>
+                    </a>
+                    <a href="https://agproject.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=agproject.io" alt="Antigravity Favicon">
+                        <span>Antigravity</span>
+                    </a>
+                    <a href="https://www.moretokens.com/stake" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=moretokens.com" alt="$MORE Staking Favicon">
+                        <span>$MORE Staking</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Lending/Leverage</h2>
+                <div class="links-container">
+                    <a href="https://dapp.phiat.io/#/dashboard" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dapp.phiat.io" alt="Phiat (AAVE fork) Favicon">
+                        <span>Phiat (AAVE fork)</span>
+                    </a>
+                    <a href="https://phame.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=phame.io" alt="Phame (GMX fork) Favicon">
+                        <span>Phame (GMX fork)</span>
+                    </a>
+                    <a href="https://nexionpulse.com/GLOW" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nexionpulse.com" alt="Nexion GLOW (Gearbox Fork) Favicon">
+                        <span>Nexion GLOW (Gearbox Fork)</span>
+                    </a>
+                    <a href="https://lending.axel.win/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=lending.axel.win" alt="Axel Lending (p2p) Favicon">
+                        <span>Axel Lending (p2p)</span>
+                    </a>
+                    <a href="https://plstart.me" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=plstart.me" alt="NATIVE STABLECOINS Favicon">
+                        <span>NATIVE STABLECOINS</span>
+                    </a>
+                    <a href="https://incprinter.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=incprinter.com" alt="INC Printer Favicon">
+                        <span>INC Printer</span>
+                    </a>
+                    <a href="https://www.flex.powercity.io" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=flex.powercity.io" alt="Powercity Flex (HEX) Favicon">
+                        <span>Powercity Flex (HEX)</span>
+                    </a>
+                    <a href="https://www.earn.powercity.io" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=earn.powercity.io" alt="Earn Protocol (PLSX) Favicon">
+                        <span>Earn Protocol (PLSX)</span>
+                    </a>
+                    <a href="https://go.liquidloans.io" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=liquidloans.io" alt="Liquid Loans (PLS) Favicon">
+                        <span>Liquid Loans (PLS)</span>
+                    </a>
+                    <a href="https://0xbarista.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=0xbarista.io" alt="MCR Barista (PLS) Favicon">
+                        <span>MCR Barista (PLS)</span>
+                    </a>
+                    <a href="https://amplifier-ll.powercity.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=amplifier-ll.powercity.io" alt="Liquid Loans Amplifier Favicon">
+                        <span>Liquid Loans Amplifier</span>
+                    </a>
+                    <a href="https://amplifier-earn.powercity.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=amplifier-earn.powercity.io" alt="Earn Amplifier Favicon">
+                        <span>Earn Amplifier</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>NFTs/Marketplaces</h2>
+                <div class="links-container">
+                    <a href="https://pulsemarket.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsemarket.app" alt="PulseMarket Favicon">
+                        <span>PulseMarket</span>
+                    </a>
+                    <a href="https://experiment0x.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=experiment0x.xyz" alt="Experiment0x Favicon">
+                        <span>Experiment0x</span>
+                    </a>
+                    <a href="https://beatbox.market/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=beatbox.market" alt="Beatbox Favicon">
+                        <span>Beatbox</span>
+                    </a>
+                    <a href="https://tesseractx.com/?ref=QlrNjb" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=tesseractx.com" alt="TesseractX Favicon">
+                        <span>TesseractX</span>
+                    </a>
+                    <a href="https://thestakerclass.com/market" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=thestakerclass.com" alt="TheStakerClass Favicon">
+                        <span>TheStakerClass</span>
+                    </a>
+                    <a href="https://www.404.monster/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=404.monster" alt="404.monster Favicon">
+                        <span>404.monster</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Sponsored by:</h2>
+                <div class="links-container">
+                    <a href="https://app.vouch.run/PLS/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.vouch.run" alt="vouch.run liquid staking Favicon">
+                        <span>vouch.run liquid staking</span>
+                    </a>
+                    <a href="https://swap.win/plstart" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=swap.win" alt="Swap.win Favicon">
+                        <span>Swap.win</span>
+                    </a>
+                    <a href="https://www.pipools.xyz/liquid-staking/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pipools.xyz" alt="Project Pi (stPLS) Favicon">
+                        <span>Project Pi (stPLS)</span>
+                    </a>
+                    <a href="https://emit.farm" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=emit.farm" alt="$EMIT Farm Favicon">
+                        <span>$EMIT Farm</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>PulseChain Block Explorers</h2>
+                <div class="links-container">
+                    <a href="https://scan.pulsechain.box/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=scan.pulsechain.box" alt="pulsechain.box Favicon">
+                        <span>pulsechain.box</span>
+                    </a>
+                    <a href="https://otter.pulsechain.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=otter.pulsechain.com" alt="Otterscan Favicon">
+                        <span>Otterscan</span>
+                    </a>
+                    <a href="https://scan.pulsechain.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=scan.pulsechain.com" alt="PulseChain Explorer Favicon">
+                        <span>PulseChain Explorer</span>
+                    </a>
+                    <a href="https://midgard.wtf/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=midgard.wtf" alt="Midgard Favicon">
+                        <span>Midgard</span>
+                    </a>
+                    <a href="https://369.routescan.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=369.routescan.io" alt="Routescan Favicon">
+                        <span>Routescan</span>
+                    </a>
+                    <a href="https://scan.vf.at/chain/369" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=scan.vf.at" alt="vfat scan Favicon">
+                        <span>vfat scan</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Liquid Staking PLS</h2>
+                <div class="links-container">
+                    <a href="https://www.pipools.xyz/liquid-staking/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pipools.xyz" alt="Project Pi (stPLS) Favicon">
+                        <span>Project Pi (stPLS)</span>
+                    </a>
+                    <a href="https://app.vouch.run/PLS/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.vouch.run" alt="Vouch (vPLS) Favicon">
+                        <span>Vouch (vPLS)</span>
+                    </a>
+                    <a href="https://vx.plusx.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=vx.plusx.app" alt="ValidatorX (uPLS) Favicon">
+                        <span>ValidatorX (uPLS)</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Hexico</h2>
+                <div class="links-container">
+                    <a href="https://hex.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=hex.com" alt="HEX.COM Favicon">
+                        <span>HEX.COM</span>
+                    </a>
+                    <a href="https://hexscout.com" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=hexscout.com" alt="HEXscout Favicon">
+                        <span>HEXscout</span>
+                    </a>
+                    <a href="https://go.hex.com" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=go.hex.com" alt="GO.HEX.COM Favicon">
+                        <span>GO.HEX.COM</span>
+                    </a>
+                    <a href="https://perpetuals.maximus.cash/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=perpetuals.maximus.cash" alt="Maximus Perpetuals Favicon">
+                        <span>Maximus Perpetuals</span>
+                    </a>
+                    <a href="https://app.actuator.finance/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.actuator.finance" alt="Actuator Favicon">
+                        <span>Actuator</span>
+                    </a>
+                    <a href="https://app.icosa.pro/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.icosa.pro" alt="Icosa X Hedron Favicon">
+                        <span>Icosa X Hedron</span>
+                    </a>
+                    <a href="https://communis.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=communis.app" alt="Communis.app Favicon">
+                        <span>Communis.app</span>
+                    </a>
+                    <a href="https://www.hexstats.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=hexstats.com" alt="Hexstats.com Favicon">
+                        <span>Hexstats.com</span>
+                    </a>
+                    <a href="https://www.hexfire.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=hexfire.io" alt="Hexfire.io Favicon">
+                        <span>Hexfire.io</span>
+                    </a>
+                    <a href="https://0xstakehouse.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=0xstakehouse.io" alt="0xStakehouse Favicon">
+                        <span>0xStakehouse</span>
+                    </a>
+                    <a href="https://app.hexpool.party/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.hexpool.party" alt="App.hexpool.party Favicon">
+                        <span>App.hexpool.party</span>
+                    </a>
+                    <a href="https://t.me/FUPA5555" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="$FUPA Favicon">
+                        <span>$FUPA</span>
+                    </a>
+                    <a href="https://www.lookintohex.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=lookintohex.com" alt="Lookintohex Favicon">
+                        <span>Lookintohex</span>
+                    </a>
+                    <a href="https://hexcombinator.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=hexcombinator.com" alt="Hex Combinator Favicon">
+                        <span>Hex Combinator</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Other/Tools</h2>
+                <div class="links-container">
+                    <a href="https://www.projectpilabs.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=projectpilabs.com" alt="Project Pi Labs Favicon">
+                        <span>Project Pi Labs</span>
+                    </a>
+                    <a href="https://www.g4mm4.io" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=g4mm4.io" alt="G4MM4 (RPC) Favicon">
+                        <span>G4MM4 (RPC)</span>
+                    </a>
+                    <a href="https://pls.aff.icu/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pls.aff.icu" alt="Pls.aff.icu (API) Favicon">
+                        <span>Pls.aff.icu (API)</span>
+                    </a>
+                    <a href="https://top.dextop.pro/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=top.dextop.pro" alt="Top.dextop.pro Favicon">
+                        <span>Top.dextop.pro</span>
+                    </a>
+                    <a href="https://app.dedaub.com/decompile?network=pulsechain" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.dedaub.com" alt="dedaub Favicon">
+                        <span>dedaub</span>
+                    </a>
+                    <a href="https://bridged.aff.icu/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=bridged.aff.icu" alt="Bridged.aff.icu Favicon">
+                        <span>Bridged.aff.icu</span>
+                    </a>
+                    <a href="https://app.pulse.domains?ref=plstart.pls" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.pulse.domains" alt="Pulse Domains Favicon">
+                        <span>Pulse Domains</span>
+                    </a>
+                    <a href="https://pls.to/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pls.to" alt="Pls.to Favicon">
+                        <span>Pls.to</span>
+                    </a>
+                    <a href="https://pulsechaintablet.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsechaintablet.com" alt="PulseChain Tablet Favicon">
+                        <span>PulseChain Tablet</span>
+                    </a>
+                    <a href="https://www.lunarshard.limo/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=lunarshard.limo" alt="LunarShard Favicon">
+                        <span>LunarShard</span>
+                    </a>
+                    <a href="https://ct.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=ct.app" alt="CoinTool Favicon">
+                        <span>CoinTool</span>
+                    </a>
+                    <a href="https://www.smartcontractgui.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=smartcontractgui.xyz" alt="Smartcontractgui.xyz Favicon">
+                        <span>Smartcontractgui.xyz</span>
+                    </a>
+                    <a href="https://megaswap.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=megaswap.io" alt="MegaSwap.io Favicon">
+                        <span>MegaSwap.io</span>
+                    </a>
+                    <a href="https://chapulse.info/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=chapulse.info" alt="Chapulse.info Favicon">
+                        <span>Chapulse.info</span>
+                    </a>
+                    <a href="https://launchpad.pulsechain.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=launchpad.pulsechain.com" alt="Launchpad.pulsechain.com Favicon">
+                        <span>Launchpad.pulsechain.com</span>
+                    </a>
+                    <a href="https://safe.powercity.io/welcome?chain=pls" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=safe.powercity.io" alt="Safe{Wallet} Favicon">
+                        <span>Safe{Wallet}</span>
+                    </a>
+                    <a href="https://mint.aff.icu/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=mint.aff.icu" alt="Mint.aff.icu Favicon">
+                        <span>Mint.aff.icu</span>
+                    </a>
+                    <a href="https://www.fetchoracle.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=fetchoracle.com" alt="Fetch Oracle Favicon">
+                        <span>Fetch Oracle</span>
+                    </a>
+                    <a href="https://plsmempool.vercel.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=plsmempool.vercel.app" alt="Pls mempool Favicon">
+                        <span>Pls mempool</span>
+                    </a>
+                    <a href="https://poseidonpls.vercel.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=poseidonpls.vercel.app" alt="Poseidon PulseChain Apps Favicon">
+                        <span>Poseidon PulseChain Apps</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Wallets</h2>
+                <div class="links-container">
+                    <a href="https://internetmoney.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=internetmoney.io" alt="Internet Money Favicon">
+                        <span>Internet Money</span>
+                    </a>
+                    <a href="https://thepulsewallet.org/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=thepulsewallet.org" alt="PulseWallet Favicon">
+                        <span>PulseWallet</span>
+                    </a>
+                    <a href="https://pulsesend.io/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsesend.io" alt="PulseSend Favicon">
+                        <span>PulseSend</span>
+                    </a>
+                    <a href="https://shop.ledger.com/?r=21b4476b35eb" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=ledger.com" alt="Ledger Favicon">
+                        <span>Ledger</span>
+                    </a>
+                    <a href="https://chromewebstore.google.com/detail/okx-wallet/mcohilncbfahbmgdjkbpemcciiolgcge" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=okx.com" alt="OKX Wallet Favicon">
+                        <span>OKX Wallet</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Charts/Trackers</h2>
+                <div class="links-container">
+                    <a href="https://www.plscharts.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=plscharts.com" alt="PlsCharts Favicon">
+                        <span>PlsCharts</span>
+                    </a>
+                    <a href="https://dexscreener.com/pulsechain/0xe56043671df55de5cdf8459710433c10324de0ae" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dexscreener.com" alt="Dexscreener Favicon">
+                        <span>Dexscreener</span>
+                    </a>
+                    <a href="https://www.geckoterminal.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=geckoterminal.com" alt="GeckoTerminal Favicon">
+                        <span>GeckoTerminal</span>
+                    </a>
+                    <a href="https://hexscout.com" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=hexscout.com" alt="HEXscout Favicon">
+                        <span>HEXscout</span>
+                    </a>
+                    <a href="https://frenkabal.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=frenkabal.com" alt="FrenKabal Favicon">
+                        <span>FrenKabal</span>
+                    </a>
+                    <a href="https://squirrels.pro/codex" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=squirrels.pro" alt="Squirrels.pro Codex Favicon">
+                        <span>Squirrels.pro Codex</span>
+                    </a>
+                    <a href="https://web3.okx.com/portfolio/0x36dc0ce90fd445fa57a15cb69fccb7635dafd718" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=okx.com" alt="OKX Portfolio Tracker Favicon">
+                        <span>OKX Portfolio Tracker</span>
+                    </a>
+                    <a href="https://liquidity-pools.vercel.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=liquidity-pools.vercel.app" alt="Liquidity pools Favicon">
+                        <span>Liquidity pools</span>
+                    </a>
+                    <a href="https://pls369.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pls369.com" alt="Pls369 Favicon">
+                        <span>Pls369</span>
+                    </a>
+                    <a href="https://www.plsfolio.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=plsfolio.com" alt="PLSFolio Favicon">
+                        <span>PLSFolio</span>
+                    </a>
+                    <a href="https://www.pulsechainstats.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsechainstats.com" alt="PulseChain Stats Favicon">
+                        <span>PulseChain Stats</span>
+                    </a>
+                    <a href="https://strategicplsreserve.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=strategicplsreserve.xyz" alt="Strategic PLS Reserve (SPR) Favicon">
+                        <span>Strategic PLS Reserve (SPR)</span>
+                    </a>
+                    <a href="https://t.me/fomo/app?startapp=ref_S6KX4" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="EtherDrops Bot Favicon">
+                        <span>EtherDrops Bot</span>
+                    </a>
+                    <a href="https://t.me/LibertySwapBridgeMonitor" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Liberty Swap Bridge Monitor Favicon">
+                        <span>Liberty Swap Bridge Monitor</span>
+                    </a>
+                    <a href="https://gitlab.com/pulsechain-lunagray/pulsechain-dashboard" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=gitlab.com" alt="Pulsechain Dashboard Favicon">
+                        <span>Pulsechain Dashboard</span>
+                    </a>
+                    <a href="https://apphex.win/chain/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=apphex.win" alt="PulseChain charts Favicon">
+                        <span>PulseChain charts</span>
+                    </a>
+                    <a href="https://app.vouch.run/dashboard/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.vouch.run" alt="Vouch LSD Dashboard Favicon">
+                        <span>Vouch LSD Dashboard</span>
+                    </a>
+                    <a href="https://r3wardr.vercel.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=r3wardr.vercel.app" alt="R3wardr Favicon">
+                        <span>R3wardr</span>
+                    </a>
+                    <a href="https://spinetracker.vercel.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=spinetracker.vercel.app" alt="Spinetracker.vercel.app Favicon">
+                        <span>Spinetracker.vercel.app</span>
+                    </a>
+                    <a href="https://treasurysystem.win/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=treasurysystem.win" alt="Treasurysystem.win Favicon">
+                        <span>Treasurysystem.win</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>LP Farms</h2>
+                <div class="links-container">
+                    <a href="https://app.hocuspocus.finance/farms" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.hocuspocus.finance" alt="Hocus Pocus (multi-farm tool) Favicon">
+                        <span>Hocus Pocus (multi-farm tool)</span>
+                    </a>
+                    <a href="https://functionisland.com/yield?ref=0x8c5bcbD7CBeCB92172D534e1AEA03F48b24FaBbf" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=functionisland.com" alt="$YIELD Farm Favicon">
+                        <span>$YIELD Farm</span>
+                    </a>
+                    <a href="https://emit.farm" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=emit.farm" alt="$EMIT Farm Favicon">
+                        <span>$EMIT Farm</span>
+                    </a>
+                    <a href="https://impls.finance" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=impls.finance" alt="$IMPLS Vaults Favicon">
+                        <span>$IMPLS Vaults</span>
+                    </a>
+                    <a href="https://app.2phux.io" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.2phux.io" alt="$2PHUX Farms Favicon">
+                        <span>$2PHUX Farms</span>
+                    </a>
+                    <a href="https://phux.io/#/pulse" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=phux.io" alt="$PHUX Farms Favicon">
+                        <span>$PHUX Farms</span>
+                    </a>
+                    <a href="https://beta.0xtide.com/pools" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=beta.0xtide.com" alt="$TIDE Pools Favicon">
+                        <span>$TIDE Pools</span>
+                    </a>
+                    <a href="https://dex.dextop.pro/earn" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dex.dextop.pro" alt="DexTop $GVR Farm Favicon">
+                        <span>DexTop $GVR Farm</span>
+                    </a>
+                    <a href="https://nexionpulse.com/Flux" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nexionpulse.com" alt="Nexion Farm Factory Favicon">
+                        <span>Nexion Farm Factory</span>
+                    </a>
+                    <a href="https://kilobyte.farm/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=kilobyte.farm" alt="Kilobyte.farm Favicon">
+                        <span>Kilobyte.farm</span>
+                    </a>
+                    <a href="https://incprinter.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=incprinter.com" alt="INC Printer $PRINT Favicon">
+                        <span>INC Printer $PRINT</span>
+                    </a>
+                    <a href="https://app.actuator.finance/farms" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.actuator.finance" alt="Actuator $ACTR Favicon">
+                        <span>Actuator $ACTR</span>
+                    </a>
+                    <a href="https://vox.finance/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=vox.finance" alt="Vox.finance Favicon">
+                        <span>Vox.finance</span>
+                    </a>
+                    <a href="https://www.rhinofi.win/dapp" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=rhinofi.win" alt="Rhino LP farms Favicon">
+                        <span>Rhino LP farms</span>
+                    </a>
+                    <a href="https://pulsechain.thegrayscurrency.com/ufo-reward" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsechain.thegrayscurrency.com" alt="UFO LP farms Favicon">
+                        <span>UFO LP farms</span>
+                    </a>
+                    <a href="https://pulseium.com/farms" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulseium.com" alt="Pulseium Farms Favicon">
+                        <span>Pulseium Farms</span>
+                    </a>
+                    <a href="https://www.x-usd.net/Vault" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=x-usd.net" alt="$XUSD Vaults Favicon">
+                        <span>$XUSD Vaults</span>
+                    </a>
+                    <a href="http://ipfs.app.pulsex.com/farms" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=ipfs.app.pulsex.com" alt="$INC Farm Favicon">
+                        <span>$INC Farm</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Tokens/lists</h2>
+                <div class="links-container">
+                    <a href="https://pump.tires/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pump.tires" alt="Pump.tires Favicon">
+                        <span>Pump.tires</span>
+                    </a>
+                    <a href="https://rhmemes.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=rhmemes.com" alt="RH Memes Favicon">
+                        <span>RH Memes</span>
+                    </a>
+                    <a href="https://pulsecoinlist.com/ecosystem" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsecoinlist.com" alt="PulseCoinList Favicon">
+                        <span>PulseCoinList</span>
+                    </a>
+                    <a href="https://app.vouch.run/dashboard/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.vouch.run" alt="$VOUCH Favicon">
+                        <span>$VOUCH</span>
+                    </a>
+                    <a href="https://dexscreener.com/pulsechain/0xb2045a428b6661e7e16fa1aecd77ec03912828c7" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dexscreener.com" alt="$A1A Favicon">
+                        <span>$A1A</span>
+                    </a>
+                    <a href="https://www.puptoken.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=puptoken.xyz" alt="$PLSPUP Favicon">
+                        <span>$PLSPUP</span>
+                    </a>
+                    <a href="https://pulsechain.thegrayscurrency.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsechain.thegrayscurrency.com" alt="$pTGC Favicon">
+                        <span>$pTGC</span>
+                    </a>
+                    <a href="https://Loganonpulse.com" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=Loganonpulse.com" alt="$LOGAN Favicon">
+                        <span>$LOGAN</span>
+                    </a>
+                    <a href="https://radon-pls.netlify.app/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=radon-pls.netlify.app" alt="$RADON Favicon">
+                        <span>$RADON</span>
+                    </a>
+                    <a href="https://www.yeponpulse.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=yeponpulse.com" alt="$YEP Favicon">
+                        <span>$YEP</span>
+                    </a>
+                    <a href="https://www.bullscope.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=bullscope.com" alt="Bullscope.com Favicon">
+                        <span>Bullscope.com</span>
+                    </a>
+                    <a href="https://cryptoparadise.net/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=cryptoparadise.net" alt="$SURF Favicon">
+                        <span>$SURF</span>
+                    </a>
+                    <a href="https://t.me/DeaDYBeaR_rip" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="🅳🅴🐻🅳🆈 BeaR Favicon">
+                        <span>🅳🅴🐻🅳🆈 BeaR</span>
+                    </a>
+                    <a href="https://www.solidx.win/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=solidx.win" alt="Solidx.win Favicon">
+                        <span>Solidx.win</span>
+                    </a>
+                    <a href="https://drdoge.net/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=drdoge.net" alt="DrDoge Favicon">
+                        <span>DrDoge</span>
+                    </a>
+                    <a href="https://t.me/OpportunityOfFinance_OOF" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="$OOF Favicon">
+                        <span>$OOF</span>
+                    </a>
+                    <a href="https://wonderland.cool/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=wonderland.cool" alt="Wonderland Favicon">
+                        <span>Wonderland</span>
+                    </a>
+                    <a href="https://www.0xcurv.win/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=0xcurv.win" alt="0xCURV Favicon">
+                        <span>0xCURV</span>
+                    </a>
+                    <a href="https://rhinofi.win/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=rhinofi.win" alt="$RHINO Favicon">
+                        <span>$RHINO</span>
+                    </a>
+                    <a href="https://coin.quest/ref/001fAa97" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=coin.quest" alt="Coin Quest Favicon">
+                        <span>Coin Quest</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Telegram Trading Bots</h2>
+                <div class="links-container">
+                    <a href="https://t.me/solid_trader_bot?start=ref_plstart" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Solid Trader Favicon">
+                        <span>Solid Trader</span>
+                    </a>
+                    <a href="https://t.me/BullsEyeBetaBot?start=ref=REF_688323752" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="BullsEye Favicon">
+                        <span>BullsEye</span>
+                    </a>
+                    <a href="https://t.me/ProdigySniperBot?start=BE25Y2" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Prodigy Sniper Bot Favicon">
+                        <span>Prodigy Sniper Bot</span>
+                    </a>
+                    <a href="https://t.me/WenSwap_Bot?start=15708" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="WenSwap Bot Favicon">
+                        <span>WenSwap Bot</span>
+                    </a>
+                    <a href="https://t.me/PulsonicBot?start=r-2xNsCQf4pMXQY8AER" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Pulsonic Bot Favicon">
+                        <span>Pulsonic Bot</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Community Chats</h2>
+                <div class="links-container">
+                    <a href="https://t.me/sunnyspubv2" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Sunny's Pub Favicon">
+                        <span>Sunny's Pub</span>
+                    </a>
+                    <a href="https://t.me/DeFiPrincesRoyalLounge" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="DeFi Prince's Royal Lounge Favicon">
+                        <span>DeFi Prince's Royal Lounge</span>
+                    </a>
+                    <a href="https://t.me/Degen_Protocol" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Degen Protocol Favicon">
+                        <span>Degen Protocol</span>
+                    </a>
+                    <a href="https://t.me/drtjoinnow" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Degen Roundtable Favicon">
+                        <span>Degen Roundtable</span>
+                    </a>
+                    <a href="https://t.me/TheKryptoniteShow" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="The Kryptonite Show Favicon">
+                        <span>The Kryptonite Show</span>
+                    </a>
+                    <a href="https://t.me/+pFak2DxSuwQ4NTg5" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="EMIT Favicon">
+                        <span>EMIT</span>
+                    </a>
+                    <a href="https://t.me/ProjectPiLabs" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Project Pi Labs Favicon">
+                        <span>Project Pi Labs</span>
+                    </a>
+                    <a href="https://t.me/vouchrun" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Vouch.run Official Favicon">
+                        <span>Vouch.run Official</span>
+                    </a>
+                    <a href="https://t.me/SIMPonPLS" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="SIMP Public Access Favicon">
+                        <span>SIMP Public Access</span>
+                    </a>
+                    <a href="https://t.me/pulsebear" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Pulse Bear Favicon">
+                        <span>Pulse Bear</span>
+                    </a>
+                    <a href="https://t.me/prc20GLASS" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Glass Favicon">
+                        <span>Glass</span>
+                    </a>
+                    <a href="https://t.me/VetsInCrypto" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="V.I.C. FOUNDATION Favicon">
+                        <span>V.I.C. FOUNDATION</span>
+                    </a>
+                    <a href="https://t.me/CamelClan" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="The Camel Clan Favicon">
+                        <span>The Camel Clan</span>
+                    </a>
+                    <a href="https://t.me/TheOverlordz" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="The OverLords Favicon">
+                        <span>The OverLords</span>
+                    </a>
+                    <a href="https://t.me/CouncilofLP" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="The Council of LP Favicon">
+                        <span>The Council of LP</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>CEXs</h2>
+                <div class="links-container">
+                    <a href="https://bitcointry.com?ref=zdYXOR602jzaXUO" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=bitcointry.com" alt="Bitcointry Favicon">
+                        <span>Bitcointry</span>
+                    </a>
+                    <a href="https://safetrade.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=safetrade.com" alt="Safetrade Favicon">
+                        <span>Safetrade</span>
+                    </a>
+                    <a href="https://trade.kanga.exchange/a/Cy3kuNQD" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=trade.kanga.exchange" alt="Kanga Favicon">
+                        <span>Kanga</span>
+                    </a>
+                </div>
+            </section>
+
+            <section class="category-section">
+                <h2>Page Sponsors</h2>
+                <div class="links-container">
+                    <a href="https://functionisland.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=functionisland.com" alt="Function Island Favicon">
+                        <span>Function Island</span>
+                    </a>
+                    <a href="https://dexscreener.com/pulsechain/0xb2045a428b6661e7e16fa1aecd77ec03912828c7" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=dexscreener.com" alt="TokenA1A Favicon">
+                        <span>TokenA1A</span>
+                    </a>
+                    <a href="https://app.pulseln.com?ref=4k53P5OO445sNn31oQ4n41NP19153S724121Nr8193" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.pulseln.com" alt="PulseLN Favicon">
+                        <span>PulseLN</span>
+                    </a>
+                    <a href="https://changenow.app.link/referral?link_id=98bfff15956173" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=changenow.app" alt="ChangeNow Favicon">
+                        <span>ChangeNow</span>
+                    </a>
+                    <a href="https://www.overtimemarkets.xyz/markets?referrerId=plstart" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=overtimemarkets.xyz" alt="Overtime Sportsbook Favicon">
+                        <span>Overtime Sportsbook</span>
+                    </a>
+                    <a href="https://www.puptoken.xyz/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=puptoken.xyz" alt="PLSPUP Favicon">
+                        <span>PLSPUP</span>
+                    </a>
+                    <a href="https://impls.finance" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=impls.finance" alt="IMPLS Favicon">
+                        <span>IMPLS</span>
+                    </a>
+                    <a href="https://mineshafts.xyz" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=mineshafts.xyz" alt="Mineshafts.xyz Favicon">
+                        <span>Mineshafts.xyz</span>
+                    </a>
+                    <a href="https://pulsechain.thegrayscurrency.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsechain.thegrayscurrency.com" alt="pTGC Favicon">
+                        <span>pTGC</span>
+                    </a>
+                    <a href="https://pulsicanstore.com/plstartme" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pulsicanstore.com" alt="The Pulsican Store Favicon">
+                        <span>The Pulsican Store</span>
+                    </a>
+                    <a href="https://emit.farm/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=emit.farm" alt="EMIT Favicon">
+                        <span>EMIT</span>
+                    </a>
+                    <a href="https://nexionpulse.com/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=nexionpulse.com" alt="Nexion Favicon">
+                        <span>Nexion</span>
+                    </a>
+                    <a href="https://t.me/FUPA5555" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="FUPA Favicon">
+                        <span>FUPA</span>
+                    </a>
+                    <a href="https://Loganonpulse.com" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=Loganonpulse.com" alt="LOGAN Favicon">
+                        <span>LOGAN</span>
+                    </a>
+                    <a href="https://t.me/Radon86Greed" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=t.me" alt="Radon86greed Favicon">
+                        <span>Radon86greed</span>
+                    </a>
+                    <a href="https://swap.win/plstart" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=swap.win" alt="Swap.win Favicon">
+                        <span>Swap.win</span>
+                    </a>
+                    <a href="https://www.pipools.xyz/liquid-staking/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=pipools.xyz" alt="Project Pi (stPLS) Favicon">
+                        <span>Project Pi (stPLS)</span>
+                    </a>
+                    <a href="https://app.vouch.run/PLS/" target="_blank" class="website-link">
+                        <img src="https://www.google.com/s2/favicons?domain=app.vouch.run" alt="vouch.run liquid staking Favicon">
+                        <span>vouch.run liquid staking</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+    </main>
+    <div id="taskbar">
+        <div id="start-button">Start</div>
+        <div id="datetime-display"></div> <!-- Added for time/date display -->
+    </div>
+
+    <div id="start-menu">
+        <div class="start-menu-content">
+            <a href="https://pulsechain.com" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=pulsechain.com" alt="PulseChain Favicon">
+                <span>PulseChain</span>
+            </a>
+            <a href="https://x.com" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=x.com" alt="X.com Favicon">
+                <span>X.com</span>
+            </a>
+            <a href="https://github.com" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=github.com" alt="GitHub Favicon">
+                <span>GitHub</span>
+            </a>
+            <a href="https://telegram.org" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=telegram.org" alt="Telegram Favicon">
+                <span>Telegram</span>
+            </a>
+            <a href="https://www.publish0x.com" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=publish0x.com" alt="Publish0x Favicon">
+                <span>Publish0x</span>
+            </a>
+            <a href="https://pump.tires/" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=pump.tires" alt="Pump.tires Favicon">
+                <span>Pump.tires</span>
+            </a>
+            <a href="https://x.com/CrypMvs" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=x.com" alt="Weekly PulseChain Monster Thread Favicon">
+                <span>Weekly PulseChain Monster Thread</span>
+            </a>
+            <a href="https://news.treeofalpha.com/" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=news.treeofalpha.com" alt="Tree News Favicon">
+                <span>Tree News</span>
+            </a>
+            <a href="https://www.coingecko.com/en" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=coingecko.com" alt="CoinGecko Favicon">
+                <span>CoinGecko</span>
+            </a>
+            <a href="https://www.strategicethreserve.xyz/" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=strategicethreserve.xyz" alt="Strategic ETH Reserve Favicon">
+                <span>Strategic ETH Reserve</span>
+            </a>
+            <a href="https://venice.ai/chat?ref=4Nsi9K" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=venice.ai" alt="Venice AI Favicon">
+                <span>Venice AI</span>
+            </a>
+            <a href="https://pulsicanstore.com/plstartme" target="_blank" class="start-menu-link">
+                <img src="https://www.google.com/s2/favicons?domain=pulsicanstore.com" alt="The Pulsican Store Favicon">
+                <span>The Pulsican Store</span>
+            </a>
+        </div>
+    </div>
+</body>
+</html>
