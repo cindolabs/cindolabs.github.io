@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .loader {
+      width: 120px; height: 120px;
+      animation: spin 2s linear infinite;
+    }
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body style="background:#001A40; display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">
+
+  <svg class="loader" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
+    <g transform="translate(512,512) rotate(45) translate(-512,-512)">
+      <rect x="232" y="232" width="560" height="560" rx="80" fill="#4D9CFF"/>
+      <rect x="382" y="382" width="260" height="260" rx="50" fill="#001A40"/>
+      <animateTransform attributeName="transform" type="rotate" from="0 512 512" to="360 512 512" dur="2s" repeatCount="indefinite"/>
+    </g>
+  </svg>
+
+</body>
+</html>
