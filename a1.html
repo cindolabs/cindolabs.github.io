@@ -1,26 +1,204 @@
 <!DOCTYPE html>
-<html>
+<html lang="id">
 <head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cindo Labs Pitch Deck</title>
   <style>
-    .loader {
-      width: 120px; height: 120px;
-      animation: spin 2s linear infinite;
+    :root {
+      --blue: #0052FF;
+      --dark: #001A40;
+      --white: #FFFFFF;
+      --light: #A0C4FF;
+      --accent: #4D9CFF;
     }
-    @keyframes spin {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      background: var(--dark);
+      color: var(--white);
+      overflow-x: hidden;
     }
+    .slide {
+      width: 100vw; height: 100vh;
+      padding: 60px; display: flex; flex-direction: column;
+      justify-content: center; position: relative;
+      background: var(--dark); color: var(--white);
+    }
+    .logo {
+      width: 120px; position: absolute; top: 40px; left: 60px;
+    }
+    h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; }
+    h2 { font-size: 2.5rem; margin-bottom: 30px; color: var(--light); }
+    p { font-size: 1.3rem; line-height: 1.7; max-width: 800px; margin: 0 auto 30px; }
+    ul { font-size: 1.2rem; max-width: 800px; margin: 0 auto; }
+    li { margin: 12px 0; }
+    .btn {
+      background: var(--white); color: var(--blue); padding: 14px 32px;
+      border-radius: 50px; font-weight: bold; text-decoration: none;
+      display: inline-block; margin-top: 30px; align-self: center;
+    }
+    .grid {
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 40px; max-width: 1000px; margin: 40px auto;
+    }
+    .card {
+      background: rgba(255,255,255,0.05); padding: 25px; border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.1); text-align: center;
+    }
+    .highlight { color: var(--accent); font-weight: bold; }
+    .footer { position: absolute; bottom: 40px; left: 60px; font-size: 0.9rem; color: #666; }
+    .slide:nth-child(odd) { background: linear-gradient(135deg, #0039A6, var(--blue)); }
+    .center { text-align: center; }
+    .animate { animation: fadeIn 1s ease-out; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(20px); } to { opacity:1; transform:translateY(0); } }
+    @media print { body { -webkit-print-color-adjust: exact; } .slide { page-break-after: always; } }
   </style>
 </head>
-<body style="background:#001A40; display:flex; justify-content:center; align-items:center; height:100vh; margin:0;">
+<body>
 
-  <svg class="loader" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg">
-    <g transform="translate(512,512) rotate(45) translate(-512,-512)">
-      <rect x="232" y="232" width="560" height="560" rx="80" fill="#4D9CFF"/>
-      <rect x="382" y="382" width="260" height="260" rx="50" fill="#001A40"/>
-      <animateTransform attributeName="transform" type="rotate" from="0 512 512" to="360 512 512" dur="2s" repeatCount="indefinite"/>
-    </g>
+  <!-- SVG LOGO -->
+  <svg style="display:none">
+    <symbol id="logo" viewBox="0 0 1024 1024">
+      <rect width="1024" height="1024" fill="#0052FF"/>
+      <g transform="translate(512,512) rotate(45) translate(-512,-512)">
+        <rect x="232" y="232" width="560" height="560" rx="80" fill="#FFFFFF"/>
+        <rect x="382" y="382" width="260" height="260" rx="50" fill="#0052FF"/>
+      </g>
+    </symbol>
   </svg>
+
+  <!-- SLIDE 1: COVER -->
+  <section class="slide center">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h1 class="animate">CINDO LABS</h1>
+    <p class="animate" style="animation-delay:0.3s">Ekosistem Aset Digital Berbasis Web3 & AI</p>
+    <p class="animate" style="animation-delay:0.6s; font-size:1.1rem; color:var(--light)">
+      Membangun Masa Depan Terdesentralisasi
+    </p>
+    <div class="footer">Oktober 2025 | @cindolabs</div>
+  </section>
+
+  <!-- SLIDE 2: PROBLEM -->
+  <section class="slide">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Masalah</h2>
+    <ul class="animate" style="animation-delay:0.3s">
+      <li>Fragmentasi data blockchain di berbagai chain</li>
+      <li>Akses aset digital masih rumit bagi pengguna awam</li>
+      <li>Prediksi pasar crypto masih manual & tidak akurat</li>
+      <li>Kurangnya ekosistem terintegrasi untuk developer & investor</li>
+    </ul>
+    <div class="footer">Slide 2/10</div>
+  </section>
+
+  <!-- SLIDE 3: SOLUTION -->
+  <section class="slide">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Solusi: Cindo Labs</h2>
+    <p class="animate" style="animation-delay:0.3s">
+      Platform <span class="highlight">all-in-one</span> untuk indexing, analisis AI, dan manajemen aset digital.
+    </p>
+    <div class="grid animate" style="animation-delay:0.5s">
+      <div class="card">Real-time Indexing</div>
+      <div class="card">AI Market Prediction</div>
+      <div class="card">Unified Wallet & API</div>
+      <div class="card">Token & NFT Tools</div>
+    </div>
+    <div class="footer">Slide 3/10</div>
+  </section>
+
+  <!-- SLIDE 4: MARKET -->
+  <section class="slide center">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Peluang Pasar</h2>
+    <p class="animate" style="animation-delay:0.3s; font-size:2rem;">
+      Web3 Market Cap: <span class="highlight">$2.3T</span> (2025)
+    </p>
+    <p class="animate" style="animation-delay:0.5s">
+      AI + Crypto = <span class="highlight">Next $1T Sector</span>
+    </p>
+    <div class="footer">Slide 4/10</div>
+  </section>
+
+  <!-- SLIDE 5: PRODUCT -->
+  <section class="slide">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Produk</h2>
+    <div class="grid animate" style="animation-delay:0.3s">
+      <div class="card"><strong>Cindo Index</strong><br>Real-time blockchain data</div>
+      <div class="card"><strong>Cindo AI</strong><br>Prediksi & analisis</div>
+      <div class="card"><strong>Cindo Wallet</strong><br>Multi-chain, non-custodial</div>
+      <div class="card"><strong>Cindo Launchpad</strong><br>Token & NFT creation</div>
+    </div>
+    <div class="footer">Slide 5/10</div>
+  </section>
+
+  <!-- SLIDE 6: TRACTION -->
+  <section class="slide center">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Traction (Q4 2025)</h2>
+    <div class="grid animate" style="animation-delay:0.3s; grid-template-columns: repeat(3,1fr);">
+      <div><h1 style="font-size:3rem; color:var(--accent)">50K+</h1>Active Users</div>
+      <div><h1 style="font-size:3rem; color:var(--accent)">$10M</h1>TVL</div>
+      <div><h1 style="font-size:3rem; color:var(--accent)">15</h1>Chain Supported</div>
+    </div>
+    <div class="footer">Slide 6/10</div>
+  </section>
+
+  <!-- SLIDE 7: BUSINESS MODEL -->
+  <section class="slide">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Model Bisnis</h2>
+    <ul class="animate" style="animation-delay:0.3s">
+      <li>API Subscription (SaaS)</li>
+      <li>Transaction Fees (0.1%)</li>
+      <li>Launchpad Revenue Share</li>
+      <li>Premium AI Insights</li>
+    </ul>
+    <p class="animate" style="animation-delay:0.5s; text-align:center; font-weight:bold;">
+      Proyeksi Revenue 2026: <span class="highlight">$25M</span>
+    </p>
+    <div class="footer">Slide 7/10</div>
+  </section>
+
+  <!-- SLIDE 8: TEAM -->
+  <section class="slide">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Tim</h2>
+    <div class="grid animate" style="animation-delay:0.3s">
+      <div class="card"><strong>Ahmad Cindo</strong><br>CEO • Ex-Binance Lead</div>
+      <div class="card"><strong>Siti Nurhaliza</strong><br>CTO • PhD AI, MIT</div>
+      <div class="card"><strong>Rizky Pratama</strong><br>CMO • 10+ tahun Web3</div>
+      <div class="card"><strong>Team of 12</strong><br>Engineers & Researchers</div>
+    </div>
+    <div class="footer">Slide 8/10</div>
+  </section>
+
+  <!-- SLIDE 9: ROADMAP -->
+  <section class="slide center">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h2 class="animate">Roadmap</h2>
+    <p class="animate" style="animation-delay:0.3s">
+      Q4 2025: <span class="highlight">Mainnet Launch</span><br>
+      Q1 2026: <span class="highlight">AI Prediction v2</span><br>
+      Q2 2026: <span class="highlight">Mobile App & 50 Chains</span>
+    </p>
+    <div class="footer">Slide 9/10</div>
+  </section>
+
+  <!-- SLIDE 10: ASK -->
+  <section class="slide center">
+    <svg class="logo"><use href="#logo"/></svg>
+    <h1 class="animate">We Are Raising</h1>
+    <p class="animate" style="animation-delay:0.3s; font-size:2.5rem;">
+      <span class="highlight">$5M Seed Round</span>
+    </p>
+    <p class="animate" style="animation-delay:0.5s">
+      Untuk scaling infrastructure, AI R&D, dan global expansion.
+    </p>
+    <a href="mailto:invest@cindolabs.com" class="btn animate" style="animation-delay:0.7s">Hubungi Kami</a>
+    <div class="footer">Slide 10/10 | Terima kasih!</div>
+  </section>
 
 </body>
 </html>
