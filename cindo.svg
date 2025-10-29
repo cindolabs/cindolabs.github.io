@@ -1,22 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024" role="img" aria-label="Cindo Labs Logo">
-  <!-- Background Circle -->
-  <circle cx="512" cy="512" r="480" fill="#0052FF" stroke="#FFFFFF" stroke-width="10"/>
+  <!-- Background Biru Pekat -->
+  <rect width="1024" height="1024" fill="#0052FF"/>
 
-  <!-- Stylized Leaf (Tropical and Full with Thicker Stroke) -->
-  <g stroke="#FFFFFF" stroke-width="60" fill="none">
-    <!-- Leaf shape with wider, fuller curves -->
-    <path d="M 512 262 C 682 262, 742 412, 682 512 C 742 612, 682 762, 512 762 C 342 762, 282 612, 342 512 C 282 412, 342 262, 512 262" stroke-linecap="round"/>
-    <!-- Main vein -->
-    <path d="M 512 412 V 612" stroke-linecap="round"/>
-    <!-- Additional curved veins for tropical look -->
-    <path d="M 512 512 C 472 472, 452 432, 462 392 M 512 512 C 552 472, 572 432, 562 392" stroke-linecap="round" stroke-width="30"/>
-  </g>
+  <!-- Diamond Utama (Putih) -->
+  <path d="M512 152 L872 512 L512 872 L152 512 Z" fill="#FFFFFF"/>
 
-  <!-- Square Overlay (Larger, Centered, rotated 45 degrees) -->
-  <g fill="none" stroke="#FFFFFF" stroke-width="15" opacity="0.5" transform="translate(512, 512) rotate(45) translate(-512, -512)">
-    <rect x="442" y="442" width="140" height="140" rx="15"/>
-  </g>
-
-  <!-- Central Glow -->
-  <circle cx="512" cy="512" r="60" fill="#FFFFFF" fill-opacity="0.25"/>
+  <!-- Lubang Tengah (Biru, sesuai latar) -->
+  <path d="M512 352 L712 512 L512 672 L312 512 Z" fill="#0052FF"/>
 </svg>
