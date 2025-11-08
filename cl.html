@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>150: Angka Istimewa</title>
+  <title>150: Angka Istimewa dalam Al-Qur'an & Kehidupan</title>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>150</text></svg>">
   <style>
     :root {
       --blue: #0052FF; --dark: #001A40; --white: #FFF; --accent: #4D9CFF;
-      --gold: #FFD700; --gray: #f4f4f4;
+      --gold: #FFD700; --gray: #f4f4f4; --green: #2e7d32;
     }
     * { margin:0; padding:0; box-sizing:border-box; }
     body {
-      font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #e0f7fa, #fff3e0);
+      font-family: 'Segoe UI', sans-serif; background: linear-gradient(135deg, #e8f5e9, #fff8e1);
       color: var(--dark); line-height: 1.6; padding: 20px;
     }
-    .container { max-width: 900px; margin: auto; }
+    .container { max-width: 960px; margin: auto; }
     h1 {
       text-align: center; font-size: 48px; color: var(--blue); margin: 30px 0;
       text-shadow: 0 2px 4px rgba(0,0,0,0.1);
@@ -33,22 +33,38 @@
       box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: transform 0.3s;
       border-left: 6px solid var(--blue);
     }
+    .card.quran { border-left-color: var(--green); }
     .card:hover { transform: translateY(-8px); }
     .card h3 {
-      color: var(--blue); margin-bottom: 10px; font-size: 20px;
+      color: var(--blue); margin-bottom: 12px; font-size: 20px;
       display: flex; align-items: center; gap: 8px;
     }
+    .card.quran h3 { color: var(--green); }
     .card ul { padding-left: 20px; }
     .card li { margin: 6px 0; font-size: 15px; }
     .highlight { background: #e6f0ff; padding: 2px 6px; border-radius: 4px; font-weight: bold; }
+    .arabic {
+      font-family: 'Amiri', 'Scheherazade', serif; font-size: 22px; text-align: right;
+      direction: rtl; color: var(--dark); margin: 12px 0; line-height: 1.8;
+    }
+    .trans {
+      font-style: italic; color: #555; font-size: 14px; margin-top: 6px;
+    }
+    .audio-link {
+      display: inline-block; margin-top: 8px; font-size: 13px; color: var(--blue);
+      text-decoration: none; font-weight: bold;
+    }
+    .audio-link:hover { text-decoration: underline; }
     .footer {
-      text-align: center; margin: 50px 0 20px; color: #666; font-size: 14px;
+      text-align: center; margin: 60px 0 20px; color: #666; font-size: 14px;
     }
     @media (max-width: 600px) {
       h1 { font-size: 36px; }
       .roman { font-size: 56px; letter-spacing: 4px; }
+      .arabic { font-size: 18px; }
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -66,7 +82,7 @@
         <h3>Matematika</h3>
         <ul>
           <li><strong>Faktor prima:</strong> 2 × 3 × 5²</li>
-          <li><strong>Pembagi:</strong> 12 buah (abundant)</li>
+          <li><strong>Pembagi:</strong> 12 buah</li>
           <li><strong>Romawi:</strong> <span class="highlight">CL</span></li>
           <li><strong>Sudut pentagon:</strong> 150°</li>
         </ul>
@@ -81,13 +97,40 @@
         </ul>
       </div>
 
-      <!-- Agama -->
-      <div class="card">
-        <h3>Agama</h3>
+      <!-- Al-Baqarah:150 -->
+      <div class="card quran">
+        <h3>Al-Baqarah Ayat 150</h3>
+        <div class="arabic">
+          وَمِنْ حَيْثُ خَرَجْتَ فَوَلِّ وَجْهَكَ شَطْرَ الْمَسْجِدِ الْحَرَامِ ۖ وَإِنَّهُ لَلْحَقُّ مِن رَّبِّكَ ۗ وَمَا اللَّهُ بِغَافِلٍ عَمَّا تَعْمَلُونَ
+        </div>
+        <p class="trans">
+          "Dan dari mana saja kamu keluar, hadapkan wajahmu ke arah Masjidil Haram. Sesungguhnya itu benar-benar hak dari Tuhanmu. Allah tidak lalai dari apa yang kamu kerjakan."
+        </p>
+        <a href="https://quran.com/2/150" target="_blank" class="audio-link">▶ Dengar Ayat</a>
+      </div>
+
+      <!-- Surah 100 -->
+      <div class="card quran">
+        <h3>Surah ke-100: Al-'Adiyat</h3>
+        <p><strong>Makkiyah • 11 ayat</strong></p>
         <ul>
-          <li><strong>Mazmur 150:</strong> Pujian terakhir dengan alat musik</li>
-          <li><strong>150 hari</strong> setelah Paskah → St. Petrus & Paulus</li>
+          <li>Kuda perang yang berlari kencang</li>
+          <li>Kritik: Manusia ingkar & cinta harta</li>
+          <li>Akhir: Rahasia terbuka di Kiamat</li>
         </ul>
+        <a href="https://quran.com/100" target="_blank" class="audio-link">▶ Dengar Surah</a>
+      </div>
+
+      <!-- Surah 50 -->
+      <div class="card quran">
+        <h3>Surah ke-50: Qaf</h3>
+        <p><strong>Makkiyah • 45 ayat</strong></p>
+        <ul>
+          <li>Dibuka dengan huruf <strong>ق</strong></li>
+          <li>Allah lebih dekat dari urat leher</li>
+          <li>Peringatan: Kiamat & pengawasan</li>
+        </ul>
+        <a href="https://quran.com/50" target="_blank" class="audio-link">▶ Dengar Surah</a>
       </div>
 
       <!-- Teknologi -->
@@ -104,7 +147,7 @@
         <h3>Olahraga</h3>
         <ul>
           <li><strong>1500 m:</strong> "Metric mile" Olimpiade</li>
-          <li><strong>Bowling:</strong> 150 poin = 10 frame × 15 pin</li>
+          <li><strong>Bowling:</strong> 150 poin maksimum</li>
         </ul>
       </div>
 
@@ -112,15 +155,17 @@
       <div class="card">
         <h3>Sehari-hari</h3>
         <ul>
-          <li><strong>150 menit:</strong> Durasi film rata-rata</li>
-          <li><strong>150 cm:</strong> Tinggi rata-rata wanita Indonesia</li>
+          <li><strong>Film:</strong> ~150 menit</li>
+          <li><strong>Tinggi wanita ID:</strong> ~150 cm</li>
         </ul>
       </div>
 
     </div>
 
     <div class="footer">
-      © 2025 Cindo Labs – Fintech Research Lab | cindolabs.github.io
+      © 2025 Cindo Labs – Fintech Research Lab | 
+      <a href="https://cindolabs.github.io" style="color:var(--blue);">cindolabs.github.io</a> | 
+      <a href="https://app.ens.domains/cindo.eth" style="color:var(--blue);">cindo.eth</a>
     </div>
   </div>
 
