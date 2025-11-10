@@ -2,34 +2,174 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Almanack Indonesia</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Almanack Indonesia 2025 | @cindolabs</title>
+  <meta name="description" content="Prediksi, tren, dan insight Indonesia 2025. Baca online atau download PDF/Word.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
-    body, html { margin: 0; padding: 0; height: 100%; font-family: Arial, sans-serif; background: #f9f9f9; }
-    .header { text-align: center; padding: 30px 20px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; }
-    .header h1 { margin: 0; font-size: 2.5em; }
-    .header p { margin: 10px 0; opacity: 0.9; }
-    .buttons { margin: 20px 0; }
-    .btn { display: inline-block; margin: 10px; padding: 12px 24px; background: #fff; color: #333; text-decoration: none; border-radius: 8px; font-weight: bold; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: background 0.3s; }
-    .btn:hover { background: #f0f0f0; }
-    .pdf-viewer { width: 100%; height: calc(100vh - 200px); border: none; background: white; }
-    @media (max-width: 768px) { .header h1 { font-size: 2em; } .pdf-viewer { height: calc(100vh - 150px); } }
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --bg: #f8fafc;
+      --text: #1e293b;
+      --card: #ffffff;
+      --border: #e2e8f0;
+      --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --text: #f1f5f9;
+        --card: #1e293b;
+        --border: #334155;
+      }
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body, html {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: white;
+      text-align: center;
+      padding: 2.5rem 1rem;
+      box-shadow: var(--shadow);
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      font-size: 1.1rem;
+      opacity: 0.95;
+      max-width: 600px;
+      margin: 0 auto 1.5rem;
+    }
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.5rem;
+      background: white;
+      color: var(--primary-dark);
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+    .btn i { font-size: 1.1rem; }
+    main {
+      flex: 1;
+      padding: 1.5rem;
+      background: var(--card);
+      border-top: 1px solid var(--border);
+    }
+    .pdf-container {
+      width: 100%;
+      height: 100%;
+      min-height: 70vh;
+      border: none;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      background: white;
+    }
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      font-size: 0.9rem;
+      color: #64748b;
+      border-top: 1px solid var(--border);
+    }
+    .dark-toggle {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: rgba(255,255,255,0.2);
+      border: none;
+      color: white;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      font-size: 1.2rem;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.8rem; }
+      header p { font-size: 1rem; }
+      .btn { padding: 0.65rem 1.2rem; font-size: 0.95rem; }
+      .pdf-container { min-height: 60vh; border-radius: 12px; }
+    }
   </style>
 </head>
 <body>
 
-  <div class="header">
-    <h1>📖 Almanack Indonesia</h1>
-    <p>Dokumen lengkap tentang tren, prediksi, dan insight Indonesia 2025</p>
-    <div class="buttons">
-      <a href="almanack-indonesia.pdf" class="btn" download>📥 Download PDF</a>
-      <a href="almanack-indonesia.docx" class="btn" download>📄 Download Word</a>
+  <button class="dark-toggle" onclick="toggleDark()" aria-label="Toggle dark mode">
+    <i class="fas fa-moon"></i>
+  </button>
+
+  <header>
+    <h1>📖 Almanack Indonesia 2025</h1>
+    <p>Prediksi, tren, dan insight mendalam untuk masa depan Indonesia — oleh @cindolabs</p>
+    <div class="btn-group">
+      <a href="almanack-indonesia.pdf" class="btn" download>
+        <i class="fas fa-file-pdf"></i> Download PDF
+      </a>
+      <a href="almanack-indonesia.docx" class="btn" download>
+        <i class="fas fa-file-word"></i> Download Word
+      </a>
     </div>
-  </div>
+  </header>
 
-  <iframe src="almanack-indonesia.pdf" class="pdf-viewer" title="Almanack Indonesia PDF Viewer">
-    Browser Anda tidak mendukung tampilan PDF. <a href="almanack-indonesia.pdf" download>Download di sini</a>.
-  </iframe>
+  <main>
+    <iframe 
+      src="almanack-indonesia.pdf" 
+      class="pdf-container" 
+      title="Almanack Indonesia 2025 - PDF Viewer"
+      loading="lazy">
+      Browser Anda tidak mendukung PDF. 
+      <a href="almanack-indonesia.pdf">Klik di sini untuk download</a>.
+    </iframe>
+  </main>
 
+  <footer>
+    &copy; 2025 <strong>@cindolabs</strong> · Śaka 1947 · Kali Yuga 5126
+  </footer>
+
+  <script>
+    function toggleDark() {
+      document.body.classList.toggle('dark-mode');
+      const icon = document.querySelector('.dark-toggle i');
+      icon.classList.toggle('fa-moon');
+      icon.classList.toggle('fa-sun');
+    }
+    // Auto dark mode
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      document.body.classList.add('dark-mode');
+      document.querySelector('.dark-toggle i').classList.replace('fa-moon', 'fa-sun');
+    }
+  </script>
 </body>
 </html>
