@@ -98,10 +98,26 @@
     footer {
       text-align: center;
       padding: 1.5rem;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: #64748b;
       border-top: 1px solid var(--border);
+      background: var(--card);
     }
+    .calendars {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+    .cal {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: var(--text);
+    }
+    .cal i { color: var(--primary); font-size: 0.9rem; }
     .dark-toggle {
       position: absolute;
       top: 1rem;
@@ -121,6 +137,7 @@
       header p { font-size: 1rem; }
       .btn { padding: 0.65rem 1.2rem; font-size: 0.95rem; }
       .pdf-container { min-height: 60vh; border-radius: 12px; }
+      .calendars { gap: 1rem; font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -155,7 +172,14 @@
   </main>
 
   <footer>
-    &copy; 2025 <strong>@cindolabs</strong> · Śaka 1947 · Kali Yuga 5126
+    <div>&copy; 2025 <strong>@cindolabs</strong> · Semua hak cipta dilindungi</div>
+    <div class="calendars">
+      <span class="cal"><i class="fas fa-calendar-alt"></i> Masehi: 10 Nov 2025</span>
+      <span class="cal"><i class="fas fa-sun"></i> Śaka: 1947</span>
+      <span class="cal"><i class="fas fa-moon"></i> Kali Yuga: 5126</span>
+      <span class="cal"><i class="fas fa-dragon"></i> Imlek: 4723 (乙巳)</span>
+      <span class="cal"><i class="fas fa-kaaba"></i> Hijriah: 1447 AH</span>
+    </div>
   </footer>
 
   <script>
@@ -165,7 +189,6 @@
       icon.classList.toggle('fa-moon');
       icon.classList.toggle('fa-sun');
     }
-    // Auto dark mode
     if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.body.classList.add('dark-mode');
       document.querySelector('.dark-toggle i').classList.replace('fa-moon', 'fa-sun');
