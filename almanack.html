@@ -41,18 +41,25 @@
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: white;
       text-align: center;
-      padding: 2rem 1rem;
+      padding: 2.5rem 1rem 2rem;
       box-shadow: var(--shadow);
       position: relative;
     }
-    .book-cover {
-      width: 120px;
-      height: 160px;
+    .logo-container {
+      width: 140px;
+      height: 140px;
       margin: 0 auto 1rem;
-      background: url('https://via.placeholder.com/300x400/4f46e5/ffffff?text=📖+Almanack') center/cover no-repeat;
-      border-radius: 12px;
-      box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-      border: 4px solid rgba(255,255,255,0.3);
+      padding: 12px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .logo-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
     }
     header h1 {
       font-size: 2rem;
@@ -143,7 +150,7 @@
       backdrop-filter: blur(10px);
     }
     @media (max-width: 768px) {
-      .book-cover { width: 100px; height: 133px; }
+      .logo-container { width: 110px; height: 110px; }
       header h1 { font-size: 1.7rem; }
       header p { font-size: 0.95rem; }
       .btn { padding: 0.65rem 1.2rem; font-size: 0.9rem; }
@@ -159,8 +166,10 @@
   </button>
 
   <header>
-    <div class="book-cover"></div>
-    <h1>📖 Almanack Indonesia 2025</h1>
+    <div class="logo-container">
+      <img src="cindo.svg" alt="Logo @cindolabs" />
+    </div>
+    <h1>Almanack Indonesia 2025</h1>
     <p>Prediksi, tren, dan insight mendalam untuk masa depan Indonesia — oleh @cindolabs</p>
     <div class="btn-group">
       <a href="almanack-indonesia.pdf" class="btn" download>
@@ -186,7 +195,6 @@
   <footer>
     <div>&copy; <span id="year"></span> <strong>@cindolabs</strong> · Semua hak cipta dilindungi</div>
     <div class="calendars" id="calendars">
-      <!-- Statis + JS update otomatis -->
       <span class="cal"><i class="fas fa-calendar-alt"></i> Masehi: 10 Nov 2025</span>
       <span class="cal"><i class="fas fa-sun"></i> Śaka: 1947</span>
       <span class="cal"><i class="fas fa-moon"></i> Kali Yuga: 5126</span>
@@ -196,7 +204,6 @@
   </footer>
 
   <script>
-    // Toggle Dark Mode
     function toggleDark() {
       document.body.classList.toggle('dark-mode');
       const icon = document.querySelector('.dark-toggle i');
@@ -208,29 +215,24 @@
       document.querySelector('.dark-toggle i').classList.replace('fa-moon', 'fa-sun');
     }
 
-    // KALENDER DINAMIS (update setiap menit)
     function updateCalendars() {
       const now = new Date();
       const year = now.getFullYear();
       document.getElementById('year').textContent = year;
 
       const masehi = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-
       const sakaStart = new Date(year, 2, 22);
       let saka = year - 78;
       if (now < sakaStart) saka--;
-
       const kaliYuga = year + 3101;
-
       const imlekYear = year + 2697;
       const imlekCycle = ['甲子','乙丑','丙寅','丁卯','戊辰','己巳','庚午','辛未','壬申','癸酉',
                           '甲戌','乙亥','丙子','丁丑','戊寅','己卯','庚辰','辛巳','壬午','癸未',
                           '甲申','乙酉','丙戌','丁亥','戊子','己丑','庚寅','辛卯','壬辰','癸巳',
                           '甲午','乙未','丙申','丁酉','戊戌','己亥','庚子','辛丑','壬寅','癸卯',
-                          '甲辰','乙巳','丙午','丁未','戊申','己酉','庚戌','辛亥','壬子','癸丑',
+                          '甲辰','乙巳','丙午','丁未','戊申','己酉','庚戌','辛亥','壬子','壬子','癸丑',
                           '甲寅','乙卯','丙辰','丁巳','戊午','己未','庚申','辛酉','壬戌','癸亥'];
       const imlekStem = imlekCycle[(imlekYear - 4) % 60];
-
       const hijriEpoch = -492307;
       const daysSince = Math.floor((now - new Date(622, 6, 16)) / 86400000) + hijriEpoch;
       let hijriYear = Math.floor(daysSince / 354.367) + 1;
