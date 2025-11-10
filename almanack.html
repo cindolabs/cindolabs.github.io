@@ -148,7 +148,7 @@
   </button>
 
   <header>
-    <h1>📖 Almanack Indonesia 2025</h1>
+    <h1>Almanack Indonesia 2025</h1>
     <p>Prediksi, tren, dan insight mendalam untuk masa depan Indonesia — oleh @cindolabs</p>
     <div class="btn-group">
       <a href="almanack-indonesia.pdf" class="btn" download>
@@ -172,17 +172,14 @@
   </main>
 
   <footer>
-    <div>&copy; 2025 <strong>@cindolabs</strong> · Semua hak cipta dilindungi</div>
-    <div class="calendars">
-      <span class="cal"><i class="fas fa-calendar-alt"></i> Masehi: 10 Nov 2025</span>
-      <span class="cal"><i class="fas fa-sun"></i> Śaka: 1947</span>
-      <span class="cal"><i class="fas fa-moon"></i> Kali Yuga: 5126</span>
-      <span class="cal"><i class="fas fa-dragon"></i> Imlek: 4723 (乙巳)</span>
-      <span class="cal"><i class="fas fa-kaaba"></i> Hijriah: 1447 AH</span>
+    <div>&copy; <span id="year"></span> <strong>@cindolabs</strong> · Semua hak cipta dilindungi</div>
+    <div class="calendars" id="calendars">
+      <!-- JS akan isi otomatis -->
     </div>
   </footer>
 
   <script>
+    // Toggle Dark Mode
     function toggleDark() {
       document.body.classList.toggle('dark-mode');
       const icon = document.querySelector('.dark-toggle i');
@@ -193,6 +190,57 @@
       document.body.classList.add('dark-mode');
       document.querySelector('.dark-toggle i').classList.replace('fa-moon', 'fa-sun');
     }
+
+    // KALENDER DINAMIS (update setiap detik)
+    function updateCalendars() {
+      const now = new Date();
+      const year = now.getFullYear();
+      document.getElementById('year').textContent = year;
+
+      // Masehi
+      const masehi = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
+
+      // Śaka (mulai 22 Maret 78 M)
+      const sakaStart = new Date(year, 2, 22);
+      let saka = year - 78;
+      if (now < sakaStart) saka--;
+
+      // Kali Yuga (sejak 3102 SM)
+      const kaliYuga = year + 3101;
+
+      // Imlek (sejak 2697 SM, siklus 60 tahun)
+      const imlekYear = year + 2697;
+      const imlekCycle = ['甲子','乙丑','丙寅','丁卯','戊辰','己巳','庚午','辛未','壬申','癸酉',
+                          '甲戌','乙亥','丙子','丁丑','戊寅','己卯','庚辰','辛巳','壬午','癸未',
+                          '甲申','乙酉','丙戌','丁亥','戊子','己丑','庚寅','辛卯','壬辰','癸巳',
+                          '甲午','乙未','丙申','丁酉','戊戌','己亥','庚子','辛丑','壬寅','癸卯',
+                          '甲辰','乙巳','丙午','丁未','戊申','己酉','庚戌','辛亥','壬子','癸丑',
+                          '甲寅','乙卯','丙辰','丁巳','戊午','己未','庚申','辛酉','壬戌','癸亥'];
+      const imlekStem = imlekCycle[(imlekYear - 4) % 60];
+
+      // Hijriah (aproksimasi: 354.367 hari/tahun)
+      const hijriEpoch = -492307; // 1 Muharram 1 AH = 16 Jul 622 M
+      const daysSince = Math.floor((now - new Date(622, 6, 16)) / 86400000) + hijriEpoch;
+      let hijriYear = Math.floor(daysSince / 354.367) + 1;
+      const hijriMonthNames = ['Muharram','Safar','Rabiul Awal','Rabiul Akhir','Jumadil Awal','Jumadil Akhir',
+                               'Rajab','Sya\'ban','Ramadhan','Syawal','Zulqa\'idah','Zulhijjah'];
+      const hijriDay = Math.floor(daysSince % 354.367);
+      const hijriMonthIndex = Math.floor(hijriDay / 29.53);
+      const hijriMonth = hijriMonthNames[hijriMonthIndex % 12] || 'Zulhijjah';
+
+      // Update DOM
+      document.getElementById('calendars').innerHTML = `
+        <span class="cal"><i class="fas fa-calendar-alt"></i> Masehi: ${masehi}</span>
+        <span class="cal"><i class="fas fa-sun"></i> Śaka: ${saka}</span>
+        <span class="cal"><i class="fas fa-moon"></i> Kali Yuga: ${kaliYuga}</span>
+        <span class="cal"><i class="fas fa-dragon"></i> Imlek: ${imlekYear} (${imlekStem})</span>
+        <span class="cal"><i class="fas fa-kaaba"></i> Hijriah: ${hijriYear} AH</span>
+      `;
+    }
+
+    // Jalankan saat load & setiap menit
+    updateCalendars();
+    setInterval(updateCalendars, 60000);
   </script>
 </body>
 </html>
