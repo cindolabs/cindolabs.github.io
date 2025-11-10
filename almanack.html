@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Almanack Indonesia</title>
+  <style>
+    body, html { margin:0; padding:0; height:100%; font-family: Arial, sans-serif; }
+    iframe { border: none; width: 100%; height: 100vh; }
+    .container { text-align: center; padding: 20px; background: #f4f4f4; }
+    .download-btn { display: inline-block; margin: 10px; padding: 10px 20px; background: #007cba; color: white; text-decoration: none; border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1>Almanack Indonesia</h1>
+    <p>Baca dokumen langsung di browser. Jika tidak muncul, gunakan tombol download di bawah.</p>
+    <a href="almanack-indonesia.docx" class="download-btn" download>📥 Download (.docx)</a>
+  </div>
+
+  <!-- Iframe Viewer - Sudah disesuaikan dengan repo kamu -->
+  <iframe 
+    src="https://docs.google.com/viewer?url=https://raw.githubusercontent.com/cindolabs/cindolabs.github.io/main/almanack-indonesia.docx&embedded=true" 
+    width="100%" 
+    height="600">
+    Dokumen tidak bisa ditampilkan di browser ini. <a href="almanack-indonesia.docx" download>Download di sini</a>.
+  </iframe>
+
+</body>
+</html>
