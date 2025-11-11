@@ -3,11 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Almanack Indonesia 2025 | @cindolabs</title>
+  <title>Almanack Indonesia 2025 | @cendoeth</title>
   <meta name="description" content="Prediksi, tren, dan insight Indonesia 2025. Baca online atau download PDF/Word.">
+  
   <!-- FAVICON: LANGSUNG DARI cindo.svg -->
   <link rel="icon" href="cindo.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="cindo.svg">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
@@ -118,26 +120,11 @@
     footer {
       text-align: center;
       padding: 1.5rem;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       color: #64748b;
       border-top: 1px solid var(--border);
       background: var(--card);
     }
-    .calendars {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      flex-wrap: wrap;
-      margin-top: 0.5rem;
-      font-weight: 500;
-    }
-    .cal {
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-      color: var(--text);
-    }
-    .cal i { color: var(--primary); font-size: 0.9rem; }
     .dark-toggle {
       position: absolute;
       top: 1rem;
@@ -158,7 +145,6 @@
       header p { font-size: 0.95rem; }
       .btn { padding: 0.65rem 1.2rem; font-size: 0.9rem; }
       .pdf-container { min-height: 60vh; border-radius: 12px; }
-      .calendars { gap: 1rem; font-size: 0.78rem; }
     }
   </style>
 </head>
@@ -170,10 +156,10 @@
 
   <header>
     <div class="logo-container">
-      <img src="cindo.svg" alt="Logo @cindolabs" />
+      <img src="cindo.svg" alt="Logo @cendoeth" />
     </div>
     <h1>Almanack Indonesia 2025</h1>
-    <p>Prediksi, tren, dan insight mendalam untuk masa depan Indonesia — oleh @cindolabs</p>
+    <p>Prediksi, tren, dan insight mendalam untuk masa depan Indonesia — oleh @cendoeth</p>
     <div class="btn-group">
       <a href="almanack-indonesia.pdf" class="btn" download>
         <i class="fas fa-file-pdf"></i> Download PDF
@@ -196,13 +182,11 @@
   </main>
 
   <footer>
-    <div>&copy; <span id="year"></span> <strong>@cindolabs</strong> · Semua hak cipta dilindungi</div>
-    <div class="calendars" id="calendars">
-      <!-- Statis + JS update otomatis (Hijriah dikoreksi ke 1447 AH) -->
-    </div>
+    <div>&copy; <span id="year"></span> <strong>@cendoeth</strong> · Semua hak cipta dilindungi</div>
   </footer>
 
   <script>
+    // Toggle Dark Mode
     function toggleDark() {
       document.body.classList.toggle('dark-mode');
       const icon = document.querySelector('.dark-toggle i');
@@ -214,41 +198,8 @@
       document.querySelector('.dark-toggle i').classList.replace('fa-moon', 'fa-sun');
     }
 
-    function updateCalendars() {
-      const now = new Date();
-      const year = now.getFullYear();
-      document.getElementById('year').textContent = year;
-
-      const masehi = now.toLocaleDateString('id-ID', { day: 'numeric', month: 'short', year: 'numeric' });
-      const sakaStart = new Date(year, 2, 22);
-      let saka = year - 78;
-      if (now < sakaStart) saka--;
-      const kaliYuga = year + 3101;
-      const imlekYear = year + 2697;
-      const imlekCycle = ['甲子','乙丑','丙寅','丁卯','戊辰','己巳','庚午','辛未','壬申','癸酉',
-                          '甲戌','乙亥','丙子','丁丑','戊寅','己卯','庚辰','辛巳','壬午','癸未',
-                          '甲申','乙酉','丙戌','丁亥','戊子','己丑','庚寅','辛卯','壬辰','癸巳',
-                          '甲午','乙未','丙申','丁酉','戊戌','己亥','庚子','辛丑','壬寅','癸卯',
-                          '甲辰','乙巳','丙午','丁未','戊申','己酉','庚戌','辛亥','壬子','癸丑',
-                          '甲寅','乙卯','丙辰','丁巳','戊午','己未','庚申','辛酉','壬戌','癸亥'];
-      const imlekStem = imlekCycle[(imlekYear - 4) % 60];
-      
-      // Koreksi Hijriah: Akurat untuk 10 Nov 2025 = 1447 AH
-      const hijriEpoch = -492307;
-      const daysSince = Math.floor((now - new Date(622, 6, 16)) / 86400000) + hijriEpoch;
-      let hijriYear = Math.floor(daysSince / 354.367) + 1;  // Koreksi: 1447 AH
-
-      document.getElementById('calendars').innerHTML = `
-        <span class="cal"><i class="fas fa-calendar-alt"></i> Masehi: ${masehi}</span>
-        <span class="cal"><i class="fas fa-sun"></i> Śaka: ${saka}</span>
-        <span class="cal"><i class="fas fa-moon"></i> Kali Yuga: ${kaliYuga}</span>
-        <span class="cal"><i class="fas fa-dragon"></i> Imlek: ${imlekYear} (${imlekStem})</span>
-        <span class="cal"><i class="fas fa-kaaba"></i> Hijriah: ${hijriYear} AH</span>
-      `;
-    }
-
-    updateCalendars();
-    setInterval(updateCalendars, 60000);
+    // Update tahun otomatis
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
