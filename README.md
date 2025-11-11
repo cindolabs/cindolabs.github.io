@@ -99,7 +99,9 @@ AgGrid(df, gridOptions=gb.build(), height=350, fit_columns_on_grid_load=True)
 ---
 
 ## 📬 Kontak
-📍 Jl. Panglima Sudirman No. 19, Bandarkedungmulyo – Jombang, Jawa Timur – Indonesia 🇮🇩
+📍 Jl. Panglima Sudirman No. 19,
+   Bandarkedungmulyo – Jombang,
+   Jawa Timur – Indonesia 🇮🇩   
 📧 Email: [ringinbambu@gmail.com](mailto:ringinbambu@gmail.com)  
 📱 WhatsApp: [+62 8999 587 888](https://wa.me/628999587888)  
 
