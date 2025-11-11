@@ -7,10 +7,10 @@
 
 [![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
 [![ENS arema.eth](https://img.shields.io/badge/ENS-arema.eth-00d1b2.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/arema.eth)  
-[![GitHub Stars](https://img.shields.io/github/stars/cindoeth/cindoeth?style=social)](https://github.com/cindoeth/CINDOETH)  
-[![X @cindolabs](https://img.shields.io/twitter/follow/cindolabs?style=social&logo=x)](https://x.com/cindolabs)
+[![GitHub Stars](https://img.shields.io/github/stars/cindoeth/cindoeth?style=social)](https://github.com/cindoeth/cindoeth)  
+[![X @cendoeth](https://img.shields.io/twitter/follow/cendoeth?style=social&logo=x)](https://x.com/cendoeth)
 
-> **Didirikan pada Portal 11:11 | 11 November 2025**  
+> **Didirikan pada Portal 11:11 | 11 November 2025, 01:11 PM WIB**  
 > **CINDOETH = 42 → 6** — *Harmoni Keuangan Terdesentralisasi*
 
 ---
@@ -18,11 +18,11 @@
 ## Selamat Datang di CindoEth
 
 **CindoEth** adalah **laboratorium fintech terbuka** yang mempelajari dan meniru model kesuksesan **bank terbesar dunia** —  
-**ICBC, CCB, ABC, BOC, JPMorgan Chase** —  
+**ICBC • CCB • ABC • BOC • JPMorgan Chase** —  
 dengan teknologi **blockchain, smart contract, dan identitas Web3**.
 
-Kami **bukan bank**.  
-Kami adalah **blueprint masa depan keuangan terdesentralisasi**.
+> Kami **bukan bank**.  
+> Kami adalah **blueprint masa depan keuangan terdesentralisasi**.
 
 ---
 
@@ -32,46 +32,51 @@ CindoEth adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan
 [`cindo.eth`](https://app.ens.domains/cindo.eth) | [`arema.eth`](https://app.ens.domains/arema.eth)
 
 ### Visi
-> Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan global** dengan **teknologi blockchain** untuk menciptakan **sistem keuangan generasi baru**.
+Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan global** dengan **teknologi blockchain** untuk menciptakan **sistem keuangan generasi baru**.
 
 ### Misi
-- Replikasi strategi perbankan raksasa dalam ekosistem **DeFi**
-- Ciptakan **smart contract auditabel** untuk pinjaman, tabungan, & investasi
-- Sediakan **open-source tools** bagi developer & peneliti keuangan
+- Replikasi strategi perbankan dalam **smart contract auditabel**  
+- Ciptakan **produk DeFi**: pinjaman, tabungan, investasi  
+- Sediakan **open-source tools** bagi developer & peneliti
 
 ---
 
 ## Fitur Utama
 
-| Fitur                     | Deskripsi                                                                 |
-|---------------------------|---------------------------------------------------------------------------|
+| Fitur | Deskripsi |
+|------|---------|
 | **Riset Perbankan Global** | Analisis model bisnis, risiko kredit, & efisiensi operasional bank terbesar dunia |
-| **DeFi Replication Lab**   | Prototipe smart contract yang meniru produk perbankan tradisional         |
-| **Open-Source Fintech Tools** | Dashboard analitik, model risiko, API, & simulasi DeFi                 |
-| **Web3 Identity**         | `cindo.eth` tersinkronisasi dengan GitHub & alamat blockchain             |
+| **DeFi Replication Lab** | Prototipe smart contract yang meniru produk perbankan tradisional |
+| **Open-Source Fintech Tools** | Dashboard analitik, model risiko, API, & simulasi DeFi |
+| **Web3 Identity** | `cindo.eth` tersinkronisasi dengan GitHub & alamat blockchain |
 
 ---
 
 ## Alamat Blockchain (Verified)
 
-| Chain     | Alamat                                 | Explorer |
-|-----------|----------------------------------------|----------|
-| Bitcoin   | `1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8` | [mempool.space](https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8) |
-| TON       | `UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW` | [tonscan.org](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW) |
-| Ethereum  | `0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868` → **cindo.eth** | [etherscan.io](https://etherscan.io/address/0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868) |
-| Solana    | `cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw` | [solscan.io](https://solscan.io/account/cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw) |
+| Chain | Alamat | Explorer |
+|------|--------|----------|
+| Bitcoin | `1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8` | [mempool.space](https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8) |
+| TON | `UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW` | [tonscan.org](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW) |
+| Ethereum | `0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868` → **cindo.eth** | [etherscan.io](https://etherscan.io/address/0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868) |
+| Solana | `cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw` | [solscan.io](https://solscan.io/account/cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw) |
 
 ---
 
-## Numerologi CindoEth
+## Numerologi & Portal 11:11
 
-| Nama           | Perhitungan                                 | Angka Utama | Makna |
-|----------------|---------------------------------------------|-------------|-------|
-| **CINDOETH**   | C=3, I=9, N=5, D=4, O=6, E=5, T=2, H=8 → **42 → 4+2 = 6** | **6** | **Harmoni, tanggung jawab, kemakmuran, pelayanan** |
-| **Hari Ini (11/11)** | Portal **11** (Master Number) + 6 → **17 → 1+7 = 8** | **8** | **Kekayaan, otoritas, kesuksesan materi** |
+| Nama | Perhitungan | Angka | Makna |
+|------|-------------|-------|-------|
+| **CINDOETH** | C=3, I=9, N=5, D=4, O=6, E=5, T=2, H=8 → **42 → 6** | **6** | Harmoni, kemakmuran, pelayanan |
+| **Portal 11:11** | 11 (Master) + 6 → **17 → 8** | **8** | Kekayaan, otoritas, kesuksesan |
 
 > **CindoEth #6** — *Platform profit-sharing & stabilitas jangka panjang*  
-> **Peluncuran 11:11 → Energi 8 → Hari terbaik untuk manifestasi keuangan!**
+> **Peluncuran 11:11 → Energi 8 → Hari terbaik untuk manifestasi keuangan!*
+
+### Apa Itu **Portal 11:11**?
+> **Portal 11:11** adalah **momen energi tinggi** dalam numerologi modern — terjadi saat **tanggal & jam menunjukkan 11:11** (11 November pukul 11:11).  
+> Dianggap sebagai **gerbang manifestasi**, **sinkronisitas**, dan **awal baru** — sangat kuat untuk **peluncuran proyek, visi, dan tujuan jangka panjang**.  
+> **Hari ini (11/11/2025)** adalah **Portal 11:11 tahunan** — energi **8** dari **11 + 6 = 17 → 8** — **hari terbaik untuk meluncurkan CindoEth**.
 
 ---
 
