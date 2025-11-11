@@ -1,23 +1,23 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/cindoeth/cindoeth.github.io/main/cindo.svg" alt="CindoEth Logo" width="180">
+  <img src="https://raw.githubusercontent.com/birubos/birubos.github.io/main/cindo.svg" alt="Biru Bos Logo" width="180">
 </p>
 
-# CindoEth *(dibaca: cendut)*  
+# Biru Bos  
 **Fintech Research & Innovation Lab | Web3 Banking Replication**
 
 [![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
 [![ENS arema.eth](https://img.shields.io/badge/ENS-arema.eth-00d1b2.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/arema.eth)  
-[![GitHub Stars](https://img.shields.io/github/stars/cindoeth/cindoeth?style=social)](https://github.com/cindoeth/cindoeth)  
+[![GitHub Stars](https://img.shields.io/github/stars/birubos/birubos?style=social)](https://github.com/birubos/birubos) 
 [![X @cendoeth](https://img.shields.io/twitter/follow/cendoeth?style=social&logo=x)](https://x.com/cendoeth)
 
 > **Didirikan pada Portal 11:11 | 11 November 2025, 01:11 PM WIB**  
-> **CINDOETH = 42 → 6** — *Harmoni Keuangan Terdesentralisasi*
+> **BIRUBOS = 32 → 5** — *Harmoni Keuangan Terdesentralisasi*
 
 ---
 
-## Selamat Datang di CindoEth
+## Selamat Datang di BiruBos
 
-**CindoEth** adalah **laboratorium fintech terbuka** yang mempelajari dan meniru model kesuksesan **bank terbesar dunia** —  
+**BiruBos** adalah **laboratorium fintech terbuka** yang mempelajari dan meniru model kesuksesan **bank terbesar dunia** —  
 **ICBC • CCB • ABC • BOC • JPMorgan Chase** —  
 dengan teknologi **blockchain, smart contract, dan identitas Web3**.
 
@@ -26,9 +26,9 @@ dengan teknologi **blockchain, smart contract, dan identitas Web3**.
 
 ---
 
-## Tentang CindoEth
+## Tentang BiruBos
 
-CindoEth adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan pemilik ENS:  
+BiruBos adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan pemilik ENS:  
 [`cindo.eth`](https://app.ens.domains/cindo.eth) | [`arema.eth`](https://app.ens.domains/arema.eth)
 
 ### Visi
@@ -70,7 +70,7 @@ Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan g
 | **CINDOETH** | C=3, I=9, N=5, D=4, O=6, E=5, T=2, H=8 → **42 → 6** | **6** | Harmoni, kemakmuran, pelayanan |
 | **Portal 11:11** | 11 (Master) + 6 → **17 → 8** | **8** | Kekayaan, otoritas, kesuksesan |
 
-> **CindoEth #6** — *Platform profit-sharing & stabilitas jangka panjang*  
+> **BiruBos #5** — *Platform profit-sharing & stabilitas jangka panjang*  
 > **Peluncuran 11:11 → Energi 8 → Hari terbaik untuk manifestasi keuangan!*
 
 ### Apa Itu **Portal 11:11**?
@@ -80,7 +80,7 @@ Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan g
 
 ---
 
-## Mengapa CindoEth?
+## Mengapa BiruBos?
 
 - **Identitas Web3 Asli** → `cindo.eth` = kepemilikan terverifikasi  
 - **Transparansi 100%** → Semua kode, data, & smart contract open-source  
@@ -106,7 +106,7 @@ Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan g
 
 | Platform       | Link                                                                 |
 |----------------|----------------------------------------------------------------------|
-| Website        | [cindoeth.github.io](https://cindoeth.github.io/)                    |
+| Website        | [birubos.github.io](https://birubos.github.io/)                    |
 | Instagram      | [instagram.com/cindolabs](https://www.instagram.com/cindolabs/)      |
 | X (Twitter)    | [@cindolabs](https://x.com/cindolabs)                                |
 | Facebook       | [facebook.com/cindolabs](https://www.facebook.com/cindolabs)         |
@@ -151,6 +151,6 @@ Kami **membuka pintu lebar** untuk:
 
 ---
 
-> **© 2025 CindoEth #6**  
+> **© 2025 BiruBos**  
 > *Dari Portal 11:11 menuju harmoni keuangan terdesentralisasi.*  
 > `cindo.eth` — **verified on-chain, trusted off-chain.**
