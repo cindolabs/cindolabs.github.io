@@ -1,92 +1,122 @@
-# CindoEth *(dibaca: cindut)*
-
 <p align="center">
   <img src="https://raw.githubusercontent.com/cindoeth/cindoeth.github.io/main/cindo.svg" alt="CindoEth Logo" width="180">
 </p>
 
-<p align="center">
-  <a href="https://www.instagram.com/cindolabs/">
-    <img src="https://img.shields.io/badge/Instagram-cindolabs-E4405F?logo=instagram&logoColor=white" alt="Instagram">
-  </a>
-  <a href="https://x.com/cindolabs">
-    <img src="https://img.shields.io/badge/X-%40cindolabs-000000?logo=x&logoColor=white" alt="X (Twitter)">
-  </a>
-  <a href="https://www.facebook.com/cindolabs">
-    <img src="https://img.shields.io/badge/Facebook-cindolabs-1877F2?logo=facebook&logoColor=white" alt="Facebook">
-  </a>
-</p>
+# CindoEth *(dibaca: cindut)*  
+**Fintech Research & Innovation Lab | Web3 Banking Replication**
 
-<p align="center">
-  <b>Laboratorium Fintech Terbuka</b> yang menggabungkan <b>riset perbankan global</b>, <b>replikasi DeFi</b>, dan <b>investasi berbasis blockchain</b> dengan transparansi Web3.
-</p>
+[![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
+[![ENS arema.eth](https://img.shields.io/badge/ENS-arema.eth-00d1b2.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/arema.eth)  
+[![GitHub Stars](https://img.shields.io/github/stars/cindoeth/cindoeth?style=social)](https://github.com/cindoeth/CINDOETH)  
+[![X @cindolabs](https://img.shields.io/twitter/follow/cindolabs?style=social&logo=x)](https://x.com/cindolabs)
+
+> **Didirikan pada Portal 11:11 | 11 November 2025**  
+> **CINDOETH = 42 → 6** — *Harmoni Keuangan Terdesentralisasi*
+
+---
+
+## Selamat Datang di CindoEth
+
+**CindoEth** adalah **laboratorium fintech terbuka** yang mempelajari dan meniru model kesuksesan **bank terbesar dunia** —  
+**ICBC, CCB, ABC, BOC, JPMorgan Chase** —  
+dengan teknologi **blockchain, smart contract, dan identitas Web3**.
+
+Kami **bukan bank**.  
+Kami adalah **blueprint masa depan keuangan terdesentralisasi**.
 
 ---
 
 ## Tentang CindoEth
-**CindoEth** adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan identitas Web3:  
-[`cindo.eth`](https://app.ens.domains/cindo.eth) | [`arema.eth`](https://app.ens.domains/arema.eth)
 
-Kami **bukan bank**.  
-Kami adalah **blueprint masa depan keuangan terdesentralisasi** — mempelajari **ICBC, CCB, ABC, BOC, JPMorgan Chase** untuk direplikasi dalam ekosistem **DeFi**.
+CindoEth adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan pemilik ENS:  
+[`cindo.eth`](https://app.ens.domains/cindo.eth) | [`arema.eth`](https://app.ens.domains/arema.eth)
 
 ### Visi
 > Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan global** dengan **teknologi blockchain** untuk menciptakan **sistem keuangan generasi baru**.
 
 ### Misi
-- Replikasi strategi perbankan raksasa dalam **smart contract auditabel**
-- Ciptakan **produk DeFi**: pinjaman, tabungan, investasi
+- Replikasi strategi perbankan raksasa dalam ekosistem **DeFi**
+- Ciptakan **smart contract auditabel** untuk pinjaman, tabungan, & investasi
 - Sediakan **open-source tools** bagi developer & peneliti keuangan
 
-### Produk CindoEth
-- **Riset Perbankan Global**: Analisis mendalam model bisnis & risiko kredit bank terbesar dunia.
-- **DeFi Replication Lab**: Prototipe smart contract yang meniru layanan perbankan tradisional.
-- **Investasi Saham Berbasis Blockchain**: Tokenisasi aset properti & bagi hasil transparan via smart contract.
+---
+
+## Fitur Utama
+
+| Fitur                     | Deskripsi                                                                 |
+|---------------------------|---------------------------------------------------------------------------|
+| **Riset Perbankan Global** | Analisis model bisnis, risiko kredit, & efisiensi operasional bank terbesar dunia |
+| **DeFi Replication Lab**   | Prototipe smart contract yang meniru produk perbankan tradisional         |
+| **Open-Source Fintech Tools** | Dashboard analitik, model risiko, API, & simulasi DeFi                 |
+| **Web3 Identity**         | `cindo.eth` tersinkronisasi dengan GitHub & alamat blockchain             |
 
 ---
 
-## Tech Stack
+## Alamat Blockchain (Verified)
 
-| Kategori                | Teknologi                                                                 |
-|-------------------------|---------------------------------------------------------------------------|
-| Website             | [HTML5](https://developer.mozilla.org/en-US/docs/Web/HTML), [CSS3](https://developer.mozilla.org/en-US/docs/Web/CSS), [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript), [Python](https://www.python.org/) |
-| Desain              | [SVG](https://developer.mozilla.org/en-US/docs/Web/SVG), Figma, Canva     |
-| Deployment          | [GitHub Pages](https://pages.github.com/)                                |
-| Blockchain          | Ethereum, Polygon, Bitcoin, TON, Solana                                   |
-| Data & Analitik     | [Streamlit](https://streamlit.io/), [Plotly](https://plotly.com/python/), Google Analytics |
-| Pembukuan           | [CindoEth Streamlit Dashboard](https://cindoeth.streamlit.app/)           |
-
-### Penggunaan Python
-Python digunakan untuk **CindoEth Financial Dashboard**, aplikasi berbasis [Streamlit](https://streamlit.io/) yang mengelola:
-- **Manajemen Investasi**: Transaksi saham blockchain, saldo, & profit-sharing
-- **Visualisasi Interaktif**: Grafik ROI, pertumbuhan dana, & distribusi investor
-- **Integrasi GitHub API**: Sinkronisasi data real-time
-- **Keamanan Web3**: Autentikasi via wallet (MetaMask), ENS verification
-- **Smart Contract Simulator**: Kalkulator bagi hasil otomatis
-
-Contoh kode untuk tabel investor interaktif:
-```python
-import streamlit as st
-import pandas as pd
-from st_aggrid import AgGrid, GridOptionsBuilder
-
-# Data investor (contoh)
-df = st.session_state.get('investors', pd.DataFrame({
-    'investor': ['Alice.eth', 'Bob.sol', 'Charlie.ton'],
-    'saham': [100, 250, 150],
-    'saldo': [50000000, 125000000, 75000000],
-    'roi': [12.5, 15.0, 11.8]
-}))
-
-gb = GridOptionsBuilder.from_dataframe(df)
-gb.configure_column("investor", headerName="Investor", width=140)
-gb.configure_column("saham", headerName="Saham", width=100)
-gb.configure_column("saldo", headerName="Saldo (Rp)", width=130, type=["numericColumn", "numberColumnFilter"])
-gb.configure_column("roi", headerName="ROI (%)", width=90, valueFormatter="value.toFixed(2) + '%'")
-gb.configure_selection("single")
-AgGrid(df, gridOptions=gb.build(), height=350, fit_columns_on_grid_load=True)
-```
+| Chain     | Alamat                                 | Explorer |
+|-----------|----------------------------------------|----------|
+| Bitcoin   | `1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8` | [mempool.space](https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8) |
+| TON       | `UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW` | [tonscan.org](https://tonscan.org/address/UQAleoed649QywoLVz3JUxaeyyGXm10MYOOQ2XKBMCEHTRwW) |
+| Ethereum  | `0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868` → **cindo.eth** | [etherscan.io](https://etherscan.io/address/0x95b4fBD6BEbe990Ee64Bd7F81fd43f82dF331868) |
+| Solana    | `cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw` | [solscan.io](https://solscan.io/account/cvS1nVAeUJb1xzXorFqYQBQPzA1WsjUAcFGV7xhiCKw) |
 
 ---
+
+## Numerologi CindoEth
+
+| Nama           | Perhitungan                                 | Angka Utama | Makna |
+|----------------|---------------------------------------------|-------------|-------|
+| **CINDOETH**   | C=3, I=9, N=5, D=4, O=6, E=5, T=2, H=8 → **42 → 4+2 = 6** | **6** | **Harmoni, tanggung jawab, kemakmuran, pelayanan** |
+| **Hari Ini (11/11)** | Portal **11** (Master Number) + 6 → **17 → 1+7 = 8** | **8** | **Kekayaan, otoritas, kesuksesan materi** |
+
+> **CindoEth #6** — *Platform profit-sharing & stabilitas jangka panjang*  
+> **Peluncuran 11:11 → Energi 8 → Hari terbaik untuk manifestasi keuangan!**
+
+---
+
+## Mengapa CindoEth?
+
+- **Identitas Web3 Asli** → `cindo.eth` = kepemilikan terverifikasi  
+- **Transparansi 100%** → Semua kode, data, & smart contract open-source  
+- **Komunitas Global** → Peneliti, developer, & visioner DeFi  
+- **Energi 6 + 8** → Harmoni + Kekayaan
+
+---
+
+## Cara Memulai
+
+1. **Jelajahi Riset**  
+   → [cindoeth.streamlit.app](https://cindoeth.streamlit.app/)  
+   *Laporan, simulasi, whitepaper*
+
+2. **Verifikasi ENS**  
+   → [cindo.eth](https://app.ens.domains/cindo.eth)
+
+3. **Kontribusi**  
+   ```bash
+   git clone https://github.com/cindoeth/cindoeth.git
+
+## Ikuti Perjalanan Kami
+
+| Platform       | Link                                                                 |
+|----------------|----------------------------------------------------------------------|
+| Website        | [cindoeth.github.io](https://cindoeth.github.io/)                    |
+| Instagram      | [instagram.com/cindolabs](https://www.instagram.com/cindolabs/)      |
+| X (Twitter)    | [@cindolabs](https://x.com/cindolabs)                                |
+| Facebook       | [facebook.com/cindolabs](https://www.facebook.com/cindolabs)         |
+
+---
+
+## Kontribusi
+
+Kami **membuka pintu lebar** untuk:  
+- Peneliti keuangan  
+- Developer Solidity & Rust  
+- Analis risiko DeFi  
+- Desainer UI/UX Web3  
+
+> **Fork → Build → PR → Audit → Deploy**
 
 ## 🛣️ Roadmap
 
@@ -107,6 +137,15 @@ AgGrid(df, gridOptions=gb.build(), height=350, fit_columns_on_grid_load=True)
 
 ---
 
-<p align="center">
-  © 2025 <b>Cindoeth</b> – Semua hak dilindungi
-</p>
+## Penafian
+
+> Repositori ini berisi **riset, simulasi, dan prototipe eksperimental**.  
+> Tidak ada jaminan keuntungan.  
+> Semua implementasi DeFi **berisiko tinggi**.  
+> Lakukan riset mandiri (DYOR) sebelum berinvestasi.
+
+---
+
+> **© 2025 CindoEth #6**  
+> *Dari Portal 11:11 menuju harmoni keuangan terdesentralisasi.*  
+> `cindo.eth` — **verified on-chain, trusted off-chain.**
