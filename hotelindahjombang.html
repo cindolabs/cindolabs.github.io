@@ -531,11 +531,11 @@
           </div>
         </div>
         <form id="contactForm" class="contact-form">
-          <input type="text" placeholder="Nama Lengkap" required />
-          <input type="email" placeholder="Email" required />
-          <input type="tel" placeholder="No. Telepon" required />
-          <textarea placeholder="Pesan atau Permintaan Kamar" rows="5" required></textarea>
-          <button type="submit" class="btn-primary">Kirim Pesan</button>
+          <input type="text" id="waName" placeholder="Nama Lengkap" required />
+          <input type="email" id="waEmail" placeholder="Email" required />
+          <input type="tel" id="waPhone" placeholder="No. Telepon" required />
+          <textarea id="waMessage" placeholder="Pesan atau Permintaan Kamar" rows="5" required></textarea>
+          <button type="submit" class="btn-primary">Kirim via WhatsApp</button>
         </form>
       </div>
     </div>
@@ -581,10 +581,27 @@
       }
     });
 
-    // Form Submit
+    // Kirim ke WhatsApp — NOMOR ANDA: 082264083228
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
-      alert('Terima kasih! Pesan Anda telah dikirim.');
+      
+      const name = encodeURIComponent(document.getElementById('waName').value.trim());
+      const email = encodeURIComponent(document.getElementById('waEmail').value.trim());
+      const phone = encodeURIComponent(document.getElementById('waPhone').value.trim());
+      const message = encodeURIComponent(document.getElementById('waMessage').value.trim());
+      
+      let text = `*Pesan dari Hotel Indah Jombang*%0A%0A`;
+      text += `*Nama:* ${name}%0A`;
+      text += `*Email:* ${email}%0A`;
+      text += `*No. HP:* ${phone}%0A`;
+      text += `*Pesan:* ${message}`;
+      
+      const phoneNumber = "6282264083228"; // NOMOR ANDA SUDAH BENAR
+      const waUrl = `https://wa.me/${phoneNumber}?text=${text}`;
+      
+      window.open(waUrl, '_blank');
+      alert('Membuka WhatsApp... Silakan kirim pesan!');
+      
       this.reset();
     });
   </script>
