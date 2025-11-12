@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Newsui - Hotel Mewah dengan Investasi Saham Berbasis Bitcoin. Kemewahan + Keuntungan Bitcoin.">
-    <meta name="keywords" content="hotel, investasi, bitcoin, saham, smart contract, Newsui, BTC, Lightning Network">
-    <title>Newsui - Investasi Bitcoin Lengkap</title>
+    <meta name="description" content="Newsui - Hotel Mewah dengan Investasi Saham Berbasis Bitcoin.">
+    <title>Newsui - Investasi Bitcoin</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
@@ -223,12 +222,12 @@
                 <div class="card" data-aos="fade-up">
                     <i class="fas fa-chart-line"></i>
                     <h3>Bagi Hasil Otomatis</h3>
-                    <p>Keuntungan hotel dibagikan bulanan dalam BTC langsung ke wallet Anda via smart contract Bitcoin.</p>
+                    <p>Keuntungan hotel dibagikan bulanan dalam BTC langsung ke wallet Anda.</p>
                 </div>
                 <div class="card" data-aos="fade-left">
                     <i class="fas fa-shield-alt"></i>
                     <h3>Aman & Transparan</h3>
-                    <p>Semua transaksi tercatat di blockchain Bitcoin. Tidak ada biaya tersembunyi.</p>
+                    <p>Semua transaksi tercatat di blockchain Bitcoin.</p>
                 </div>
             </div>
             <div id="invoiceSection" style="text-align: center; margin-top: 40px; display: none;">
@@ -317,9 +316,9 @@
             <p><strong>Newsui Bitcoin Address:</strong> <a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" style="color: var(--bitcoin-orange);">1CinDo...w3Q8</a></p>
             <div class="disclaimer">
                 <h3>Penafian</h3>
-                <p>Investasi saham berbasis Bitcoin melibatkan risiko. Ini bukan saran keuangan. Gunakan dana yang siap hilang.</p>
+                <p>Investasi saham berbasis Bitcoin melibatkan risiko. Ini bukan saran keuangan.</p>
             </div>
-            <p>© 2025 Newsui. Semua hak dilindungi. Powered by Bitcoin.</p>
+            <p>© 2025 Newsui. Powered by Bitcoin.</p>
         </div>
     </footer>
 
@@ -350,13 +349,11 @@
                     document.getElementById('walletBalance').textContent = (balance / 100000) + ' BTC';
                     document.getElementById('walletStatus').style.display = 'block';
                     document.getElementById('connectWallet').textContent = 'Wallet Connected';
-
-                    console.log('Wallet connected:', info);
                 } catch (error) {
                     alert('Gagal menghubungkan wallet: ' + error.message);
                 }
             } else {
-                alert('Silakan instal extension Alby atau Wallet of Satoshi untuk Lightning Network.');
+                alert('Silakan instal extension Alby atau Wallet of Satoshi.');
                 window.open('https://getalby.com', '_blank');
             }
         });
@@ -374,7 +371,7 @@
                     },
                     body: JSON.stringify({
                         out: false,
-                        amount: 100000, // 0.001 BTC in satoshis
+                        amount: 100000,
                         memo: 'Investasi Saham Newsui - 100 Saham'
                     })
                 });
@@ -401,29 +398,28 @@
         // Live Bitcoin Price
         function updateBTCPrice() {
             fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,idr')
-                .then(response => response.json())
-                .then(data => {
-                    const usd = data.bitcoin.usd.toLocaleString('en-US');
-                    const idr = data.bitcoin.idr.toLocaleString('id-ID');
+                .then(r => r.json())
+                .then(d => {
+                    const usd = d.bitcoin.usd.toLocaleString('en-US');
+                    const idr = d.bitcoin.idr.toLocaleString('id-ID');
                     document.getElementById('btc-price').innerHTML = `$${usd} | Rp ${idr}`;
                 })
-                .catch(err => {
+                .catch(() => {
                     document.getElementById('btc-price').textContent = 'Error';
-                    console.error('Gagal load harga BTC:', err);
                 });
         }
 
         updateBTCPrice();
         setInterval(updateBTCPrice, 30000);
 
-        // Kirim ke WhatsApp (NOMOR ANDA: 082264083228)
+        // Kirim ke WhatsApp — NOMOR SUDAH BENAR: 6282264083228
         document.getElementById('waForm').addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('waName').value.trim();
-            const email = document.getElementById('waEmail').value.trim();
-            const wallet = document.getElementById('waWallet').value.trim();
-            const message = document.getElementById('waMessage').value.trim();
+            const name = encodeURIComponent(document.getElementById('waName').value.trim());
+            const email = encodeURIComponent(document.getElementById('waEmail').value.trim());
+            const wallet = encodeURIComponent(document.getElementById('waWallet').value.trim());
+            const message = encodeURIComponent(document.getElementById('waMessage').value.trim());
             
             let text = `*Pesan dari Newsui*%0A%0A`;
             text += `*Nama:* ${name}%0A`;
@@ -431,7 +427,7 @@
             if (wallet) text += `*Wallet BTC:* ${wallet}%0A`;
             text += `*Pesan:* ${message}`;
             
-            const phoneNumber = "6282264083228"; // NOMOR ANDA SUDAH DIISI
+            const phoneNumber = "6282264083228"; // NOMOR ANDA SUDAH BENAR
             const waUrl = `https://wa.me/${phoneNumber}?text=${text}`;
             
             window.open(waUrl, '_blank');
