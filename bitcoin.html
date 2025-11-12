@@ -157,6 +157,14 @@
             font-weight: bold;
             font-size: 1.1rem;
         }
+        input, textarea {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: none;
+            font-family: inherit;
+        }
     </style>
 </head>
 <body>
@@ -293,11 +301,12 @@
     <section id="contact" class="section">
         <div class="container">
             <h2 data-aos="fade-up">Hubungi Kami</h2>
-            <form data-aos="fade-up" data-aos-delay="200">
-                <input type="text" placeholder="Nama" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none;" required>
-                <input type="email" placeholder="Email" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none;" required>
-                <textarea placeholder="Pesan (atau Wallet BTC)" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; height: 100px;" required></textarea>
-                <button type="submit" class="btn-bitcoin">Kirim</button>
+            <form id="waForm" data-aos="fade-up" data-aos-delay="200">
+                <input type="text" id="waName" placeholder="Nama" required />
+                <input type="email" id="waEmail" placeholder="Email" required />
+                <input type="text" id="waWallet" placeholder="Wallet BTC (opsional)" />
+                <textarea id="waMessage" placeholder="Pesan" required></textarea>
+                <button type="submit" class="btn-bitcoin">Kirim via WhatsApp</button>
             </form>
         </div>
     </section>
@@ -407,10 +416,28 @@
         updateBTCPrice();
         setInterval(updateBTCPrice, 30000);
 
-        // Form Submit
-        document.querySelector('form').addEventListener('submit', (e) => {
+        // Kirim ke WhatsApp (NOMOR ANDA: 082264083228)
+        document.getElementById('waForm').addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('Pesan dikirim! Tim akan hubungi via WA.');
+            
+            const name = document.getElementById('waName').value.trim();
+            const email = document.getElementById('waEmail').value.trim();
+            const wallet = document.getElementById('waWallet').value.trim();
+            const message = document.getElementById('waMessage').value.trim();
+            
+            let text = `*Pesan dari Newsui*%0A%0A`;
+            text += `*Nama:* ${name}%0A`;
+            text += `*Email:* ${email}%0A`;
+            if (wallet) text += `*Wallet BTC:* ${wallet}%0A`;
+            text += `*Pesan:* ${message}`;
+            
+            const phoneNumber = "6282264083228"; // NOMOR ANDA SUDAH DIISI
+            const waUrl = `https://wa.me/${phoneNumber}?text=${text}`;
+            
+            window.open(waUrl, '_blank');
+            alert('Membuka WhatsApp... Silakan kirim pesan!');
+            
+            e.target.reset();
         });
     </script>
 </body>
