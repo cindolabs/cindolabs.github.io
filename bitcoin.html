@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Newsui - Hotel Mewah dengan Investasi Saham Berbasis Bitcoin. Kemewahan + Keuntungan.">
-    <meta name="keywords" content="hotel, investasi, bitcoin, saham, smart contract, Newsui, BTC">
-    <title>Newsui - Hotel & Investasi Bitcoin</title>
+    <meta name="description" content="Newsui - Hotel Mewah dengan Investasi Saham Berbasis Bitcoin. Kemewahan + Keuntungan Bitcoin.">
+    <meta name="keywords" content="hotel, investasi, bitcoin, saham, smart contract, Newsui, BTC, Lightning Network">
+    <title>Newsui - Investasi Bitcoin Lengkap</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -17,143 +17,306 @@
             --bitcoin-orange: #f7931a;
             --bitcoin-dark: #1a1a1a;
             --bitcoin-light: #fff8f0;
+            --newsui-blue: #1E40AF;
         }
-        .bitcoin-glow { text-shadow: 0 0 10px var(--bitcoin-orange); }
+        body {
+            background: linear-gradient(135deg, var(--bitcoin-dark), #000);
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+        .container { max-width: 1200px; margin: auto; padding: 0 20px; }
+        header { background: var(--bitcoin-dark); padding: 15px 0; position: sticky; top: 0; z-index: 1000; }
+        nav ul { list-style: none; display: flex; gap: 20px; margin: 0; padding: 0; justify-content: center; }
+        nav a { color: #fff; text-decoration: none; font-weight: 500; }
+        nav a:hover { color: var(--bitcoin-orange); }
+        .hero { height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; background: url('https://r2.primal.net/cache/8/dd/96/8dd96aacddf188ba3d828a63e484911b33be9b224b70326c1998afd862ad2ddd.jpg') center/cover; }
+        .hero h1 { font-size: 4rem; color: var(--bitcoin-orange); text-shadow: 0 0 20px var(--bitcoin-orange); }
         .btn-bitcoin {
             background: var(--bitcoin-orange);
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 8px;
+            padding: 15px 30px;
+            border-radius: 50px;
             font-weight: bold;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s;
+            font-size: 1.1rem;
+            margin: 10px;
         }
-        .btn-bitcoin:hover { transform: scale(1.05); box-shadow: 0 0 15px var(--bitcoin-orange); }
-        .bitcoin-pulse { animation: pulse 2s infinite; }
-        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+        .btn-bitcoin:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--bitcoin-orange); }
+        .section { padding: 80px 0; }
+        .section h2 { text-align: center; font-size: 2.5rem; color: var(--bitcoin-orange); margin-bottom: 50px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .card { background: rgba(255,255,255,0.1); padding: 30px; border-radius: 15px; backdrop-filter: blur(10px); border: 1px solid rgba(247,147,26,0.2); }
+        .card i { font-size: 3rem; color: var(--bitcoin-orange); margin-bottom: 20px; }
+        .wallet-btn { position: fixed; top: 20px; right: 20px; z-index: 999; }
+        .wallet-info { background: var(--bitcoin-dark); padding: 15px; border-radius: 10px; margin-top: 10px; display: none; }
+        #invoice-qr { text-align: center; margin: 20px 0; }
+        table { width: 100%; border-collapse: collapse; margin: 20px 0; background: var(--bitcoin-dark); }
+        th, td { padding: 12px; text-align: left; border-bottom: 1px solid #444; }
+        th { background: var(--bitcoin-orange); color: #000; }
+        .pulse { animation: pulse 2s infinite; }
+        @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.5; } }
+        footer { background: var(--bitcoin-dark); padding: 40px 0; text-align: center; }
+        .disclaimer { background: rgba(0,0,0,0.5); padding: 20px; border-radius: 10px; margin-top: 20px; font-size: 0.9rem; }
     </style>
 </head>
-<body style="background: #0f0f0f; color: #fff; font-family: 'Roboto', sans-serif;">
+<body>
 
-    <!-- Bitcoin Floating Icon -->
-    <div style="position:fixed; top:20px; right:20px; z-index:9999;">
-        <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin" width="50" class="bitcoin-pulse">
-    </div>
+    <!-- Floating Bitcoin Icon -->
+    <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin" width="50" class="pulse" style="position: fixed; top: 20px; left: 20px; z-index: 999;">
 
-    <!-- Skip Link -->
-    <a href="#main-content" class="skip-link">Langsung ke konten</a>
-
-    <!-- Welcome Banner -->
-    <div id="welcome-banner" style="background: linear-gradient(135deg, #1a1a1a, #333); padding:20px; text-align:center; color:#fff;">
-        <h2 class="bitcoin-glow">Selamat Datang di Newsui!</h2>
-        <p><strong>Hotel Mewah + Investasi Bitcoin = Masa Depan Anda</strong></p>
-        <button class="btn-bitcoin" onclick="scrollToSection('bitcoin')">Lihat Peluang Bitcoin</button>
+    <!-- Wallet Connector -->
+    <div class="wallet-btn">
+        <button id="connectWallet" class="btn-bitcoin">
+            <i class="fas fa-wallet"></i> Connect Bitcoin Wallet
+        </button>
+        <div id="walletStatus" class="wallet-info">
+            <p><strong>Wallet:</strong> <span id="walletAddress">--</span></p>
+            <p><strong>Saldo:</strong> <span id="walletBalance">0 BTC</span></p>
+            <button class="btn-bitcoin" onclick="investBTC()">Investasi 0.001 BTC</button>
+        </div>
     </div>
 
     <!-- Navbar -->
-    <header class="navbar" style="background:#1a1a1a; padding:15px 0; position:sticky; top:0; z-index:1000;">
-        <div class="container" style="max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center;">
-            <div class="logo">
-                <img src="assets/newsui-bitcoin.svg" alt="Newsui Bitcoin" width="120">
-            </div>
-            <nav>
-                <ul style="list-style:none; display:flex; gap:20px; margin:0;">
-                    <li><a href="#home" style="color:#f7931a; text-decoration:none;">Beranda</a></li>
-                    <li><a href="#bitcoin" style="color:#fff; text-decoration:none;">Bitcoin</a></li>
-                    <li><a href="#investment" style="color:#fff; text-decoration:none;">Investasi</a></li>
-                    <li><a href="#contact" style="color:#fff; text-decoration:none;">Kontak</a></li>
-                </ul>
-            </nav>
-        </div>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Beranda</a></li>
+                <li><a href="#bitcoin">Bitcoin</a></li>
+                <li><a href="#investment">Investasi</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+                <li><a href="#contact">Kontak</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <!-- Hero -->
-    <section id="home" style="background:url('https://r2.primal.net/cache/8/dd/96/8dd96aacddf188ba3d828a63e484911b33be9b224b70326c1998afd862ad2ddd.jpg') center/cover; height:100vh; display:flex; align-items:center; justify-content:center; text-align:center; color:#fff;">
+    <!-- Hero Section -->
+    <section id="home" class="hero">
         <div>
-            <h1 style="font-size:3.5rem; color:#f7931a;" class="bitcoin-glow">NEWSUI</h1>
-            <p style="font-size:1.5rem;">Hotel Mewah + <strong>Investasi Saham Bitcoin</strong></p>
-            <button class="btn-bitcoin" onclick="scrollToSection('bitcoin')">Mulai Investasi Bitcoin</button>
+            <h1 data-aos="fade-up">NEWSUI</h1>
+            <p data-aos="fade-up" data-aos-delay="200">Hotel Kreatif + Investasi Saham Bitcoin</p>
+            <p data-aos="fade-up" data-aos-delay="400">Kemewahan bertemu keuntungan abadi</p>
+            <button class="btn-bitcoin" onclick="scrollTo('bitcoin')" data-aos="fade-up" data-aos-delay="600">Jelajahi Bitcoin</button>
         </div>
     </section>
 
-    <!-- Bitcoin Section (BARU!) -->
-    <section id="bitcoin" style="padding:60px 20px; background:#1a1a1a; text-align:center;">
-        <div class="container" style="max-width:1000px; margin:auto;">
-            <h2 style="color:#f7931a; font-size:2.5rem;" data-aos="fade-up">Investasi Bitcoin di Newsui</h2>
-            <p data-aos="fade-up" data-aos-delay="200" style="font-size:1.2rem; margin:20px 0;">
-                Beli <strong>saham hotel kami dengan Bitcoin</strong> — dapatkan <strong>bagi hasil bulanan dalam BTC</strong>.
-            </p>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(250px,1fr)); gap:20px; margin-top:40px;">
-                <div style="background:#333; padding:20px; border-radius:10px;" data-aos="zoom-in">
-                    <i class="fab fa-bitcoin" style="font-size:3rem; color:#f7931a;"></i>
-                    <h3>Beli dengan BTC</h3>
-                    <p>Kirim Bitcoin ke wallet kami → dapatkan saham otomatis</p>
+    <!-- Bitcoin Section -->
+    <section id="bitcoin" class="section" style="background: var(--bitcoin-light); color: var(--bitcoin-dark);">
+        <div class="container">
+            <h2 data-aos="fade-up">Investasi Bitcoin di Newsui</h2>
+            <div class="grid">
+                <div class="card" data-aos="fade-right">
+                    <i class="fab fa-bitcoin"></i>
+                    <h3>Beli Saham dengan BTC</h3>
+                    <p>Kirim Bitcoin ke wallet kami dan dapatkan saham hotel secara otomatis melalui Lightning Network.</p>
                 </div>
-                <div style="background:#333; padding:20px; border-radius:10px;" data-aos="zoom-in" data-aos-delay="200">
-                    <i class="fas fa-coins" style="font-size:3rem; color:#f7931a;"></i>
-                    <h3>Bagi Hasil BTC</h3>
-                    <p>Keuntungan hotel dibagikan dalam Bitcoin setiap bulan</p>
+                <div class="card" data-aos="fade-up">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Bagi Hasil Otomatis</h3>
+                    <p>Keuntungan hotel dibagikan bulanan dalam BTC langsung ke wallet Anda via smart contract Bitcoin.</p>
                 </div>
-                <div style="background:#333; padding:20px; border-radius:10px;" data-aos="zoom-in" data-aos-delay="400">
-                    <i class="fas fa-shield-alt" style="font-size:3rem; color:#f7931a;"></i>
+                <div class="card" data-aos="fade-left">
+                    <i class="fas fa-shield-alt"></i>
                     <h3>Aman & Transparan</h3>
-                    <p>Smart contract di Bitcoin Layer 2 (Lightning)</p>
+                    <p>Semua transaksi tercatat di blockchain Bitcoin. Tidak ada biaya tersembunyi.</p>
                 </div>
             </div>
-            <button class="btn-bitcoin" style="margin-top:30px; font-size:1.2rem;" onclick="openModal()">Daftar Sekarang</button>
+            <div id="invoiceSection" style="text-align: center; margin-top: 40px; display: none;">
+                <h3>Invoice Pembayaran</h3>
+                <div id="invoiceQR"></div>
+                <p id="invoiceText" style="word-break: break-all; background: #000; padding: 10px; border-radius: 5px; margin: 10px 0;"></p>
+                <button class="btn-bitcoin" onclick="payInvoice()">Bayar dengan Wallet</button>
+            </div>
         </div>
     </section>
 
-    <!-- Investment Dashboard -->
-    <section id="investment" style="padding:60px 20px; background:#0f0f0f;">
-        <div class="container" style="max-width:1000px; margin:auto; text-align:center;">
-            <h2 style="color:#f7931a;">Dashboard Investor Bitcoin</h2>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(200px,1fr)); gap:15px; margin:30px 0;">
-                <div style="background:#222; padding:20px; border-radius:10px; color:#fff;">
-                    <p>Saldo BTC</p>
-                    <h3>0.0025 BTC</h3>
+    <!-- Investment Section -->
+    <section id="investment" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Peluang Investasi</h2>
+            <div class="grid">
+                <div class="card" data-aos="fade-up">
+                    <h3>Saldo Tersedia</h3>
+                    <p id="availableBalance">Rp 100.000 (0.0001 BTC)</p>
                 </div>
-                <div style="background:#222; padding:20px; border-radius:10px; color:#fff;">
-                    <p>Saham</p>
-                    <h3>50 NEWSUI</h3>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Total Disetor</h3>
+                    <p id="deposited">Rp 500.000 (0.0005 BTC)</p>
                 </div>
-                <div style="background:#222; padding:20px; border-radius:10px; color:#fff;">
-                    <p>Bagi Hasil</p>
-                    <h3>0.0001 BTC/bln</h3>
+                <div class="card" data-aos="fade-up" data-aos-delay="400">
+                    <h3>Bagi Hasil</h3>
+                    <p id="profitShare">Rp 100 (0.00001 BTC)</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="section" style="background: var(--bitcoin-light); color: var(--bitcoin-dark);">
+        <div class="container">
+            <h2 data-aos="fade-up">Dashboard Investor</h2>
+            <div id="investorTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Investor</th>
+                            <th>Saham</th>
+                            <th>BTC Disetor</th>
+                            <th>Bagi Hasil</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wallet 1...</td>
+                            <td>500</td>
+                            <td>0.005 BTC</td>
+                            <td>0.00025 BTC</td>
+                            <td>Aktif</td>
+                        </tr>
+                        <tr>
+                            <td>Wallet 2...</td>
+                            <td>250</td>
+                            <td>0.0025 BTC</td>
+                            <td>0.00012 BTC</td>
+                            <td>Aktif</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Hubungi Kami</h2>
+            <form data-aos="fade-up" data-aos-delay="200">
+                <input type="text" placeholder="Nama" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none;" required>
+                <input type="email" placeholder="Email" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none;" required>
+                <textarea placeholder="Pesan (atau Wallet BTC)" style="width: 100%; padding: 12px; margin: 10px 0; border-radius: 5px; border: none; height: 100px;" required></textarea>
+                <button type="submit" class="btn-bitcoin">Kirim</button>
+            </form>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer style="background:#000; color:#aaa; padding:40px 20px; text-align:center;">
-        <p><strong>Newsui Bitcoin Address:</strong></p>
-        <p><a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" style="color:#f7931a;">1CinDo...w3Q8</a></p>
-        <p>© 2025 Newsui. Powered by Bitcoin.</p>
+    <footer>
+        <div class="container">
+            <p><strong>Newsui Bitcoin Address:</strong> <a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" style="color: var(--bitcoin-orange);">1CinDo...w3Q8</a></p>
+            <div class="disclaimer">
+                <h3>Penafian</h3>
+                <p>Investasi saham berbasis Bitcoin melibatkan risiko. Ini bukan saran keuangan. Gunakan dana yang siap hilang.</p>
+            </div>
+            <p>© 2025 Newsui. Semua hak dilindungi. Powered by Bitcoin.</p>
+        </div>
     </footer>
 
-    <!-- Modal -->
-    <div id="modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); z-index:9999; display:flex; align-items:center; justify-content:center;">
-        <div style="background:#1a1a1a; padding:30px; border-radius:15px; max-width:500px; width:90%; position:relative;">
-            <span onclick="closeModal()" style="position:absolute; top:10px; right:15px; font-size:1.5rem; cursor:pointer; color:#f7931a;">×</span>
-            <h2 style="color:#f7931a;">Daftar Investasi Bitcoin</h2>
-            <form>
-                <input type="text" placeholder="Nama" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:none;" required>
-                <input type="email" placeholder="Email" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:none;" required>
-                <input type="text" placeholder="Wallet BTC" style="width:100%; padding:12px; margin:10px 0; border-radius:8px; border:none;" required>
-                <button type="submit" class="btn-bitcoin" style="width:100%; margin-top:15px;">Kirim & Dapatkan Saham</button>
-            </form>
+    <!-- Modal untuk Detail -->
+    <div id="modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--bitcoin-dark); padding: 30px; border-radius: 15px; max-width: 500px;">
+            <span onclick="closeModal()" style="float: right; cursor: pointer; font-size: 2rem; color: var(--bitcoin-orange);">×</span>
+            <div id="modalContent"></div>
         </div>
     </div>
 
     <!-- Scripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/@getalby/lightning-js@1.2.0/dist/lightning-js.min.js"></script>
+    <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
     <script>
-        AOS.init();
-        function scrollToSection(id) { document.getElementById(id).scrollIntoView({ behavior: 'smooth' }); }
-        function openModal() { document.getElementById('modal').style.display = 'flex'; }
-        function closeModal() { document.getElementById('modal').style.display = 'none'; }
+        AOS.init({ duration: 1000 });
+
+        let webln;
+        const API_KEY = 'YOUR_LNBITS_API_KEY'; // Ganti dengan API key LNbits Anda
+
+        function scrollTo(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Connect Wallet
+        document.getElementById('connectWallet').addEventListener('click', async () => {
+            if (typeof window.webln !== 'undefined') {
+                try {
+                    await window.webln.enable();
+                    webln = window.webln;
+                    const info = await webln.getInfo();
+                    const balance = await webln.getBalance();
+
+                    document.getElementById('walletAddress').textContent = info.nodeId?.slice(0, 12) + '...' || 'Connected';
+                    document.getElementById('walletBalance').textContent = (balance / 100000) + ' BTC'; // Satoshis to BTC
+                    document.getElementById('walletStatus').style.display = 'block';
+                    document.getElementById('connectWallet').textContent = 'Wallet Connected ✓';
+
+                    console.log('Wallet connected:', info);
+                } catch (error) {
+                    alert('Gagal menghubungkan wallet: ' + error.message);
+                }
+            } else {
+                alert('Silakan instal extension Alby atau Wallet of Satoshi untuk Lightning Network.');
+                window.open('https://getalby.com', '_blank');
+            }
+        });
+
+        // Investasi BTC
+        async function investBTC() {
+            if (!webln) return alert('Hubungkan wallet terlebih dahulu!');
+
+            try {
+                // Buat invoice via LNbits
+                const response = await fetch('https://legend.lnbits.com/api/v1/payments', {
+                    method: 'POST',
+                    headers: {
+                        'X-Api-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        out: false,
+                        amount: 100000, // 0.001 BTC in satoshis
+                        memo: 'Investasi Saham Newsui - 100 Saham'
+                    })
+                });
+                const invoice = await response.json();
+
+                // Tampilkan QR dan Text
+                document.getElementById('invoiceQR').innerHTML = '';
+                new QRCode(document.getElementById('invoiceQR'), { text: invoice.payment_request, width: 200, height: 200 });
+                document.getElementById('invoiceText').textContent = invoice.payment_request;
+                document.getElementById('invoiceSection').style.display = 'block';
+
+                // Bayar
+                const payment = await webln.sendPayment(invoice.payment_request);
+                if (payment.preimage) {
+                    alert('Investasi sukses! Saham akan dikreditkan dalam 5 menit.');
+                    // Di sini, integrasikan dengan backend untuk update saham
+                }
+            } catch (error) {
+                alert('Gagal investasi: ' + error.message);
+            }
+        }
+
+        function payInvoice() {
+            // Fungsi bayar invoice (mirip investBTC)
+            investBTC(); // Reuse logic
+        }
+
+        function openModal(content) {
+            document.getElementById('modalContent').innerHTML = content;
+            document.getElementById('modal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        // Form Submit (simulasi)
+        document.querySelector('form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('Pesan dikirim! Tim akan hubungi via WA.');
+        });
     </script>
 </body>
 </html>
