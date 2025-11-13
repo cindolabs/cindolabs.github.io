@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- JUDUL & DESKRIPSI -->
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <meta name="description" content="Resep ayam goreng rahasia — masuk dengan password!">
+
+  <!-- OPEN GRAPH (OG) TAGS — WAJIB UNTUK WA PREVIEW -->
+  <meta property="og:title" content="{{ site.title }} - {{ page.title }}">
+  <meta property="og:description" content="Resep ayam goreng rahasia — hanya untuk anggota!">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
+  <meta property="og:image" content="https://permen.gitlab.io/ayam/assets/preview.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:site_name" content="Ayam Rahasia">
+
+  <!-- TWITTER CARD -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{ site.title }} - {{ page.title }}">
+  <meta name="twitter:description" content="Resep ayam goreng rahasia — masuk dengan password!">
+  <meta name="twitter:image" content="https://permen.gitlab.io/ayam/assets/preview.jpg">
+
+  <!-- FONT & STYLE -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Kalam&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #ff6b35;
+      --yellow: #f7b733;
+      --light: #fff8e1;
+      --red: #d62828;
+      --shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--light);
+      margin: 0;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      background: var(--orange);
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    header h1 {
+      font-family: 'Kalam', cursive;
+      margin: 0;
+      font-size: 2.5em;
+    }
+    nav {
+      margin-top: 15px;
+    }
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.1em;
+    }
+    main {
+      flex: 1;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .post {
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      margin-bottom: 30px;
+    }
+    .btn {
+      background: var(--yellow);
+      color: #333;
+      padding: 12px 28px;
+      border-radius: 25px;
+      text-decoration: none;
+      display: inline-block;
+      margin: 10px 5px;
+      font-weight: bold;
+      transition: all 0.3s;
+      box-shadow: 0 3px 10px rgba(247,183,51,0.3);
+    }
+    .btn:hover {
+      background: #f4a261;
+      transform: translateY(-2px);
+    }
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #777;
+      font-size: 0.9em;
+      flex-shrink: 0;
+    }
+
+    /* PASSWORD SCREEN */
+    .locked {
+      background: white;
+      padding: 50px 30px;
+      border-radius: 20px;
+      max-width: 420px;
+      margin: 80px auto;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .locked h2 {
+      color: var(--red);
+      margin: 0 0 20px;
+      font-size: 1.8em;
+    }
+    .locked p {
+      color: #555;
+      margin-bottom: 25px;
+    }
+    .locked input {
+      padding: 16px;
+      width: 100%;
+      max-width: 300px;
+      border: 2px solid #ddd;
+      border-radius: 12px;
+      font-size: 1.1em;
+      margin: 15px 0;
+      text-align: center;
+    }
+    .locked button {
+      padding: 16px 40px;
+      background: var(--orange);
+      color: white;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      font-size: 1.2em;
+      font-weight: bold;
+      transition: 0.3s;
+      box-shadow: 0 5px 15px rgba(255,107,53,0.3);
+    }
+    .locked button:hover {
+      background: #e63946;
+      transform: scale(1.05);
+    }
+
+    /* Responsif HP */
+    @media (max-width: 480px) {
+      header h1 { font-size: 2em; }
+      .locked { margin: 40px 20px; padding: 40px 20px; }
+      .locked input { width: 90%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD SCREEN -->
+  <div class="locked" id="login">
+    <h2>Resep Ayam Rahasia</h2>
+    <p>Masukkan password untuk melihat resep spesial!</p>
+    <input type="password" id="pass" placeholder="Password..." autocomplete="off">
+    <br>
+    <button onclick="login()">Masuk</button>
+  </div>
+
+  <!-- KONTEN UTAMA -->
+  <div id="main-content" style="display: none;">
+    <header>
+      <h1>{{ site.title }}</h1>
+      <nav>
+        <a href="{{ site.baseurl }}/">Home</a>
+        <a href="{{ site.baseurl }}/resep">Resep</a>
+        <a href="#" onclick="logout()">Logout</a>
+      </nav>
+    </header>
+
+    <main>
+      {{ content }}
+    </main>
+
+    <footer>
+      <p>© 2025 Ayam Rahasia | Dibuat dengan Jekyll + GitLab Pages</p>
+    </footer>
+  </div>
+
+  <!-- SCRIPT: HARDCODE PASSWORD -->
+  <script>
+    const correctPass = "ayamgoreng123"; // GANTI DI SINI
+
+    function login() {
+      const input = document.getElementById("pass").value.trim();
+      if (input === correctPass) {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+        localStorage.setItem("ayam-auth", "true");
+      } else {
+        alert("Password salah! Coba lagi.");
+        document.getElementById("pass").value = "";
+        document.getElementById("pass").focus();
+      }
+    }
+
+    function logout() {
+      document.getElementById("login").style.display = "block";
+      document.getElementById("main-content").style.display = "none";
+      document.getElementById("pass").value = "";
+      localStorage.removeItem("ayam-auth");
+    }
+
+    // Auto-login
+    window.onload = function() {
+      if (localStorage.getItem("ayam-auth") === "true") {
+        document.getElementById("login").style.display = "none";
+        document.getElementById("main-content").style.display = "block";
+      }
+    };
+  </script>
+</body>
+</html>
