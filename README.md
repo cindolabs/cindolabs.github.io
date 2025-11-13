@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/birubos/birubos.github.io/main/cindo.svg" alt="Ngemio Logo" width="180">
+  <img src="https://raw.githubusercontent.com/ngemieo/ngemieo.github.io/main/cindo1.svg" alt="Ngemio Logo" width="180">
 </p>
 
 # Ngemieo  
