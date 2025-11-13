@@ -5,24 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- JUDUL & DESKRIPSI -->
-  <title>{{ page.title }} - {{ site.title }}</title>
+  <title>Ayam Rahasia - Resep Spesial</title>
   <meta name="description" content="Resep ayam goreng rahasia — masuk dengan password!">
 
-  <!-- OPEN GRAPH (OG) TAGS — WAJIB UNTUK WA PREVIEW -->
-  <meta property="og:title" content="{{ site.title }} - {{ page.title }}">
+  <!-- OPEN GRAPH (OG) TAGS — UNTUK WA PREVIEW -->
+  <meta property="og:title" content="Ayam Rahasia - Resep Spesial">
   <meta property="og:description" content="Resep ayam goreng rahasia — hanya untuk anggota!">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="{{ site.url }}{{ site.baseurl }}{{ page.url }}">
-  <meta property="og:image" content="https://permen.gitlab.io/ayam/assets/preview.jpg">
+  <meta property="og:url" content="https://newsui.github.io/ayam.html">
+  <meta property="og:image" content="https://newsui.github.io/preview.jpg">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
   <meta property="og:site_name" content="Ayam Rahasia">
 
   <!-- TWITTER CARD -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{{ site.title }} - {{ page.title }}">
+  <meta name="twitter:title" content="Ayam Rahasia - Resep Spesial">
   <meta name="twitter:description" content="Resep ayam goreng rahasia — masuk dengan password!">
-  <meta name="twitter:image" content="https://permen.gitlab.io/ayam/assets/preview.jpg">
+  <meta name="twitter:image" content="https://newsui.github.io/preview.jpg">
 
   <!-- FONT & STYLE -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&family=Kalam&display=swap" rel="stylesheet">
@@ -149,7 +149,6 @@
       transform: scale(1.05);
     }
 
-    /* Responsif HP */
     @media (max-width: 480px) {
       header h1 { font-size: 2em; }
       .locked { margin: 40px 20px; padding: 40px 20px; }
@@ -171,20 +170,38 @@
   <!-- KONTEN UTAMA -->
   <div id="main-content" style="display: none;">
     <header>
-      <h1>{{ site.title }}</h1>
+      <h1>Ayam Rahasia</h1>
       <nav>
-        <a href="{{ site.baseurl }}/">Home</a>
-        <a href="{{ site.baseurl }}/resep">Resep</a>
+        <a href="ayam.html">Home</a>
+        <a href="#resep">Resep</a>
         <a href="#" onclick="logout()">Logout</a>
       </nav>
     </header>
 
     <main>
-      {{ content }}
+      <div class="post">
+        <h2>Selamat Datang!</h2>
+        <p>Anda sudah masuk ke zona rahasia resep ayam goreng spesial dari nenek.</p>
+        <a href="#resep" class="btn">Lihat Resep</a>
+      </div>
+
+      <div class="post" id="resep">
+        <h1>Resep Ayam Goreng Rahasia</h1>
+        <p><strong>Bahan:</strong></p>
+        <ul>
+          <li>1 ekor ayam potong</li>
+          <li>5 siung bawang putih</li>
+          <li>1 sdt ketumbar</li>
+          <li>1 ruas kunyit</li>
+          <li>Garam secukupnya</li>
+        </ul>
+        <p><strong>Cara:</strong> Haluskan bumbu, lumuri ayam, diamkan 1 jam, goreng hingga kuning keemasan.</p>
+        <a href="ayam.html" class="btn">Kembali</a>
+      </div>
     </main>
 
     <footer>
-      <p>© 2025 Ayam Rahasia | Dibuat dengan Jekyll + GitLab Pages</p>
+      <p>© 2025 Ayam Rahasia | Dibuat dengan HTML + GitHub Pages</p>
     </footer>
   </div>
 
@@ -212,7 +229,6 @@
       localStorage.removeItem("ayam-auth");
     }
 
-    // Auto-login
     window.onload = function() {
       if (localStorage.getItem("ayam-auth") === "true") {
         document.getElementById("login").style.display = "none";
