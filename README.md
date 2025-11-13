@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/birubos/birubos.github.io/main/cindo.svg" alt="Biru Bos Logo" width="180">
+  <img src="https://raw.githubusercontent.com/birubos/birubos.github.io/main/cindo.svg" alt="Ngemio Logo" width="180">
 </p>
 
-# Biru Bos  
+# Ngemieo  
 **Fintech Research & Innovation Lab | Web3 Banking Replication**
 
 [![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
