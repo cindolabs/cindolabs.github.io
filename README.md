@@ -1,23 +1,43 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/ngemieo/ngemieo.github.io/main/cindo1.svg" alt="Ngemio Logo" width="180">
+  <img src="https://raw.githubusercontent.com/ngroso/ngroso.github.io/main/cindo1.svg" alt="Ngroso Logo" width="180">
 </p>
 
-# Nge Mie O  
+# Ngroso  
 **Fintech Research & Innovation Lab | Web3 Banking Replication**
 
 [![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
 [![ENS arema.eth](https://img.shields.io/badge/ENS-arema.eth-00d1b2.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/arema.eth)  
-[![GitHub Stars](https://img.shields.io/github/stars/birubos/birubos?style=social)](https://github.com/birubos/birubos) 
-[![X @cendoeth](https://img.shields.io/twitter/follow/cendoeth?style=social&logo=x)](https://x.com/cendoeth)
+[![GitHub Stars](https://img.shields.io/github/stars/birubos/birubos?style=social)](https://github.com/ngroso/ngroso) 
+[![X @ngroso9](https://img.shields.io/twitter/follow/ngroso9?style=social&logo=x)](https://x.com/ngroso9)
 
 > **Didirikan pada Portal 11:11 | 11 November 2025, 01:11 PM WIB**  
-> **BIRUBOS = 32 → 5** — *Harmoni Keuangan Terdesentralisasi*
+
+# README Numerologi "NGROSO"
+
+Kata **NGROSO** (arti Jawa: *meresapi/menyelami*) dihitung dengan **6 sistem numerologi dunia**.
 
 ---
 
-## Selamat Datang di BiruBos
+## 📊 RINGKASAN HASIL
 
-**BiruBos** adalah **laboratorium fintech terbuka** yang mempelajari dan meniru model kesuksesan **bank terbesar dunia** —  
+| Sistem | Angka | Makna Utama | Kategori |
+|--------|-------|-------------|----------|
+| **Pythagoras** | **7** | Introspeksi, spiritual, analisis | ⭐ Inti |
+| **Chaldean** | **9** | Kemanusiaan, penyelesaian siklus | ⭐ Kuat |
+| **Kabbalah** | **7** | Kebijaksanaan batin | ⭐ Inti |
+| **Petungan Jawa** | **8** | Kekuatan, keseimbangan materi-spiritual | ⚖️ Seimbang |
+| **Tionghoa (54 goresan)** | **54 → 9** | **大吉** – Kemakmuran besar, sukses lancar | 🌟 **TERBAIK** |
+| **Vedic India** | **9 (Mars)** | Berani, energik, pemimpin | 🔥 Dinamis |
+
+---
+
+## 🀄 Tionghoa (Versi Final – N = 农)
+
+---
+
+## Selamat Datang di Ngroso
+
+**Ngroso** adalah **laboratorium fintech terbuka** yang mempelajari dan meniru model kesuksesan **bank terbesar dunia** —  
 **ICBC • CCB • ABC • BOC • JPMorgan Chase** —  
 dengan teknologi **blockchain, smart contract, dan identitas Web3**.
 
@@ -26,9 +46,9 @@ dengan teknologi **blockchain, smart contract, dan identitas Web3**.
 
 ---
 
-## Tentang BiruBos
+## Tentang Ngroso
 
-BiruBos adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan pemilik ENS:  
+Ngroso adalah **inti inovasi** dari tim **Puncak Lembah**, **Cindo Labs**, dan pemilik ENS:  
 [`cindo.eth`](https://app.ens.domains/cindo.eth) | [`arema.eth`](https://app.ens.domains/arema.eth)
 
 ### Visi
@@ -70,17 +90,17 @@ Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan g
 | **CINDOETH** | C=3, I=9, N=5, D=4, O=6, E=5, T=2, H=8 → **42 → 6** | **6** | Harmoni, kemakmuran, pelayanan |
 | **Portal 11:11** | 11 (Master) + 6 → **17 → 8** | **8** | Kekayaan, otoritas, kesuksesan |
 
-> **BiruBos #5** — *Platform profit-sharing & stabilitas jangka panjang*  
+> **Tionghoa (54 goresan)** | **54 → 9** | **大吉** – Kemakmuran besar, sukses lancar | 🌟 **TERBAIK**  
 > **Peluncuran 11:11 → Energi 8 → Hari terbaik untuk manifestasi keuangan!*
 
 ### Apa Itu **Portal 11:11**?
 > **Portal 11:11** adalah **momen energi tinggi** dalam numerologi modern — terjadi saat **tanggal & jam menunjukkan 11:11** (11 November pukul 11:11).  
 > Dianggap sebagai **gerbang manifestasi**, **sinkronisitas**, dan **awal baru** — sangat kuat untuk **peluncuran proyek, visi, dan tujuan jangka panjang**.  
-> **Hari ini (11/11/2025)** adalah **Portal 11:11 tahunan** — energi **8** dari **11 + 6 = 17 → 8** — **hari terbaik untuk meluncurkan CindoEth**.
+> **Hari ini (11/11/2025)** adalah **Portal 11:11 tahunan** — energi **8** dari **11 + 6 = 17 → 8** — **hari terbaik untuk meluncurkan Ngroso**. https://gitlab.com/ngroso
 
 ---
 
-## Mengapa BiruBos?
+## Mengapa Ngroso?
 
 - **Identitas Web3 Asli** → `cindo.eth` = kepemilikan terverifikasi  
 - **Transparansi 100%** → Semua kode, data, & smart contract open-source  
@@ -92,7 +112,7 @@ Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan g
 ## Cara Memulai
 
 1. **Jelajahi Riset**  
-   → [cindoeth.streamlit.app](https://cindoeth.streamlit.app/)  
+   → [ngroso.streamlit.app](https://ngroso.streamlit.app/)  
    *Laporan, simulasi, whitepaper*
 
 2. **Verifikasi ENS**  
@@ -100,15 +120,15 @@ Membangun **laboratorium fintech terbuka** yang menggabungkan **data perbankan g
 
 3. **Kontribusi**  
    ```bash
-   git clone https://github.com/cindoeth/cindoeth.git
+   git clone https://github.com/ngroso/ngroso.git
 
 ## Ikuti Perjalanan Kami
 
 | Platform       | Link                                                                 |
 |----------------|----------------------------------------------------------------------|
-| Website        | [birubos.github.io](https://birubos.github.io/)                    |
+| Website        | [ngroso.github.io](https://ngroso.github.io/)                        |
 | Instagram      | [instagram.com/cindolabs](https://www.instagram.com/cindolabs/)      |
-| X (Twitter)    | [@cindolabs](https://x.com/cindolabs)                                |
+| X (Twitter)    | [@ngroso9](https://x.com/ngroso9)                                    |
 | Facebook       | [facebook.com/cindolabs](https://www.facebook.com/cindolabs)         |
 
 ---
@@ -151,6 +171,6 @@ Kami **membuka pintu lebar** untuk:
 
 ---
 
-> **© 2025 BiruBos**  
+> **© 2025 Ngroso**  
 > *Dari Portal 11:11 menuju harmoni keuangan terdesentralisasi.*  
 > `cindo.eth` — **verified on-chain, trusted off-chain.**
