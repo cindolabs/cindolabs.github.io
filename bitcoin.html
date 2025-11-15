@@ -3,12 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ngroso - Hotel Mewah dengan Investasi Saham Berbasis Bitcoin & Lightning Network">
+    <meta name="description" content="Ngroso - Hotel Mewah & Investasi Digital via Lightning Network">
     <meta name="theme-color" content="#f7931a">
-    <title>Ngroso - Investasi Bitcoin, Forex & Saham</title>
+    <title>Ngroso - Investasi Digital</title>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- Icons & Fonts -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/bitcoin-favicon.ico" type="image/x-icon">
@@ -27,12 +31,13 @@
             --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
             --radius: 16px;
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gap: 2rem;
         }
 
-        * {
+        *, *::before, *::after {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
@@ -54,7 +59,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            background: rgba(10, 10, 10, 0.9);
+            background: rgba(10, 10, 10, 0.92);
             backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--border);
             padding: 1rem 0;
@@ -64,19 +69,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
         }
 
         .logo {
             font-weight: 700;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             color: var(--btc-orange);
             text-decoration: none;
+            letter-spacing: -0.5px;
         }
 
         .nav-links {
             display: flex;
             gap: 2rem;
             list-style: none;
+            flex-wrap: wrap;
         }
 
         .nav-links a {
@@ -84,14 +92,14 @@
             text-decoration: none;
             font-weight: 500;
             font-size: 0.95rem;
-            transition: var(--transition);
             position: relative;
+            transition: var(--transition);
         }
 
         .nav-links a::after {
             content: '';
             position: absolute;
-            bottom: -4px;
+            bottom: -6px;
             left: 0;
             width: 0;
             height: 2px;
@@ -115,32 +123,42 @@
             font-weight: 600;
             font-size: 0.9rem;
             border: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
         }
 
         /* Hero */
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)), url('https://r2.primal.net/cache/8/dd/96/8dd96aacddf188ba3d828a63e484911b33be9b224b70326c1998afd862ad2ddd.jpg') center/cover no-repeat;
-            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://r2.primal.net/cache/8/dd/96/8dd96aacddf188ba3d828a63e484911b33be9b224b70326c1998afd862ad2ddd.jpg') center/cover no-repeat;
+            padding: 2rem;
         }
 
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             font-weight: 700;
             background: linear-gradient(135deg, #f7931a, #ffb84d);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(247,147,26,0.4);
             margin-bottom: 1rem;
+            line-height: 1.2;
         }
 
         .hero p {
-            font-size: 1.3rem;
+            font-size: 1.2rem;
             max-width: 700px;
             margin: 0.8rem auto;
             color: #e0e0e0;
@@ -156,8 +174,10 @@
             font-size: 1.1rem;
             cursor: pointer;
             transition: var(--transition);
-            margin-top: 1.5rem;
             box-shadow: 0 4px 15px rgba(247, 147, 26, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         .btn-primary:hover {
@@ -165,22 +185,28 @@
             box-shadow: 0 8px 25px rgba(247, 147, 26, 0.4);
         }
 
-        /* Floating Elements */
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Floating & Wallet */
         .floating-btc {
             position: fixed;
             top: 1.5rem;
             left: 1.5rem;
             z-index: 999;
+            width: 50px;
             animation: float 3s ease-in-out infinite;
             filter: drop-shadow(0 0 10px rgba(247,147,26,0.5));
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
         }
 
-        /* Wallet Button */
         .wallet-connect {
             position: fixed;
             top: 1.5rem;
@@ -197,14 +223,15 @@
             border-radius: var(--radius);
             border: 1px solid var(--border);
             font-size: 0.85rem;
-            display: none;
             backdrop-filter: blur(10px);
             min-width: 220px;
+            display: none;
+            animation: fadeIn 0.3s ease;
         }
 
-        .wallet-info p {
-            margin: 0.4rem 0;
-            word-break: break-all;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Sections */
@@ -228,8 +255,8 @@
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--gap);
         }
 
         .card {
@@ -254,11 +281,6 @@
             margin-bottom: 1.5rem;
         }
 
-        .card h3 {
-            font-size: 1.4rem;
-            margin-bottom: 1rem;
-        }
-
         /* Invoice */
         .invoice-box {
             max-width: 400px;
@@ -271,18 +293,15 @@
             display: none;
         }
 
-        #invoiceQR {
-            margin: 1rem 0;
-        }
-
         #invoiceText {
             background: #000;
             padding: 1rem;
             border-radius: 8px;
-            font-family: monospace;
+            font-family: 'Courier New', monospace;
             font-size: 0.8rem;
             word-break: break-all;
             margin: 1rem 0;
+            color: #0f0;
         }
 
         /* Table */
@@ -293,6 +312,7 @@
             border-radius: var(--radius);
             overflow: hidden;
             box-shadow: var(--shadow);
+            font-size: 0.95rem;
         }
 
         th {
@@ -312,9 +332,21 @@
             border-bottom: none;
         }
 
+        .address-link {
+            color: var(--btc-orange);
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+
+        .address-link:hover {
+            text-decoration: underline;
+        }
+
         /* Form */
-        .form-group {
-            margin-bottom: 1rem;
+        .form-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
         }
 
         input, textarea {
@@ -326,6 +358,7 @@
             color: var(--text);
             font-family: inherit;
             transition: var(--transition);
+            margin-bottom: 1rem;
         }
 
         input:focus, textarea:focus {
@@ -352,36 +385,59 @@
             color: #aaa;
         }
 
-        .btc-address {
-            font-family: monospace;
-            color: var(--btc-orange);
-            font-weight: 600;
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .wallet-connect {
+                top: 5rem;
+                right: 1rem;
+            }
+
+            .floating-btc {
+                width: 40px;
+            }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 { font-size: 3rem; }
-            .nav-links { display: none; }
-            .price-live { font-size: 0.8rem; padding: 0.4rem 0.8rem; }
-            .wallet-connect { right: 1rem; top: 5rem; }
-            .floating-btc { width: 40px; }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.8rem; }
+            .section { padding: 3rem 0; }
+            .grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
     <!-- Floating Bitcoin -->
-    <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin" width="55" class="floating-btc">
+    <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin Logo" class="floating-btc">
 
     <!-- Wallet Connector -->
     <div class="wallet-connect">
         <button id="connectWallet" class="btn-primary">
-            <i class="fas fa-wallet"></i> Connect Wallet
+            Connect Wallet
         </button>
         <div id="walletStatus" class="wallet-info">
             <p><strong>Wallet:</strong> <span id="walletAddress">--</span></p>
             <p><strong>Saldo:</strong> <span id="walletBalance">0 BTC</span></p>
-            <button class="btn-primary" style="margin-top: 0.5rem; font-size: 0.9rem;" onclick="investBTC()">
+            <button id="investBtn" class="btn-primary" style="margin-top: 0.5rem; font-size: 0.9rem;" onclick="investBTC()" disabled>
                 Investasi 0.0001 BTC
             </button>
         </div>
@@ -392,7 +448,10 @@
         <div class="container">
             <nav>
                 <a href="#" class="logo">NGROSO</a>
-                <ul class="nav-links">
+                <button class="mobile-menu" id="menuToggle">
+                    Menu
+                </button>
+                <ul class="nav-links" id="navLinks">
                     <li><a href="#home">Beranda</a></li>
                     <li><a href="#bitcoin">Bitcoin</a></li>
                     <li><a href="#investment">Investasi</a></li>
@@ -410,7 +469,9 @@
             <h1>NGROSO</h1>
             <p>Hotel Kreatif Bertaraf Internasional</p>
             <p>Investasi Saham dengan Bitcoin — Keuntungan Dibagikan Otomatis</p>
-            <button class="btn-primary" onclick="scrollToSection('bitcoin')">Jelajahi Investasi</button>
+            <button class="btn-primary" onclick="scrollToSection('bitcoin')">
+                Jelajahi Investasi
+            </button>
         </div>
     </section>
 
@@ -483,26 +544,30 @@
                     </thead>
                     <tbody>
                         <tr>
-                        <td>
-                        <a 
-                           href="https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK" 
-                           target="_blank" 
-                           rel="noopener noreferrer"
-                           style="color: var(--btc-orange); text-decoration: none; font-family: monospace; font-weight: 500;">
-                           1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK
-                        </a>
-                        </td>
-                        <td>100</td>
-                        <td>0.00000980 BTC</td>
-                        <td>0.00000049 BTC</td>
-                        <td><span style="color: #4ade80; font-weight: 600;">Aktif</span></td>
+                            <td>
+                                <a href="https://mempool.space/address/1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK" 
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="address-link">
+                                    1BitcoinX...ggp6HK
+                                </a>
+                            </td>
+                            <td>100</td>
+                            <td>0.00000980 BTC</td>
+                            <td>0.00000049 BTC</td>
+                            <td><span style="color: #4ade80; font-weight: 600;">Aktif</span></td>
                         </tr>
                         <tr>
-                            <td>bc1qab...</td>
+                            <td>
+                                <a href="https://mempool.space/address/bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh" 
+                                   target="_blank" rel="noopener noreferrer"
+                                   class="address-link">
+                                    bc1qxy2...x0wlh
+                                </a>
+                            </td>
                             <td>250</td>
                             <td>0.0025 BTC</td>
                             <td>0.00012 BTC</td>
-                            <td><span style="color: #4ade80;">Aktif</span></td>
+                            <td><span style="color: #4ade80; font-weight: 600;">Aktif</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -514,21 +579,13 @@
     <section id="contact" class="section">
         <div class="container">
             <h2 data-aos="fade-up">Hubungi Kami</h2>
-            <form id="waForm" class="max-w-lg mx-auto" data-aos="fade-up" data-aos-delay="100">
-                <div class="form-group">
-                    <input type="text" id="waName" placeholder="Nama Lengkap" required />
-                </div>
-                <div class="form-group">
-                    <input type="email" id="waEmail" placeholder="Email" required />
-                </div>
-                <div class="form-group">
-                    <input type="text" id="waWallet" placeholder="Wallet BTC (opsional)" />
-                </div>
-                <div class="form-group">
-                    <textarea id="waMessage" rows="4" placeholder="Pesan Anda" required></textarea>
-                </div>
-                <button type="submit" class="btn-primary w-full">
-                    <i class="fab fa-whatsapp"></i> Kirim via WhatsApp
+            <form id="waForm" class="form-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <input type="text" id="waName" placeholder="Nama Lengkap" required />
+                <input type="email" id="waEmail" placeholder="Email" required />
+                <input type="text" id="waWallet" placeholder="Wallet BTC (opsional)" />
+                <textarea id="waMessage" rows="4" placeholder="Pesan Anda" required></textarea>
+                <button type="submit" class="btn-primary">
+                    Kirim via WhatsApp
                 </button>
             </form>
         </div>
@@ -537,7 +594,13 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p><strong>Alamat Bitcoin Ngroso:</strong> <a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" class="btc-address" target="_blank">1CinDo...w3Q8</a></p>
+            <p><strong>Alamat Bitcoin Ngroso:</strong> 
+                <a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="address-link">
+                    1CinDo...w3Q8
+                </a>
+            </p>
             <div class="disclaimer">
                 <h3>Penafian Resmi</h3>
                 <p>Investasi dalam aset kripto seperti Bitcoin memiliki risiko tinggi. Ini bukan saran keuangan. Selalu lakukan riset sendiri (DYOR). Ngroso tidak bertanggung jawab atas kerugian investasi.</p>
@@ -553,8 +616,13 @@
     <script>
         AOS.init({ duration: 1000, once: true });
 
-        const API_KEY = 'YOUR_LNBITS_API_KEY'; // Ganti dengan API Key LNbits Anda
+        const API_KEY = 'YOUR_LNBITS_API_KEY'; // Ganti!
         let webln = null;
+
+        // Mobile Menu
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
 
         // Smooth Scroll
         function scrollToSection(id) {
@@ -570,19 +638,19 @@
                     const info = await webln.getInfo();
                     const balance = await webln.getBalance();
 
-                    document.getElementById('walletAddress').textContent = 
-                        (info.nodeId || info.alias || 'Connected').slice(0, 12) + '...';
+                    const addr = info.nodeId || info.alias || 'Connected';
+                    document.getElementById('walletAddress').textContent = addr.slice(0, 12) + '...';
                     document.getElementById('walletBalance').textContent = 
                         (balance.balance / 100000000).toFixed(8) + ' BTC';
                     document.getElementById('walletStatus').style.display = 'block';
-                    document.getElementById('connectWallet').innerHTML = 
-                        '<i class="fas fa-check-circle"></i> Terhubung';
+                    document.getElementById('connectWallet').innerHTML = 'Terhubung';
                     document.getElementById('connectWallet').disabled = true;
+                    document.getElementById('investBtn').disabled = false;
                 } catch (err) {
-                    alert('Gagal terhubung: ' + err.message);
+                    alert('Gagal: ' + err.message);
                 }
             } else {
-                if (confirm('Instal Alby Wallet untuk melanjutkan?')) {
+                if (confirm('Instal Alby Wallet?')) {
                     window.open('https://getalby.com', '_blank');
                 }
             }
@@ -590,7 +658,7 @@
 
         // Invest BTC
         async function investBTC() {
-            if (!webln) return alert('Hubungkan wallet terlebih dahulu!');
+            if (!webln) return alert('Hubungkan wallet!');
 
             try {
                 const res = await fetch('https://legend.lnbits.com/api/v1/payments', {
@@ -601,8 +669,8 @@
                     },
                     body: JSON.stringify({
                         out: false,
-                        amount: 100000, // 0.001 BTC in satoshis
-                        memo: 'Investasi Saham Ngroso - 100 Saham'
+                        amount: 10000, // 0.0001 BTC = 10,000 sats
+                        memo: 'Investasi Ngroso - 10 Saham'
                     })
                 });
 
@@ -620,7 +688,7 @@
 
                 const payment = await webln.sendPayment(invoice.payment_request);
                 if (payment.preimage) {
-                    alert('Investasi berhasil! Saham akan dikreditkan dalam 5 menit.');
+                    alert('Investasi berhasil! Saham dikreditkan.');
                     document.getElementById('invoiceSection').style.display = 'none';
                 }
             } catch (err) {
@@ -648,7 +716,7 @@
         updateBTCPrice();
         setInterval(updateBTCPrice, 30000);
 
-        // WhatsApp Form
+        // WhatsApp
         document.getElementById('waForm').addEventListener('submit', (e) => {
             e.preventDefault();
             const name = encodeURIComponent(document.getElementById('waName').value.trim());
@@ -662,8 +730,7 @@
             if (wallet) text += `*Wallet:* ${wallet}%0A`;
             text += `%0A*Pesan:*%0A${message}`;
 
-            const waUrl = `https://wa.me/6282264083228?text=${text}`;
-            window.open(waUrl, '_blank');
+            window.open(`https://wa.me/6282264083228?text=${text}`, '_blank');
             e.target.reset();
         });
     </script>
