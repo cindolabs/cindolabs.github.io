@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ngroso - Hotel Mewah & Investasi Saham Bitcoin via Lightning Network">
+    <meta name="theme-color" content="#f7931a">
+    <title>Ngroso - Investasi Saham Bitcoin</title>
+
+    <!-- Preload Critical Resources -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- Icons & Fonts -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="assets/bitcoin-favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="assets/bitcoin-icon.png">
+
+    <style>
+        :root {
+            --btc-orange: #f7931a;
+            --btc-dark: #0a0a0a;
+            --btc-bg: #0f0f0f;
+            --btc-light: #fff8f0;
+            --text: #ffffff;
+            --text-muted: #cccccc;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --border: rgba(247, 147, 26, 0.2);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --radius: 16px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --gap: 2rem;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: var(--btc-bg);
+            color: var(--text);
+            font-family: 'Inter', sans-serif;
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 1rem 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.6rem;
+            color: var(--btc-orange);
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--btc-orange);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--btc-orange);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .price-live {
+            background: rgba(247, 147, 26, 0.15);
+            color: var(--btc-orange);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid var(--border);
+            white-space: nowrap;
+        }
+
+        .mobile-menu {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .auth-section {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        #userAddr {
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+        }
+
+        #logoutBtn {
+            background: none;
+            border: none;
+            color: #ff6b6b;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('https://r2.primal.net/cache/8/dd/96/8dd96aacddf188ba3d828a63e484911b33be9b224b70326c1998afd862ad2ddd.jpg') center/cover no-repeat;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            background: linear-gradient(135deg, #f7931a, #ffb84d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0.8rem auto;
+            color: #e0e0e0;
+        }
+
+        .btn-primary {
+            background: var(--btc-orange);
+            color: white;
+            border: none;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            box-shadow: 0 4px 15px rgba(247, 147, 26, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(247, 147, 26, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Floating & Wallet */
+        .floating-btc {
+            position: fixed;
+            top: 1.5rem;
+            left: 1.5rem;
+            z-index: 999;
+            width: 50px;
+            animation: float 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 10px rgba(247,147,26,0.5));
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
+
+        .wallet-connect {
+            position: fixed;
+            top: 1.5rem;
+            right: 1.5rem;
+            z-index: 999;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .wallet-info {
+            background: var(--btc-dark);
+            padding: 1rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            font-size: 0.85rem;
+            backdrop-filter: blur(10px);
+            min-width: 220px;
+            display: none;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Sections */
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section.alt {
+            background: var(--btc-light);
+            color: #1a1a1a;
+        }
+
+        .section h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 3rem;
+            background: linear-gradient(135deg, #f7931a, #ffb84d);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--gap);
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            text-align: center;
+            transition: var(--transition);
+            backdrop-filter: blur(12px);
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow);
+            border-color: var(--btc-orange);
+        }
+
+        .card i {
+            font-size: 3rem;
+            color: var(--btc-orange);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Invoice */
+        .invoice-box {
+            max-width: 400px;
+            margin: 2rem auto;
+            text-align: center;
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            display: none;
+        }
+
+        #invoiceText {
+            background: #000;
+            padding: 1rem;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.8rem;
+            word-break: break-all;
+            margin: 1rem 0;
+            color: #0f0;
+        }
+
+        /* Table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: var(--card-bg);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            font-size: 0.95rem;
+        }
+
+        th {
+            background: var(--btc-orange);
+            color: #000;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .address-link {
+            color: var(--btc-orange);
+            text-decoration: none;
+            font-family: 'Courier New', monospace;
+            font-weight: 500;
+        }
+
+        .address-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Form */
+        .form-wrapper {
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            background: rgba(255,255,255,0.05);
+            color: var(--text);
+            font-family: inherit;
+            transition: var(--transition);
+            margin-bottom: 1rem;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-colorтуру: var(--btc-orange);
+            box-shadow: 0 0 0 3px rgba(247,147,26,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--btc-dark);
+            padding: 3rem 0 2rem;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+
+        .disclaimer {
+            background: rgba(0,0,0,0.4);
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            margin: 2rem auto;
+            max-width: 800px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+                background: rgba(10, 10, 10, 0.98);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                padding: 1rem 0;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .wallet-connect {
+                top: 5rem;
+                right: 1rem;
+            }
+
+            .floating-btc {
+                width: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 2.8rem; }
+            .section { padding: 3rem 0; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Bitcoin -->
+    <img src="https://bitcoin.org/img/icons/logotop.svg" alt="Bitcoin Logo" class="floating-btc">
+
+    <!-- Wallet Connector -->
+    <div class="wallet-connect">
+        <button id="connectWallet" class="btn-primary">
+            Connect Wallet
+        </button>
+        <div id="walletStatus" class="wallet-info">
+            <p><strong>Wallet:</strong> <span id="walletAddress">--</span></p>
+            <p><strong>Saldo:</strong> <span id="walletBalance">0 BTC</span></p>
+            <button id="investBtn" class="btn-primary" style="margin-top: 0.5rem; font-size: 0.9rem;" onclick="investBTC()" disabled>
+                Investasi 0.0001 BTC
+            </button>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">NGROSO</a>
+                <button class="mobile-menu" id="menuToggle">
+                    Menu
+                </button>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Beranda</a></li>
+                    <li><a href="#bitcoin">Bitcoin</a></li>
+                    <li><a href="#investment">Investasi</a></li>
+                    <li><a href="#dashboard">Dashboard</a></li>
+                    <li><a href="#contact">Kontak</a></li>
+                </ul>
+                <div class="price-live" id="btc-price">Loading...</div>
+                <div class="auth-section">
+                    <button id="loginBtn" class="btn-primary" style="font-size: 0.9rem; padding: 0.7rem 1.5rem;">
+                        Login Bitcoin
+                    </button>
+                    <div id="userInfo" style="display: none; color: var(--btc-orange); font-weight: 600;">
+                        <span id="userAddr"></span>
+                        <button id="logoutBtn">Logout</button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section id="home" class="hero">
+        <div data-aos="fade-up">
+            <h1>NGROSO</h1>
+            <p>Hotel Kreatif Bertaraf Internasional</p>
+            <p>Investasi Saham dengan Bitcoin — Keuntungan Dibagikan Otomatis</p>
+            <button class="btn-primary" onclick="scrollToSection('bitcoin')">
+                Jelajahi Investasi
+            </button>
+        </div>
+    </section>
+
+    <!-- Bitcoin Investment -->
+    <section id="bitcoin" class="section alt">
+        <div class="container">
+            <h2 data-aos="fade-up">Investasi Bitcoin di Ngroso</h2>
+            <div class="grid">
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <i class="fab fa-bitcoin"></i>
+                    <h3>Beli Saham dengan BTC</h3>
+                    <p>Kirim Bitcoin via Lightning Network, saham otomatis dikreditkan.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Bagi Hasil Bulanan</h3>
+                    <p>Keuntungan hotel dibagikan langsung ke wallet Anda dalam BTC.</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="300">
+                    <i class="fas fa-shield-alt"></i>
+                    <h3>Transparan & Aman</h3>
+                    <p>Semua transaksi tercatat di blockchain Bitcoin — tidak bisa dipalsukan.</p>
+                </div>
+            </div>
+
+            <div id="invoiceSection" class="invoice-box">
+                <h3>Invoice Pembayaran</h3>
+                <div id="invoiceQR"></div>
+                <p id="invoiceText"></p>
+                <button class="btn-primary" onclick="payInvoice()">Bayar Sekarang</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Stats -->
+    <section id="investment" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Statistik Investasi</h2>
+            <div class="grid">
+                <div class="card" data-aos="fade-up">
+                    <h3>Saldo Tersedia</h3>
+                    <p id="availableBalance">Rp 100.000 (0.0001 BTC)</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="100">
+                    <h3>Total Disetor</h3>
+                    <p id="deposited">Rp 500.000 (0.0005 BTC)</p>
+                </div>
+                <div class="card" data-aos="fade-up" data-aos-delay="200">
+                    <h3>Bagi Hasil</h3>
+                    <p id="profitShare">Rp 100 (0.00001 BTC)</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="section alt">
+        <div class="container">
+            <h2 data-aos="fade-up">Dashboard Investor</h2>
+            <div id="investorTable">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Investor</th>
+                            <th>Saham</th>
+                            <th>BTC Disetor</th>
+                            <th>Bagi Hasil</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="5" style="text-align: center; color: #888; padding: 2rem;">
+                                Login dengan Bitcoin untuk melihat dashboard Anda
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact" class="section">
+        <div class="container">
+            <h2 data-aos="fade-up">Hubungi Kami</h2>
+            <form id="waForm" class="form-wrapper" data-aos="fade-up" data-aos-delay="100">
+                <input type="text" id="waName" placeholder="Nama Lengkap" required />
+                <input type="email" id="waEmail" placeholder="Email" required />
+                <input type="text" id="waWallet" placeholder="Wallet BTC (opsional)" />
+                <textarea id="waMessage" rows="4" placeholder="Pesan Anda" required></textarea>
+                <button type="submit" class="btn-primary">
+                    Kirim via WhatsApp
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Alamat Bitcoin Ngroso:</strong> 
+                <a href="https://mempool.space/address/1CinDo3c1hzAsU8CVrhyTjcAymLATQw3Q8" 
+                   target="_blank" rel="noopener noreferrer"
+                   class="address-link">
+                    1CinDo...w3Q8
+                </a>
+            </p>
+            <div class="disclaimer">
+                <h3>Penafian Resmi</h3>
+                <p>Investasi dalam aset kripto seperti Bitcoin memiliki risiko tinggi. Ini bukan saran keuangan. Selalu lakukan riset sendiri (DYOR). Ngroso tidak bertanggung jawab atas kerugian investasi.</p>
+            </div>
+            <p>© 2025 <strong>Ngroso</strong>. Didukung oleh <strong>Bitcoin</strong> & Lightning Network.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script src="https://unpkg.com/@getalby/lightning-js@1.2.0/dist/lightning-js.min.js"></script>
+    <script src="https://unpkg.com/qrcode@1.5.3/build/qrcode.min.js"></script>
+    <script>
+        AOS.init({ duration: 1000, once: true });
+
+        const API_KEY = 'YOUR_LNBITS_API_KEY'; // GANTI DENGAN API KEY LNBITS ANDA
+        let webln = null;
+        let currentUser = null;
+
+        // Mobile Menu
+        document.getElementById('menuToggle').addEventListener('click', () => {
+            document.getElementById('navLinks').classList.toggle('active');
+        });
+
+        // Smooth Scroll
+        function scrollToSection(id) {
+            document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Wallet Connection
+        document.getElementById('connectWallet').addEventListener('click', async () => {
+            if (typeof window.webln !== 'undefined') {
+                try {
+                    await window.webln.enable();
+                    webln = window.webln;
+                    const info = await webln.getInfo();
+                    const balance = await webln.getBalance();
+
+                    const addr = info.nodeId || info.alias || 'Connected';
+                    document.getElementById('walletAddress').textContent = addr.slice(0, 12) + '...';
+                    document.getElementById('walletBalance').textContent = 
+                        (balance.balance / 100000000).toFixed(8) + ' BTC';
+                    document.getElementById('walletStatus').style.display = 'block';
+                    document.getElementById('connectWallet').innerHTML = 'Terhubung';
+                    document.getElementById('connectWallet').disabled = true;
+                } catch (err) {
+                    alert('Gagal terhubung: ' + err.message);
+                }
+            } else {
+                if (confirm('Instal Alby Wallet untuk melanjutkan?')) {
+                    window.open('https://getalby.com', '_blank');
+                }
+            }
+        });
+
+        // Login dengan Bitcoin
+        document.getElementById('loginBtn').addEventListener('click', async () => {
+            if (!webln) {
+                alert('Hubungkan wallet terlebih dahulu!');
+                document.getElementById('connectWallet').click();
+                return;
+            }
+
+            try {
+                const timestamp = Date.now();
+                const message = `Login to Ngroso - ${timestamp}`;
+                const signature = await webln.signMessage(message);
+                const address = await webln.getInfo().then(i => i.nodeId || i.alias);
+
+                if (signature && address) {
+                    currentUser = { address, signature, timestamp };
+                    loginSuccess(address);
+                } else {
+                    throw new Error('Tanda tangan gagal');
+                }
+            } catch (err) {
+                alert('Login gagal: ' + err.message);
+            }
+        });
+
+        function loginSuccess(address) {
+            const shortAddr = address.slice(0, 8) + '...' + address.slice(-6);
+            document.getElementById('userAddr').textContent = shortAddr;
+            document.getElementById('loginBtn').style.display = 'none';
+            document.getElementById('userInfo').style.display = 'flex';
+            document.getElementById('investBtn').disabled = false;
+            updateInvestorDashboard(address);
+        }
+
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            currentUser = null;
+            document.getElementById('loginBtn').style.display = 'block';
+            document.getElementById('userInfo').style.display = 'none';
+            document.getElementById('investBtn').disabled = true;
+            resetInvestorDashboard();
+        });
+
+        // Update Dashboard
+        function updateInvestorDashboard(address) {
+            const tableBody = document.querySelector('#investorTable tbody');
+            tableBody.innerHTML = '';
+
+            const userData = {
+                '1BitcoinX1PpTdriS5pNUh7RSD3eggp6HK': { shares: 100, deposited: '0.00000980', profit: '0.00000049' },
+                'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh': { shares: 250, deposited: '0.0025', profit: '0.00012' }
+            };
+
+            const data = userData[address] || { shares: 0, deposited: '0', profit: '0' };
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>
+                    <a href="https://mempool.space/address/${address}" target="_blank" rel="noopener noreferrer" class="address-link">
+                        ${address.slice(0, 8)}...${address.slice(-6)}
+                    </a>
+                </td>
+                <td>${data.shares}</td>
+                <td>${data.deposited} BTC</td>
+                <td>${data.profit} BTC</td>
+                <td><span style="color: #4ade80; font-weight: 600;">${data.shares > 0 ? 'Aktif' : 'Belum Investasi'}</span></td>
+            `;
+            tableBody.appendChild(row);
+        }
+
+        function resetInvestorDashboard() {
+            const tableBody = document.querySelector('#investorTable tbody');
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align: center; color: #888; padding: 2rem;">
+                        Login dengan Bitcoin untuk melihat dashboard Anda
+                    </td>
+                </tr>
+            `;
+        }
+
+        // Invest BTC
+        async function investBTC() {
+            if (!webln) return alert('Hubungkan wallet!');
+            if (!currentUser) return alert('Login terlebih dahulu!');
+
+            try {
+                const res = await fetch('https://legend.lnbits.com/api/v1/payments', {
+                    method: 'POST',
+                    headers: {
+                        'X-Api-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        out: false,
+                        amount: 10000,
+                        memo: `Investasi Ngroso - ${currentUser.address.slice(0,8)}...`
+                    })
+                });
+
+                const invoice = await res.json();
+                document.getElementById('invoiceQR').innerHTML = '';
+                new QRCode(document.getElementById('invoiceQR'), {
+                    text: invoice.payment_request,
+                    width: 180,
+                    height: 180,
+                    colorDark: "#f7931a",
+                    colorLight: "#0a0a0a"
+                });
+                document.getElementById('invoiceText').textContent = invoice.payment_request;
+                document.getElementById('invoiceSection').style.display = 'block';
+
+                const payment = await webln.sendPayment(invoice.payment_request);
+                if (payment.preimage) {
+                    alert('Investasi berhasil! Saham dikreditkan.');
+                    document.getElementById('invoiceSection').style.display = 'none';
+                    updateInvestorDashboard(currentUser.address);
+                }
+            } catch (err) {
+                alert('Gagal: ' + err.message);
+            }
+        }
+
+        function payInvoice() {
+            investBTC();
+        }
+
+        // Live BTC Price
+        async function updateBTCPrice() {
+            try {
+                const res = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd,idr');
+                const data = await res.json();
+                const usd = data.bitcoin.usd.toLocaleString('en-US');
+                const idr = data.bitcoin.idr.toLocaleString('id-ID');
+                document.getElementById('btc-price').innerHTML = `$${usd} | Rp ${idr}`;
+            } catch {
+                document.getElementById('btc-price').textContent = 'Offline';
+            }
+        }
+
+        updateBTCPrice();
+        setInterval(updateBTCPrice, 30000);
+
+        // WhatsApp
+        document.getElementById('waForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = encodeURIComponent(document.getElementById('waName').value.trim());
+            const email = encodeURIComponent(document.getElementById('waEmail').value.trim());
+            const wallet = encodeURIComponent(document.getElementById('waWallet').value.trim());
+            const message = encodeURIComponent(document.getElementById('waMessage').value.trim());
+
+            let text = `*Pesan dari Ngroso*%0A%0A`;
+            text += `*Nama:* ${name}%0A`;
+            text += `*Email:* ${email}%0A`;
+            if (wallet) text += `*Wallet:* ${wallet}%0A`;
+            text += `%0A*Pesan:*%0A${message}`;
+
+            window.open(`https://wa.me/6282264083228?text=${text}`, '_blank');
+            e.target.reset();
+        });
+    </script>
+</body>
+</html>
