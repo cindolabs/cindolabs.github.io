@@ -13,7 +13,7 @@
   
   <!-- Teks Utama: Angkringan Cindo (Emas + Bayangan Putih) -->
   <text x="280" y="185" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#D4AF37">Ngemiel</text>
-  <text x="282" y="187" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#FFFFFF" opacity="0.3">Angkringan Cindo</text>
+  <text x="282" y="187" font-family="Arial, sans-serif" font-size="100" font-weight="bold" fill="#FFFFFF" opacity="0.3">Ngemiel</text>
   
   <!-- Subtext: @ngemiel + Tagline (Putih + Emas Kecil) -->
   <text x="280" y="230" font-family="Arial, sans-serif" font-size="32" fill="#FFFFFF">@ngemiel</text>
