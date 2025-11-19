@@ -7,8 +7,8 @@
 
 [![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
 [![ENS arema.eth](https://img.shields.io/badge/ENS-arema.eth-00d1b2.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/arema.eth)  
-[![GitHub Stars](https://img.shields.io/github/stars/birubos/birubos?style=social)](https://github.com/ngroso/ngroso) 
-[![X @ngroso9](https://img.shields.io/twitter/follow/ngroso9?style=social&logo=x)](https://x.com/ngroso9)
+[![GitHub Stars](https://img.shields.io/github/stars/ngemiel/ngemiel?style=social)](https://github.com/ngemiel/ngemiel) 
+[![X @ngemiel](https://img.shields.io/twitter/follow/ngemiel?style=social&logo=x)](https://x.com/ngemiel)
 
 > **Didirikan pada Portal 11:11 | 11 November 2025, 01:11 PM WIB**  
 
