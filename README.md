@@ -7,7 +7,7 @@
 
 [![ENS cindo.eth](https://img.shields.io/badge/ENS-cindo.eth-0066ff.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/cindo.eth)  
 [![ENS arema.eth](https://img.shields.io/badge/ENS-arema.eth-00d1b2.svg?style=flat&logo=ethereum&logoColor=white)](https://app.ens.domains/arema.eth)  
-[![GitHub Stars](https://img.shields.io/github/stars/ngemiel/ngemiel?style=social)](https://github.com/ngemiel/ngemiel) 
+[![GitHub Stars](https://img.shields.io/github/stars/ngemiel/ngemiel.github.io?style=social)](https://github.com/ngemiel/ngemiel.github.io) 
 [![X @ngemiel](https://img.shields.io/twitter/follow/ngemiel?style=social&logo=x)](https://x.com/ngemiel)
 
 > **Didirikan pada Portal 11:11 | 11 November 2025, 01:11 PM WIB**  
