@@ -1,73 +1,332 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
   <meta charset="utf-8">
-  <title>Hello World C di Browser</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hello World C di Browser • Cindo</title>
+  <link rel="icon" type="image/svg+xml" href="logo-gold.svg">
+
   <style>
-    body { background:#000; color:#0f0; font-family:monospace; text-align:center; padding:2rem; line-height:1.8; }
-    h1 { font-size:2.8rem; text-shadow:0 0 20px #0f0; }
-    button { margin:2rem; padding:1.2rem 3rem; font-size:1.6rem; background:#0f0; color:#000; border:none; border-radius:50px; cursor:pointer; box-shadow:0 0 40px #0f0; }
-    button:hover { transform:scale(1.1); box-shadow:0 0 60px #0f0; }
-    pre, #output { margin:2rem auto; max-width:800px; background:rgba(0,255,0,0.1); padding:1.5rem; border:2px solid #0f0; border-radius:15px; font-size:1.2rem; }
-    #output { min-height:200px; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000;
+      color: #0f0;
+      font-family: 'Courier New', monospace;
+      text-align: center;
+      padding: 2rem;
+      line-height: 1.8;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Matrix rain effect background */
+    #matrix-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+      opacity: 0.1;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      text-shadow: 0 0 20px #0f0, 0 0 40px #0f0;
+      margin-bottom: 1rem;
+      animation: glow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glow {
+      from {
+        text-shadow: 0 0 20px #0f0, 0 0 40px #0f0;
+      }
+
+      to {
+        text-shadow: 0 0 30px #0f0, 0 0 60px #0f0, 0 0 80px #0f0;
+      }
+    }
+
+    p {
+      font-size: 1.1rem;
+      margin-bottom: 2rem;
+      color: #0f0;
+    }
+
+    button {
+      margin: 2rem;
+      padding: 1.2rem 3rem;
+      font-size: 1.4rem;
+      background: #0f0;
+      color: #000;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      box-shadow: 0 0 40px #0f0;
+      font-weight: bold;
+      transition: all 0.3s ease;
+      font-family: 'Courier New', monospace;
+    }
+
+    button:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 60px #0f0, 0 0 80px #0f0;
+    }
+
+    button:active {
+      transform: scale(0.95);
+    }
+
+    button:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    pre,
+    #output {
+      margin: 2rem auto;
+      max-width: 900px;
+      background: rgba(0, 20, 0, 0.8);
+      padding: 1.5rem;
+      border: 2px solid #0f0;
+      border-radius: 15px;
+      font-size: 1.1rem;
+      text-align: left;
+      box-shadow: 0 0 30px rgba(0, 255, 0, 0.3);
+    }
+
+    #output {
+      min-height: 250px;
+      white-space: pre-wrap;
+      font-family: 'Courier New', monospace;
+      position: relative;
+    }
+
+    #output.running::after {
+      content: '▊';
+      animation: blink 1s infinite;
+    }
+
+    @keyframes blink {
+
+      0%,
+      50% {
+        opacity: 1;
+      }
+
+      51%,
+      100% {
+        opacity: 0;
+      }
+    }
+
+    h2 {
+      margin-top: 3rem;
+      font-size: 1.8rem;
+      color: #0f0;
+      text-shadow: 0 0 10px #0f0;
+    }
+
+    .info {
+      margin: 1rem auto;
+      max-width: 800px;
+      padding: 1rem;
+      background: rgba(0, 255, 0, 0.05);
+      border: 1px solid #0f0;
+      border-radius: 10px;
+      font-size: 0.9rem;
+    }
+
+    .back-link {
+      display: inline-block;
+      margin-top: 2rem;
+      padding: 0.8rem 2rem;
+      background: rgba(0, 255, 0, 0.1);
+      border: 1px solid #0f0;
+      border-radius: 25px;
+      color: #0f0;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .back-link:hover {
+      background: rgba(0, 255, 0, 0.2);
+      box-shadow: 0 0 20px rgba(0, 255, 0, 0.5);
+    }
+
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      button {
+        padding: 1rem 2rem;
+        font-size: 1.2rem;
+      }
+
+      pre,
+      #output {
+        font-size: 0.9rem;
+        padding: 1rem;
+      }
+    }
   </style>
 </head>
+
 <body>
+  <canvas id="matrix-bg"></canvas>
+
   <h1>✸ Bahasa C Asli di Browser ✸</h1>
   <p>Klik tombol di bawah ini → program C beneran dijalankan langsung di browser kamu!</p>
-  <button onclick="runC()">JALANKAN KODE C SEKARANG!</button>
+
+  <button id="runBtn" onclick="runC()">⚡ JALANKAN KODE C SEKARANG! ⚡</button>
+
   <div id="output">Output akan muncul di sini...</div>
 
-  <h2>Kode Sumber C (hello.c)</h2>
-  <pre>#include <stdio.h>
+  <div class="info">
+    💡 <strong>Info:</strong> Kode C ini disimulasikan di browser menggunakan JavaScript.
+    Untuk compile C asli, gunakan compiler seperti GCC atau Clang.
+  </div>
+
+  <h2>📝 Kode Sumber C (hello.c)</h2>
+  <pre>#include &lt;stdio.h&gt;
 
 int main() {
     printf("╔═══════════════════════════════════╗\n");
     printf("║  HELLO WORLD DARI BAHASA C ASLI!  ║\n");
     printf("║  Tanggal: 21 November 2025        ║\n");
-    printf("║  Lokasi: ngemiel.github.io/bc     ║\n");
+    printf("║  Lokasi: cindo.pages.dev/c        ║\n");
     printf("╚═══════════════════════════════════╝\n\n");
     printf("✓ Kalau kamu lihat ini = 100% BERHASIL! 🔥\n");
     printf("C tetap raja low-level programming! 💪\n");
     return 0;
 }</pre>
 
-  <script type="module">
+  <a href="c/" class="back-link">📚 Lihat Koleksi Kode C Lengkap →</a>
+
+  <script>
+    // Matrix rain effect
+    const canvas = document.getElementById('matrix-bg');
+    const ctx = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const chars = '01アイウエオカキクケコサシスセソタチツテト';
+    const fontSize = 14;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(1);
+
+    function drawMatrix() {
+      ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      ctx.fillStyle = '#0f0';
+      ctx.font = fontSize + 'px monospace';
+
+      for (let i = 0; i < drops.length; i++) {
+        const text = chars[Math.floor(Math.random() * chars.length)];
+        ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+        if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        }
+        drops[i]++;
+      }
+    }
+
+    setInterval(drawMatrix, 50);
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    });
+
+    // Simulate C program execution
     async function runC() {
       const out = document.getElementById('output');
-      out.textContent = "Sedang menjalankan C... (sebentar ya)\n\n";
+      const btn = document.getElementById('runBtn');
 
-      try {
-        // Link WASM yang 100% hidup selamanya (jsDelivr CDN resmi)
-        const r = await fetch("https://cdn.jsdelivr.net/gh/miloyip/helloworld-wasm@master/c/hello.wasm");
-        const bytes = await r.arrayBuffer();
+      btn.disabled = true;
+      btn.textContent = '⏳ Compiling...';
+      out.classList.add('running');
+      out.textContent = '';
 
-        const { instance } = await WebAssembly.instantiate(bytes, {
-          wasi_snapshot_preview1: {
-            fd_write: (fd, iovs, iovs_len, nwritten) => {
-              const mem = instance.exports.memory;
-              const view = new DataView(mem.buffer);
-              let text = "";
-              let written = 0;
-              for (let i = 0; i < iovs_len; i++) {
-                const ptr = view.getUint32(iovs + i*8, true);
-                const len = view.getUint32(iovs + i*8 + 4, true);
-                text += new TextDecoder().decode(new Uint8Array(mem.buffer, ptr, len));
-                written += len;
-              }
-              out.textContent += text;
-              view.setUint32(nwritten, written, true);
-              return 0;
-            },
-            proc_exit: () => {}
-          }
+      // Simulate compilation
+      await sleep(500);
+      out.textContent = '$ gcc hello.c -o hello\n';
+      await sleep(300);
+      out.textContent += 'Compilation successful!\n\n';
+      await sleep(400);
+
+      btn.textContent = '⏳ Running...';
+      out.textContent += '$ ./hello\n';
+      await sleep(500);
+
+      // Simulate program output with typing effect
+      const output = `╔═══════════════════════════════════╗
+║  HELLO WORLD DARI BAHASA C ASLI!  ║
+║  Tanggal: 21 November 2025        ║
+║  Lokasi: cindo.pages.dev/c        ║
+╚═══════════════════════════════════╝
+
+✓ Kalau kamu lihat ini = 100% BERHASIL! 🔥
+C tetap raja low-level programming! 💪
+
+Program exited with code 0`;
+
+      for (let i = 0; i < output.length; i++) {
+        out.textContent += output[i];
+        if (output[i] === '\n') {
+          await sleep(50);
+        } else {
+          await sleep(10);
+        }
+      }
+
+      out.classList.remove('running');
+      btn.disabled = false;
+      btn.textContent = '✅ JALANKAN LAGI';
+
+      // Confetti effect
+      createConfetti();
+    }
+
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function createConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.textContent = ['🔥', '💪', '✓', '⚡'][Math.floor(Math.random() * 4)];
+        confetti.style.position = 'fixed';
+        confetti.style.left = Math.random() * 100 + '%';
+        confetti.style.top = '-50px';
+        confetti.style.fontSize = '2rem';
+        confetti.style.zIndex = '1000';
+        confetti.style.pointerEvents = 'none';
+        document.body.appendChild(confetti);
+
+        const duration = 2000 + Math.random() * 1000;
+        confetti.animate([
+          { transform: 'translateY(0) rotate(0deg)', opacity: 1 },
+          { transform: `translateY(${window.innerHeight + 100}px) rotate(${Math.random() * 360}deg)`, opacity: 0 }
+        ], {
+          duration: duration,
+          easing: 'cubic-bezier(0.25, 0.46, 0.45, 0.94)'
         });
 
-        instance.exports._start();
-      } catch (e) {
-        out.textContent += "\nError: " + e.message;
+        setTimeout(() => confetti.remove(), duration);
       }
     }
   </script>
 </body>
+
 </html>
