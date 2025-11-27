@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dompetku - Pelacak Keuangan Pribadi</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; color: #333; }
+        .header { text-align: center; background-color: #4CAF50; color: white; padding: 20px; border-radius: 10px; }
+        .container { max-width: 800px; margin: 20px auto; background: white; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        button { background-color: #4CAF50; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #45a049; }
+        .transactions { margin-top: 20px; }
+        .transaction { background: #f9f9f9; padding: 10px; margin-bottom: 10px; border-radius: 5px; display: flex; justify-content: space-between; }
+        .balance { text-align: center; font-size: 24px; margin: 20px 0; color: #4CAF50; }
+        .tips { background: #e7f3ff; padding: 15px; border-radius: 5px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Dompetku</h1>
+        <p>Pelacak Keuangan Pribadi Sederhana</p>
+    </div>
+    
+    <div class="container">
+        <div class="balance" id="balance">Saldo: Rp 0</div>
+        
+        <form id="expenseForm">
+            <div class="form-group">
+                <label for="description">Deskripsi Pengeluaran:</label>
+                <input type="text" id="description" placeholder="Contoh: Beli makan siang" required>
+            </div>
+            <div class="form-group">
+                <label for="amount">Jumlah (Rp):</label>
+                <input type="number" id="amount" placeholder="10000" required>
+            </div>
+            <div class="form-group">
+                <label for="category">Kategori:</label>
+                <select id="category">
+                    <option value="Makanan">Makanan</option>
+                    <option value="Transportasi">Transportasi</option>
+                    <option value="Belanja">Belanja</option>
+                    <option value="Lainnya">Lainnya</option>
+                </select>
+            </div>
+            <button type="submit">Tambah Pengeluaran</button>
+        </form>
+        
+        <div class="transactions">
+            <h3>Daftar Transaksi</h3>
+            <div id="transactionsList"></div>
+        </div>
+        
+        <div class="tips">
+            <h3>Tips Keuangan:</h3>
+            <ul>
+                <li>Catat setiap pengeluaran kecil untuk lihat pola kebiasaan.</li>
+                <li>Targetkan 50% pendapatan untuk kebutuhan, 30% keinginan, 20% tabungan.</li>
+                <li>Review bulanan untuk sesuaikan budget.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let transactions = JSON.parse(localStorage.getItem('transactions')) || [];
+        let balance = 5000000; // Saldo awal contoh (Rp 5 juta), bisa diubah
+
+        function updateBalance() {
+            const totalExpenses = transactions.reduce((sum, tx) => sum + tx.amount, 0);
+            balance = 5000000 - totalExpenses; // Asumsi saldo awal fixed
+            document.getElementById('balance').textContent = `Saldo: Rp ${balance.toLocaleString()}`;
+        }
+
+        function renderTransactions() {
+            const list = document.getElementById('transactionsList');
+            list.innerHTML = '';
+            transactions.forEach((tx, index) => {
+                const div = document.createElement('div');
+                div.className = 'transaction';
+                div.innerHTML = `
+                    <span>${tx.description} (${tx.category})</span>
+                    <span>Rp ${tx.amount.toLocaleString()} <button onclick="deleteTransaction(${index})">Hapus</button></span>
+                `;
+                list.appendChild(div);
+            });
+            updateBalance();
+        }
+
+        function deleteTransaction(index) {
+            transactions.splice(index, 1);
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            renderTransactions();
+        }
+
+        document.getElementById('expenseForm').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const description = document.getElementById('description').value;
+            const amount = parseInt(document.getElementById('amount').value);
+            const category = document.getElementById('category').value;
+            
+            transactions.push({ description, amount, category });
+            localStorage.setItem('transactions', JSON.stringify(transactions));
+            
+            document.getElementById('expenseForm').reset();
+            renderTransactions();
+        });
+
+        // Load awal
+        renderTransactions();
+    </script>
+</body>
+</html>
